@@ -1,0 +1,18 @@
+//La nomo estas la speco de mapo
+2@3//largxo kaj alto de la mapo
+@//separantoj
+30_220_30.//koloroj de la unuaj sprite-oj
+90_90_230
+@
+0_3_4.//katalogo de "sprites", ankaux la punktoj estas separantoj, la unua datumo estas la nombro de la folio kaj la dua kaj tria estas la koordenadoj
+0_1_0.
+0_1_1.
+0_2_0.
+0_2_1.
+0_2_2.
+0_2_3
+@
+1//"ruido" de la mapa
+@
+0//formo de la mapo
+1
