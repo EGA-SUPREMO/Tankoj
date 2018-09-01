@@ -16,7 +16,7 @@ public class Qefperant {
 	private Statperant statp;
 	
 	public static void main(String[] args) {
-		Qefperant qp = new Qefperant("Tankoj La atako", Konstantj.plejfenestrLargx,
+		Qefperant qp = new Qefperant("Tankoj La atako ol", Konstantj.plejfenestrLargx,
 			Konstantj.plejfenestrAlt);
 		
 		qp.ekLudn();
