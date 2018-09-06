@@ -55,9 +55,6 @@ public class Map {
 					for(int y = 0; y < alt; y++)
 						sprites[x + y * largx] = spritear[s.charAt(x + y * largx)];
 			} else {
-				
-				
-				
 			}
 			
 		return sprites;
@@ -70,8 +67,9 @@ public class Map {
 		
 		for(int y = 0; y < alt; y++)
 			for(int x = 0; x < largx; x++)
-				DebugDesegn.desegnBildn(map[x + y * largx], (int) (Kvantperant.koordenadXalPosici(x * Konstantj.SPRITELARGX)), (int)
-						(Kvantperant.koordenadYalPosici(y * Konstantj.SPRITEALT)));
+				DebugDesegn.desegnBildn(map[x + y * largx], (int)
+						(Kvantperant.koordenadXalekranPosicin(x*Konstantj.SPRITELARGX)), (int)
+						(Kvantperant.koordenadYalekranPosicin(y*Konstantj.SPRITEALT)));
 		
 	}
 	private Color[] elKolorj(final String[] datumojKolorj) {
