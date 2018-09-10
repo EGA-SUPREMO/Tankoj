@@ -6,12 +6,9 @@ import java.awt.Rectangle;
 import qef.Konstantj;
 import qef.ilj.DebugDesegn;
 
-import static qef.Konstantj.ludAlt;
-import static qef.Konstantj.ludLargx;
-
 public class Submenu {
 	
-	private static Rectangle are = new Rectangle(0, ludAlt - Konstantj.altSubmenu, ludLargx, ludAlt);
+	private static Rectangle are = new Rectangle(0, 0, Konstantj.ludLargx, Konstantj.altSubmenu);
 	private Rectangle MargxenAre;
 	private Verg[] vergj;
 	private Elektebl[] elekteblj;
@@ -19,8 +16,7 @@ public class Submenu {
 	
 	public Submenu() {
 		
-		//are = new Rectangle(0, ludAlt - altMenu, ludLargx, ludAlt);
-		MargxenAre = new Rectangle(are.x, are.y - 1, are.width, 1);
+		MargxenAre = new Rectangle(are.x, are.height, are.width, 1);
 		
 		vergj = new Verg[4];
 		vergj[0] = new Verg(Color.BLUE, Text.VIV);

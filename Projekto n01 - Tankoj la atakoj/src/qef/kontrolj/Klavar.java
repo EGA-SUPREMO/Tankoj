@@ -74,8 +74,8 @@ public class Klavar extends KeyAdapter {
 				elir();
 				break;
 			case Konstantj.REKOMENCI:
-				QefObjektj.ludant.setX(480);
-				QefObjektj.ludant.setY(280);
+				QefObjektj.ludant.setXn(480);
+				QefObjektj.ludant.setYn(280);
 				Text.RES.mlnuligKvantn();
 				break;
 			case Konstantj.QKOLEKT:

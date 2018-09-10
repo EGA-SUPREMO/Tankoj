@@ -21,8 +21,8 @@ public abstract class Konstantj {
 	public static int plejRestarigad = 150;
 	public static int plejResistenc = 750;
 
-	public static int ludLargx = 640;
-	public static int ludAlt = 384;
+	public static int ludLargx = 960;
+	public static int ludAlt = 540;
 	
 	public final static int altSubmenu = 64;//La alto de la submenu
 	

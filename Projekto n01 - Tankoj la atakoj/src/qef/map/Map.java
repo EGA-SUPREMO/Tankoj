@@ -1,5 +1,6 @@
 package qef.map;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Transparency;
@@ -14,9 +15,9 @@ import org.json.simple.parser.JSONParser;
 
 import qef.Konstantj;
 import qef.QefObjektj;
-import qef.dijkstra.Dijkstra;
 import qef.estazhj.Estazhregistril;
 import qef.estazhj.vivazhj.Vivazh;
+import qef.ilj.BruGeneril;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.YargxilAzhj;
@@ -34,6 +35,8 @@ public class Map {
 	private int tileeMaplargx;
 	private int tileeMapalt;
 	
+	private int xx;
+	
 	private static final int xAxenVideblTilej = (int) ((float)Konstantj.ludLargx/Konstantj.SPRITEFLANK + 2.99);
 	private static final int yAxenVideblTilej = (int) ((float)Konstantj.ludAlt/Konstantj.SPRITEFLANK + 0.99);
 	private static final int mldextrenVideblTilej = (int) ((float)(xAxenVideblTilej-2)/2 + 0.99);
@@ -44,28 +47,24 @@ public class Map {
 	
 	private ArrayList<Spritetavol> spritetavolj;
 	
-	public ArrayList<Rectangle> arejKolici;
-	public ArrayList<Rectangle> gxisdatigitArejKolici;
-	
 	private BufferedImage[] paletrsprite;
 	
-	private Dijkstra d;
-	
-	public ArrayList<Objektar> objektarj;
 	public ArrayList<Vivazh> vivazhar;
-
+	private int[] y;
+	public int offsetMap;
 	public Map(final int itener) {
 		rangoX = 0;
 		rangoY = 0;
 		limiteX = 0;
 		limiteY = 0;
-
-		System.out.println(xAxenVideblTilej);
-		System.out.println(yAxenVideblTilej);
-		System.out.println(mldextrenVideblTilej);
-		System.out.println(suprenVideblTilej);
+		vivazhar = new ArrayList<>();
+		spritetavolj = new ArrayList<>();
 		
-		String enhav = YargxilAzhj.yargxTextn(Konstantj.ITENER_MAP + itener + ".tmx");
+		int[] frequencies = {1, 1, 2, 3, 4, 8};
+		float[] amplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
+		y = BruGeneril.generMapn(frequencies, amplitudes);
+		offsetMap = 400;
+		/*String enhav = YargxilAzhj.yargxTextn(Konstantj.ITENER_MAP + itener + ".tmx");
 		
 		final JSONObject globalJSON = JSONObjektn(enhav);
 		tileeMaplargx = intAlJSONn(globalJSON, "width");
@@ -117,7 +116,7 @@ public class Map {
 						String passable = pasable.get("passable").toString();
 						qtransenebl = passable != null && passable.equals("true");
 					}
-					System.out.println(qtransenebl);*/
+					System.out.println(qtransenebl);*//*
 					if (x == 0) x = 1;
 					if (y == 0) y = 1;
 					if (largx == 0) largx = 1;
@@ -142,7 +141,6 @@ public class Map {
 			}
 		}
 		
-		d = new Dijkstra(new Point(komencpunktX, komencpunktY), tileeMaplargx, tileeMapalt, arejKolici);
 		//AVERIGUAR TOTAL DE SPRITES EXISTENTES EN TODAS LAS CAPAS
 		JSONArray coleccionesSprites = JSONArrayn(globalJSON.get("tilesets").toString());
 		int totalSprites = 0;
@@ -205,21 +203,22 @@ public class Map {
 			int xEnemigo = intAlJSONn(datosEnemigo, "x");
 			int yEnemigo = intAlJSONn(datosEnemigo, "y");
 			
-			Point posicionEnemigo = new Point(xEnemigo, yEnemigo);
-			Vivazh enemigo = (Vivazh) Estazhregistril.estazhjn(idEnemigo);
-			enemigo.setX(xEnemigo);
-			enemigo.setY(yEnemigo);
 			
-			vivazhar.add(enemigo);
+/////////////////////////////////////GRAVA KODO///////////////////////////////////////////////////////////
+			
+			
+			Point posicionEnemigo = new Point(xEnemigo, yEnemigo);
+			//Vivazh enemigo = (Vivazh) Estazhregistril.estazhjn(idEnemigo);
+			//enemigo.setX(xEnemigo);
+			//enemigo.setY(yEnemigo);
+			
+			//vivazhar.add(enemigo);
 		}
-		
-		gxisdatigitArejKolici = new ArrayList<>();
+		*/
 	}
 	
 	public void gxisdatig() {
 		gxisdatigRangojn();
-		gxisdatigArejKolicin();
-		gxisdatigObjektkolektad();
 		
 		gxisdatigVivazhjn();
 		gxisdatigAtakjn();
@@ -235,52 +234,12 @@ public class Map {
 		if(rangoY+yAxenVideblTilej<=this.tileeMapalt)
 			limiteY = rangoY+yAxenVideblTilej;
 	}
-
-	private void gxisdatigArejKolicin() {
-		if (!gxisdatigitArejKolici.isEmpty()) {
-			gxisdatigitArejKolici.clear();
-		}
-		
-		for (int i = 0; i < arejKolici.size(); i++) {
-			Rectangle nunRectangle = arejKolici.get(i);
-			
-			gxisdatigitArejKolici.add(new Rectangle((int) Kvantperant.koordenadXalekranPosicin(nunRectangle.x),
-					(int) Kvantperant.koordenadYalekranPosicin(nunRectangle.y), nunRectangle.width, nunRectangle.height));
-		}
-	}
-	
-	private void gxisdatigObjektkolektad() {
-/*		if (!objetosMapa.isEmpty()) {
-            final Rectangle areaJugador = new Rectangle(ElementosPrincipales.jugador.obtenerPosicionXInt(),
-                    ElementosPrincipales.jugador.obtenerPosicionYInt(), Constantes.LADO_SPRITE, Constantes.LADO_SPRITE);
-
-            for (int i = 0; i < objetosMapa.size(); i++) {
-                final ObjetoUnicoTiled objetoActual = objetosMapa.get(i);
-
-                final Rectangle posicionObjetoActual = new Rectangle(
-                        objetoActual.obtenerPosicion().x,
-                        objetoActual.obtenerPosicion().y, Constantes.LADO_SPRITE,
-                        Constantes.LADO_SPRITE);
-
-                if (areaJugador.intersects(posicionObjetoActual) && GestorControles.teclado.recogiendo) {
-                    ElementosPrincipales.inventario.recogerObjetos(objetoActual);
-                    objetosMapa.remove(i);
-                }
-            }
-        }*/
-	}
 	
 	private void gxisdatigVivazhjn() {
 		if (!vivazhar.isEmpty()) {
 			for (Vivazh vivazh:vivazhar) {
-				vivazh.setVenontNodn(d.findVenontNodnnPorMalamikj(vivazh));
 				vivazh.gxisdatig();
-			}	
-			
-			Point koincidatPunkt = d.koordinatjDeKoincidatNodDeLudantn(
-					(int) QefObjektj.ludant.xn() + (QefObjektj.ludant.largxVivazhn()>>1),
-					(int) QefObjektj.ludant.yn() + (QefObjektj.ludant.altVivazhn()>>1));
-			d.rekomencKajTask(koincidatPunkt);
+			}
 		}
 	}
 
@@ -336,36 +295,21 @@ public class Map {
 		}
 	}
 	public void desegn() {
-		for (int i = 0; i < spritetavolj.size(); i++) {
-			int[] spritesCapa = spritetavolj.get(i).obtenerArraySprites();
-			
-			for (int y = rangoY; y < limiteY; y++) {
-				for (int x = rangoX; x < limiteX; x++) {
-					int nunSpriteId = spritesCapa[x + y * tileeMaplargx];
-					if (nunSpriteId != -1) {
-						int punktX = (int) Kvantperant.koordenadXalekranPosicin(x * Konstantj.SPRITEFLANK);
-						int punktY = (int) Kvantperant.koordenadYalekranPosicin(y * Konstantj.SPRITEFLANK);
-						
-						DebugDesegn.desegnBildn(paletrsprite[nunSpriteId], punktX, punktY);
-					}
-				}
-			}
-		}
-		for (int i = 0; i < objektarj.size(); i++) {
-			Objektar nunObjektar = objektarj.get(i);
-			
-			int punktX = (int) Kvantperant.koordenadXalekranPosicin(nunObjektar.posicin().x);
-			int punktY = (int) Kvantperant.koordenadYalekranPosicin(nunObjektar.posicin().y);
-			for(int j = 0; j < nunObjektar.objektj().length; j++)
-			DebugDesegn.desegnBildn(nunObjektar.objektj()[j].spriten(),
-					punktX, punktY);
-		}
 		
+		DebugDesegn.setColor(Color.CYAN);
+		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, offsetMap + 155);
+		DebugDesegn.setColor(Color.GREEN);
+		for(int x = 0; x < Konstantj.ludLargx; x++) {
+			xx = (int) (x - QefObjektj.ludant.xn());
+			if(xx<0) 
+				DebugDesegn.desegnLine(xx + Konstantj.ludLargx, offsetMap - y[x], xx + Konstantj.ludLargx, offsetMap + 155);
+			else if(xx>Konstantj.ludLargx) 
+				DebugDesegn.desegnLine(xx - Konstantj.ludLargx, offsetMap - y[x], xx - Konstantj.ludLargx, offsetMap + 155);
+			else
+				DebugDesegn.desegnLine(xx, offsetMap - y[x], xx, offsetMap + 155);
+		}
 		for (int i = 0; i < vivazhar.size(); i++) {
 			vivazhar.get(i).desegn();
-		}
-		if(!QefObjektj.ludant.nunatingecn().isEmpty()) {
-			DebugDesegn.desegnString(QefObjektj.ludant.nunatingecn().get(0).toString(), 300, 200);
 		}
 	}
 	
@@ -401,6 +345,10 @@ public class Map {
 		return Integer.parseInt(objektJSON.get(clave).toString());
 	}
 	
+	public int[] yn() {
+		return y;
+	}
+	
 	public Rectangle margxen(final int x, final int y) {
         int posiciX = (Konstantj.duonLudLargx - x + QefObjektj.ludant.largxVivazhn()) + Konstantj.SPRITELARGX;
         int posiciY = (Konstantj.duonLudAlt - y + QefObjektj.ludant.altVivazhn()) + Konstantj.SPRITEALT;
@@ -411,9 +359,5 @@ public class Map {
         		QefObjektj.ludant.altVivazhn()*2;
         
         return new Rectangle(posiciX, posiciY, largx, alt);
-	}
-	
-	public Dijkstra dijkstran() {
-		return d;
 	}
 }

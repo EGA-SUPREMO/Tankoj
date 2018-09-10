@@ -77,6 +77,15 @@ public class DebugDesegn {
 		objektjDesegnita++;
 		g.drawImage(bild, x, y, null);
 	}
+	public static void desegnLine(final int x1, final int y1, final int x2, final int y2) {
+		objektjDesegnita++;
+		g.drawLine(x1, y1, x2, y2);
+	}
+	public static void desegnLine(final int x1, final int y1, final int x2, final int y2, final Color kolor) {
+		objektjDesegnita++;
+		g.setColor(kolor);
+		g.drawLine(x1, y1, x2, y2);
+	}
 	
 	public static void desegnKolicijn() {
 

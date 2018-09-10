@@ -4,10 +4,11 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import qef.Konstantj;
 import qef.QefObjektj;
-import qef.dijkstra.Nod;
 import qef.estazhj.Estazh;
 import qef.ilj.Bildperant;
+import qef.ilj.BruGeneril;
 import qef.inventar.Objektregistril;
 import qef.inventar.armil.Armil;
 import qef.son.Son;
@@ -16,50 +17,33 @@ import qef.sprite.SpriteFoli;
 public abstract class Vivazh implements Estazh {
 	/*
 	 * 
-	 * 0:supro
-	 * 1:subo
-	 * 2:dekstro
-	 * 3:maldekstro
+	 * 0:supre aux sube
+	 * 1:maldekstre
+	 * 2:dekstre
 	 * 
 	 */
-	protected double x, y;
+	private double x, y;
 	protected final Rectangle[] LIMJ;
 	protected BufferedImage[] bildj;
 	protected boolean movante;
 	protected int nunBild;
 	protected int frekvenciAnimaci;
 	protected Vivazharmilar vivazharmilar;
-	/* x = 8, y = 8
-	 * 
-	 * x =
-	 * oeste = 1
-	 * sur = 2
-	 * suroeste = 3
-	 * norte = 4
-	 * noroeste = 5
-	 * este = 6
-	 * sureste = 7
-	 * noreste = 8
-	 * 
-	 * y =
-	 * statoj de animacio = 8
-	 * 
-	 */
+	
 	protected int direkt;
 	protected static final int KVANTDIREKTJ = 8;
-	protected static final int KVANTSTATJ = 8;
+	protected static final int KVANTSTATJ = 16;
+	protected final int rotaciplejNombr = KVANTSTATJ*2;
+	protected final double rotaci = 2*Math.PI/rotaciplejNombr;
 	protected int vivazhstat = 0;
 	protected int animacistat;
-	private int tempAkumulita = 0;
 	protected double rapidec;
-/*	private float kurrapidec, normalrapidec;//faru privata la varieblo kaj faru metodon por sxangxi la rapidecon, tio inkluzas la frek-
-	private boolean qkur;					//vcio de la Animacion*/
+	
 	protected int largxVivazh, altVivazh;
-	protected Integer /*resistenc = Konstantj.plejResistenc,*/ restarigad = 0;//resistenco kaj re-starigado
+	protected int brulazh;
 	protected int viv, plejviv;
 	private int damagx;
 	protected ArrayList<Rectangle> nunatingec;
-	protected Nod venontNod;
 	
 	protected Son damagxit;
 	protected long longDamagxit, venontDamagxit;
@@ -70,10 +54,8 @@ public abstract class Vivazh implements Estazh {
 		this.altVivazh = 32;
 		this.animacistat = 0;
 		this.nunBild = 0;
-		this.rapidec = 0.7;
-/*		this.normalrapidec = 0.7f;
-		this.kurrapidec = 2.8f;
-		this.rapidec = normalrapidec;*/
+		this.rapidec = 1;
+		brulazh = 20000;
 		direkt = 1;
 		movante = false;
 		frekvenciAnimaci = 10;
@@ -195,6 +177,14 @@ public abstract class Vivazh implements Estazh {
 				bildj[63] = bildj[22];
 				
 				break;
+			case 1://TODO faru ke la bildoj generigxos kiam la ludanto acxetu la habilidad de escalar montoj
+				bildj = new BufferedImage[rotaciplejNombr/2];
+				bildj[0] = tempbildj[0];
+				for(int i = 1; i < bildj.length/2; i++)
+					bildj[i] = Bildperant.volvBildn(bildj[0], -(rotaci * i));
+				for(int i = 0, j = bildj.length/2-1; i < bildj.length/2; i++, j--)
+					bildj[i+bildj.length/2] = Bildperant.volvBildn(bildj[j], Math.PI/2);
+				break;
 		}
 	}
 	
@@ -208,30 +198,10 @@ public abstract class Vivazh implements Estazh {
 		movante = false;
 	}*/
 	
-	protected void anim(final boolean movant) {
-		
-		if(movant) {
-			
-			if(qena())
-				tempAkumulita++;
-			
-			if(tempAkumulita%frekvenciAnimaci == 0){
-				animacistat++;
-				if(!qena())
-					tempAkumulita++;
-				
-				if(animacistat >= KVANTSTATJ)
-					animacistat = 0;
-				
-			}
-			
-			nunBild = direkt + animacistat * KVANTDIREKTJ - 1;
-			movante = false;
-			
-		}
+	protected void anim() {
 		
 	}
-	
+
 	protected void yangxMapn() {
 /*		if(QefObjektj.map.arejVenontMapn().intersects(LIMJ[0])) {
 			
@@ -365,13 +335,17 @@ public abstract class Vivazh implements Estazh {
 /*	public Integer resistencn() {
 		return resistenc;
 	}*/
-	public int restarigadn() {
-		return restarigad;
-	}
+
 	public Rectangle[] LIMJN() {
 		return LIMJ;
 	}
 	public double xn() {
+		int xx =(int)x + Konstantj.duonLudLargx;
+		if(x>=0) {
+		}else if(x<0) {
+//			setYn(QefObjektj.map.yn()[BruGeneril.mapgrandecn()-1]);
+//			setXn(BruGeneril.mapgrandecn()-1);
+		}
 		return x;
 	}
 	public double yn() {
@@ -379,29 +353,25 @@ public abstract class Vivazh implements Estazh {
 	}
 	
 	public void pliX() {
-		if(qena()) {
-			this.x += rapidec;
-		}
+		x += rapidec;
+		brulazh -= rapidec;
 	}
 	public void pliY() {
-		if(qena()) {
-			this.y += rapidec;
-		}
+		y += rapidec;
+		brulazh -= rapidec;
 	}
 	public void mlpliX() {
-		if(qena()) {
-			this.x -= rapidec;
-		}
+		x -= rapidec;
+		brulazh -= rapidec;
 	}
 	public void mlpliY() {
-		if(qena()) {
-			this.y -= rapidec;
-		}
+		y -= rapidec;
+		brulazh -= rapidec;
 	}
-	public void setX(final int x) {
+	public void setXn(final int x) {
 		this.x = x;
 	}
-	public void setY(final int y) {
+	public void setYn(final int y) {
 		this.y = y;
 	}
 	public Vivazharmilar vivazharmilarn() {
@@ -422,12 +392,7 @@ public abstract class Vivazh implements Estazh {
 	public Rectangle nunposiciare() {
 		return new Rectangle((int) x, (int) y, largxVivazh, altVivazh);
 	}
-	public void setVenontNodn(final Nod nod) {
-		venontNod = nod;
-	}
-	public Nod venontNodn() {
-		return venontNod;
-	}
+
 
 	public void malgajnVivn(int damagx) {
 		if(venontDamagxit <= 0) {

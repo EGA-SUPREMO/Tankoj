@@ -10,7 +10,7 @@ import qef.uzantinterfac.map.Malhelec;
 
 public class QefObjektj {//Objektoj de la ludoj
 
-	public static Map map = new Map(1);
+	public static Map map = new Map(0);
 	public static Ludant ludant = new Ludant();
 	public static Submenu submenu = new Submenu();
 	public static Malhelec malhelec = new Malhelec();

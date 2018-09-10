@@ -1,31 +1,35 @@
 package qef.estazhj.vivazhj;
 
+import java.awt.Color;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Transparency;
 
 import qef.Konstantj;
 import qef.QefObjektj;
+import qef.ilj.Bildperant;
+import qef.ilj.BruGeneril;
 import qef.ilj.DebugDesegn;
 import qef.inventar.armil.Armil;
 import qef.inventar.armil.Senarma;
 import qef.kontrolj.Kontrolperant;
 import qef.sprite.SpriteFoli;
-import qef.uzantinterfac.Text;
 
 public class Ludant extends Vivazh {
+	
+	private int radX1 = 5, radX2 = 27, radY = 30;
+	private int offsetLudantY = 2;
 	
 	private int experienc = 100;
 	public static final SpriteFoli armatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 1 + ".png", 32,
 			Transparency.TRANSLUCENT, 128);
-//	private static final SpriteFoli senarmatludantsprite = new SpriteFoli(Konstantj.ITENER_ZOMBI + 0 + ".png", 32,
-//			Transparency.TRANSLUCENT, 128);//TODO Mi eble unigos cxi tion en unu "array"
 	private static final SpriteFoli senarmatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
-			Transparency.TRANSLUCENT, 128);
+			Transparency.TRANSLUCENT);
 	public Ludant() {
-		super(0, 4, senarmatludantsprite, Konstantj.ITENER_SONJ_LUDANT + "pom.wav");
+		super(1, 4, senarmatludantsprite, Konstantj.ITENER_SONJ_LUDANT + "pom.wav");
 
-		this.x = QefObjektj.map.komencpunktX;
-		this.y = QefObjektj.map.komencpunktY;
+		setXn(QefObjektj.map.komencpunktX);
+		setYn(0);
 		largxVivazh = 16;
 		altVivazh = 16;
 		
@@ -43,73 +47,30 @@ public class Ludant extends Vivazh {
 	public void gxisdatig() {
 		gxisdatigArmiljn();
 		yangxMapn();
-		yangxResistencn();
 		yangxSpriten();
 		mov();
-		anim(movante);
+		anim();
 	}
 	
-	private void mov() {
+	private void mov() {//1 = maldekstre, 2 = dekstre
 		
-		boolean[] kolicie = {qnekolicie(0), qnekolicie(1), qnekolicie(2), qnekolicie(3), qena()};
-		
-		if(Kontrolperant.klavar.supr.pulsitan() && kolicie[0]) {
+		if(Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan() && brulazh>0) {
 			movante = true;
-			if(Kontrolperant.klavar.dextr.pulsitan() && kolicie[3]) {
-				direkt = 5;
-				yangxRapidec();
-				pliX();
-				mlpliY();
-			}else if(Kontrolperant.klavar.mldextr.pulsitan() && kolicie[2]) {
-				direkt = 8;
-				yangxRapidec();
-				mlpliX();
-				mlpliY();
-			}else {
-				direkt = 4;
-				yangxRapidec();
-				mlpliY();
-			}
+			direkt = 2;
+			pliX();
+			setYn(QefObjektj.map.yn()[(int) xn() + Konstantj.duonLudLargx]);
 		}
-		if(Kontrolperant.klavar.sub.pulsitan() && kolicie[1]) {
-			movante = true;
-			if(Kontrolperant.klavar.dextr.pulsitan() && kolicie[3]) {
-				direkt = 7;
-				yangxRapidec();
-				pliX();
-				pliY();
-			}else if(Kontrolperant.klavar.mldextr.pulsitan() && kolicie[2]) {
-				direkt = 3;
-				yangxRapidec();
-				mlpliX();
-				pliY();
-			}else {
-				direkt = 2;
-				yangxRapidec();
-				pliY();
-			}
-		}
-		if(Kontrolperant.klavar.mldextr.pulsitan() && !movante && kolicie[2]) {
-			movante = true;
-			direkt = 6;
-			yangxRapidec();
-			mlpliX();
-		}
-		if(Kontrolperant.klavar.dextr.pulsitan() && !movante && kolicie[3]) {
+		if(Kontrolperant.klavar.mldextr.pulsitan() && !Kontrolperant.klavar.dextr.pulsitan() && brulazh>0) {
 			movante = true;
 			direkt = 1;
-			yangxRapidec();
-			pliX();
+			mlpliX();
+			setYn(QefObjektj.map.yn()[(int) xn() + Konstantj.duonLudLargx]);
+		}
+		if(Kontrolperant.klavar.supr.pulsitan() && !Kontrolperant.klavar.sub.pulsitan()) {
+		}
+		if(Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()) {
 		}
 		
-	}
-
-	
-	private void yangxResistencn() {
-		if(restarigad < Konstantj.plejRestarigad && !Kontrolperant.klavar.kuri)
-			restarigad++;
-		else if(restarigad == Konstantj.plejRestarigad && Text.RES.kvantn() < Konstantj.plejResistenc)
-			Text.RES.pliigKvantn();
 	}
 	
 	private void yangxSpriten() {
@@ -124,19 +85,6 @@ public class Ludant extends Vivazh {
 		}
 	}
 	
-	private void yangxRapidec() {
-		
-		if(Kontrolperant.klavar.kuri && Text.RES.kvantn() > 0) {
-			rapidec = 2.8f;
-			frekvenciAnimaci = 2;
-			Text.RES.mlpliigKvantn();;
-			restarigad = 0;
-		}else {
-			rapidec = 0.7f;
-			frekvenciAnimaci = 8;
-		}
-		
-	}
 	private void gxisdatigArmiljn() {
 		if(vivazharmilar.armil1n() instanceof Senarma)
 			return;
@@ -144,10 +92,47 @@ public class Ludant extends Vivazh {
 		vivazharmilar.armil1n().gxisdatig();
 		nunatingec = vivazharmilar.armil1n().atingec(this);
 	}
+	@Override
+	protected void anim() {
+		animacistat = statn();
+		
+		nunBild = animacistat;
+		movante = false;
+	}
+	//TODO SXangxu la klaso de tiu metodo
+	private int statn() {
+		
+		int x1 = (int) xn() + radX1;
+		int x2 = (int) xn() + radX2;
+		
+		int y1 = QefObjektj.map.yn()[(int) (xn() + radX1 + Konstantj.duonLudLargx)];
+		int y2 = QefObjektj.map.yn()[(int) (xn() + radX2 + Konstantj.duonLudLargx)];
+		
+		//Point centr = new Point(x1 - x1, y1 - y1);
+		//Point punkt1 = new Point(x2 - x1, y2 - y1);
+		
+		double angul = Math.atan2(x2 - x1, y2 - y1);
+		
+		for(int i = 0; i < KVANTSTATJ; i++)
+			if(angul>rotaci*i && angul<rotaci*(i+1)) {
+				return i;
+			}
+		
+		return 0;
+	}
 
 	@Override
 	public void desegn() {
-		DebugDesegn.desegnBildn(bildj[nunBild], Konstantj.largxCentr, Konstantj.altCentr);
+		int posiciY = -(int)yn() + QefObjektj.map.offsetMap - bildj[nunBild].getHeight() + offsetLudantY;
+		DebugDesegn.desegnBildn(bildj[nunBild], Konstantj.largxCentr, posiciY);
+		DebugDesegn.desegnLine(Konstantj.duonLudLargx, posiciY, Konstantj.largxCentr,
+				posiciY-Konstantj.DUONSPRITEALT);
+		
+		//DebugDesegn.desegnLine((int) Konstantj.largxCentr + radX1,
+		//		-QefObjektj.map.yn()[(int) (xn() + radX1 + Konstantj.duonLudLargx)] + QefObjektj.map.offsetMap,
+		//		(int) Konstantj.largxCentr + radX1,
+		//		QefObjektj.map.offsetMap -QefObjektj.map.yn()[(int) (xn() + radX1 + Konstantj.duonLudLargx)] + 5,
+		//		Color.BLACK);
 	}
 	
 	public int experiencn() {
