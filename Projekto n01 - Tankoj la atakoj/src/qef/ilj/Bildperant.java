@@ -91,19 +91,35 @@ public class Bildperant {
 	}
 	
 	public static BufferedImage volvBildn(final BufferedImage devenBild, final double radian) {//devenBildradian
-/*		BufferedImage destinationImage = new BufferedImage(0, 0, 0);
-		System.out.println(origen.toString());
-		Bildperant imTransform = new Bildperant(origen.getHeight(), origen.getWidth());
-		imTransform.rotate(grados);
-		imTransform.findTranslation();
-		//AffineTransformOp ato = new AffineTransformOp(imTransform.getTransform(), AffineTransformOp.TYPE_BILINEAR);
-		//destinationImage = ato.createCompatibleDestImage(origen, origen.getColorModel());
-		//return ato.filter(origen, destinationImage);*/
-//		Bildperant imTransform = new Bildperant(origen.getHeight(), origen.getWidth());
-//		imTransform.rotate(grados);
-		//imTransform.findTranslation();
+		/*	BufferedImage destinationImage = new BufferedImage(0, 0, 0);
+			System.out.println(origen.toString());
+			Bildperant imTransform = new Bildperant(origen.getHeight(), origen.getWidth());
+			imTransform.rotate(grados);
+			imTransform.findTranslation();
+			//AffineTransformOp ato = new AffineTransformOp(imTransform.getTransform(), AffineTransformOp.TYPE_BILINEAR);
+			//destinationImage = ato.createCompatibleDestImage(origen, origen.getColorModel());
+			//return ato.filter(origen, destinationImage);*/
+//			Bildperant imTransform = new Bildperant(origen.getHeight(), origen.getWidth());
+//			imTransform.rotate(grados);
+			//imTransform.findTranslation();
 		AffineTransform rotad = new AffineTransform();
 		rotad.rotate(radian, devenBild.getWidth() / 2, devenBild.getHeight() / 2);
+		
+		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
+				createCompatibleImage(devenBild.getWidth(), devenBild.getHeight(), Transparency.TRANSLUCENT);
+		
+		Graphics g = bild.getGraphics();
+		((Graphics2D)g).drawImage(devenBild, rotad, null);
+		g.dispose();
+		
+		return bild;
+	}
+	
+	public static BufferedImage volvBildn(final BufferedImage devenBild, final int xCentr, final int yCentr,
+			final double radian) {
+				
+		AffineTransform rotad = new AffineTransform();
+		rotad.rotate(radian, xCentr, yCentr);
 		
 		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
 				createCompatibleImage(devenBild.getWidth(), devenBild.getHeight(), Transparency.TRANSLUCENT);

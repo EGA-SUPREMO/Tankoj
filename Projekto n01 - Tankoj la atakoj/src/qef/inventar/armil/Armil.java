@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import qef.Konstantj;
+import qef.QefObjektj;
+import qef.estazhj.Misil;
 import qef.estazhj.vivazhj.Vivazh;
 import qef.inventar.Objekt;
 import qef.son.Son;
@@ -26,13 +28,12 @@ public abstract class Armil extends Objekt {
     protected int actualizacionesParaSiguienteAtaque;
 	
 	public Armil(final int id, final String nomo, final String priskribo, final int plejatako,
-			final int mlplejatako, final boolean automatica, final boolean penetrante,
+			final int mlplejatako, final boolean penetrante,
 			final double ataquesPorSegundo, final String itenerson) {
 		super(id, nomo, priskribo);
 
 		plejatak = plejatako;
 		mlplejatak = mlplejatako;
-		this.automatica = automatica;
 		this.penetrante = penetrante;
 		this.ataquesPorSegundo = ataquesPorSegundo;
 		actualizacionesParaSiguienteAtaque = 0;
@@ -52,21 +53,17 @@ public abstract class Armil extends Objekt {
         }
 	}
 	
-	public void atak(final ArrayList<Vivazh> vivazhj) {
+	public void atak() {
 		if (actualizacionesParaSiguienteAtaque > 0)  {
 			return;
 		}
 		actualizacionesParaSiguienteAtaque = (int) (ataquesPorSegundo * 60);
 		
 		pafson.play();
-		
-		if (vivazhj.isEmpty()) {
-			return;
-		}
-		
-		for (Vivazh vivazh : vivazhj) {
+		QefObjektj.ludant.m = new Misil(QefObjektj.ludant.nunAngul, 100, (int) QefObjektj.ludant.xn(), (int) QefObjektj.ludant.yn());
+		/*for (Vivazh vivazh : vivazhj) {
 			vivazh.malgajnVivn(atakkvantn());
-		}
+		}*/
 	}
 	
 	private int atakkvantn() {

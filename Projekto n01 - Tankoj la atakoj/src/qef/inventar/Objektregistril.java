@@ -27,7 +27,7 @@ public class Objektregistril {
 			case 7:
 				return new Konsumeblezh(id, "i", "");
 			case 500:
-				return new Pistol(id, "Acxajxo", "Pistolacxo", 10, 5, false, false, 0.3,
+				return new Pistol(id, "Acxajxo", "Pistolacxo", 10, 5, false, 0.3,
 						Konstantj.ITENER_SONJ_LUDANT + "poom.wav");
 			case 599:
 				return new Senarma(id, "Senarma", "Uzu viajn pugnojn", 1, 1);

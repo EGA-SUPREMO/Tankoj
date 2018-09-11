@@ -61,7 +61,7 @@ public class Qefperant {
 		int apsAkumulita = 0;
 		
 		final int NS_POR_SEGUNDO = 1000000000;
-		final byte APS_OBJETO = 60;
+		final short APS_OBJETO = 60 * Konstantj.LUDRAPIDEC;
 		final double NS_POR_ACTUALIZACION = NS_POR_SEGUNDO / APS_OBJETO;
 		
 		long referenciaActualizacion = System.nanoTime();

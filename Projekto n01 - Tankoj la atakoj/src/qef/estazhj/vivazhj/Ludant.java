@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import qef.Konstantj;
 import qef.QefObjektj;
+import qef.estazhj.Misil;
 import qef.ilj.DebugDesegn;
 import qef.ilj.YargxilAzhj;
 import qef.inventar.armil.Armil;
@@ -17,6 +18,7 @@ public class Ludant extends Vivazh {
 	
 	private int radX1 = 5, radX2 = 27;
 	private int offsetLudantY = 2;
+	public Misil m;
 	
 	private int experienc = 100;
 	public static final SpriteFoli armatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 1 + ".png", 32,
@@ -36,10 +38,12 @@ public class Ludant extends Vivazh {
 		
 		LIMJ[0] = new Rectangle(Konstantj.duonLudLargx - largxVivazh + 1, Konstantj.duonLudAlt - altVivazh,
 				Konstantj.SPRITELARGX - 2, 1);
+		m = new Misil(900, 30, (int) xn(), (int) yn());
 	}
 	
 	@Override
 	public void gxisdatig() {
+		m.gxisdatig();
 		gxisdatigArmiljn();
 		yangxMapn();
 		yangxSpriten();
@@ -48,7 +52,6 @@ public class Ludant extends Vivazh {
 	}
 	
 	private void mov() {//1 = maldekstre, 2 = dekstre
-		
 		if(Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan() && brulazh>0) {
 			movante = true;
 			direkt = 2;
@@ -62,8 +65,12 @@ public class Ludant extends Vivazh {
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 		}
 		if(Kontrolperant.klavar.supr.pulsitan() && !Kontrolperant.klavar.sub.pulsitan()) {
+			if(nunAngul<Konstantj.canonAngulnombr)
+				nunAngul++;
 		}
 		if(Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()) {
+			if(nunAngul>0)
+				nunAngul--;
 		}
 		
 	}
@@ -85,16 +92,12 @@ public class Ludant extends Vivazh {
 			return;
 		
 		vivazharmilar.armil1n().gxisdatig();
-		nunatingec = vivazharmilar.armil1n().atingec(this);
 	}
 	int i = 0;
 	@Override
 	protected void anim() {
 		nunBild = statn();
 		
-		animacistat++;
-		if(animacistat>=Konstantj.canonAngulnombr)
-			animacistat=0;
 		movante = false;
 	}
 	//TODO SXangxu la klaso de tiu metodo
@@ -106,7 +109,7 @@ public class Ludant extends Vivazh {
 		int y1 = QefObjektj.map.yn()[(int) (xn(radX1))];
 		int y2 = QefObjektj.map.yn()[(int) (xn(radX2))];
 		
-		double angul = Math.atan2(x2 - x1, y2 - y1);
+		double angul = Math.atan2(y2 - y1, x2 - x1);
 		
 		for(int i = 0; i < KVANTSTATJ; i++)
 			if(angul>rotaci*i && angul<rotaci*(i+1)) {
@@ -121,7 +124,8 @@ public class Ludant extends Vivazh {
 		int posiciY = -(int)yn() + QefObjektj.map.offsetMap - bildj[nunBild].getHeight() + offsetLudantY;
 		DebugDesegn.desegnBildn(bildj[nunBild], Konstantj.largxCentr, posiciY);
 		
-		DebugDesegn.desegnBildn(canonBildj[animacistat], Konstantj.largxCentr, posiciY);
+		DebugDesegn.desegnBildn(canonBildj[nunAngul], Konstantj.largxCentr, posiciY);
+		m.desegn();
 		//DebugDesegn.desegnLine((int) Konstantj.largxCentr + radX1,
 		//		-QefObjektj.map.yn()[(int) (xn() + radX1 + Konstantj.duonLudLargx)] + QefObjektj.map.offsetMap,
 		//		(int) Konstantj.largxCentr + radX1,

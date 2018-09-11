@@ -2,7 +2,9 @@ package qef;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Transparency;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 import qef.ilj.YargxilAzhj;
 
@@ -27,10 +29,7 @@ public abstract class Konstantj {
 	public final static int altSubmenu = 64;//La alto de la submenu
 	
 /*	public static int plejfenestrLargx = Toolkit.getDefaultToolkit().getScreenSize().width;
-	public static int plejfenestrAlt = Toolkit.getDefaultToolkit().getScreenSize().height;
-
-	public static double faktorX = (double) plejfenestrLargx / (double) ludLargx;
-	public static double faktorY = (double) plejfenestrAlt / (double) ludAlt;*/
+	public static int plejfenestrAlt = Toolkit.getDefaultToolkit().getScreenSize().height;*/
 	
 	public static int plejfenestrLargx = ludLargx;
 	public static int plejfenestrAlt = ludAlt;
@@ -66,6 +65,7 @@ public abstract class Konstantj {
 	public static int qiufps = 0, fps = 0, aps = 0, sekundjPasita = 0;
 	public static boolean qyangxSpriteFoli = false;
 	public static int canonAngulnombr = 180;
+	public static final byte LUDRAPIDEC = 1;
 	
 	public final static String SUFIX_MAP = ".egam";
 	public final static String ITENER_MAP = "/maps/";
@@ -74,6 +74,7 @@ public abstract class Konstantj {
 	public final static String ITENER_VIVAZH = "/entities/";
 	public final static String ITENER_LUDANT = ITENER_VIVAZH + "player_";
 	public final static String ITENER_LUDANT_CANON = ITENER_VIVAZH + "canon_";
+	public final static String ITENER_MISIL = ITENER_VIVAZH + "misil_";
 	public final static String ITENER_MALAMIK = ITENER_VIVAZH + "enemy_";
 	public final static String ITENER_ZOMBI = ITENER_MALAMIK + "zombie_";
 
@@ -94,5 +95,8 @@ public abstract class Konstantj {
 	public final static Color FONKOLOR = Color.WHITE;
 	
 	public final static Color AKTIV_ETIKED_BOTON_KOLOR = KOLOR_SUB_BANNER.darker();
+	
+	public final static BufferedImage MISILSPRITE = YargxilAzhj.yargxBildn(ITENER_MISIL + 0 + ".png",
+			Transparency.TRANSLUCENT);
 	
 }

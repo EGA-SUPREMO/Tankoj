@@ -219,7 +219,9 @@ public class Map {
 	
 	public void gxisdatig() {
 		gxisdatigRangojn();
-		
+
+		if (Kontrolperant.klavar.qatak)
+			QefObjektj.ludant.vivazharmilarn().armil1n().atak();
 		gxisdatigVivazhjn();
 		gxisdatigAtakjn();
 	}
@@ -281,7 +283,6 @@ public class Map {
 				if(enemigoMasCercano!=null)
 					enemigosAlcanzados.add(enemigoMasCercano);
 			}
-			QefObjektj.ludant.vivazharmilarn().armil1n().atak(enemigosAlcanzados);
 		}
 		
 		Iterator<Vivazh> iterador = vivazhar.iterator();
@@ -300,7 +301,7 @@ public class Map {
 		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, offsetMap + 155);
 		DebugDesegn.setColor(Color.GREEN);
 		for(int x = 0; x < Konstantj.ludLargx; x++) {
-			xx = (int) (x - QefObjektj.ludant.xn());
+			xx = (int) (x - QefObjektj.ludant.xn() + Konstantj.duonLudLargx);
 			if(xx<0) 
 				DebugDesegn.desegnLine(xx + Konstantj.ludLargx, offsetMap - y[x], xx + Konstantj.ludLargx, offsetMap + 155);
 			else if(xx>Konstantj.ludLargx) 

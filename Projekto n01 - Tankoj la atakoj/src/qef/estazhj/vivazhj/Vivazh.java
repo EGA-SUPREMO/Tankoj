@@ -8,7 +8,6 @@ import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.Estazh;
 import qef.ilj.Bildperant;
-import qef.ilj.BruGeneril;
 import qef.inventar.Objektregistril;
 import qef.inventar.armil.Armil;
 import qef.son.Son;
@@ -36,7 +35,7 @@ public abstract class Vivazh implements Estazh {
 	protected final int rotaciplejNombr = KVANTSTATJ*2;
 	protected final double rotaci = 2*Math.PI/rotaciplejNombr;
 	protected int vivazhstat = 0;
-	protected int animacistat;
+	public int nunAngul;
 	protected double rapidec;
 	
 	protected int largxVivazh, altVivazh;
@@ -53,7 +52,7 @@ public abstract class Vivazh implements Estazh {
 		
 		this.largxVivazh = 32;
 		this.altVivazh = 32;
-		this.animacistat = 0;
+		this.nunAngul = 0;
 		this.nunBild = 0;
 		this.rapidec = 1;
 		brulazh = 20000;
@@ -83,7 +82,7 @@ public abstract class Vivazh implements Estazh {
 		
 		this.largxVivazh = largxVivazh;
 		this.altVivazh = altVivazh;
-		this.animacistat = 0;
+		this.nunAngul = 0;
 		this.nunBild = 0;
 		this.rapidec = rapidec;
 		this.movante = false;
@@ -117,11 +116,12 @@ public abstract class Vivazh implements Estazh {
 		}
 	}
 	
-	private void ordenBildj(final int angulnombr, final BufferedImage tempbild) {
+	protected void ordenBildj(final int angulnombr, final BufferedImage tempbild) {//FIXME CXi tiu metodo estas ne efika
 		canonBildj = new BufferedImage[angulnombr];
-		double rotacij = 2*Math.PI/angulnombr;
+		double rotacij = Math.PI/angulnombr;
 		for(int i = 0; i < canonBildj.length; i++)
-			canonBildj[i] = Bildperant.volvBildn(tempbild, -(rotacij * i));
+			canonBildj[i] = Bildperant.volvBildn(tempbild, tempbild.getWidth()/2, tempbild.getHeight(),
+					(rotacij * (i-90)));
 	}
 /*	protected void mov() {
 		if(animacistat >= 31)
@@ -275,18 +275,12 @@ public abstract class Vivazh implements Estazh {
 		return LIMJ;
 	}
 	public double xn() {
-		final int xx =(int)x;
-		if(xx<0) {
-			x = QefObjektj.map.yn().length-1;
-		} else if(xx >= QefObjektj.map.yn().length) {
-			x = 0;
-		}
 		return x;
 	}
 	public double xn(final int kvant) {
 		int xx =(int)x + kvant;
 		if(xx<0) {
-			xx = QefObjektj.map.yn().length-1 - kvant;
+			xx = QefObjektj.map.yn().length - kvant;
 		} else if(xx >= QefObjektj.map.yn().length) {
 			xx = kvant;
 		}
@@ -297,11 +291,11 @@ public abstract class Vivazh implements Estazh {
 	}
 	
 	public void pliX() {
-		//if(x<QefObjektj.map.yn().length) {
-			x += rapidec;
-	//	} else {
-			//x = rapidec;
-		//}
+		x += rapidec;
+		if(x<QefObjektj.map.yn().length) {
+		} else {
+			x = rapidec;
+		}
 		brulazh -= rapidec;
 	}
 	public void pliY() {
@@ -309,12 +303,11 @@ public abstract class Vivazh implements Estazh {
 		brulazh -= rapidec;
 	}
 	public void mlpliX() {
-		//if(x>0) {
+		if(x>0) {
 			x -= rapidec;
-		//} else {
-			//System.out.println(x);
-			//x = rapidec;
-		//}
+		} else {
+			x = QefObjektj.map.yn().length - rapidec;
+		}
 		brulazh -= rapidec;
 	}
 	public void mlpliY() {
