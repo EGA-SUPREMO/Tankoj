@@ -12,7 +12,7 @@ public class Submenu {
 	private Rectangle MargxenAre;
 	private Verg[] vergj;
 	private Elektebl[] elekteblj;
-	private static int kvantElektebl = 2;
+	private static int kvantElektebl = 3;
 	
 	public Submenu() {
 		
@@ -24,7 +24,7 @@ public class Submenu {
 		vergj[2] = new Verg(Color.GREEN, Text.EXP);
 		vergj[3] = new Verg(Color.RED, Text.ATK);
 		
-		elekteblj = new Elektebl[2];
+		elekteblj = new Elektebl[kvantElektebl];
 		for(int i = 0; i < kvantElektebl; i++) {
 			elekteblj[i] = new Elektebl(i);
 		}

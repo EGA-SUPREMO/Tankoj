@@ -48,7 +48,7 @@ public class YargxilAzhj {
 		return bild;
 		
 	}
-	
+
 	public static BufferedImage yargxBildn(final String itener, final int diafanec, final int ie) {//Carga una imagen compatible opaca
 		
 		Image i = null;
@@ -61,8 +61,35 @@ public class YargxilAzhj {
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
-			System.out.println(e.getMessage());
-			System.out.println(e.getCause().getLocalizedMessage());
+			//System.out.println(e.getMessage());
+			//System.out.println(e.getCause().getLocalizedMessage());
+		}
+		
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		
+		BufferedImage bild = gc.createCompatibleImage(i.getWidth(null), i.getHeight(null), diafanec);//Imagen Acelerada
+		
+		Graphics g = bild.getGraphics();
+		g.drawImage(i, 0, 0, null);
+		g.dispose();
+		
+		return bild;
+		
+	}
+	public static BufferedImage yargxBildn(final String itener, final int diafanec, final int x, final int y) {//Carga una imagen compatible opaca
+		
+		Image i = null;
+		
+		try{
+			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
+			i = i.getScaledInstance(x, y, Image.SCALE_SMOOTH);
+		} catch(IOException e) {
+			System.out.println("CONO DE SU MAQUINA");
+			e.printStackTrace();
+		} catch(Exception e) {
+			System.out.println("/images" + itener);
+			//System.out.println(e.getMessage());
+			//System.out.println(e.getCause().getLocalizedMessage());
 		}
 		
 		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();

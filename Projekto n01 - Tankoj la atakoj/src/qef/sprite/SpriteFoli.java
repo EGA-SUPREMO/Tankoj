@@ -14,27 +14,6 @@ public class SpriteFoli {
 	
 	private final BufferedImage[] spritej;
 	
-	public SpriteFoli(final String itener, final Dimension dimension, final int diafan) {
-		
-		BufferedImage i;
-		
-		i = YargxilAzhj.yargxBildn(itener, diafan);
-		
-		largxEnPixel = i.getWidth();
-		altEnPixel = i.getHeight();
-		
-		this.spriteLargx = dimension.width;
-		this.spriteAlt = dimension.height;
-
-		largxEnSprite = largxEnPixel / spriteLargx;
-		altEnSprite = altEnPixel / spriteAlt;
-		
-		spritej = new BufferedImage[largxEnSprite * altEnSprite];
-		
-		plenSpriten(i);
-		
-	}
-	
 	public SpriteFoli(final String itener, final int spriteGrandec, final int diafan) {
 		
 		BufferedImage i;

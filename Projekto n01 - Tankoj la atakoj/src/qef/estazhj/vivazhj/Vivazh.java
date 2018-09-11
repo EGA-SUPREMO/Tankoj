@@ -24,7 +24,7 @@ public abstract class Vivazh implements Estazh {
 	 */
 	private double x, y;
 	protected final Rectangle[] LIMJ;
-	protected BufferedImage[] bildj;
+	protected BufferedImage[] bildj, canonBildj;
 	protected boolean movante;
 	protected int nunBild;
 	protected int frekvenciAnimaci;
@@ -48,7 +48,8 @@ public abstract class Vivazh implements Estazh {
 	protected Son damagxit;
 	protected long longDamagxit, venontDamagxit;
 
-	public Vivazh(final int ordenSpec, final int limj, final SpriteFoli sprite, final String itenerSon) {
+	public Vivazh(final int ordenSpec, final int limj, final SpriteFoli sprite, final BufferedImage canonSprite,
+			final String itenerSon) {
 		
 		this.largxVivazh = 32;
 		this.altVivazh = 32;
@@ -70,11 +71,13 @@ public abstract class Vivazh implements Estazh {
 		
 		damagxit = new Son(itenerSon, 0);
 		longDamagxit = damagxit.longsonn();
-		
+		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
 		ordenBildj(ordenSpec, sprite.spritejn());
 		
 	}
 	
+
+
 	public Vivazh(final int ordenSpec, final float rapidec, final int largxVivazh, final int altVivazh, final 
 			int plejviv, final Rectangle[] limj, final SpriteFoli sprite, final String itenerSon) {
 		
@@ -102,80 +105,6 @@ public abstract class Vivazh implements Estazh {
 	private void ordenBildj(final int spec, final BufferedImage[] tempbildj) {
 		switch(spec) {
 			case 0:
-				bildj = new BufferedImage[64];
-				//oeste
-				bildj[0 ] = Bildperant.volvBildn(tempbildj[0], 0.7853981633974483D);
-				bildj[8 ] = Bildperant.volvBildn(bildj[0], 0.7853981633974483D);
-				bildj[16] = Bildperant.volvBildn(bildj[8], 0.7853981633974483D);
-				bildj[24] = Bildperant.volvBildn(bildj[16], 0.7853981633974483D);
-				bildj[32] = Bildperant.volvBildn(bildj[24], 0.7853981633974483D);
-				bildj[40] = Bildperant.volvBildn(bildj[32], 0.7853981633974483D);
-				bildj[48] = Bildperant.volvBildn(bildj[40], 0.7853981633974483D);
-				bildj[56] = Bildperant.volvBildn(bildj[48], 0.7853981633974483D);
-				//sur
-				bildj[1] = tempbildj[2];
-				bildj[9] = bildj[1];
-				bildj[17] = tempbildj[3];
-				bildj[25] = bildj[17];
-				bildj[33] = bildj[1];
-				bildj[41] = bildj[1];
-				bildj[49] = bildj[17];
-				bildj[57] = bildj[17];
-				//suroeste
-				bildj[2] = Bildperant.volvBildn(bildj[1], 0.7853981633974483D);
-				bildj[10] = bildj[2];
-				bildj[18] = Bildperant.volvBildn(bildj[17], 0.7853981633974483D);
-				bildj[26] = bildj[18];
-				bildj[34] = bildj[2];
-				bildj[42] = bildj[2];
-				bildj[50] = bildj[18];
-				bildj[58] = bildj[18];
-				//nordo
-				bildj[3] = bildj[1];
-				bildj[11] = bildj[1];
-				bildj[19] = bildj[17];
-				bildj[27] = bildj[17];
-				bildj[35] = bildj[1];
-				bildj[43] = bildj[1];
-				bildj[51] = bildj[17];
-				bildj[59] = bildj[17];
-				//noroeste
-				bildj[4] = Bildperant.volvBildn(bildj[1], 0.7853981633974483D);
-				bildj[12] = bildj[4];
-				bildj[20] = Bildperant.volvBildn(bildj[17], 0.7853981633974483D);
-				bildj[28] = bildj[20];
-				bildj[36] = bildj[4];
-				bildj[44] = bildj[4];
-				bildj[52] = bildj[20];
-				bildj[60] = bildj[20];
-				//este
-				bildj[5] = bildj[56];
-				bildj[13] = bildj[48];
-				bildj[21] = bildj[40];
-				bildj[29] = bildj[32];
-				bildj[37] = bildj[24];
-				bildj[45] = bildj[16];
-				bildj[53] = bildj[8];
-				bildj[61] = bildj[0];
-				//sureste
-				bildj[6] = Bildperant.volvBildn(bildj[1], -0.7853981633974483D);
-				bildj[14] = bildj[6];
-				bildj[22] = Bildperant.volvBildn(bildj[17], -0.7853981633974483D);
-				bildj[30] = bildj[22];
-				bildj[38] = bildj[6];
-				bildj[46] = bildj[6];
-				bildj[54] = bildj[22];
-				bildj[62] = bildj[22];
-				//noreste-------------------------
-				bildj[7] = Bildperant.volvBildn(bildj[1], -0.7853981633974483D);
-				bildj[15] = bildj[6];
-				bildj[23] = Bildperant.volvBildn(bildj[17], -0.7853981633974483D);
-				bildj[31] = bildj[22];
-				bildj[39] = bildj[6];
-				bildj[47] = bildj[6];
-				bildj[55] = bildj[22];
-				bildj[63] = bildj[22];
-				
 				break;
 			case 1://TODO faru ke la bildoj generigxos kiam la ludanto acxetu la habilidad de escalar montoj
 				bildj = new BufferedImage[rotaciplejNombr/2];
@@ -188,6 +117,12 @@ public abstract class Vivazh implements Estazh {
 		}
 	}
 	
+	private void ordenBildj(final int angulnombr, final BufferedImage tempbild) {
+		canonBildj = new BufferedImage[angulnombr];
+		double rotacij = 2*Math.PI/angulnombr;
+		for(int i = 0; i < canonBildj.length; i++)
+			canonBildj[i] = Bildperant.volvBildn(tempbild, -(rotacij * i));
+	}
 /*	protected void mov() {
 		if(animacistat >= 31)
 			animacistat = 0;
@@ -340,20 +275,33 @@ public abstract class Vivazh implements Estazh {
 		return LIMJ;
 	}
 	public double xn() {
-		int xx =(int)x + Konstantj.duonLudLargx;
-		if(x>=0) {
-		}else if(x<0) {
-//			setYn(QefObjektj.map.yn()[BruGeneril.mapgrandecn()-1]);
-//			setXn(BruGeneril.mapgrandecn()-1);
+		final int xx =(int)x;
+		if(xx<0) {
+			x = QefObjektj.map.yn().length-1;
+		} else if(xx >= QefObjektj.map.yn().length) {
+			x = 0;
 		}
 		return x;
+	}
+	public double xn(final int kvant) {
+		int xx =(int)x + kvant;
+		if(xx<0) {
+			xx = QefObjektj.map.yn().length-1 - kvant;
+		} else if(xx >= QefObjektj.map.yn().length) {
+			xx = kvant;
+		}
+		return xx;
 	}
 	public double yn() {
 		return y;
 	}
 	
 	public void pliX() {
-		x += rapidec;
+		//if(x<QefObjektj.map.yn().length) {
+			x += rapidec;
+	//	} else {
+			//x = rapidec;
+		//}
 		brulazh -= rapidec;
 	}
 	public void pliY() {
@@ -361,7 +309,12 @@ public abstract class Vivazh implements Estazh {
 		brulazh -= rapidec;
 	}
 	public void mlpliX() {
-		x -= rapidec;
+		//if(x>0) {
+			x -= rapidec;
+		//} else {
+			//System.out.println(x);
+			//x = rapidec;
+		//}
 		brulazh -= rapidec;
 	}
 	public void mlpliY() {

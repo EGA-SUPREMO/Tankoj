@@ -1,15 +1,13 @@
 package qef.estazhj.vivazhj;
 
-import java.awt.Color;
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Transparency;
+import java.awt.image.BufferedImage;
 
 import qef.Konstantj;
 import qef.QefObjektj;
-import qef.ilj.Bildperant;
-import qef.ilj.BruGeneril;
 import qef.ilj.DebugDesegn;
+import qef.ilj.YargxilAzhj;
 import qef.inventar.armil.Armil;
 import qef.inventar.armil.Senarma;
 import qef.kontrolj.Kontrolperant;
@@ -17,7 +15,7 @@ import qef.sprite.SpriteFoli;
 
 public class Ludant extends Vivazh {
 	
-	private int radX1 = 5, radX2 = 27, radY = 30;
+	private int radX1 = 5, radX2 = 27;
 	private int offsetLudantY = 2;
 	
 	private int experienc = 100;
@@ -25,22 +23,19 @@ public class Ludant extends Vivazh {
 			Transparency.TRANSLUCENT, 128);
 	private static final SpriteFoli senarmatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
 			Transparency.TRANSLUCENT);
+	private static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
+			Transparency.TRANSLUCENT, 19, 19);
+	
 	public Ludant() {
-		super(1, 4, senarmatludantsprite, Konstantj.ITENER_SONJ_LUDANT + "pom.wav");
+		super(1, 1, senarmatludantsprite, armil, Konstantj.ITENER_SONJ_LUDANT + "pom.wav");
 
-		setXn(QefObjektj.map.komencpunktX);
+		setXn(Konstantj.duonLudLargx);
 		setYn(0);
 		largxVivazh = 16;
 		altVivazh = 16;
 		
 		LIMJ[0] = new Rectangle(Konstantj.duonLudLargx - largxVivazh + 1, Konstantj.duonLudAlt - altVivazh,
 				Konstantj.SPRITELARGX - 2, 1);
-		LIMJ[1] = new Rectangle(Konstantj.duonLudLargx - largxVivazh + 1, Konstantj.duonLudAlt + altVivazh - 1,
-				Konstantj.SPRITELARGX - 2, 1);
-		LIMJ[2] = new Rectangle(Konstantj.duonLudLargx - largxVivazh, Konstantj.duonLudAlt - altVivazh + 1, 1,
-				Konstantj.SPRITEALT - 2);
-		LIMJ[3] = new Rectangle(Konstantj.duonLudLargx + largxVivazh, Konstantj.duonLudAlt - altVivazh + 1, 1,
-				Konstantj.SPRITEALT - 2);
 	}
 	
 	@Override
@@ -58,13 +53,13 @@ public class Ludant extends Vivazh {
 			movante = true;
 			direkt = 2;
 			pliX();
-			setYn(QefObjektj.map.yn()[(int) xn() + Konstantj.duonLudLargx]);
+			setYn(QefObjektj.map.yn()[(int) xn()]);
 		}
 		if(Kontrolperant.klavar.mldextr.pulsitan() && !Kontrolperant.klavar.dextr.pulsitan() && brulazh>0) {
 			movante = true;
 			direkt = 1;
 			mlpliX();
-			setYn(QefObjektj.map.yn()[(int) xn() + Konstantj.duonLudLargx]);
+			setYn(QefObjektj.map.yn()[(int) xn()]);
 		}
 		if(Kontrolperant.klavar.supr.pulsitan() && !Kontrolperant.klavar.sub.pulsitan()) {
 		}
@@ -92,24 +87,24 @@ public class Ludant extends Vivazh {
 		vivazharmilar.armil1n().gxisdatig();
 		nunatingec = vivazharmilar.armil1n().atingec(this);
 	}
+	int i = 0;
 	@Override
 	protected void anim() {
-		animacistat = statn();
+		nunBild = statn();
 		
-		nunBild = animacistat;
+		animacistat++;
+		if(animacistat>=Konstantj.canonAngulnombr)
+			animacistat=0;
 		movante = false;
 	}
 	//TODO SXangxu la klaso de tiu metodo
 	private int statn() {
 		
-		int x1 = (int) xn() + radX1;
-		int x2 = (int) xn() + radX2;
+		int x1 = (int) xn(radX1);
+		int x2 = (int) xn(radX2);
 		
-		int y1 = QefObjektj.map.yn()[(int) (xn() + radX1 + Konstantj.duonLudLargx)];
-		int y2 = QefObjektj.map.yn()[(int) (xn() + radX2 + Konstantj.duonLudLargx)];
-		
-		//Point centr = new Point(x1 - x1, y1 - y1);
-		//Point punkt1 = new Point(x2 - x1, y2 - y1);
+		int y1 = QefObjektj.map.yn()[(int) (xn(radX1))];
+		int y2 = QefObjektj.map.yn()[(int) (xn(radX2))];
 		
 		double angul = Math.atan2(x2 - x1, y2 - y1);
 		
@@ -125,9 +120,8 @@ public class Ludant extends Vivazh {
 	public void desegn() {
 		int posiciY = -(int)yn() + QefObjektj.map.offsetMap - bildj[nunBild].getHeight() + offsetLudantY;
 		DebugDesegn.desegnBildn(bildj[nunBild], Konstantj.largxCentr, posiciY);
-		DebugDesegn.desegnLine(Konstantj.duonLudLargx, posiciY, Konstantj.largxCentr,
-				posiciY-Konstantj.DUONSPRITEALT);
 		
+		DebugDesegn.desegnBildn(canonBildj[animacistat], Konstantj.largxCentr, posiciY);
 		//DebugDesegn.desegnLine((int) Konstantj.largxCentr + radX1,
 		//		-QefObjektj.map.yn()[(int) (xn() + radX1 + Konstantj.duonLudLargx)] + QefObjektj.map.offsetMap,
 		//		(int) Konstantj.largxCentr + radX1,
