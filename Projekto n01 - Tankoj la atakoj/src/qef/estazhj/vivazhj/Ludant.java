@@ -65,8 +65,8 @@ public class Ludant extends Vivazh {
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 		}
 		if(Kontrolperant.klavar.supr.pulsitan() && !Kontrolperant.klavar.sub.pulsitan()) {
-			if(nunAngul<Konstantj.canonAngulnombr)
-				nunAngul++;
+			if(++nunAngul>=Konstantj.canonAngulnombr)
+				nunAngul--;
 		}
 		if(Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()) {
 			if(nunAngul>0)
