@@ -3,6 +3,7 @@ package qef.uzantinterfac;
 import java.awt.Color;
 import java.awt.Point;
 
+import qef.QefObjektj;
 import qef.ilj.DebugDesegn;
 
 public class Verg {
@@ -34,7 +35,10 @@ public class Verg {
 	
 	private void desegnTextn() {
 		DebugDesegn.desegnString(text.name(), posici.x - 19, posici.y + 8);
+		if(text.name()!="ANG")
 		DebugDesegn.desegnString("" + text.kvantn(), posici.x + 102, posici.y + 8);
+		else
+			DebugDesegn.desegnString("" + QefObjektj.ludant.nunAngul, posici.x + 102, posici.y + 8);
 	}
 	
 	private void desegnVergn() {
@@ -44,7 +48,8 @@ public class Verg {
 		
 /*		System.out.println("REPORTANDOSE " + this + " CON LAS CONDICIONES DE " + posici.y + " Y " + text.name() + " EN LA " +
 				text.ordinal() + " ROTACION, PERIDOD FUERA");*/
-		
+
+		if(text.name()!="ANG") {
 		DebugDesegn.desegnRectangle(posici.x, posici.y, text.kvantn() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
 		
 		posici.y += GRANDEC_VERTIKAL;
@@ -52,6 +57,15 @@ public class Verg {
 		DebugDesegn.desegnRectangle(posici.x, posici.y, text.kvantn() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
 		
 		posici.y -= GRANDEC_VERTIKAL;
+		}else {
+			DebugDesegn.desegnRectangle(posici.x, posici.y, QefObjektj.ludant.nunAngul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
+			
+			posici.y += GRANDEC_VERTIKAL;
+			
+			DebugDesegn.desegnRectangle(posici.x, posici.y, QefObjektj.ludant.nunAngul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
+
+			posici.y -= GRANDEC_VERTIKAL;
+		}
 		
 	}
 	/*

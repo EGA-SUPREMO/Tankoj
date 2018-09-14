@@ -21,7 +21,7 @@ public class Submenu {
 		vergj = new Verg[4];
 		vergj[0] = new Verg(Color.BLUE, Text.VIV);
 		vergj[1] = new Verg(Color.YELLOW, Text.RES);
-		vergj[2] = new Verg(Color.GREEN, Text.EXP);
+		vergj[2] = new Verg(Color.GREEN, Text.ANG);
 		vergj[3] = new Verg(Color.RED, Text.ATK);
 		
 		elekteblj = new Elektebl[kvantElektebl];

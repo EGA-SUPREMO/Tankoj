@@ -12,6 +12,7 @@ import qef.ilj.YargxilAzhj;
 import qef.inventar.armil.Armil;
 import qef.inventar.armil.Senarma;
 import qef.kontrolj.Kontrolperant;
+import qef.map.Map;
 import qef.sprite.SpriteFoli;
 
 public class Ludant extends Vivazh {
@@ -26,13 +27,13 @@ public class Ludant extends Vivazh {
 	private static final SpriteFoli senarmatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
 			Transparency.TRANSLUCENT);
 	private static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
-			Transparency.TRANSLUCENT, 19, 19);
+			Transparency.TRANSLUCENT, 36, 19);
 	
 	public Ludant() {
 		super(1, 1, senarmatludantsprite, armil, Konstantj.ITENER_SONJ_LUDANT + "pom.wav");
 
-		setXn(Konstantj.duonLudLargx);
-		setYn(0);
+		setXn(600);
+		setYn(10);
 		largxVivazh = 16;
 		altVivazh = 16;
 		
@@ -62,7 +63,9 @@ public class Ludant extends Vivazh {
 			movante = true;
 			direkt = 1;
 			mlpliX();
-			setYn(QefObjektj.map.yn()[(int) xn()]);
+			if(xn()<Konstantj.duonLudLargx)
+				setYn(0);
+			else setYn(QefObjektj.map.yn()[(int) xn()]);
 		}
 		if(Kontrolperant.klavar.supr.pulsitan() && !Kontrolperant.klavar.sub.pulsitan()) {
 			if(++nunAngul>=Konstantj.canonAngulnombr)
@@ -93,7 +96,6 @@ public class Ludant extends Vivazh {
 		
 		vivazharmilar.armil1n().gxisdatig();
 	}
-	int i = 0;
 	@Override
 	protected void anim() {
 		nunBild = statn();
@@ -103,11 +105,11 @@ public class Ludant extends Vivazh {
 	//TODO SXangxu la klaso de tiu metodo
 	private int statn() {
 		
-		int x1 = (int) xn(radX1);
-		int x2 = (int) xn(radX2);
+		int x1 = (int) Map.xn((int) xn(), radX1);
+		int x2 = (int) Map.xn((int) xn(), radX2);
 		
-		int y1 = QefObjektj.map.yn()[(int) (xn(radX1))];
-		int y2 = QefObjektj.map.yn()[(int) (xn(radX2))];
+		int y1 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX1))];
+		int y2 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX2))];
 		
 		double angul = Math.atan2(y2 - y1, x2 - x1);
 		

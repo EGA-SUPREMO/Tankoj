@@ -277,15 +277,6 @@ public abstract class Vivazh implements Estazh {
 	public double xn() {
 		return x;
 	}
-	public double xn(final int kvant) {
-		int xx =(int)x + kvant;
-		if(xx<0) {
-			xx = QefObjektj.map.yn().length - kvant;
-		} else if(xx >= QefObjektj.map.yn().length) {
-			xx = kvant;
-		}
-		return xx;
-	}
 	public double yn() {
 		return y;
 	}
@@ -317,8 +308,14 @@ public abstract class Vivazh implements Estazh {
 	public void setXn(final int x) {
 		this.x = x;
 	}
+	boolean bug = false;
 	public void setYn(final int y) {
-		this.y = y;
+		if(bug)
+			return;
+		if(y != 0)
+			this.y = y;
+		else
+			bug = true;
 	}
 	public Vivazharmilar vivazharmilarn() {
 		return vivazharmilar;

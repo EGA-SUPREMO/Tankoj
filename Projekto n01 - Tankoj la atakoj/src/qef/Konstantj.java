@@ -66,6 +66,7 @@ public abstract class Konstantj {
 	public static boolean qyangxSpriteFoli = false;
 	public static int canonAngulnombr = 180;
 	public static final byte LUDRAPIDEC = 1;
+	public static final byte MISILRAPIDEC = 15;
 	
 	public final static String SUFIX_MAP = ".egam";
 	public final static String ITENER_MAP = "/maps/";

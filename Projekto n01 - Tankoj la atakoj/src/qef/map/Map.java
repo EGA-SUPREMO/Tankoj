@@ -296,9 +296,11 @@ public class Map {
 		}
 	}
 	public void desegn() {
-		
-		DebugDesegn.setColor(Color.CYAN);
+
+		DebugDesegn.setColor(Color.BLUE);
 		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, offsetMap + 155);
+		DebugDesegn.setColor(Color.CYAN);
+		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, offsetMap + 55);
 		DebugDesegn.setColor(Color.GREEN);
 		for(int x = 0; x < Konstantj.ludLargx; x++) {
 			xx = (int) (x - QefObjektj.ludant.xn() + Konstantj.duonLudLargx);
@@ -349,7 +351,24 @@ public class Map {
 	public int[] yn() {
 		return y;
 	}
+	public int yn(int x) {
+		if(x<0) {
+			x = QefObjektj.map.yn().length - 1;
+		} else if(x >= QefObjektj.map.yn().length) {
+			x = 0;
+		}
+		return y[x];
+	}
 	
+	public static double xn(final int x, final int kvant) {
+		int xx =(int)x + kvant;
+		if(xx<0) {
+			xx = QefObjektj.map.yn().length - kvant;
+		} else if(xx >= QefObjektj.map.yn().length) {
+			xx = kvant;
+		}
+		return xx;
+	}
 	public Rectangle margxen(final int x, final int y) {
         int posiciX = (Konstantj.duonLudLargx - x + QefObjektj.ludant.largxVivazhn()) + Konstantj.SPRITELARGX;
         int posiciY = (Konstantj.duonLudAlt - y + QefObjektj.ludant.altVivazhn()) + Konstantj.SPRITEALT;
@@ -361,4 +380,5 @@ public class Map {
         
         return new Rectangle(posiciX, posiciY, largx, alt);
 	}
+	
 }

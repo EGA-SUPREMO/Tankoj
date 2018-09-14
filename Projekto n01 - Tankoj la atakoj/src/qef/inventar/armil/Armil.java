@@ -60,7 +60,7 @@ public abstract class Armil extends Objekt {
 		actualizacionesParaSiguienteAtaque = (int) (ataquesPorSegundo * 60);
 		
 		pafson.play();
-		QefObjektj.ludant.m = new Misil(QefObjektj.ludant.nunAngul, 100, (int) QefObjektj.ludant.xn(), (int) QefObjektj.ludant.yn());
+		QefObjektj.ludant.m = new Misil(QefObjektj.ludant.nunAngul, 20, (int) QefObjektj.ludant.xn(), (int) QefObjektj.ludant.yn());
 		/*for (Vivazh vivazh : vivazhj) {
 			vivazh.malgajnVivn(atakkvantn());
 		}*/

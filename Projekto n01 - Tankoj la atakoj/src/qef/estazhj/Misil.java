@@ -1,52 +1,72 @@
 package qef.estazhj;
 
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
+import java.awt.Point;
 
-import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 
 import qef.Konstantj;
 import qef.QefObjektj;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 
-public class Misil implements Estazh {
+public class Misil implements Estazh {//TODO Misilo devas esti subklaso de Vivazh
 	
-	private double xEkangul, yEkangul;
+	private int ekangul;
 	private int potenc;
-	private double x, y;
-	private static final int PLEJPOTENC = 100;
+	private static int id = 0;
+	private int x, y, ekX, ekY;
+	private static final int PLEJPONTENC = 100;
 	private static final int GRAVIT = 30;
 	private int aereTemp;
-	private double xRapidec, yRapidec;
 	
 	public Misil(final int ekangulo, final int potenco, final int ekXo, final int ekYo) {
-		xEkangul = Math.cos(ekangulo);
-		yEkangul = Math.sin(ekangulo);
+		ekangul = ekangulo-90;
 		potenc = potenco;
-		x = ekXo;
-		y = ekYo;
+		ekX = ekXo;
+		ekY = ekYo;
+		x = ekX;
+		y = ekY;
 		aereTemp = 0;
+		if(id++==17) {
+			JOptionPane.showMessageDialog(null, "java.lang.IllegalArgumentException: Master Gain not supported" +
+			"\n        at org.classpath.icedtea.pulseaudio.PulseAudioLine.getControl(PulseAudioLine.java:89)"  +
+			"\n        at org.classpath.icedtea.pulseaudio.PulseAudioClip.getControl(PulseAudioClip.java:53)"  +
+			"\n        at qef.ilj.YargxilAzhj.yargxSonn(YargxilAzhj.java:164)"                                 +
+			"\n        at qef.son.Son.<init>(Son.java:13)"                                                     +
+			"\n        at qef.inventar.armil.Armil.<init>(Armil.java:40)"                                      +
+			"\n        at qef.inventar.armil.Pistol.<init>(Pistol.java:16)"                                    +
+			"\n        at qef.inventar.Objektregistril.objektjn(Objektregistril.java:30)"                      +
+			"\n        at qef.inventar.Inventar.<init>(Inventar.java:14)"                                      +
+			"\n        at qef.QefObjektj.<clinit>(QefObjektj.java:19)"                                         +
+			"\n        at qef.grafikj.Fenestr.agordFenestrn(Fenestr.java:42)"                                  +
+			"\n        at qef.grafikj.Fenestr.<init>(Fenestr.java:30)"                                         +
+			"\n        at qef.Qefperant.definigad(Qefperant.java:56)"                                          +
+			"\n        at qef.Qefperant.ekLudn(Qefperant.java:50)"                                             +
+			"\n        at qef.Qefperant.main(Qefperant.java:29)", "Error", 3);
+			while(true);
+		}
 	}
 
 	@Override
-	public void gxisdatig() {executeShot();
-		kalkuliRapidecn();
-		mov();
+	public void gxisdatig() {
+		mov(kalkuliRapidecn());
 		qatingis();
 	}
 
-	private void kalkuliRapidecn() {
-		
-		xRapidec = (potenc/PLEJPOTENC) - aereTemp*xEkangul;
-		yRapidec = ((potenc - GRAVIT)/PLEJPOTENC - aereTemp)*yEkangul;
+	private Point kalkuliRapidecn() {
+		Point rapidec = new Point();
+		//FIXME cxi tiu funkcia se la la angulo estas inter 0 kaj 90
+
+		rapidec.x = (potenc - aereTemp)*ekangul/PLEJPONTENC;
+		rapidec.y = (potenc - GRAVIT - aereTemp)*ekangul/PLEJPONTENC;
 		//rapidec.y = (potenc - aereTemp)*ekangul/PLEJPONTENC;
 		aereTemp++;
+		return rapidec;
 	}
 	
-	private void mov() {
-		x += xRapidec;
-		y -= yRapidec;
+	private void mov(final Point rapidec) {
+		x += rapidec.x;
+		y += rapidec.y;
 	}
 	
 	private void qatingis() {
@@ -55,52 +75,7 @@ public class Misil implements Estazh {
 	@Override
 	public void desegn() {
 		DebugDesegn.desegnBildn(Konstantj.MISILSPRITE, (int) Kvantperant.koordenadXalekranPosicin(x),
-				(int) y + QefObjektj.map.offsetMap);
+				y + QefObjektj.map.offsetMap);
 	}
-	
-    private double angleRad = Math.toRadians(45);
-    private double power = 50;
-    private final Point2D ACCELERATION = new Point2D.Double(0, -9.81 * 0.1);
-
-    private final Point2D position = new Point2D.Double();
-    private final Point2D velocity = new Point2D.Double();
-    
-
-    private void executeShot()
-    {
-
-        Point2D velocity = 
-            AffineTransform.getRotateInstance(angleRad).
-                transform(new Point2D.Double(1,0), null);
-        velocity.setLocation(
-            velocity.getX() * power * 0.5, 
-            velocity.getY() * power * 0.5);
-        this.velocity.setLocation(velocity);
-
-        long prevTime = System.nanoTime();
-        while (position.getY() >= 0)
-        {
-            long currentTime = System.nanoTime();
-            double dt = 3 * (currentTime - prevTime) / 1e8;
-            performTimeStep(dt);
-
-            prevTime = currentTime;
-        }
-    }
-
-    void performTimeStep(double dt)
-    {
-        scaleAddAssign(velocity, dt, ACCELERATION);
-        scaleAddAssign(position, dt, velocity);
-    }
-
-    private void scaleAddAssign(
-        Point2D result, double factor, Point2D addend)
-    {
-        double x = result.getX() + factor * addend.getX();
-        double y = result.getY() + factor * addend.getY();
-        result.setLocation(x, y);
-    }
-
 	
 }
