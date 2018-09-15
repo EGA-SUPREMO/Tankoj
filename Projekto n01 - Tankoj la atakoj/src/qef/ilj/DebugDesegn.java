@@ -89,8 +89,8 @@ public class DebugDesegn {
 	
 	public static void desegnKolicijn() {
 
-		for(int i = 0; i < QefObjektj.ludant.LIMJN().length; i++)
-			desegnRectangle(QefObjektj.ludant.LIMJN()[i]);
+		for(int i = 0; i < Vicperant.ludantj[Vicperant.nunLudantn()].LIMJN().length; i++)
+			desegnRectangle(Vicperant.ludantj[Vicperant.nunLudantn()].LIMJN()[i]);
 		
 		for(Vivazh nun : QefObjektj.map.vivazhar)
 			for(int i = 0; i < nun.LIMJN().length; i++)

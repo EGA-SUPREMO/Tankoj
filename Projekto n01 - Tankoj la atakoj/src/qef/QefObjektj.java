@@ -1,6 +1,5 @@
 package qef;
 
-import qef.estazhj.vivazhj.Ludant;
 import qef.grafikj.Superficdesegn;
 import qef.inventar.Inventar;
 import qef.map.Map;
@@ -11,7 +10,6 @@ import qef.uzantinterfac.map.Malhelec;
 public class QefObjektj {//Objektoj de la ludoj
 
 	public static Map map = new Map(0);
-	public static Ludant ludant = new Ludant();
 	public static Submenu submenu = new Submenu();
 	public static Malhelec malhelec = new Malhelec();
 	public static Superficdesegn superfic = new Superficdesegn();

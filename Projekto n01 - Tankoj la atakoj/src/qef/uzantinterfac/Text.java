@@ -1,11 +1,11 @@
 package qef.uzantinterfac;
 
 import qef.Konstantj;
-import qef.QefObjektj;
+import qef.ilj.Vicperant;
 
 public enum Text {
-	VIV(QefObjektj.ludant.vivn(), 100), RES(Konstantj.plejResistenc, Konstantj.plejResistenc),
-	ANG(QefObjektj.ludant.nunAngul, 180), ATK(QefObjektj.ludant.damagxn(), 100);
+	VIV(Vicperant.ludantj[Vicperant.nunLudantn()].vivn(), 100), RES(Konstantj.plejResistenc, Konstantj.plejResistenc),
+	ANG(Vicperant.ludantj[Vicperant.nunLudantn()].nunAngul, 180), ATK(Vicperant.ludantj[Vicperant.nunLudantn()].damagxn(), 100);
 	
 	private Integer kvant;
 	private Integer plejkvant;

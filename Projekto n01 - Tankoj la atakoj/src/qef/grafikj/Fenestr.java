@@ -40,7 +40,7 @@ public class Fenestr extends JFrame implements WindowFocusListener {
 		setIconImage(icon.getImage());
 		setLayout(new BorderLayout());
 		add(QefObjektj.superfic, BorderLayout.CENTER);
-		//setUndecorated(true);
+		setUndecorated(true);
 		//setExtendedState(MAXIMIZED_BOTH);
 		
 		pack();

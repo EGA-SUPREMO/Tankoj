@@ -1,81 +1,72 @@
 package qef.estazhj;
 
-import java.awt.Point;
-
-import javax.swing.JOptionPane;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
 
 import qef.Konstantj;
 import qef.QefObjektj;
+import qef.estazhj.vivazhj.Vivazh;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 
-public class Misil implements Estazh {//TODO Misilo devas esti subklaso de Vivazh
+public class Misil extends Vivazh {
 	
-	private int ekangul;
-	private int potenc;
-	private static int id = 0;
-	private int x, y, ekX, ekY;
-	private static final int PLEJPONTENC = 100;
-	private static final int GRAVIT = 30;
-	private int aereTemp;
+	private int aerTemp;
+	private double angleRad;
+	private double potenc;
+	private final Point2D ACCELERATION = new Point2D.Double(0, -9.81 * 0.1);
 	
 	public Misil(final int ekangulo, final int potenco, final int ekXo, final int ekYo) {
-		ekangul = ekangulo-90;
+		super(1, Konstantj.ITENER_SON_MISIL);
+		angleRad = Math.toRadians(ekangulo);
 		potenc = potenco;
-		ekX = ekXo;
-		ekY = ekYo;
-		x = ekX;
-		y = ekY;
-		aereTemp = 0;
-		if(id++==17) {
-			JOptionPane.showMessageDialog(null, "java.lang.IllegalArgumentException: Master Gain not supported" +
-			"\n        at org.classpath.icedtea.pulseaudio.PulseAudioLine.getControl(PulseAudioLine.java:89)"  +
-			"\n        at org.classpath.icedtea.pulseaudio.PulseAudioClip.getControl(PulseAudioClip.java:53)"  +
-			"\n        at qef.ilj.YargxilAzhj.yargxSonn(YargxilAzhj.java:164)"                                 +
-			"\n        at qef.son.Son.<init>(Son.java:13)"                                                     +
-			"\n        at qef.inventar.armil.Armil.<init>(Armil.java:40)"                                      +
-			"\n        at qef.inventar.armil.Pistol.<init>(Pistol.java:16)"                                    +
-			"\n        at qef.inventar.Objektregistril.objektjn(Objektregistril.java:30)"                      +
-			"\n        at qef.inventar.Inventar.<init>(Inventar.java:14)"                                      +
-			"\n        at qef.QefObjektj.<clinit>(QefObjektj.java:19)"                                         +
-			"\n        at qef.grafikj.Fenestr.agordFenestrn(Fenestr.java:42)"                                  +
-			"\n        at qef.grafikj.Fenestr.<init>(Fenestr.java:30)"                                         +
-			"\n        at qef.Qefperant.definigad(Qefperant.java:56)"                                          +
-			"\n        at qef.Qefperant.ekLudn(Qefperant.java:50)"                                             +
-			"\n        at qef.Qefperant.main(Qefperant.java:29)", "Error", 3);
-			while(true);
-		}
+		setXn(ekXo);
+		setYn(ekYo);
+		rapidecX = 0;
+		rapidecY = 0;
+		//System.out.println(angleRad);
 	}
 
 	@Override
 	public void gxisdatig() {
-		mov(kalkuliRapidecn());
-		qatingis();
+		executShotn();
+		kalkuliRapidecn();
+		mov();
 	}
 
-	private Point kalkuliRapidecn() {
-		Point rapidec = new Point();
-		//FIXME cxi tiu funkcia se la la angulo estas inter 0 kaj 90
-
-		rapidec.x = (potenc - aereTemp)*ekangul/PLEJPONTENC;
-		rapidec.y = (potenc - GRAVIT - aereTemp)*ekangul/PLEJPONTENC;
-		//rapidec.y = (potenc - aereTemp)*ekangul/PLEJPONTENC;
-		aereTemp++;
-		return rapidec;
+	private void kalkuliRapidecn() {
 	}
 	
-	private void mov(final Point rapidec) {
-		x += rapidec.x;
-		y += rapidec.y;
-	}
-	
-	private void qatingis() {
+	private void mov() {
+		
 	}
 	
 	@Override
 	public void desegn() {
-		DebugDesegn.desegnBildn(Konstantj.MISILSPRITE, (int) Kvantperant.koordenadXalekranPosicin(x),
-				y + QefObjektj.map.offsetMap);
+		DebugDesegn.desegnBildn(Konstantj.MISILSPRITE, (int) Kvantperant.koordenadXalekranPosicin(xn()),
+				(int) -yn() + QefObjektj.map.offsetMap);
 	}
 	
+	private void executShotn() {
+		Point2D nunrapidec = AffineTransform.getRotateInstance(angleRad).transform(new Point2D.Double(1, 0), null);
+		nunrapidec.setLocation(nunrapidec.getX() * potenc * 0.5, nunrapidec.getY() * potenc * 0.5);
+		rapidecX = nunrapidec.getX();
+		rapidecY = nunrapidec.getX();
+
+        long prevTime = System.nanoTime();
+		if(yn() >= QefObjektj.map.yn((int) xn())) {
+            long currentTime = System.nanoTime();
+            double dt = 1 * (currentTime - prevTime) / 1e8;
+			//final double dt = aerTemp++/Konstantj.MISILRAPIDEC;
+			rapidecX = scaleAddAssign(rapidecX, dt, ACCELERATION.getX());
+			setxn(scaleAddAssign(xn(), dt, rapidecX));
+			rapidecY = scaleAddAssign(rapidecY, dt, ACCELERATION.getY());
+			setyn(scaleAddAssign(yn(), dt, rapidecY));
+            prevTime = currentTime;
+		}
+	}
+	
+	private static double scaleAddAssign(final double x, final double faktor, final double aldon) {
+		return (x + faktor * aldon);
+	}
 }

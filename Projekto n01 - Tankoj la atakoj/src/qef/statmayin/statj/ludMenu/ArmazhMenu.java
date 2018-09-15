@@ -117,10 +117,10 @@ public class ArmazhMenu extends MenuSekci {
 		DebugDesegn.desegnRectangle(armiletiked);
 		DebugDesegn.desegnMargxenRectangle(armilar);
 
-        if (!(QefObjektj.ludant.vivazharmilarn().armil1n() instanceof Senarma)) {
-            DebugDesegn.desegnBildn(QefObjektj.ludant.vivazharmilarn().armil1n().spriten(),
-            		armilar.x + armilar.width / 2 - Konstantj.SPRITEFLANK / 2, armilar.y);
-        }
+ //       if (!(QefObjektj.unuludant.vivazharmilarn().armil1n() instanceof Senarma)) {
+  //          DebugDesegn.desegnBildn(QefObjektj.unuludant.vivazharmilarn().armil1n().spriten(),
+   //         		armilar.x + armilar.width / 2 - Konstantj.SPRITEFLANK / 2, armilar.y);
+     //   }
 
         DebugDesegn.setColor(Color.white);
 		DebugDesegn.desegnString("Armilo",
@@ -184,7 +184,7 @@ public class ArmazhMenu extends MenuSekci {
 			}
 		} else if(muy.intersects(armazhpanel)) {
 			if(muy.intersects(armilar) && selektat instanceof Armil) {
-				QefObjektj.ludant.vivazharmilarn().setArmil1((Armil) selektat);
+	//			QefObjektj.unuludant.vivazharmilarn().setArmil1((Armil) selektat);
 				Konstantj.qyangxSpriteFoli = true;
 				selektat = null;
 			}

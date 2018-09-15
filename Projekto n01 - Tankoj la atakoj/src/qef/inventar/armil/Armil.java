@@ -1,15 +1,12 @@
 package qef.inventar.armil;
 
-import java.awt.Rectangle;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.Random;
 
 import qef.Konstantj;
-import qef.QefObjektj;
 import qef.estazhj.Misil;
-import qef.estazhj.vivazhj.Vivazh;
+import qef.ilj.Vicperant;
 import qef.inventar.Objekt;
 import qef.son.Son;
 import qef.sprite.SpriteFoli;
@@ -44,8 +41,6 @@ public abstract class Armil extends Objekt {
 	public BufferedImage spriten() {
 		return ArmilSpriteFoli.spritejn(Konstantj.KVANT_KONSUMEBL_OBJEKT - id);
 	}
-
-	public abstract ArrayList<Rectangle> atingec(Vivazh vivazh);
 	
 	public void gxisdatig() {
         if (actualizacionesParaSiguienteAtaque > 0) {
@@ -60,7 +55,9 @@ public abstract class Armil extends Objekt {
 		actualizacionesParaSiguienteAtaque = (int) (ataquesPorSegundo * 60);
 		
 		pafson.play();
-		QefObjektj.ludant.m = new Misil(QefObjektj.ludant.nunAngul, 20, (int) QefObjektj.ludant.xn(), (int) QefObjektj.ludant.yn());
+		Vicperant.ludantj[Vicperant.nunLudantn()].m = new Misil(Vicperant.ludantj[Vicperant.nunLudantn()].nunAngul,
+				20, (int) Vicperant.ludantj[Vicperant.nunLudantn()].xn(),
+				(int) Vicperant.ludantj[Vicperant.nunLudantn()].yn());
 		/*for (Vivazh vivazh : vivazhj) {
 			vivazh.malgajnVivn(atakkvantn());
 		}*/

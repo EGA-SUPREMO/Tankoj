@@ -1,24 +1,23 @@
 package qef.ilj;
 
 import qef.Konstantj;
-import qef.QefObjektj;
 
 public class Kvantperant {
 	
 	public static double koordenadXalekranPosicin(final double koordenad) {
-		return koordenad - QefObjektj.ludant.xn() + Konstantj.largxCentr;
+		return koordenad - Vicperant.ludantj[Vicperant.nunLudantn()].xn() + Konstantj.largxCentr;
 	}
 	
 	public static double koordenadYalekranPosicin(final double koordenad) {
-		return koordenad - QefObjektj.ludant.yn() + Konstantj.altCentr;
+		return koordenad - Vicperant.ludantj[Vicperant.nunLudantn()].yn() + Konstantj.altCentr;
 	}
 	
 	public static double koordenadEkranPosicialXn(final double koordenad) {
-		return koordenad + QefObjektj.ludant.xn() + Konstantj.largxCentr;
+		return koordenad + Vicperant.ludantj[Vicperant.nunLudantn()].xn() + Konstantj.largxCentr;
 	}
 	
 	public static double koordenadEkranPosicialYn(final double koordenad) {
-		return koordenad + QefObjektj.ludant.yn() + Konstantj.altCentr;
+		return koordenad + Vicperant.ludantj[Vicperant.nunLudantn()].yn() + Konstantj.altCentr;
 	}
 
     public static double kakulDistancn(final int x1, final int y1, final int x2, final int y2) {

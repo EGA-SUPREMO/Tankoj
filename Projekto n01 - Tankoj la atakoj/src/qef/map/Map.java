@@ -20,6 +20,7 @@ import qef.estazhj.vivazhj.Vivazh;
 import qef.ilj.BruGeneril;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
+import qef.ilj.Vicperant;
 import qef.ilj.YargxilAzhj;
 import qef.inventar.Objekt;
 import qef.inventar.Objektar;
@@ -35,6 +36,7 @@ public class Map {
 	private int tileeMaplargx;
 	private int tileeMapalt;
 	
+	private double vent;
 	private int xx;
 	
 	private static final int xAxenVideblTilej = (int) ((float)Konstantj.ludLargx/Konstantj.SPRITEFLANK + 2.99);
@@ -53,10 +55,12 @@ public class Map {
 	private int[] y;
 	public int offsetMap;
 	public Map(final int itener) {
+		vent = 0;
 		rangoX = 0;
 		rangoY = 0;
 		limiteX = 0;
 		limiteY = 0;
+		
 		vivazhar = new ArrayList<>();
 		spritetavolj = new ArrayList<>();
 		
@@ -221,16 +225,16 @@ public class Map {
 		gxisdatigRangojn();
 
 		if (Kontrolperant.klavar.qatak)
-			QefObjektj.ludant.vivazharmilarn().armil1n().atak();
+			Vicperant.ludantj[Vicperant.nunLudantn()].vivazharmilarn().armil1n().atak();
 		gxisdatigVivazhjn();
 		gxisdatigAtakjn();
 	}
 	
 	private void gxisdatigRangojn() {
-		if(QefObjektj.ludant.xn()/Konstantj.SPRITEFLANK-mldextrenVideblTilej>=0)
-			rangoX = (int) (QefObjektj.ludant.xn()/Konstantj.SPRITEFLANK-mldextrenVideblTilej);
-		if(QefObjektj.ludant.yn()/Konstantj.SPRITEFLANK-suprenVideblTilej>=0)
-			rangoY = (int) (QefObjektj.ludant.yn()/Konstantj.SPRITEFLANK-suprenVideblTilej);
+		if(Vicperant.ludantj[Vicperant.nunLudantn()].xn()/Konstantj.SPRITEFLANK-mldextrenVideblTilej>=0)
+			rangoX = (int) (Vicperant.ludantj[Vicperant.nunLudantn()].xn()/Konstantj.SPRITEFLANK-mldextrenVideblTilej);
+		if(Vicperant.ludantj[Vicperant.nunLudantn()].yn()/Konstantj.SPRITEFLANK-suprenVideblTilej>=0)
+			rangoY = (int) (Vicperant.ludantj[Vicperant.nunLudantn()].yn()/Konstantj.SPRITEFLANK-suprenVideblTilej);
 		if(rangoX+xAxenVideblTilej<=this.tileeMaplargx)
 			limiteX = rangoX+xAxenVideblTilej;
 		if(rangoY+yAxenVideblTilej<=this.tileeMapalt)
@@ -246,53 +250,7 @@ public class Map {
 	}
 
 	private void gxisdatigAtakjn() {
-		if (QefObjektj.ludant.nunatingecn().isEmpty()
-				|| QefObjektj.ludant.vivazharmilarn().armil1n() instanceof Senarma) {
-			return;
-		}
-		
 		if (Kontrolperant.klavar.qatak) {
-			ArrayList<Vivazh> enemigosAlcanzados = new ArrayList<>();
-			
-			if (QefObjektj.ludant.vivazharmilarn().armil1n().penetranten()) {
-				for (Vivazh vivazh : vivazhar) {
-					if (QefObjektj.ludant.nunatingecn().get(0).intersects(vivazh.nunposiciare())) {
-						enemigosAlcanzados.add(vivazh);
-					}
-				}
-			} else {
-				Vivazh enemigoMasCercano = null;
-				Double distanciaMasCercana = null;
-				
-				for (Vivazh vivazh : vivazhar) {
-					if (QefObjektj.ludant.nunatingecn().get(0).intersects(vivazh.nunposiciare())) {
-						
-						Double distanciaActual = Kvantperant.kakulDistancn((int) QefObjektj.ludant.xn(),
-								(int) QefObjektj.ludant.yn(), (int) vivazh.xn(), (int) vivazh.yn());
-						
-						if (enemigoMasCercano == null) {
-							enemigoMasCercano = vivazh;
-							distanciaMasCercana = distanciaActual;
-						} else if (distanciaActual < distanciaMasCercana) {
-							enemigoMasCercano = vivazh;
-							distanciaMasCercana = distanciaActual;
-						}
-					
-					}
-				}
-				if(enemigoMasCercano!=null)
-					enemigosAlcanzados.add(enemigoMasCercano);
-			}
-		}
-		
-		Iterator<Vivazh> iterador = vivazhar.iterator();
-		
-		while (iterador.hasNext()) {
-			Vivazh enemigo = iterador.next();
-			
-			if (enemigo.vivn() <= 0) {
-				iterador.remove();
-			}
 		}
 	}
 	public void desegn() {
@@ -303,7 +261,7 @@ public class Map {
 		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, offsetMap + 55);
 		DebugDesegn.setColor(Color.GREEN);
 		for(int x = 0; x < Konstantj.ludLargx; x++) {
-			xx = (int) (x - QefObjektj.ludant.xn() + Konstantj.duonLudLargx);
+			xx = (int) (Kvantperant.koordenadXalekranPosicin(x));
 			if(xx<0) 
 				DebugDesegn.desegnLine(xx + Konstantj.ludLargx, offsetMap - y[x], xx + Konstantj.ludLargx, offsetMap + 155);
 			else if(xx>Konstantj.ludLargx) 
@@ -369,16 +327,8 @@ public class Map {
 		}
 		return xx;
 	}
-	public Rectangle margxen(final int x, final int y) {
-        int posiciX = (Konstantj.duonLudLargx - x + QefObjektj.ludant.largxVivazhn()) + Konstantj.SPRITELARGX;
-        int posiciY = (Konstantj.duonLudAlt - y + QefObjektj.ludant.altVivazhn()) + Konstantj.SPRITEALT;
-
-        int largx = (this.tileeMaplargx*Konstantj.SPRITELARGX - (Konstantj.SPRITELARGX * 3)) -
-        		QefObjektj.ludant.largxVivazhn()*2;
-        int alt = (this.tileeMapalt * Konstantj.SPRITEALT - (Konstantj.SPRITEALT*3)) -
-        		QefObjektj.ludant.altVivazhn()*2;
-        
-        return new Rectangle(posiciX, posiciY, largx, alt);
+	public double ventn() {
+		return vent;
 	}
 	
 }

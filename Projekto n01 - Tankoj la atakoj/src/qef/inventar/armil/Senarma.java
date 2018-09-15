@@ -13,9 +13,4 @@ public class Senarma extends Armil{
 		super(id, nomo, priskribo, plejatako, mlplejatako, false, 0, Konstantj.ITENER_SONJ_LUDANT + "pom.wav");
 	}
 	
-	@Override
-	public ArrayList<Rectangle> atingec(final Vivazh vivazh) {
-		return null;
-	}
-	
 }

@@ -1,13 +1,15 @@
 package qef.statmayin.statj.lud;
 
 import qef.QefObjektj;
+import qef.estazhj.vivazhj.Ludant;
+import qef.ilj.Vicperant;
 import qef.statmayin.Statlud;
 
 public class Ludperant implements Statlud {
 	
 	@Override
 	public void gxisdatig() {
-		QefObjektj.ludant.gxisdatig();
+		Vicperant.ludantj[Vicperant.nunLudantn()].gxisdatig();
 		QefObjektj.map.gxisdatig();
 	}
 	
@@ -15,10 +17,9 @@ public class Ludperant implements Statlud {
 	public void desegn() {
 		
 		QefObjektj.map.desegn();
-		QefObjektj.ludant.desegn();
-		
+		for(Ludant ludant: Vicperant.ludantj)
+			ludant.desegn();
 		QefObjektj.malhelec.desegn();
-		
 		QefObjektj.submenu.desegn();
 		
 	}

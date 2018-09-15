@@ -5,16 +5,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
 import qef.Konstantj;
-import qef.QefObjektj;
 import qef.ilj.DebugDatum;
 import qef.ilj.DebugDesegn;
-import qef.ilj.Kvantperant;
 import qef.ilj.StringKvantil;
+import qef.ilj.Vicperant;
 import qef.kontrolj.Kontrolperant;
 import qef.kontrolj.Muy;
 import qef.statmayin.Statperant;
@@ -74,8 +72,8 @@ public class Superficdesegn extends Canvas {
 		DebugDesegn.desegnString("FPS: " + Konstantj.fps, 10, 30);
 		
 		if(Kontrolperant.klavar.debug) {
-			DebugDatum.addDatumn("X: " + QefObjektj.ludant.xn());
-			DebugDatum.addDatumn("Y: " + QefObjektj.ludant.yn());
+			DebugDatum.addDatumn("X: " + Vicperant.ludantj[Vicperant.nunLudantn()].xn());
+			DebugDatum.addDatumn("Y: " + Vicperant.ludantj[Vicperant.nunLudantn()].yn());
 			DebugDatum.addDatumn("Sekundoj pasitaj: " + Konstantj.sekundjPasita);
 			try {
 			DebugDatum.addDatumn("Promedio de fps po sekundo: " + Konstantj.qiufps/Konstantj.sekundjPasita);
@@ -94,10 +92,6 @@ public class Superficdesegn extends Canvas {
 			
 			if(sp.qStatludn()) {
 				DebugDesegn.desegnKolicijn();
-				
-				for(Rectangle nun:QefObjektj.ludant.nunatingecn())
-					DebugDesegn.desegnRectangle((int) Kvantperant.koordenadXalekranPosicin(nun.x),
-							(int) Kvantperant.koordenadYalekranPosicin(nun.y), nun.width, nun.height);
 			}
 			
 			DebugDatum.addDatumn("OPF: " + DebugDesegn.objektjDesegnitan());

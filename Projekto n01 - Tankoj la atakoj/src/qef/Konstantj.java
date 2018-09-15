@@ -66,7 +66,7 @@ public abstract class Konstantj {
 	public static boolean qyangxSpriteFoli = false;
 	public static int canonAngulnombr = 180;
 	public static final byte LUDRAPIDEC = 1;
-	public static final byte MISILRAPIDEC = 15;
+	public static final byte MISILRAPIDEC = 40;
 	
 	public final static String SUFIX_MAP = ".egam";
 	public final static String ITENER_MAP = "/maps/";
@@ -86,6 +86,7 @@ public abstract class Konstantj {
 
 	public final static String ITENER_SONJ = "/sounds/";
 	public final static String ITENER_SONJ_LUDANT = "player/";
+	public static final String ITENER_SON_MISIL = ITENER_SONJ_LUDANT + "pom.wav";
 
 	public final static Font KUTIM_FONT = YargxilAzhj.yargxFontn("/Arvin Regular.ttf");
 	
