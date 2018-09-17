@@ -1,5 +1,6 @@
 package qef.ilj;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Graphics;
@@ -46,6 +47,32 @@ public class YargxilAzhj {
 		g.dispose();
 		
 		return bild;
+		
+	}
+	public static BufferedImage yargxBildn(final String itener, final int diafanec, final Color kolor) {//Carga una imagen compatible
+		
+		Image i = null;
+		
+		try{
+			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
+		} catch(IOException e) {
+			System.out.println("CONO DE SU MAQUINA");
+			e.printStackTrace();
+		} catch(Exception e) {
+			System.out.println("/images" + itener);
+			System.out.println(e.getMessage());
+			System.out.println(e.getCause().getLocalizedMessage());
+		}
+		
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		
+		BufferedImage bild = gc.createCompatibleImage(i.getWidth(null), i.getHeight(null), diafanec);//Imagen Acelerada
+		
+		Graphics g = bild.getGraphics();
+		g.drawImage(i, 0, 0, null);
+		g.dispose();
+		
+		return Bildperant.yangxKolorn(bild, kolor.getRed(), kolor.getGreen(), kolor.getBlue());
 		
 	}
 

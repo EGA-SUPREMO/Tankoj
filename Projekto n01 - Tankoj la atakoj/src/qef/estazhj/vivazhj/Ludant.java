@@ -1,5 +1,6 @@
 package qef.estazhj.vivazhj;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
@@ -16,7 +17,6 @@ import qef.inventar.armil.Armil;
 import qef.inventar.armil.Senarma;
 import qef.kontrolj.Kontrolperant;
 import qef.map.Map;
-import qef.son.Son;
 import qef.sprite.SpriteFoli;
 
 public class Ludant extends Vivazh {
@@ -24,14 +24,15 @@ public class Ludant extends Vivazh {
 	protected BufferedImage[] bildj, canonBildj;
 	private int radX1 = 5, radX2 = 27;
 	private int offsetLudantY = 2;
+	private int offsetCanonX = 2, offsetCanonY = 1;
 	public Misil m;
 	protected Vivazharmilar vivazharmilar;
 	
 	private int experienc = 100;
-	public static final SpriteFoli armatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 1 + ".png", 32,
-			Transparency.TRANSLUCENT, 128);
+	public static final SpriteFoli armatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
+			Transparency.TRANSLUCENT, Color.GREEN.darker());
 	public static final SpriteFoli senarmatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
-			Transparency.TRANSLUCENT);
+			Transparency.TRANSLUCENT, Color.RED);
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
 			Transparency.TRANSLUCENT, 36, 19);
 	
@@ -71,7 +72,7 @@ public class Ludant extends Vivazh {
 		canonBildj = new BufferedImage[angulnombr];
 		double rotacij = Math.PI/angulnombr;
 		for(int i = 0; i < canonBildj.length; i++)
-			canonBildj[i] = Bildperant.volvBildn(tempbild, tempbild.getWidth()/2, tempbild.getHeight(),
+			canonBildj[i] = Bildperant.volvBildn(tempbild, tempbild.getWidth()/2, tempbild.getHeight() - 3,
 					(rotacij * (i-90)));
 	}
 	
@@ -153,7 +154,8 @@ public class Ludant extends Vivazh {
 		int posiciY = -(int)yn() + QefObjektj.map.offsetMap - bildj[nunBild].getHeight() + offsetLudantY;
 		DebugDesegn.desegnBildn(bildj[nunBild], (int) Kvantperant.koordenadXalekranPosicin(xn()), posiciY);
 		
-		DebugDesegn.desegnBildn(canonBildj[nunAngul], (int) Kvantperant.koordenadXalekranPosicin(xn()), posiciY);
+		DebugDesegn.desegnBildn(canonBildj[nunAngul], (int) Kvantperant.koordenadXalekranPosicin(xn()) -
+				offsetCanonX, posiciY + offsetCanonY);
 		m.desegn();
 	}
 

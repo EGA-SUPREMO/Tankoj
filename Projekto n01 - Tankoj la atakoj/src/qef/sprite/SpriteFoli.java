@@ -1,5 +1,6 @@
 package qef.sprite;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 
@@ -13,12 +14,32 @@ public class SpriteFoli {
 	private final int spriteLargx, spriteAlt;
 	
 	private final BufferedImage[] spritej;
-	
+
 	public SpriteFoli(final String itener, final int spriteGrandec, final int diafan) {
 		
 		BufferedImage i;
 		
 		i = YargxilAzhj.yargxBildn(itener, diafan);
+		
+		largxEnPixel = i.getWidth();
+		altEnPixel = i.getHeight();
+		
+		this.spriteLargx = spriteGrandec;
+		this.spriteAlt = spriteGrandec;
+
+		largxEnSprite = largxEnPixel / spriteLargx;
+		altEnSprite = altEnPixel / spriteAlt;
+		
+		spritej = new BufferedImage[largxEnSprite * altEnSprite];
+		
+		plenSpriten(i);
+		
+	}
+	public SpriteFoli(final String itener, final int spriteGrandec, final int diafan, final Color kolor) {
+		
+		BufferedImage i;
+		
+		i = YargxilAzhj.yargxBildn(itener, diafan, kolor);
 		
 		largxEnPixel = i.getWidth();
 		altEnPixel = i.getHeight();

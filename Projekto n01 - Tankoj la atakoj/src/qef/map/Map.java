@@ -255,11 +255,11 @@ public class Map {
 	}
 	public void desegn() {
 
-		DebugDesegn.setColor(Color.BLUE);
+		DebugDesegn.setColor(Konstantj.AKV_MAP_KOLOR);
 		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, offsetMap + 155);
-		DebugDesegn.setColor(Color.CYAN);
+		DebugDesegn.setColor(Konstantj.CXIEL_MAP_KOLOR);
 		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, offsetMap + 55);
-		DebugDesegn.setColor(Color.GREEN);
+		DebugDesegn.setColor(Konstantj.PLANK_MAP_KOLOR);
 		for(int x = 0; x < Konstantj.ludLargx; x++) {
 			xx = (int) (Kvantperant.koordenadXalekranPosicin(x));
 			if(xx<0) 
