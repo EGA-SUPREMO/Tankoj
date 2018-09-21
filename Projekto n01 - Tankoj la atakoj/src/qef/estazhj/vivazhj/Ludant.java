@@ -70,7 +70,7 @@ public class Ludant extends Vivazh {
 	
 	protected void ordenBildj(final int angulnombr, final BufferedImage tempbild) {//FIXME CXi tiu metodo estas ne efika
 		canonBildj = new BufferedImage[angulnombr];
-		double rotacij = Math.PI/angulnombr;
+		double rotacij = 2*Math.PI/angulnombr;
 		for(int i = 0; i < canonBildj.length; i++)
 			canonBildj[i] = Bildperant.volvBildn(tempbild, tempbild.getWidth()/2, tempbild.getHeight() - 3,
 					(rotacij * (i-90)));
@@ -80,6 +80,7 @@ public class Ludant extends Vivazh {
 	public void gxisdatig() {
 		if(venontDamagxit > 0)
 			venontDamagxit -= 1000000/60;
+		if(m!=null)//FIXME
 		m.gxisdatig();
 		gxisdatigArmiljn();
 		yangxMapn();
@@ -156,6 +157,7 @@ public class Ludant extends Vivazh {
 		
 		DebugDesegn.desegnBildn(canonBildj[nunAngul], (int) Kvantperant.koordenadXalekranPosicin(xn()) -
 				offsetCanonX, posiciY + offsetCanonY);
+		if(m!=null)//FIXME
 		m.desegn();
 	}
 

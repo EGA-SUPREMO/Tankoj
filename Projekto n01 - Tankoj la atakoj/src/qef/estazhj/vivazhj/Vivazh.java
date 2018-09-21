@@ -176,16 +176,17 @@ public abstract class Vivazh implements Estazh {
 		y -= rapidecY;
 		brulazh -= rapidecY;
 	}
-	public void setXn(final int x) {
-		this.x = x;
+	public void setXn(final double xo) {
+		if(xo<0) {
+			final int xFaktor = (int) (-xo/QefObjektj.map.yn().length + 0.9999);
+			x = xFaktor*QefObjektj.map.yn().length + xo;
+		} else if(xo > QefObjektj.map.yn().length) {
+			final int xFaktor = (int) (xo/QefObjektj.map.yn().length);
+			x = xo - xFaktor*QefObjektj.map.yn().length;
+		} else
+			x = xo;
 	}
-	public void setxn(final double x) {
-		this.x = x;
-	}
-	public void setYn(final int y) {
-		this.y = y;
-	}
-	public void setyn(final double y) {
+	public void setYn(final double y) {
 		this.y = y;
 	}
 	public Rectangle nunposiciare() {

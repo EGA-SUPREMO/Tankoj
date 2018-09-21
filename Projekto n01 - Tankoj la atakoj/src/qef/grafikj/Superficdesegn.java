@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
@@ -55,7 +56,7 @@ public class Superficdesegn extends Canvas {
 		DebugDesegn.definigad(g);
 		StringKvantil.definigad(g);
 		
-		DebugDesegn.setColor(Color.BLACK);//mi havas taskon relatita al tiu
+		DebugDesegn.setColor(Color.BLACK);//TODO mi havas taskon relatita al tiu
 		DebugDesegn.desegnRectangle(0, 0, Konstantj.plejfenestrLargx, Konstantj.plejfenestrAlt);
 		
 		g.setFont(Konstantj.KUTIM_FONT);
@@ -67,7 +68,7 @@ public class Superficdesegn extends Canvas {
 		sp.desegn();
 		
 		DebugDesegn.setColor(Konstantj.ANTAWDEFINIT_KOLOR);
-		
+		DebugDesegn.houhchcuur();
 		DebugDesegn.desegnString("APS: " + Konstantj.aps, 10, 20);
 		DebugDesegn.desegnString("FPS: " + Konstantj.fps, 10, 30);
 		

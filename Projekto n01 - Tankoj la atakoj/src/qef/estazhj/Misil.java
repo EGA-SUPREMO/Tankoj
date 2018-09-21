@@ -1,5 +1,6 @@
 package qef.estazhj;
 
+import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 
@@ -14,17 +15,20 @@ public class Misil extends Vivazh {
 	private int aerTemp;
 	private double angleRad;
 	private double potenc;
-	private final Point2D ACCELERATION = new Point2D.Double(0, -9.81 * 0.1);
-	
+	private final Point2D ACCELERATION = new Point2D.Double(QefObjektj.map.ventn(), -9.81 * 0.1);
+	private Point2D nunrapidec;
+	long prevTime;
 	public Misil(final int ekangulo, final int potenco, final int ekXo, final int ekYo) {
 		super(1, Konstantj.ITENER_SON_MISIL);
 		angleRad = Math.toRadians(ekangulo);
-		potenc = potenco;
+		potenc = potenco * 10;
 		setXn(ekXo);
 		setYn(ekYo);
-		rapidecX = 0;
-		rapidecY = 0;
-		//System.out.println(angleRad);
+		nunrapidec = AffineTransform.getRotateInstance(angleRad).transform(new Point2D.Double(1, 0), null);
+		nunrapidec.setLocation(nunrapidec.getX() * potenc * 0.5, nunrapidec.getY() * potenc * 0.5);
+		rapidecX = nunrapidec.getX();
+		rapidecY = nunrapidec.getY();
+		prevTime = System.nanoTime();
 	}
 
 	@Override
@@ -43,26 +47,22 @@ public class Misil extends Vivazh {
 	
 	@Override
 	public void desegn() {
-		DebugDesegn.desegnBildn(Konstantj.MISILSPRITE, (int) Kvantperant.koordenadXalekranPosicin(xn()),
-				(int) -yn() + QefObjektj.map.offsetMap);
+		DebugDesegn.desegnOval((int) Kvantperant.koordenadXalekranPosicin(xn()),
+				(int) -yn() + QefObjektj.map.offsetMap, 3, 3, Color.BLACK);
 	}
 	
 	private void executShotn() {
-		Point2D nunrapidec = AffineTransform.getRotateInstance(angleRad).transform(new Point2D.Double(1, 0), null);
-		nunrapidec.setLocation(nunrapidec.getX() * potenc * 0.5, nunrapidec.getY() * potenc * 0.5);
-		rapidecX = nunrapidec.getX();
-		rapidecY = nunrapidec.getX();
-
-        long prevTime = System.nanoTime();
-		if(yn() >= QefObjektj.map.yn((int) xn())) {
+		if(yn() >= QefObjektj.map.yn()[(int) xn()]) {
             long currentTime = System.nanoTime();
             double dt = 1 * (currentTime - prevTime) / 1e8;
 			//final double dt = aerTemp++/Konstantj.MISILRAPIDEC;
 			rapidecX = scaleAddAssign(rapidecX, dt, ACCELERATION.getX());
-			setxn(scaleAddAssign(xn(), dt, rapidecX));
 			rapidecY = scaleAddAssign(rapidecY, dt, ACCELERATION.getY());
-			setyn(scaleAddAssign(yn(), dt, rapidecY));
+			setXn(scaleAddAssign(xn(), dt, -rapidecX));
+			setYn(scaleAddAssign(yn(), dt, rapidecY));
             prevTime = currentTime;
+		} else {
+			//Vicperant.ludantj[Vicperant.nunLudantn()].m = null;
 		}
 	}
 	

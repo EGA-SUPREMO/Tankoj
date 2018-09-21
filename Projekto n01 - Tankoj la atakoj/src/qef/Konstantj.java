@@ -64,7 +64,7 @@ public abstract class Konstantj {
 	
 	public static int qiufps = 0, fps = 0, aps = 0, sekundjPasita = 0;
 	public static boolean qyangxSpriteFoli = false;
-	public static int canonAngulnombr = 180;
+	public static int canonAngulnombr = 360;
 	public static final byte LUDRAPIDEC = 1;
 	public static final byte MISILRAPIDEC = 40;
 	

@@ -3,7 +3,9 @@ package qef.ilj;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import qef.QefObjektj;
@@ -17,6 +19,11 @@ public class DebugDesegn {
 	public static void definigad(final Graphics gg) {
 		g = gg;
 		objektjDesegnita = 0;
+	}
+	public static void houhchcuur() {
+		//if(Konstantj.nhur.ohur) {
+			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_ON);
 	}
 	
 	public static void desegnString(final String str, final int x, final int y) {
@@ -67,15 +74,21 @@ public class DebugDesegn {
 		g.fillRect(x, y, largx, alt);
 	}
 	
-	public static void desegnMargxenRectangle(final int x, final int y, final int largx, final int alt, final Color kolor) {
+	public static void desegnMargxenRectangle(final int x, final int y, final int largx, final int alt,
+			final Color kolor) {
 		objektjDesegnita++;
 		g.setColor(kolor);
 		g.drawRect(x, y, largx, alt);
 	}
 	
-	public static void desegnBildn(final BufferedImage bild, final int x, final int y) {
+	public static void desegnBildn(final BufferedImage bild, final int xo, final int y) {
 		objektjDesegnita++;
-		g.drawImage(bild, x, y, null);
+		if(xo + bild.getWidth() > QefObjektj.map.yn().length)
+			g.drawImage(bild, xo - QefObjektj.map.yn().length, y, null);
+		
+		if(xo < QefObjektj.map.yn().length)
+			g.drawImage(bild, xo, y, null);
+		
 	}
 	public static void desegnLine(final int x1, final int y1, final int x2, final int y2) {
 		objektjDesegnita++;
@@ -85,6 +98,26 @@ public class DebugDesegn {
 		objektjDesegnita++;
 		g.setColor(kolor);
 		g.drawLine(x1, y1, x2, y2);
+	}
+	public static void desegnOval(final int x, final int y, final int largx, final int alt) {
+		objektjDesegnita++;
+		if(x + largx > QefObjektj.map.yn().length)
+			g.fillOval(x - QefObjektj.map.yn().length, y, largx, alt);
+		
+		if(x < QefObjektj.map.yn().length)
+			g.fillOval(x, y, largx, alt);
+		
+	}
+	public static void desegnOval(final int x, final int y, final int largx, final int alt, final Color kolor) {
+		objektjDesegnita++;
+		g.setColor(kolor);
+		g.fillOval(x, y, largx, alt);
+		if(x + largx > QefObjektj.map.yn().length)//TODO MI POVAS FORIGI LA ALDONDADO KAJ ESTU LA KODO PLI RAPIDA
+			//SED ANKAUX MALPLI EKZAKTA
+			g.fillOval(x - QefObjektj.map.yn().length, y, largx, alt);
+		
+		if(x < QefObjektj.map.yn().length)
+			g.fillOval(x, y, largx, alt);
 	}
 	
 	public static void desegnKolicijn() {
