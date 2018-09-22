@@ -18,8 +18,8 @@ public class Vicperant {
 	public static int venontNunLudantn() {//FIXME TRE EGE STRANGAJ ERAROJ KIAM VI PRESOS MULTAJN FOJOJN LA KLAVO ' '
 		//Eble a maniero por fix cxi tion estas aldoni booleano en kiu estas true dum presado kaj false...
 		//if(Kontrolperant.klavar.qatak)
-		//if(++nunLudant>=ludantj.length)
-		//	nunLudant = 0;
+		if(++nunLudant>=ludantj.length)
+			nunLudant = 0;
 		
 		return nunLudant;
 	}

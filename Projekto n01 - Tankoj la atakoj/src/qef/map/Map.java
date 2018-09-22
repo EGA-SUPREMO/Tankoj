@@ -48,7 +48,7 @@ public class Map {
 	private ArrayList<Spritetavol> spritetavolj;
 	
 	private BufferedImage[] paletrsprite;
-	private BufferedImage map;
+	private BufferedImage[] map;
 	
 	public ArrayList<Vivazh> vivazhar;
 	private int[] y;
@@ -72,6 +72,7 @@ public class Map {
 		y = BruGeneril.generMapn(frequencies, amplitudes);
 		offsetMap = 400;
 		altMap = offsetMap + 155;
+		map = new BufferedImage[30];//TODO NE SKALAS DE LA GRANDECO DE LA LUDO
 		/*String enhav = YargxilAzhj.yargxTextn(Konstantj.ITENER_MAP + itener + ".tmx");
 		
 		final JSONObject globalJSON = JSONObjektn(enhav);
@@ -267,11 +268,13 @@ public class Map {
 		}
 	}
 	private void gxisdatigMapn() {
-		map = Bildperant.gxisdatigMapn();//TODO dividu la mapon inter array da 32 pixeloj;
+		for(int i = 0; i < map.length; i++)//TODO dividu la mapon inter array da 32 pixeloj;
+			map[i] = Bildperant.gxisdatigMapn(i*Konstantj.SPRITELARGX, Konstantj.SPRITELARGX);
 	}
 	private void desegnMapn() {
 		DebugDesegn.yangxGrafikn(false);
-		DebugDesegn.desegnBildn(map, (int) Kvantperant.koordenadXalekranPosicin(0), 0);
+		for(int i = 0; i < map.length; i++)
+			DebugDesegn.desegnBildn(map[i], (int) Kvantperant.koordenadXalekranPosicin(i*Konstantj.SPRITELARGX), 0);
 		DebugDesegn.yangxGrafikn();
 	}
 	

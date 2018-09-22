@@ -28,6 +28,8 @@ public class Ludant extends Vivazh {
 	public Misil m;
 	protected Vivazharmilar vivazharmilar;
 	
+	public final int plejpotenc = 100;
+	public int potenc;
 	private int experienc = 100;
 	public static final SpriteFoli armatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
 			Transparency.TRANSLUCENT, Color.GREEN.darker());
@@ -44,6 +46,7 @@ public class Ludant extends Vivazh {
 		setYn(QefObjektj.map.yn((int) xn()));
 		largxVivazh = 16;
 		altVivazh = 16;
+		potenc = plejpotenc;
 		vivazharmilar = new Vivazharmilar((Armil) Objektregistril.objektjn(599));
 		
 		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
@@ -105,6 +108,14 @@ public class Ludant extends Vivazh {
 		if(Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()) {
 			if(nunAngul>0)
 				nunAngul--;
+		}
+		if(Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
+			if(potenc>0)
+				potenc--;
+		}
+		if(Kontrolperant.klavar.supriPotenc && !Kontrolperant.klavar.subiPotenc) {
+			if(++potenc>plejpotenc)
+				potenc--;
 		}
 		
 	}

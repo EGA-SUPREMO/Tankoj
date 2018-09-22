@@ -56,7 +56,8 @@ public abstract class Armil extends Objekt {
 		
 		pafson.play();
 		Vicperant.ludantj[Vicperant.nunLudantn()].m = new Misil(Vicperant.ludantj[Vicperant.nunLudantn()].nunAngul,
-				20, (int) Vicperant.ludantj[Vicperant.nunLudantn()].xn(),
+				Vicperant.ludantj[Vicperant.nunLudantn()].potenc,
+				(int) Vicperant.ludantj[Vicperant.nunLudantn()].xn(),
 				(int) Vicperant.ludantj[Vicperant.nunLudantn()].yn());
 		/*for (Vivazh vivazh : vivazhj) {
 			vivazh.malgajnVivn(atakkvantn());

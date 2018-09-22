@@ -18,6 +18,8 @@ public class Klavar extends KeyAdapter {
 	public boolean aktivInventari = false;
 	public boolean qkolekt = false;
 	public boolean qatak = false;
+	public boolean subiPotenc = false;
+	public boolean supriPotenc = false;
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -37,6 +39,12 @@ public class Klavar extends KeyAdapter {
 			case Konstantj.KURI:
 				kuri = true;
 				break;
+			case Konstantj.SUBIPOTENC:
+				subiPotenc = true;
+				break;
+			case Konstantj.SUPRIPOTENC:
+				supriPotenc = true;
+				break;
 			case Konstantj.DEBUG:
 				debug = !debug;
 				break;
@@ -48,7 +56,6 @@ public class Klavar extends KeyAdapter {
 				break;
 			case Konstantj.ATAKI:
 				qatak = true;
-				Vicperant.venontNunLudantn();
 				break;
 		}
 	}
@@ -67,6 +74,12 @@ public class Klavar extends KeyAdapter {
 				break;
 			case Konstantj.MLDEXTR:
 				mldextr.mlpuls();
+				break;
+			case Konstantj.SUBIPOTENC:
+				subiPotenc = false;
+				break;
+			case Konstantj.SUPRIPOTENC:
+				supriPotenc = false;
 				break;
 			case Konstantj.KURI:
 				kuri = false;

@@ -21,11 +21,11 @@ public class Misil extends Vivazh {
 	public Misil(final int ekangulo, final int potenco, final int ekXo, final int ekYo) {
 		super(1, Konstantj.ITENER_SON_MISIL);
 		angleRad = Math.toRadians(ekangulo);
-		potenc = potenco * 10;
+		potenc = potenco;
 		setXn(ekXo);
 		setYn(ekYo);
 		nunrapidec = AffineTransform.getRotateInstance(angleRad).transform(new Point2D.Double(1, 0), null);
-		nunrapidec.setLocation(nunrapidec.getX() * potenc * 0.5, nunrapidec.getY() * potenc * 0.5);
+		nunrapidec.setLocation(-nunrapidec.getX() * potenc * 0.5, nunrapidec.getY() * potenc * 0.5);
 		rapidecX = nunrapidec.getX();
 		rapidecY = nunrapidec.getY();
 		prevTime = System.nanoTime();
@@ -58,7 +58,7 @@ public class Misil extends Vivazh {
 			//final double dt = aerTemp++/Konstantj.MISILRAPIDEC;
 			rapidecX = scaleAddAssign(rapidecX, dt, ACCELERATION.getX());
 			rapidecY = scaleAddAssign(rapidecY, dt, ACCELERATION.getY());
-			setXn(scaleAddAssign(xn(), dt, -rapidecX));
+			setXn(scaleAddAssign(xn(), dt, rapidecX));
 			setYn(scaleAddAssign(yn(), dt, rapidecY));
             prevTime = currentTime;
 		} else {

@@ -36,10 +36,12 @@ public class Verg {
 	
 	private void desegnTextn() {
 		DebugDesegn.desegnString(text.name(), posici.x - 19, posici.y + 8);
-		if(text.name()!="ANG")
-		DebugDesegn.desegnString("" + text.kvantn(), posici.x + 102, posici.y + 8);
-		else
+		if(text.name()=="ATK")
+			DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].potenc, posici.x + 102, posici.y + 8);
+		else if(text.name()=="ANG")
 			DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].nunAngul, posici.x + 102, posici.y + 8);
+		else
+			DebugDesegn.desegnString("" + text.kvantn(), posici.x + 102, posici.y + 8);
 	}
 	
 	private void desegnVergn() {
@@ -50,21 +52,29 @@ public class Verg {
 /*		System.out.println("REPORTANDOSE " + this + " CON LAS CONDICIONES DE " + posici.y + " Y " + text.name() + " EN LA " +
 				text.ordinal() + " ROTACION, PERIDOD FUERA");*/
 
-		if(text.name()!="ANG") {
-		DebugDesegn.desegnRectangle(posici.x, posici.y, text.kvantn() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
+		if(text.name()=="ATK") {
+		DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].potenc * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
 		
 		posici.y += GRANDEC_VERTIKAL;
 		
-		DebugDesegn.desegnRectangle(posici.x, posici.y, text.kvantn() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
+		DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].potenc * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
 		
 		posici.y -= GRANDEC_VERTIKAL;
-		}else {
+		} else if(text.name()=="ANG") {
 			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunAngul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
 			
 			posici.y += GRANDEC_VERTIKAL;
 			
 			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunAngul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
 
+			posici.y -= GRANDEC_VERTIKAL;
+		} else {
+			DebugDesegn.desegnRectangle(posici.x, posici.y, text.kvantn() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
+			
+			posici.y += GRANDEC_VERTIKAL;
+			
+			DebugDesegn.desegnRectangle(posici.x, posici.y, text.kvantn() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
+			
 			posici.y -= GRANDEC_VERTIKAL;
 		}
 		

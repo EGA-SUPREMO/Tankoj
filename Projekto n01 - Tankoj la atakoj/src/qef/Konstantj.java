@@ -55,11 +55,13 @@ public abstract class Konstantj {
 	public final static int DEXTR = KeyEvent.VK_D;
 	public final static int KURI = KeyEvent.VK_SHIFT;
 	public final static int ELIRI = KeyEvent.VK_ESCAPE;
-	public final static int REKOMENCI = KeyEvent.VK_R;
+	public final static int REKOMENCI = KeyEvent.VK_K;
 	public final static int DEBUG = KeyEvent.VK_F1;
 	public final static int QKOLEKT = KeyEvent.VK_C;
+	public final static int SUBIPOTENC = KeyEvent.VK_F;
+	public final static int SUPRIPOTENC = KeyEvent.VK_R;
 	public final static int ATAKI = KeyEvent.VK_SPACE;
-	public static final int AKTIV_INVENTARI = KeyEvent.VK_E;
+	public final static int AKTIV_INVENTARI = KeyEvent.VK_E;
 	public final static int GRANDECFENESTR = KeyEvent.VK_F10;
 	
 	public static int qiufps = 0, fps = 0, aps = 0, sekundjPasita = 0;
