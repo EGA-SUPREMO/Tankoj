@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 //import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
+import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.geom.AffineTransform;
 //import java.awt.geom.AffineTransformOp;
@@ -13,6 +14,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
 import qef.Konstantj;
+import qef.QefObjektj;
 
 public class Bildperant {
 	
@@ -86,6 +88,39 @@ public class Bildperant {
 		
 		g.setColor(c);
 		g.fillRect(0, 0, bild.getWidth(), bild.getHeight());
+		g.dispose();
+		
+		return bild;
+	}
+	
+	public static BufferedImage gxisdatigMapn() {
+		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
+				createCompatibleImage(QefObjektj.map.yn().length, QefObjektj.map.altMap, Transparency.OPAQUE);
+		Graphics g = bild.getGraphics();
+		
+		g.setColor(Konstantj.AKV_MAP_KOLOR);//FIXME LA AKVO ESTAS STRANGA DE CXI TIU METODO
+		g.fillRect(0, 0, Konstantj.ludLargx, QefObjektj.map.altMap);
+		g.setColor(Konstantj.CXIEL_MAP_KOLOR);
+		g.fillRect(0, 0, Konstantj.ludLargx, QefObjektj.map.altMap - 100);
+		g.setColor(Konstantj.PLANK_MAP_KOLOR);
+		
+		if(Konstantj.altGrafik)
+			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_ON);
+		
+		for(int x = 0; x < Konstantj.ludLargx; x++) {
+			if(x<0) 
+				g.drawLine(x + Konstantj.ludLargx,
+						(int) Kvantperant.koordenadYalekranPosicin(QefObjektj.map.yn()[x]), x + Konstantj.ludLargx,
+						QefObjektj.map.altMap);
+			else if(x>Konstantj.ludLargx) 
+				g.drawLine(x - Konstantj.ludLargx,
+						(int) Kvantperant.koordenadYalekranPosicin(QefObjektj.map.yn()[x]), x - Konstantj.ludLargx,
+						QefObjektj.map.altMap);
+			else
+				g.drawLine(x, (int) Kvantperant.koordenadYalekranPosicin(QefObjektj.map.yn()[x]), x,
+						QefObjektj.map.altMap);
+		}
 		g.dispose();
 		
 		return bild;

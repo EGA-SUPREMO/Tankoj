@@ -65,10 +65,10 @@ public class Superficdesegn extends Canvas {
 			((Graphics2D) g).scale(Konstantj.faktorX, Konstantj.faktorY);
 		
 		DebugDesegn.setColor(Konstantj.ANTAWDEFINIT_KOLOR);
+		DebugDesegn.yangxGrafikn();
 		sp.desegn();
 		
 		DebugDesegn.setColor(Konstantj.ANTAWDEFINIT_KOLOR);
-		DebugDesegn.houhchcuur();
 		DebugDesegn.desegnString("APS: " + Konstantj.aps, 10, 20);
 		DebugDesegn.desegnString("FPS: " + Konstantj.fps, 10, 30);
 		

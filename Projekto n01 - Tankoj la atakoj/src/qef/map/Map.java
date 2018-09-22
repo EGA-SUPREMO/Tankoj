@@ -1,9 +1,6 @@
 package qef.map;
 
-import java.awt.Color;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Transparency;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,6 +14,7 @@ import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.Estazhregistril;
 import qef.estazhj.vivazhj.Vivazh;
+import qef.ilj.Bildperant;
 import qef.ilj.BruGeneril;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
@@ -50,10 +48,15 @@ public class Map {
 	private ArrayList<Spritetavol> spritetavolj;
 	
 	private BufferedImage[] paletrsprite;
+	private BufferedImage map;
 	
 	public ArrayList<Vivazh> vivazhar;
 	private int[] y;
 	public int offsetMap;
+	public int altMap;
+	
+	private boolean qmodifit = true;
+	
 	public Map(final int itener) {
 		vent = 0;
 		rangoX = 0;
@@ -68,6 +71,7 @@ public class Map {
 		float[] amplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
 		y = BruGeneril.generMapn(frequencies, amplitudes);
 		offsetMap = 400;
+		altMap = offsetMap + 155;
 		/*String enhav = YargxilAzhj.yargxTextn(Konstantj.ITENER_MAP + itener + ".tmx");
 		
 		final JSONObject globalJSON = JSONObjektn(enhav);
@@ -229,7 +233,6 @@ public class Map {
 		gxisdatigVivazhjn();
 		gxisdatigAtakjn();
 	}
-	
 	private void gxisdatigRangojn() {
 		if(Vicperant.ludantj[Vicperant.nunLudantn()].xn()/Konstantj.SPRITEFLANK-mldextrenVideblTilej>=0)
 			rangoX = (int) (Vicperant.ludantj[Vicperant.nunLudantn()].xn()/Konstantj.SPRITEFLANK-mldextrenVideblTilej);
@@ -254,24 +257,22 @@ public class Map {
 		}
 	}
 	public void desegn() {
-
-		DebugDesegn.setColor(Konstantj.AKV_MAP_KOLOR);
-		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, offsetMap + 155);
-		DebugDesegn.setColor(Konstantj.CXIEL_MAP_KOLOR);
-		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, offsetMap + 55);
-		DebugDesegn.setColor(Konstantj.PLANK_MAP_KOLOR);
-		for(int x = 0; x < Konstantj.ludLargx; x++) {
-			xx = (int) (Kvantperant.koordenadXalekranPosicin(x));
-			if(xx<0) 
-				DebugDesegn.desegnLine(xx + Konstantj.ludLargx, offsetMap - y[x], xx + Konstantj.ludLargx, offsetMap + 155);
-			else if(xx>Konstantj.ludLargx) 
-				DebugDesegn.desegnLine(xx - Konstantj.ludLargx, offsetMap - y[x], xx - Konstantj.ludLargx, offsetMap + 155);
-			else
-				DebugDesegn.desegnLine(xx, offsetMap - y[x], xx, offsetMap + 155);
+		if(qmodifit) {
+			gxisdatigMapn();
+			qmodifit = false;
 		}
+		desegnMapn();
 		for (int i = 0; i < vivazhar.size(); i++) {
 			vivazhar.get(i).desegn();
 		}
+	}
+	private void gxisdatigMapn() {
+		map = Bildperant.gxisdatigMapn();//TODO dividu la mapon inter array da 32 pixeloj;
+	}
+	private void desegnMapn() {
+		DebugDesegn.yangxGrafikn(false);
+		DebugDesegn.desegnBildn(map, (int) Kvantperant.koordenadXalekranPosicin(0), 0);
+		DebugDesegn.yangxGrafikn();
 	}
 	
 	private JSONObject JSONObjektn(final String JSONkod) {

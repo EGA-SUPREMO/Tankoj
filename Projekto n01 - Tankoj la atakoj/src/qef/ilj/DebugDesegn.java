@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
+import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.vivazhj.Vivazh;
 
@@ -20,10 +21,18 @@ public class DebugDesegn {
 		g = gg;
 		objektjDesegnita = 0;
 	}
-	public static void houhchcuur() {
-		//if(Konstantj.nhur.ohur) {
+	public static void yangxGrafikn() {
+		if(Konstantj.altGrafik)
 			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 					RenderingHints.VALUE_ANTIALIAS_ON);
+	}
+	public static void yangxGrafikn(final boolean altGrafik) {
+		if(altGrafik)
+			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_ON);
+		else
+			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_OFF);
 	}
 	
 	public static void desegnString(final String str, final int x, final int y) {
@@ -85,10 +94,11 @@ public class DebugDesegn {
 		objektjDesegnita++;
 		if(xo + bild.getWidth() > QefObjektj.map.yn().length)
 			g.drawImage(bild, xo - QefObjektj.map.yn().length, y, null);
+		else
+			g.drawImage(bild, xo + QefObjektj.map.yn().length, y, null);
 		
 		if(xo < QefObjektj.map.yn().length)
 			g.drawImage(bild, xo, y, null);
-		
 	}
 	public static void desegnLine(final int x1, final int y1, final int x2, final int y2) {
 		objektjDesegnita++;
@@ -103,6 +113,8 @@ public class DebugDesegn {
 		objektjDesegnita++;
 		if(x + largx > QefObjektj.map.yn().length)
 			g.fillOval(x - QefObjektj.map.yn().length, y, largx, alt);
+		else
+			g.fillOval(x + QefObjektj.map.yn().length, y, largx, alt);
 		
 		if(x < QefObjektj.map.yn().length)
 			g.fillOval(x, y, largx, alt);
@@ -111,10 +123,11 @@ public class DebugDesegn {
 	public static void desegnOval(final int x, final int y, final int largx, final int alt, final Color kolor) {
 		objektjDesegnita++;
 		g.setColor(kolor);
-		g.fillOval(x, y, largx, alt);
 		if(x + largx > QefObjektj.map.yn().length)//TODO MI POVAS FORIGI LA ALDONDADO KAJ ESTU LA KODO PLI RAPIDA
 			//SED ANKAUX MALPLI EKZAKTA
 			g.fillOval(x - QefObjektj.map.yn().length, y, largx, alt);
+		else
+			g.fillOval(x + QefObjektj.map.yn().length, y, largx, alt);
 		
 		if(x < QefObjektj.map.yn().length)
 			g.fillOval(x, y, largx, alt);

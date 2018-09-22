@@ -105,4 +105,6 @@ public abstract class Konstantj {
 	public final static BufferedImage MISILSPRITE = YargxilAzhj.yargxBildn(ITENER_MISIL + 0 + ".png",
 			Transparency.TRANSLUCENT);
 	
+	public static boolean altGrafik = true;
+	
 }
