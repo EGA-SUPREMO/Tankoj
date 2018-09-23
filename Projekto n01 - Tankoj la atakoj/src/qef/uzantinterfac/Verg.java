@@ -45,12 +45,6 @@ public class Verg {
 	}
 	
 	private void desegnVergn() {
-		
-/*		System.out.println("REPORTANDOSE " + this + " CON LAS CONDICIONES DE " + posici.y + " Y " + text.name() + " EN LA " +
-				text.ordinal() + " ROTACION, PERIDOD FUERA");*/
-		
-/*		System.out.println("REPORTANDOSE " + this + " CON LAS CONDICIONES DE " + posici.y + " Y " + text.name() + " EN LA " +
-				text.ordinal() + " ROTACION, PERIDOD FUERA");*/
 
 		if(text.name()=="ATK") {
 		DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].potenc * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);

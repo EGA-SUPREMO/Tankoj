@@ -10,9 +10,6 @@ public class Ludperant implements Statlud {
 	
 	@Override
 	public void gxisdatig() {
-		if(Kontrolperant.klavar.qatak) {
-			//Vicperant.venontNunLudantn();
-		}
 		Vicperant.ludantj[Vicperant.nunLudantn()].gxisdatig();
 		QefObjektj.map.gxisdatig();
 	}

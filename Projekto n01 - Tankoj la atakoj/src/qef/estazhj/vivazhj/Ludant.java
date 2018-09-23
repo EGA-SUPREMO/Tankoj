@@ -84,12 +84,14 @@ public class Ludant extends Vivazh {
 		if(venontDamagxit > 0)
 			venontDamagxit -= 1000000/60;
 		if(m!=null)//FIXME
-		m.gxisdatig();
-		gxisdatigArmiljn();
-		yangxMapn();
-		yangxSpriten();
-		mov();
-		anim();
+			m.gxisdatig();
+		else {
+			gxisdatigArmiljn();
+			yangxMapn();
+			yangxSpriten();
+			mov();
+			anim();
+		}
 	}
 	
 	private void mov() {//1 = maldekstre, 2 = dekstre
@@ -169,7 +171,7 @@ public class Ludant extends Vivazh {
 		DebugDesegn.desegnBildn(canonBildj[nunAngul], (int) Kvantperant.koordenadXalekranPosicin(xn()) -
 				offsetCanonX, posiciY + offsetCanonY);
 		if(m!=null)//FIXME
-		m.desegn();
+			m.desegn();
 	}
 
 	public void setSpriteFoli(final SpriteFoli foli, final int ordenSpec) {

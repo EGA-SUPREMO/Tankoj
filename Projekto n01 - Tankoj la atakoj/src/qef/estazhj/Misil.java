@@ -9,6 +9,7 @@ import qef.QefObjektj;
 import qef.estazhj.vivazhj.Vivazh;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
+import qef.ilj.Vicperant;
 
 public class Misil extends Vivazh {
 	
@@ -62,7 +63,8 @@ public class Misil extends Vivazh {
 			setYn(scaleAddAssign(yn(), dt, rapidecY));
             prevTime = currentTime;
 		} else {
-			//Vicperant.ludantj[Vicperant.nunLudantn()].m = null;
+			Vicperant.venontNunLudantn();
+			Vicperant.ludantj[Vicperant.nunLudantn()].m = null;
 		}
 	}
 	
