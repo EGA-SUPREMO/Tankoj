@@ -22,7 +22,6 @@ public abstract class Vivazh implements Estazh {
 	protected static final int KVANTSTATJ = 16;
 	protected static final int rotaciplejNombr = KVANTSTATJ*2;
 	protected static final double rotaci = 2*Math.PI/rotaciplejNombr;
-	public int nunAngul;
 	protected double rapidecX, rapidecY;
 	
 	protected int largxVivazh, altVivazh;
@@ -36,7 +35,6 @@ public abstract class Vivazh implements Estazh {
 		
 		this.largxVivazh = 32;
 		this.altVivazh = 32;
-		this.nunAngul = 0;
 		this.nunBild = 0;
 		this.rapidecX = 1;
 		brulazh = 20000;
@@ -57,7 +55,6 @@ public abstract class Vivazh implements Estazh {
 		
 		this.largxVivazh = largxVivazh;
 		this.altVivazh = altVivazh;
-		this.nunAngul = 0;
 		this.nunBild = 0;
 		this.rapidecX = rapidec;
 		this.viv = plejviv;

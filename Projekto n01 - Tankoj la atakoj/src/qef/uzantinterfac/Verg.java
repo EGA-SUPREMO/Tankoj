@@ -39,7 +39,7 @@ public class Verg {
 		if(text.name()=="ATK")
 			DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].potenc, posici.x + 102, posici.y + 8);
 		else if(text.name()=="ANG")
-			DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].nunAngul, posici.x + 102, posici.y + 8);
+			DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].nunangul, posici.x + 102, posici.y + 8);
 		else
 			DebugDesegn.desegnString("" + text.kvantn(), posici.x + 102, posici.y + 8);
 	}
@@ -55,11 +55,11 @@ public class Verg {
 		
 		posici.y -= GRANDEC_VERTIKAL;
 		} else if(text.name()=="ANG") {
-			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunAngul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
+			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunangul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
 			
 			posici.y += GRANDEC_VERTIKAL;
 			
-			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunAngul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
+			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunangul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
 
 			posici.y -= GRANDEC_VERTIKAL;
 		} else {

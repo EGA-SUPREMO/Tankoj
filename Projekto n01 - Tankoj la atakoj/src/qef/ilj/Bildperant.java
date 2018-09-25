@@ -17,7 +17,7 @@ import qef.Konstantj;
 import qef.QefObjektj;
 
 public class Bildperant {
-	
+	private static int id = 0;
 /*	private AffineTransform at;
 	private int alturaImagen;
 	private int anchoImagen;
@@ -80,6 +80,69 @@ public class Bildperant {
 	public AffineTransform getTransform() {
 		return at;
 	}*/
+	
+	public static BufferedImage atingecMisil(final int[] punktj) {
+		id++;
+		int plejX = 0, mlplejX = punktj[0], plejY = punktj[punktj.length-1], mlplejY = punktj[1];
+		int indixmlplejX = 0;
+		final int largx = punktj.length/2;
+		final int largxbild, altbild;
+		for(int x = 0; x < largx; x+=2) {
+			if(plejX<punktj[x])
+				plejX = punktj[x];
+			else if(mlplejX>punktj[x]) {
+				mlplejX = punktj[x];
+				indixmlplejX = x;
+			}
+		}
+		//for(int x = 0; x < largx; x++)
+		//	punktj[x*2] -= mlplejX;
+		//for(int x = 2; x < largx; x++)
+		//	punktj[1 + x*2] -= mlplejY;
+		//punktj[indixmlplejX] += mlplejX;
+		largxbild = plejX - mlplejX;
+		altbild = plejY - mlplejY;
+		if(id>=2) {
+			for(int i = 0; i < punktj.length - 1; i+=2) {
+				if(punktj[i]!=0) {
+					//System.out.println(punktj[i]);
+			System.out.print((largxbild - punktj[i]) + ", ");
+			System.out.print((punktj[i] - mlplejX) + " - ");
+			System.out.print((altbild - punktj[i+1]) + ", ");
+			System.out.println(punktj[i+1] - mlplejY);}
+			}
+		}
+		
+		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
+				createCompatibleImage(2000, 2000, Transparency.TRANSLUCENT);
+		Graphics g = bild.getGraphics();
+		
+		if(Konstantj.altGrafik)
+			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setColor(Color.GREEN.darker());
+		g.drawLine(mlplejX + 100, mlplejY + 100, plejX + 100, plejY + 100);
+		g.setColor(Color.RED.darker());
+		for(int x = 2; x < largx; x++)
+			if(punktj[x*2]!=0)
+				g.drawLine(punktj[0 + (x-1)*2] - mlplejX, altbild - punktj[1 + (x-1)*2], punktj[0 + x*2] - mlplejX,
+						altbild - punktj[1 + x*2]);
+		g.setColor(Color.CYAN);
+		for(int x = 2; x < largx; x++)
+			if(punktj[x*2]!=0) {
+				g.drawLine(largxbild - punktj[0 + (x-1)*2], punktj[1 + (x-1)*2] - mlplejY,
+						largxbild - punktj[0 + x*2], punktj[1 + x*2] - mlplejY);
+				System.out.println((largxbild - punktj[0 + (x-1)*2]) + " " + (punktj[1 + (x-1)*2] - mlplejY) + " " +
+						(largxbild - punktj[0 + x*2]) + " " + (punktj[1 + x*2] - mlplejY));
+				System.out.println(punktj[x*2]);
+				System.out.println(punktj[1 + x*2]);
+			}
+		g.setColor(Color.BLUE.darker());
+		g.drawLine(punktj[0] - mlplejX, altbild - punktj[1], punktj[0] - mlplejX, altbild - punktj[1]);
+		
+		g.dispose();
+		return bild;
+	}
 	
 	public static BufferedImage kreBildn(final Color c) {
 		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().

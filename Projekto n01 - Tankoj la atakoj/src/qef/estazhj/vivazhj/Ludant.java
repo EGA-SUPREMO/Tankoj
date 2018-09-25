@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import qef.Konstantj;
 import qef.QefObjektj;
@@ -27,9 +28,12 @@ public class Ludant extends Vivazh {
 	private int offsetCanonX = 2, offsetCanonY = 1;
 	public Misil m;
 	protected Vivazharmilar vivazharmilar;
+	private boolean qatingec;
+	private BufferedImage atingec;
 	
 	public final int plejpotenc = 100;
 	public int potenc;
+	public int nunangul;
 	private int experienc = 100;
 	public static final SpriteFoli armatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
 			Transparency.TRANSLUCENT, Color.GREEN.darker());
@@ -42,15 +46,17 @@ public class Ludant extends Vivazh {
 			final BufferedImage canonSprite) {
 		super(1, itenerSon);
 		
-		setXn(600);
+		setXn(new Random().nextInt(600));
 		setYn(QefObjektj.map.yn((int) xn()));
 		largxVivazh = 16;
 		altVivazh = 16;
-		potenc = plejpotenc;
+		nunangul = 146;
+		potenc = plejpotenc/4;
 		vivazharmilar = new Vivazharmilar((Armil) Objektregistril.objektjn(599));
+		qatingec = false;
+		atingec = Bildperant.atingecMisil(new Misil(nunangul, potenc, (int) xn(), (int) yn()).atingecn());
 		
 		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
-		m = new Misil(nunAngul, 30, (int) xn(), (int) yn());
 		
 		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
 		ordenBildj(ordenSpec, sprite.spritejn());
@@ -104,12 +110,12 @@ public class Ludant extends Vivazh {
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 		}
 		if(Kontrolperant.klavar.supr.pulsitan() && !Kontrolperant.klavar.sub.pulsitan()) {
-			if(++nunAngul>=Konstantj.canonAngulnombr)
-				nunAngul--;
+			if(++nunangul>=Konstantj.canonAngulnombr)
+				nunangul--;
 		}
 		if(Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()) {
-			if(nunAngul>0)
-				nunAngul--;
+			if(nunangul>0)
+				nunangul--;
 		}
 		if(Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
 			if(potenc>0)
@@ -135,10 +141,12 @@ public class Ludant extends Vivazh {
 	}
 	
 	private void gxisdatigArmiljn() {
-		if(vivazharmilar.armil1n() instanceof Senarma)
-			return;
+		//if(vivazharmilar.armil1n() instanceof Senarma)
+			//return;
 		
-		vivazharmilar.armil1n().gxisdatig();
+		//vivazharmilar.armil1n().gxisdatig();
+		if(qatingec)
+			atingec = Bildperant.atingecMisil(new Misil(nunangul, potenc, (int) xn(), (int) yn()).atingecn());
 	}
 	@Override
 	protected void anim() {
@@ -168,10 +176,13 @@ public class Ludant extends Vivazh {
 		int posiciY = -(int)yn() + QefObjektj.map.offsetMap - bildj[nunBild].getHeight() + offsetLudantY;
 		DebugDesegn.desegnBildn(bildj[nunBild], (int) Kvantperant.koordenadXalekranPosicin(xn()), posiciY);
 		
-		DebugDesegn.desegnBildn(canonBildj[nunAngul], (int) Kvantperant.koordenadXalekranPosicin(xn()) -
+		DebugDesegn.desegnBildn(canonBildj[nunangul], (int) Kvantperant.koordenadXalekranPosicin(xn()) -
 				offsetCanonX, posiciY + offsetCanonY);
 		if(m!=null)//FIXME
 			m.desegn();
+		if(atingec!=null)
+			DebugDesegn.desegnBildn(atingec, (int) Kvantperant.koordenadXalekranPosicin(xn()),
+					(int) Kvantperant.koordenadYalekranPosicin(yn())-99);
 	}
 
 	public void setSpriteFoli(final SpriteFoli foli, final int ordenSpec) {

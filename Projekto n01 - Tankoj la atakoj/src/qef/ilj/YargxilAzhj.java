@@ -187,9 +187,9 @@ public class YargxilAzhj {
 			DataLine.Info info = new DataLine.Info(Clip.class, ais.getFormat());
 			clip = (Clip) AudioSystem.getLine(info);
 			clip.open(ais);
-			FloatControl gainControl = 
-				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(-mlplivolum);
+//			FloatControl gainControl = 
+//				    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+//			gainControl.setValue(-mlplivolum);
 			//FIXME NO FUNCIONA CON OPENJDK Y PULSEAUDIO EN NUCLEOS UBUNTU
 		} catch (Exception e) {
 			e.printStackTrace();
