@@ -8,8 +8,9 @@ public class Vicperant {
 	private static int nunLudant = 0;
 	
 	public static Ludant[] ludantj = new Ludant[] {new Ludant(1, Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
-			Ludant.senarmatludantsprite, Ludant.armil), new Ludant(1, Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 
-					Ludant.armatludantsprite, Ludant.armil)};
+			Ludant.ludantsprite0, Ludant.armil), new Ludant(1, Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 
+			Ludant.ludantsprite1, Ludant.armil), new Ludant(1, Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 
+			Ludant.ludantsprite2, Ludant.armil)};
 
 	public static int nunLudantn() {
 		return nunLudant;

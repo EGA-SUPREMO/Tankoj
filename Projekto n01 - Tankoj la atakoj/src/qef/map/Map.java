@@ -1,9 +1,7 @@
 package qef.map;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
@@ -12,20 +10,13 @@ import org.json.simple.parser.JSONParser;
 
 import qef.Konstantj;
 import qef.QefObjektj;
-import qef.estazhj.Estazhregistril;
 import qef.estazhj.vivazhj.Vivazh;
 import qef.ilj.Bildperant;
 import qef.ilj.BruGeneril;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.Vicperant;
-import qef.ilj.YargxilAzhj;
-import qef.inventar.Objekt;
-import qef.inventar.Objektar;
-import qef.inventar.Objektregistril;
-import qef.inventar.armil.Senarma;
 import qef.kontrolj.Kontrolperant;
-import qef.sprite.SpriteFoli;
 
 public class Map {
 	
@@ -314,20 +305,20 @@ public class Map {
 		return y;
 	}
 	public int yn(int x) {
-		if(x<0) {
-			x = QefObjektj.map.yn().length - 1;
-		} else if(x >= QefObjektj.map.yn().length) {
-			x = 0;
-		}
+		if(x<0)
+			x = y.length + x;
+		else if(x >= QefObjektj.map.yn().length)
+			x = x - y.length;
+		
 		return y[x];
 	}
 	
 	public static double xn(final int x, final int kvant) {
-		int xx =(int)x + kvant;
+		int xx = x + kvant;
 		if(xx<0) {
-			xx = QefObjektj.map.yn().length - kvant;
+			xx = QefObjektj.map.yn().length + xx;
 		} else if(xx >= QefObjektj.map.yn().length) {
-			xx = kvant;
+			xx = xx - QefObjektj.map.yn().length;
 		}
 		return xx;
 	}

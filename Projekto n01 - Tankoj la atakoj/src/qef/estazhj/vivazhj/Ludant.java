@@ -25,20 +25,22 @@ public class Ludant extends Vivazh {
 	protected BufferedImage[] bildj, canonBildj;
 	private int radX1 = 5, radX2 = 27;
 	private int offsetLudantY = 2;
-	private int offsetCanonX = 2, offsetCanonY = 1;
+	private int offsetCanonX = -2, offsetCanonY = 1;
 	public Misil m;
 	protected Vivazharmilar vivazharmilar;
-	private boolean qatingec;
+	private boolean qatingec, qgxisdatigatingecn;
 	private BufferedImage atingec;
 	
 	public final int plejpotenc = 100;
 	public int potenc;
 	public int nunangul;
 	private int experienc = 100;
-	public static final SpriteFoli armatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
+	public static final SpriteFoli ludantsprite0 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
 			Transparency.TRANSLUCENT, Color.GREEN.darker());
-	public static final SpriteFoli senarmatludantsprite = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
+	public static final SpriteFoli ludantsprite1 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
 			Transparency.TRANSLUCENT, Color.RED);
+	public static final SpriteFoli ludantsprite2 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
+			Transparency.TRANSLUCENT, 32, 32, Color.CYAN.darker());
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
 			Transparency.TRANSLUCENT, 36, 19);
 	
@@ -50,11 +52,11 @@ public class Ludant extends Vivazh {
 		setYn(QefObjektj.map.yn((int) xn()));
 		largxVivazh = 16;
 		altVivazh = 16;
-		nunangul = 146;
+		nunangul = 46;
 		potenc = plejpotenc/4;
 		vivazharmilar = new Vivazharmilar((Armil) Objektregistril.objektjn(599));
-		qatingec = false;
-		atingec = Bildperant.atingecMisil(new Misil(nunangul, potenc, (int) xn(), (int) yn()).atingecn());
+		qatingec = true;
+		qgxisdatigatingecn = false;
 		
 		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
 		
@@ -104,49 +106,64 @@ public class Ludant extends Vivazh {
 		if(Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan() && brulazh>0) {
 			pliX();
 			setYn(QefObjektj.map.yn()[(int) xn()]);
+			if(qatingec)
+				qgxisdatigatingecn = true;
 		}
 		if(Kontrolperant.klavar.mldextr.pulsitan() && !Kontrolperant.klavar.dextr.pulsitan() && brulazh>0) {
 			mlpliX();
 			setYn(QefObjektj.map.yn()[(int) xn()]);
+			if(qatingec)
+				qgxisdatigatingecn = true;
 		}
 		if(Kontrolperant.klavar.supr.pulsitan() && !Kontrolperant.klavar.sub.pulsitan()) {
 			if(++nunangul>=Konstantj.canonAngulnombr)
 				nunangul--;
+			if(qatingec)
+				qgxisdatigatingecn = true;
 		}
 		if(Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()) {
 			if(nunangul>0)
 				nunangul--;
+			if(qatingec)
+				qgxisdatigatingecn = true;
+				
 		}
 		if(Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
-			if(potenc>0)
+			if(potenc>0) {
 				potenc--;
+				if(qatingec)
+					qgxisdatigatingecn = true;
+			}
 		}
 		if(Kontrolperant.klavar.supriPotenc && !Kontrolperant.klavar.subiPotenc) {
 			if(++potenc>plejpotenc)
 				potenc--;
+			
+			if(qatingec)
+				qgxisdatigatingecn = true;
+			
 		}
-		
+		if(qgxisdatigatingecn && !Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan()
+				 && !Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()
+				 && !Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
+			atingec = Bildperant.atingecMisil(new Misil(nunangul, potenc, (int) xn(), (int) yn()).atingecn());
+			qgxisdatigatingecn = false;
+		}
 	}
 	
 	private void yangxSpriten() {
 		if(Konstantj.qyangxSpriteFoli) {
 			Konstantj.qyangxSpriteFoli = false;
 			if(vivazharmilar.armil1n() instanceof Senarma) {
-				setSpriteFoli(senarmatludantsprite, 0);
+				setSpriteFoli(ludantsprite1, 0);
 				return;
 			}
 			if(vivazharmilar.armil1n() instanceof Armil)
-				setSpriteFoli(armatludantsprite, 0);
+				setSpriteFoli(ludantsprite0, 0);
 		}
 	}
 	
 	private void gxisdatigArmiljn() {
-		//if(vivazharmilar.armil1n() instanceof Senarma)
-			//return;
-		
-		//vivazharmilar.armil1n().gxisdatig();
-		if(qatingec)
-			atingec = Bildperant.atingecMisil(new Misil(nunangul, potenc, (int) xn(), (int) yn()).atingecn());
 	}
 	@Override
 	protected void anim() {
@@ -173,16 +190,20 @@ public class Ludant extends Vivazh {
 	
 	@Override
 	public void desegn() {
-		int posiciY = -(int)yn() + QefObjektj.map.offsetMap - bildj[nunBild].getHeight() + offsetLudantY;
+		int posiciY = (int) Kvantperant.koordenadYalekranPosicin((int)yn()) - bildj[nunBild].getHeight() +
+				offsetLudantY;
 		DebugDesegn.desegnBildn(bildj[nunBild], (int) Kvantperant.koordenadXalekranPosicin(xn()), posiciY);
 		
-		DebugDesegn.desegnBildn(canonBildj[nunangul], (int) Kvantperant.koordenadXalekranPosicin(xn()) -
+		DebugDesegn.desegnBildn(canonBildj[nunangul], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
 				offsetCanonX, posiciY + offsetCanonY);
 		if(m!=null)//FIXME
 			m.desegn();
-		if(atingec!=null)
-			DebugDesegn.desegnBildn(atingec, (int) Kvantperant.koordenadXalekranPosicin(xn()),
-					(int) Kvantperant.koordenadYalekranPosicin(yn())-99);
+		if(atingec!=null) {
+			DebugDesegn.desegnBildn(atingec, (int) Kvantperant.koordenadXalekranPosicin(xn()) - atingec.getWidth(),
+					(int) Kvantperant.koordenadYalekranPosicin(yn()) - atingec.getHeight());
+			if(qgxisdatigatingecn)
+				atingec = null;
+		}
 	}
 
 	public void setSpriteFoli(final SpriteFoli foli, final int ordenSpec) {

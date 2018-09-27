@@ -183,6 +183,12 @@ public abstract class Vivazh implements Estazh {
 		} else
 			x = xo;
 	}
+	public void setSenmidifXn(final double xo) {
+		x = xo;
+	}
+	public void setSenmidifYn(final double yo) {
+		y = yo;
+	}
 	public void setYn(final double y) {
 		this.y = y;
 	}

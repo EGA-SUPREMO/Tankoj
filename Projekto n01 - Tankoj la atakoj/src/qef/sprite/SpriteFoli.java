@@ -55,7 +55,7 @@ public class SpriteFoli {
 		plenSpriten(i);
 		
 	}
-	
+
 	public SpriteFoli(final String itener, final int spriteGrandec,  final int diafan, final int verSpriteGrandec) {
 		
 		BufferedImage i;
@@ -67,6 +67,26 @@ public class SpriteFoli {
 		
 		this.spriteLargx = spriteGrandec;
 		this.spriteAlt = spriteGrandec;
+
+		largxEnSprite = largxEnPixel / spriteLargx;
+		altEnSprite = altEnPixel / spriteAlt;
+		
+		spritej = new BufferedImage[largxEnSprite * altEnSprite];
+		
+		plenSpriten(i);
+		
+	}
+	public SpriteFoli(final String itener, final int diafan, final int largxo, final int alto, final Color kolor) {
+		
+		BufferedImage i;
+		
+		i = YargxilAzhj.yargxBildn(itener, diafan, largxo, alto, kolor);
+		
+		largxEnPixel = i.getWidth(null);
+		altEnPixel = i.getHeight(null);
+		
+		this.spriteLargx = largxo;
+		this.spriteAlt = alto;
 
 		largxEnSprite = largxEnPixel / spriteLargx;
 		altEnSprite = altEnPixel / spriteAlt;
