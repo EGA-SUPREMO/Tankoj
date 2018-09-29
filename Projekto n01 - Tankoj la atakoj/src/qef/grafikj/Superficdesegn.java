@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
 import qef.Konstantj;
+import qef.QefObjektj;
 import qef.ilj.DebugDatum;
 import qef.ilj.DebugDesegn;
 import qef.ilj.StringKvantil;
@@ -90,6 +91,7 @@ public class Superficdesegn extends Canvas {
 			DebugDatum.addDatumn("RY: " + muy.posicin().y);
 			DebugDatum.addDatumn("Reskalita RX: " + muy.rectangleReskalitPosicin().x);
 			DebugDatum.addDatumn("Reskalita RY: " + muy.rectangleReskalitPosicin().y);
+			DebugDatum.addDatumn("Vento: " + (QefObjektj.map.ventn()*200));
 			
 			if(sp.qStatludn()) {
 				DebugDesegn.desegnKolicijn();

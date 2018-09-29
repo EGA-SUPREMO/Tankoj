@@ -99,10 +99,11 @@ public abstract class Konstantj {
 	public final static Color FONKOLOR = Color.WHITE;
 	
 	public final static Color AKTIV_ETIKED_BOTON_KOLOR = KOLOR_SUB_BANNER.darker();
-
+	
+	public final static Color PLANK_NEGX_MAP_KOLOR = new Color(0xFFFFFF);
 	public final static Color PLANK_MAP_KOLOR = new Color(0x55EC06);
-	public final static Color CXIEL_MAP_KOLOR = new Color(0, 201, 232);
-	public final static Color AKV_MAP_KOLOR = new Color(0, 161, 192);
+	public final static Color CXIEL_MAP_KOLOR = new Color(0x99CCFF);
+	public final static Color AKV_MAP_KOLOR = new Color(0, 171, 192).brighter();
 	
 	public final static BufferedImage MISILSPRITE = YargxilAzhj.yargxBildn(ITENER_MISIL + 0 + ".png",
 			Transparency.TRANSLUCENT);

@@ -2,6 +2,7 @@ package qef.map;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
@@ -20,6 +21,7 @@ import qef.kontrolj.Kontrolperant;
 
 public class Map {
 	
+	private Random r;
 	private int rangoX, rangoY;
 	private int limiteX, limiteY;
 	private int tileeMaplargx;
@@ -42,14 +44,17 @@ public class Map {
 	private BufferedImage[] map;
 	
 	public ArrayList<Vivazh> vivazhar;
-	private int[] y;
+	private double[] y;
 	public int offsetMap;
 	public int altMap;
 	
 	private boolean qmodifit = true;
 	
 	public Map(final int itener) {
-		vent = 0;
+		r = new Random();
+		vent = 0.1d + r.nextDouble()*r.nextDouble()*0.8d*2;
+		if(r.nextBoolean())
+			vent = -vent;
 		rangoX = 0;
 		rangoY = 0;
 		limiteX = 0;
@@ -265,7 +270,8 @@ public class Map {
 	private void desegnMapn() {
 		DebugDesegn.yangxGrafikn(false);
 		for(int i = 0; i < map.length; i++)
-			DebugDesegn.desegnBildn(map[i], (int) Kvantperant.koordenadXalekranPosicin(i*Konstantj.SPRITELARGX), 0);
+			DebugDesegn.desegnBildn(map[i], (int) Kvantperant.koordenadXalekranPosicin(
+					i*Konstantj.SPRITELARGX + (Vicperant.nunludantn().largxVivazhn()>>1)), 0);
 		DebugDesegn.yangxGrafikn();
 	}
 	
@@ -301,16 +307,24 @@ public class Map {
 		return Integer.parseInt(objektJSON.get(clave).toString());
 	}
 	
-	public int[] yn() {
+	public double[] yn() {//TODO FORIRGU CXI TIUN	 METODON
 		return y;
 	}
-	public int yn(int x) {
+	public double yn(int xo) {
+		if(xo<0)
+			xo = y.length + xo;
+		else if(xo >= QefObjektj.map.yn().length)
+			xo = xo - y.length;
+		
+		return y[xo];
+	}
+	public void setYn(int x, final double yo) {
 		if(x<0)
 			x = y.length + x;
 		else if(x >= QefObjektj.map.yn().length)
 			x = x - y.length;
 		
-		return y[x];
+		y[x] = yo;
 	}
 	
 	public static double xn(final int x, final int kvant) {
@@ -325,5 +339,14 @@ public class Map {
 	public double ventn() {
 		return vent;
 	}
-	
+	public double venontVentn() {
+		return vent = r.nextDouble()/10-0.03+vent;
+	}
+	public void venontVicn() {
+		venontVentn();
+		
+	}
+	public void setQmodifitn(final boolean qmodif) {
+		qmodifit = qmodif;
+	}
 }

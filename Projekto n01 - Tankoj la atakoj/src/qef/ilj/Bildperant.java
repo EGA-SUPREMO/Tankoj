@@ -83,18 +83,26 @@ public class Bildperant {
 	public static BufferedImage atingecMisil(final int[] punktj) {
 		int plejX = 0, mlplejX = punktj[0], plejY = punktj[punktj.length-1], mlplejY = punktj[1];
 		final int largx = punktj.length/2;
-		final int largxbild, altbild;
+		int largxbild;
+		final int altbild;
+		
 		for(int x = 0; x < punktj.length; x+=2) {
 			if(plejX<punktj[x])
 				plejX = punktj[x];
-			else if(mlplejX>punktj[x]) {
+			else if(mlplejX>punktj[x])
 				mlplejX = punktj[x];
-			}
 		}
+		
 		largxbild = plejX - mlplejX;
 		altbild = plejY - mlplejY;
-		if(largxbild <= 0 || altbild <= 0)
+		
+		if(altbild<1)
 			return null;
+		if(largxbild<1)
+			largxbild++;
+		else if(largxbild<1)
+			return null;
+		
 		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
 				createCompatibleImage(largxbild, altbild, Transparency.TRANSLUCENT);
 		Graphics g = bild.getGraphics();
@@ -104,18 +112,11 @@ public class Bildperant {
 					RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(Color.RED.darker());
 		for(int x = 2; x < largx; x++)
-			g.drawLine(punktj[0 + (x-1)*2] - mlplejX, altbild - punktj[1 + (x-1)*2], punktj[0 + x*2] - mlplejX,
-					altbild - punktj[1 + x*2]);
-		g.setColor(Color.ORANGE.darker());
-		for(int x = 2; x < largx; x++)
 			g.drawLine(punktj[0 + (x-1)*2] - mlplejX, plejY - punktj[1 + (x-1)*2],
 					punktj[0 + x*2] - mlplejX, plejY - punktj[1 + x*2]);
-		for(int x = 2; x < largx; x++)
-			System.out.println((punktj[x*2] - mlplejX) + " - " + (-punktj[1 + x*2] + mlplejY + altbild));
-		g.setColor(Color.BLUE.darker());
-		g.drawLine(punktj[0] - mlplejX, altbild - punktj[1], punktj[0] - mlplejX, altbild - punktj[1]);
 		
 		g.dispose();
+		
 		return bild;
 	}
 	
@@ -140,7 +141,7 @@ public class Bildperant {
 		g.fillRect(0, 0, largx, QefObjektj.map.altMap);
 		g.setColor(Konstantj.CXIEL_MAP_KOLOR);
 		g.fillRect(0, 0, largx, QefObjektj.map.altMap - 100);
-		g.setColor(Konstantj.PLANK_MAP_KOLOR);
+		g.setColor(Konstantj.PLANK_NEGX_MAP_KOLOR);
 		
 		for(int x = 0; x < largx; x++)
 			g.drawLine(x, (int) Kvantperant.koordenadYalekranPosicin(QefObjektj.map.yn()[ekx + x]), x, 

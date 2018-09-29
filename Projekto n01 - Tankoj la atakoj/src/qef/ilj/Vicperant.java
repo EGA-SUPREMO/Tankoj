@@ -1,6 +1,7 @@
 package qef.ilj;
 
 import qef.Konstantj;
+import qef.QefObjektj;
 import qef.estazhj.vivazhj.Ludant;
 
 public class Vicperant {
@@ -16,11 +17,16 @@ public class Vicperant {
 		return nunLudant;
 	}
 	
-	public static int venontNunLudantn() {//FIXME TRE EGE STRANGAJ ERAROJ KIAM VI PRESOS MULTAJN FOJOJN LA KLAVO ' '
+	public static Ludant nunludantn() {
+		return ludantj[nunLudant];
+	}
+	
+	public static int venontNunLudantn(final double xo) {//FIXME
 		//Eble a maniero por fix cxi tion estas aldoni booleano en kiu estas true dum presado kaj false...
 		//if(Kontrolperant.klavar.qatak)
 		if(++nunLudant>=ludantj.length)
 			nunLudant = 0;
+		QefObjektj.map.venontVicn();
 		
 		return nunLudant;
 	}

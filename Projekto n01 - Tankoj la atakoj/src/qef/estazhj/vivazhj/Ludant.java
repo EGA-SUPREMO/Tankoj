@@ -12,6 +12,7 @@ import qef.estazhj.Misil;
 import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
+import qef.ilj.Vicperant;
 import qef.ilj.YargxilAzhj;
 import qef.inventar.Objektregistril;
 import qef.inventar.armil.Armil;
@@ -23,7 +24,7 @@ import qef.sprite.SpriteFoli;
 public class Ludant extends Vivazh {
 
 	protected BufferedImage[] bildj, canonBildj;
-	private int radX1 = 5, radX2 = 27;
+	private int radX1 = -10, radX2 = 11;
 	private int offsetLudantY = 2;
 	private int offsetCanonX = -2, offsetCanonY = 1;
 	public Misil m;
@@ -48,20 +49,20 @@ public class Ludant extends Vivazh {
 			final BufferedImage canonSprite) {
 		super(1, itenerSon);
 		
-		setXn(new Random().nextInt(600));
+		setXn(new Random().nextInt(QefObjektj.map.yn().length));
 		setYn(QefObjektj.map.yn((int) xn()));
-		largxVivazh = 16;
-		altVivazh = 16;
 		nunangul = 46;
 		potenc = plejpotenc/4;
 		vivazharmilar = new Vivazharmilar((Armil) Objektregistril.objektjn(599));
 		qatingec = true;
 		qgxisdatigatingecn = false;
 		
-		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
-		
 		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
 		ordenBildj(ordenSpec, sprite.spritejn());
+		
+		largxVivazh = 32;
+		altVivazh = 32;
+		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
 	}
 	
 	protected void ordenBildj(final int spec, final BufferedImage[] tempbildj) {
@@ -175,8 +176,8 @@ public class Ludant extends Vivazh {
 		int x1 = (int) Map.xn((int) xn(), radX1);
 		int x2 = (int) Map.xn((int) xn(), radX2);
 		
-		int y1 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX1))];
-		int y2 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX2))];
+		double y1 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX1))];
+		double y2 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX2))];
 		
 		double angul = Math.atan2(y2 - y1, x2 - x1);
 		
@@ -198,9 +199,14 @@ public class Ludant extends Vivazh {
 				offsetCanonX, posiciY + offsetCanonY);
 		if(m!=null)//FIXME
 			m.desegn();
-		if(atingec!=null) {
-			DebugDesegn.desegnBildn(atingec, (int) Kvantperant.koordenadXalekranPosicin(xn()) - atingec.getWidth(),
-					(int) Kvantperant.koordenadYalekranPosicin(yn()) - atingec.getHeight());
+		if(atingec!=null && Vicperant.ludantj[Vicperant.nunLudantn()]==this) {
+			if(nunangul>90)
+				DebugDesegn.desegnBildn(atingec, (int) Kvantperant.koordenadXalekranPosicin(xn()),
+						(int) Kvantperant.koordenadYalekranPosicin(yn()) - atingec.getHeight());
+			else
+				DebugDesegn.desegnBildn(atingec, (int) Kvantperant.koordenadXalekranPosicin(xn()) -
+						atingec.getWidth(), (int) Kvantperant.koordenadYalekranPosicin(yn()) - atingec.getHeight());
+			
 			if(qgxisdatigatingecn)
 				atingec = null;
 		}
