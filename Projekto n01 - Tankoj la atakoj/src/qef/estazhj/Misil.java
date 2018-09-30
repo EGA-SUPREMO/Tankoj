@@ -12,29 +12,37 @@ import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.Vicperant;
 
-public class Misil extends Vivazh {
+public class Misil extends Vivazh {//TODO Dividu cxi tiun klason en du, unu estas por kalkuli la trajekto kaj la
+	//dua "extends" Vivazh kaj nomigxas misil
 	
 	private final static double margxenErar = Math.PI/2*0.04;
 	private final static double plejmargexnErar = Math.PI/2 + margxenErar;
 	private final static double mlplejmargexnErar = Math.PI/2 - margxenErar;
-	private final double damagx = 150;
-	private final int komencDamagxX = (int) (damagx/2);
-	private final int damagxX = (int) (damagx/1.5);
-	private int aerTemp;
-	private double angleRad;
+	private final double damagxLargxX;
+	private final int komencDamagxX;
+	private final int damagxX;
+	private double ekangul;
 	private double potenc;
 	private final Point2D ACCELERATION;
 	private Point2D nunrapidec;
 	long prevTime;
+	private final int mlplejY;
 	
-	public Misil(final int ekangulo, final int potenco, final int ekXo, final int ekYo) {
-		super(1, Konstantj.ITENER_SON_MISIL);
-		angleRad = Math.toRadians(ekangulo);
+	public Misil(final int ekangulo, final int potenco, final double ekXo, final double ekYo) {
+		super(1, 10, Konstantj.ITENER_SON_MISIL);
+		
+		damagxLargxX = damagx;
+		komencDamagxX = (int) (damagxLargxX/2);
+		damagxX = (int) (damagxLargxX/1.5);
+		
+		mlplejY =  QefObjektj.map.altMap - (int) (damagxLargxX);
+		
+		ekangul = Math.toRadians(ekangulo);
 		ACCELERATION = new Point2D.Double(QefObjektj.map.ventn(), -9.81 * 0.1);
 		potenc = Math.sqrt(potenco)*6;
 		setXn(ekXo);
 		setYn(ekYo + 8);
-		nunrapidec = AffineTransform.getRotateInstance(angleRad).transform(new Point2D.Double(1, 0), null);
+		nunrapidec = AffineTransform.getRotateInstance(ekangul).transform(new Point2D.Double(1, 0), null);
 		nunrapidec.setLocation(-nunrapidec.getX() * potenc * 0.5, nunrapidec.getY() * potenc * 0.5);
 		rapidecX = nunrapidec.getX();
 		rapidecY = nunrapidec.getY();
@@ -43,13 +51,15 @@ public class Misil extends Vivazh {
 
 	@Override
 	public void gxisdatig() {
-		if(yn() >= QefObjektj.map.yn()[(int) xn()] && yn()>0)
+		if(yn() >= QefObjektj.map.yn()[(int) xn()] && yn()<mlplejY)
 			executShotn();
-		if(yn() >= QefObjektj.map.yn()[(int) xn()] && yn()>0)
+		if(yn() >= QefObjektj.map.yn()[(int) xn()] && yn()<mlplejY)
 			executShotn();
 		else {
 			Vicperant.nunludantn().m = null;
 			exploci();
+			for(int i = 0; i < Vicperant.ludantj.length; i++)
+				Vicperant.ludantj[i].setYn(QefObjektj.map.yn()[(int) Vicperant.ludantj[i].xn()]);
 			Vicperant.venontNunLudantn(xn());
 		}
 	}
@@ -64,7 +74,7 @@ public class Misil extends Vivazh {
 		int i = 0;
 		int nunx, nuny;
 		final double vent;
-		if(angleRad > mlplejmargexnErar && angleRad <plejmargexnErar)
+		if(ekangul > mlplejmargexnErar && ekangul <plejmargexnErar)
 			vent = 0;
 		else
 			vent = Math.random()/10-0.05;
@@ -123,11 +133,13 @@ public class Misil extends Vivazh {
 	}
 	
 	public void exploci() {
-		
-		for(int i = -komencDamagxX; i < komencDamagxX; i++) {
+		for(int i = -komencDamagxX; i < komencDamagxX; i++)
 			QefObjektj.map.setYn((int) xn() + i, QefObjektj.map.yn((int) xn() + i) -
-					Math.sin(Math.PI*(i+komencDamagxX)/damagx)*damagxX);
-		}
+					Math.sin(Math.PI*(i+komencDamagxX)/damagxLargxX)*damagxX);
+		for(int i = 0; i < Vicperant.ludantj.length; i++)
+			for(int x = -komencDamagxX; x < komencDamagxX; x++)
+				if((int) (xn()+x) == (int) Vicperant.ludantj[i].xn())
+					Vicperant.ludantj[i].malgajnVivn(Math.sin(Math.PI*(x+komencDamagxX)/damagxLargxX)*2);
 		QefObjektj.map.setQmodifitn(true);
 	}
 	

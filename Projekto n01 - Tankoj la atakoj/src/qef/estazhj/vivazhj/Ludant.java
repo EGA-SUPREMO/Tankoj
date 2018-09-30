@@ -16,7 +16,6 @@ import qef.ilj.Vicperant;
 import qef.ilj.YargxilAzhj;
 import qef.inventar.Objektregistril;
 import qef.inventar.armil.Armil;
-import qef.inventar.armil.Senarma;
 import qef.kontrolj.Kontrolperant;
 import qef.map.Map;
 import qef.sprite.SpriteFoli;
@@ -26,7 +25,9 @@ public class Ludant extends Vivazh {
 	protected BufferedImage[] bildj, canonBildj;
 	private int radX1 = -10, radX2 = 11;
 	private int offsetLudantY = 2;
+	private int offsetLudantX = 0;
 	private int offsetCanonX = -2, offsetCanonY = 1;
+	private int plejAngul = Konstantj.canonAngulnombr/2;
 	public Misil m;
 	protected Vivazharmilar vivazharmilar;
 	private boolean qatingec, qgxisdatigatingecn;
@@ -47,11 +48,11 @@ public class Ludant extends Vivazh {
 	
 	public Ludant(final int ordenSpec, final String itenerSon, final SpriteFoli sprite,
 			final BufferedImage canonSprite) {
-		super(1, itenerSon);
+		super(1, 100, itenerSon);
 		
+		nunangul = new Random().nextInt(plejAngul);
 		setXn(new Random().nextInt(QefObjektj.map.yn().length));
 		setYn(QefObjektj.map.yn((int) xn()));
-		nunangul = 46;
 		potenc = plejpotenc/4;
 		vivazharmilar = new Vivazharmilar((Armil) Objektregistril.objektjn(599));
 		qatingec = true;
@@ -69,13 +70,10 @@ public class Ludant extends Vivazh {
 		switch(spec) {
 			case 0:
 				break;
-			case 1://TODO faru ke la bildoj generigxos kiam la ludanto acxetu la habilidad de escalar montoj
+			case 1://TODO faru ke la bildoj generigxos kiam la ludanto acxetu la habilidad de escalar montoj(eble ne faru tion)
 				bildj = new BufferedImage[rotaciplejNombr/2];
-				bildj[0] = tempbildj[0];
-				for(int i = 1; i < bildj.length/2; i++)
-					bildj[i] = Bildperant.volvBildn(bildj[0], -(rotaci * i));
-				for(int i = 0, j = bildj.length/2-1; i < bildj.length/2; i++, j--)
-					bildj[i+bildj.length/2] = Bildperant.volvBildn(bildj[j], Math.PI/2);
+				for(int i = -bildj.length/2; i < bildj.length/2; i++)
+					bildj[i + bildj.length/2] = Bildperant.volvBildn(tempbildj[0], -(rotaci * i));
 				break;
 		}
 	}
@@ -95,7 +93,7 @@ public class Ludant extends Vivazh {
 		if(m!=null)//FIXME
 			m.gxisdatig();
 		else {
-			gxisdatigArmiljn();
+			gxisdatigAtakn();
 			yangxMapn();
 			yangxSpriten();
 			mov();
@@ -109,12 +107,14 @@ public class Ludant extends Vivazh {
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 			if(qatingec)
 				qgxisdatigatingecn = true;
+			qmovant = true;
 		}
 		if(Kontrolperant.klavar.mldextr.pulsitan() && !Kontrolperant.klavar.dextr.pulsitan() && brulazh>0) {
 			mlpliX();
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 			if(qatingec)
 				qgxisdatigatingecn = true;
+			qmovant = true;
 		}
 		if(Kontrolperant.klavar.supr.pulsitan() && !Kontrolperant.klavar.sub.pulsitan()) {
 			if(++nunangul>=Konstantj.canonAngulnombr)
@@ -127,7 +127,6 @@ public class Ludant extends Vivazh {
 				nunangul--;
 			if(qatingec)
 				qgxisdatigatingecn = true;
-				
 		}
 		if(Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
 			if(potenc>0) {
@@ -147,28 +146,27 @@ public class Ludant extends Vivazh {
 		if(qgxisdatigatingecn && !Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan()
 				 && !Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()
 				 && !Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
-			atingec = Bildperant.atingecMisil(new Misil(nunangul, potenc, (int) xn(), (int) yn()).atingecn());
+			atingec = Bildperant.atingecMisil(new Misil(nunangul, potenc, xn(), yn()).atingecn());
 			qgxisdatigatingecn = false;
 		}
 	}
 	
 	private void yangxSpriten() {
-		if(Konstantj.qyangxSpriteFoli) {
-			Konstantj.qyangxSpriteFoli = false;
-			if(vivazharmilar.armil1n() instanceof Senarma) {
-				setSpriteFoli(ludantsprite1, 0);
-				return;
-			}
-			if(vivazharmilar.armil1n() instanceof Armil)
-				setSpriteFoli(ludantsprite0, 0);
-		}
 	}
 	
-	private void gxisdatigArmiljn() {
+	private void gxisdatigAtakn() {
+		if (Kontrolperant.klavar.qatak) {
+			m = new Misil(nunangul, potenc, xn(), yn());
+			Kontrolperant.klavar.qatak = false;
+		}
 	}
 	@Override
 	protected void anim() {
-		nunBild = statn();
+		if(qmovant) {
+			nunBild = statn();
+			//nunangul
+			qmovant = false;
+		}
 	}
 	//TODO SXangxu la klaso de tiu metodo
 	private int statn() {
@@ -180,23 +178,26 @@ public class Ludant extends Vivazh {
 		double y2 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX2))];
 		
 		double angul = Math.atan2(y2 - y1, x2 - x1);
-		
-		for(int i = 0; i < KVANTSTATJ; i++)
+			
+		for(int i = -DUONKVANTSTATJ; i < DUONKVANTSTATJ; i++)
 			if(angul>rotaci*i && angul<rotaci*(i+1)) {
-				return i;
+				offsetLudantX = -i;
+				return DUONKVANTSTATJ + i;
 			}
-		
-		return 0;
+
+		offsetLudantX = 0;
+		return DUONKVANTSTATJ;
 	}
 	
 	@Override
 	public void desegn() {
 		int posiciY = (int) Kvantperant.koordenadYalekranPosicin((int)yn()) - bildj[nunBild].getHeight() +
 				offsetLudantY;
-		DebugDesegn.desegnBildn(bildj[nunBild], (int) Kvantperant.koordenadXalekranPosicin(xn()), posiciY);
+		DebugDesegn.desegnBildn(bildj[nunBild], (int) Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
+				- (Vicperant.nunludantn().largxVivazhn()>>1), posiciY);
 		
 		DebugDesegn.desegnBildn(canonBildj[nunangul], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
-				offsetCanonX, posiciY + offsetCanonY);
+				offsetCanonX - (Vicperant.nunludantn().largxVivazhn()>>1), posiciY + offsetCanonY);
 		if(m!=null)//FIXME
 			m.desegn();
 		if(atingec!=null && Vicperant.ludantj[Vicperant.nunLudantn()]==this) {
@@ -222,6 +223,12 @@ public class Ludant extends Vivazh {
 
 	public Vivazharmilar vivazharmilarn() {
 		return vivazharmilar;
+	}
+	@Override
+	public void setYn(final double yo) {
+		super.setYn(yo);
+		qmovant = true;
+		anim();
 	}
 	
 }

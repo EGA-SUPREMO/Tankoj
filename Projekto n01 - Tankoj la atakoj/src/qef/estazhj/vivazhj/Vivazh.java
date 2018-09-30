@@ -18,20 +18,22 @@ public abstract class Vivazh implements Estazh {
 	protected final Rectangle[] LIMJ;
 	protected int nunBild;
 	protected int brulazh;
-	
+
 	protected static final int KVANTSTATJ = 16;
+	protected static final int DUONKVANTSTATJ = KVANTSTATJ>>1;;
 	protected static final int rotaciplejNombr = KVANTSTATJ*2;
 	protected static final double rotaci = 2*Math.PI/rotaciplejNombr;
 	protected double rapidecX, rapidecY;
 	
 	protected int largxVivazh, altVivazh;
-	protected int viv, plejviv;
-	private int damagx;
+	protected double viv, plejviv;
+	protected int damagx;
 	
 	protected Son damagxit;
 	protected long longDamagxit, venontDamagxit;
+	protected boolean qmovant = false;
 
-	public Vivazh(final int limj, final String itenerSon) {
+	public Vivazh(final int limj, final int damagxo, final String itenerSon) {
 		
 		this.largxVivazh = 32;
 		this.altVivazh = 32;
@@ -42,7 +44,7 @@ public abstract class Vivazh implements Estazh {
 		y = 0;
 		viv = 100;
 		plejviv = viv;
-		damagx = 100;
+		damagx = damagxo;
 		LIMJ = new Rectangle[limj];
 
 		damagxit = new Son(itenerSon, 0);
@@ -126,7 +128,7 @@ public abstract class Vivazh implements Estazh {
 	public int damagxn() {
 		return damagx;
 	}
-	public int vivn() {
+	public double vivn() {
 		return viv;
 	}
 	public int largxVivazhn() {
@@ -196,16 +198,9 @@ public abstract class Vivazh implements Estazh {
 		return new Rectangle((int) x, (int) y, largxVivazh, altVivazh);
 	}
 	
-	public void malgajnVivn(int damagx) {
-		if(venontDamagxit <= 0) {
-			damagxit.play();
-			venontDamagxit = longDamagxit;
-		}
-		
-        if (viv - damagx < 0)
+	public void malgajnVivn(double d) {
+        if ((viv = viv - d) < 0)
             viv = 0;
-        else
-            viv -= damagx;
 	}
 	
 }

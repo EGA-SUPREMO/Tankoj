@@ -110,7 +110,7 @@ public class Bildperant {
 		if(Konstantj.altGrafik)
 			((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 					RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Color.RED.darker());
+		g.setColor(Konstantj.KOLOR_ATINGEC);
 		for(int x = 2; x < largx; x++)
 			g.drawLine(punktj[0 + (x-1)*2] - mlplejX, plejY - punktj[1 + (x-1)*2],
 					punktj[0 + x*2] - mlplejX, plejY - punktj[1 + x*2]);

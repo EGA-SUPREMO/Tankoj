@@ -38,9 +38,9 @@ public class Submenu {
 	}
 	
 	private void desegnSubmenufonn() {
-		DebugDesegn.setColor(Color.BLACK);
+		DebugDesegn.setColor(Konstantj.KOLOR_FONSUBMENU);
 		DebugDesegn.desegnRectangle(are);
-		DebugDesegn.setColor(Color.WHITE);
+		DebugDesegn.setColor(Color.BLACK);
 		DebugDesegn.desegnRectangle(MargxenAre);
 	}
 	

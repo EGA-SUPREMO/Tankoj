@@ -6,7 +6,7 @@ import qef.QefObjektj;
 public class Kvantperant {
 	
 	public static double koordenadXalekranPosicin(final double koordenad) {
-		return koordenad - Vicperant.ludantj[Vicperant.nunLudantn()].xn() + Konstantj.largxCentr;
+		return koordenad - Vicperant.ludantj[Vicperant.nunLudantn()].xn() + Konstantj.duonLudLargx;
 	}
 	
 	public static double koordenadYalekranPosicin(final double koordenad) {
@@ -14,7 +14,7 @@ public class Kvantperant {
 	}
 	
 	public static double koordenadEkranPosicialXn(final double koordenad) {
-		return koordenad + Vicperant.ludantj[Vicperant.nunLudantn()].xn() + Konstantj.largxCentr;
+		return koordenad + Vicperant.ludantj[Vicperant.nunLudantn()].xn() + Konstantj.duonLudLargx;
 	}
 	
 	public static double koordenadEkranPosicialYn(final double koordenad) {

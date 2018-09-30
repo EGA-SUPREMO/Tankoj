@@ -95,9 +95,6 @@ public class Klavar extends KeyAdapter {
 			case Konstantj.QKOLEKT:
 				qkolekt = false;
 				break;
-			case Konstantj.ATAKI:
-				qatak = false;
-				break;
 		}
 	}
 	

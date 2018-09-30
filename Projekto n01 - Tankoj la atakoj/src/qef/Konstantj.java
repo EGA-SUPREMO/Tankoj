@@ -11,11 +11,11 @@ import qef.ilj.YargxilAzhj;
 public abstract class Konstantj {
 	
 	public static final int SPRITEFLANK = 32;
-	public static final int SPRITELARGX = 32;
+	public static final int SPRITELARGX = 480;
 	public static final int SPRITEALT = 32;
 	
 	public static final int DUONSPRITEFLANK = SPRITEFLANK>>1;
-	public static final int DUONSPRITELARGX = SPRITELARGX>>1;
+	public static final int DUONSPRITELARGX = SPRITEFLANK>>1;
 	public static final int DUONSPRITEALT = SPRITEALT>>1;
 	
 	public static final int KVANT_KONSUMEBL_OBJEKT = 500;
@@ -97,6 +97,10 @@ public abstract class Konstantj {
 	public final static Color KOLOR_SUPR_BANNER = Color.CYAN;
 	public final static Color KOLOR_SUB_BANNER = Color.CYAN.darker();
 	public final static Color FONKOLOR = Color.WHITE;
+	
+	public final static Color KOLOR_FONSUBMENU = Color.WHITE.darker();
+	
+	public final static Color KOLOR_ATINGEC = new Color(0xCCFCB032, true).darker();
 	
 	public final static Color AKTIV_ETIKED_BOTON_KOLOR = KOLOR_SUB_BANNER.darker();
 	

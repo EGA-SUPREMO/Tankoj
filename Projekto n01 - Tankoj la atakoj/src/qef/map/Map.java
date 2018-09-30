@@ -68,7 +68,7 @@ public class Map {
 		y = BruGeneril.generMapn(frequencies, amplitudes);
 		offsetMap = 400;
 		altMap = offsetMap + 155;
-		map = new BufferedImage[30];//TODO NE SKALAS DE LA GRANDECO DE LA LUDO
+		map = new BufferedImage[2];//TODO NE SKALAS DE LA GRANDECO DE LA LUDO
 		/*String enhav = YargxilAzhj.yargxTextn(Konstantj.ITENER_MAP + itener + ".tmx");
 		
 		final JSONObject globalJSON = JSONObjektn(enhav);
@@ -224,9 +224,6 @@ public class Map {
 	
 	public void gxisdatig() {
 		gxisdatigRangojn();
-
-		if (Kontrolperant.klavar.qatak)
-			Vicperant.ludantj[Vicperant.nunLudantn()].vivazharmilarn().armil1n().atak();
 		gxisdatigVivazhjn();
 		gxisdatigAtakjn();
 	}
@@ -264,14 +261,13 @@ public class Map {
 		}
 	}
 	private void gxisdatigMapn() {
-		for(int i = 0; i < map.length; i++)//TODO dividu la mapon inter array da 32 pixeloj;
+		for(int i = 0; i < map.length; i++)
 			map[i] = Bildperant.gxisdatigMapn(i*Konstantj.SPRITELARGX, Konstantj.SPRITELARGX);
 	}
 	private void desegnMapn() {
 		DebugDesegn.yangxGrafikn(false);
 		for(int i = 0; i < map.length; i++)
-			DebugDesegn.desegnBildn(map[i], (int) Kvantperant.koordenadXalekranPosicin(
-					i*Konstantj.SPRITELARGX + (Vicperant.nunludantn().largxVivazhn()>>1)), 0);
+			DebugDesegn.desegnBildn(map[i], (int) Kvantperant.koordenadXalekranPosicin(i*Konstantj.SPRITELARGX), 0);
 		DebugDesegn.yangxGrafikn();
 	}
 	
@@ -340,7 +336,7 @@ public class Map {
 		return vent;
 	}
 	public double venontVentn() {
-		return vent = r.nextDouble()/10-0.03+vent;
+		return vent = r.nextDouble()/10-0.015+vent;
 	}
 	public void venontVicn() {
 		venontVentn();

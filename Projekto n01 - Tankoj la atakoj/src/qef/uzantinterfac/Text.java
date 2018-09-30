@@ -4,7 +4,7 @@ import qef.Konstantj;
 import qef.ilj.Vicperant;
 
 public enum Text {
-	VIV(Vicperant.ludantj[Vicperant.nunLudantn()].vivn(), 100), RES(Konstantj.plejResistenc, Konstantj.plejResistenc),
+	VIV((int) Vicperant.ludantj[Vicperant.nunLudantn()].vivn(), 100), RES(Konstantj.plejResistenc, Konstantj.plejResistenc),
 	ANG(Vicperant.ludantj[Vicperant.nunLudantn()].nunangul, Konstantj.canonAngulnombr),
 	ATK(Vicperant.ludantj[Vicperant.nunLudantn()].potenc, Vicperant.ludantj[Vicperant.nunLudantn()].plejpotenc);
 	

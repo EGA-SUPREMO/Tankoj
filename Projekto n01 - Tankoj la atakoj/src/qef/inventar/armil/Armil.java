@@ -47,28 +47,4 @@ public abstract class Armil extends Objekt {
             actualizacionesParaSiguienteAtaque--;
         }
 	}
-	
-	public void atak() {
-		if (actualizacionesParaSiguienteAtaque > 0)  {
-			return;
-		}
-		actualizacionesParaSiguienteAtaque = (int) (ataquesPorSegundo * 60);
-		
-		pafson.play();
-		Vicperant.ludantj[Vicperant.nunLudantn()].m = new Misil(Vicperant.ludantj[Vicperant.nunLudantn()].nunangul,
-				Vicperant.ludantj[Vicperant.nunLudantn()].potenc,
-				(int) Vicperant.ludantj[Vicperant.nunLudantn()].xn(),
-				(int) Vicperant.ludantj[Vicperant.nunLudantn()].yn());
-		/*for (Vivazh vivazh : vivazhj) {
-			vivazh.malgajnVivn(atakkvantn());
-		}*/
-	}
-	
-	private int atakkvantn() {
-        return new Random().nextInt(plejatak - mlplejatak) + mlplejatak;
-	}
-	
-	public boolean penetranten() {
-		return penetrante;
-	}
 }
