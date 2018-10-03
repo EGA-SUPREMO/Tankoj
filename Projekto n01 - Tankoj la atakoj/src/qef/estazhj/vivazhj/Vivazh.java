@@ -19,9 +19,9 @@ public abstract class Vivazh implements Estazh {
 	protected int nunBild;
 	protected int brulazh;
 
-	protected static final int KVANTSTATJ = 17;
-	protected static final int DUONKVANTSTATJ = (int) ((double) KVANTSTATJ/2 + 0.5);
-	protected static final int rotaciplejNombr = (KVANTSTATJ - 1)*2;
+	protected static final int KVANTSTATJ = 16;
+	protected static final int DUONKVANTSTATJ = KVANTSTATJ/2;
+	protected static final int rotaciplejNombr = KVANTSTATJ*2;
 	protected static final double ROTACI = 2*Math.PI/rotaciplejNombr;
 	protected double rapidecX, rapidecY;
 	

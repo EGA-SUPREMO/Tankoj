@@ -56,11 +56,12 @@ public class Verg {
 		
 			posici.y -= GRANDEC_VERTIKAL;
 		} else if(text.name()=="ANG") {
-			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunanguln() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
+			final int angul = Vicperant.ludantj[Vicperant.nunLudantn()].nunanguln() - Vicperant.ludantj[Vicperant.nunLudantn()].mlplejangul;
+			DebugDesegn.desegnRectangle(posici.x, posici.y, angul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
 			
 			posici.y += GRANDEC_VERTIKAL;
 			
-			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunanguln() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
+			DebugDesegn.desegnRectangle(posici.x, posici.y, angul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
 
 			posici.y -= GRANDEC_VERTIKAL;
 		} else if(text.name()=="VIV") {

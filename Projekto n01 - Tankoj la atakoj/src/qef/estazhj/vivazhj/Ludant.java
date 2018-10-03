@@ -29,7 +29,7 @@ public class Ludant extends Vivazh {
 	private int offsetLudantX = 0;
 	private int offsetCanonX = -2, offsetCanonY = 1, offsetCanonY2 = 3;
 	private static final int ANTAWDEFINITPLEJANGUL = Konstantj.canonAngulnombr/2;
-	private int plejangul, mlplejangul;
+	public int plejangul, mlplejangul;
 	public Misil m;
 	protected Vivazharmilar vivazharmilar;
 	private boolean qatingec, qgxisdatigatingecn;
@@ -73,8 +73,8 @@ public class Ludant extends Vivazh {
 			case 0:
 				break;
 			case 1://TODO faru ke la bildoj generigxos kiam la ludanto acxetu la habilidad de escalar montoj(eble ne faru tion)
-				bildj = new BufferedImage[rotaciplejNombr/2 + 1];
-				final int duonLong = (int) ((double) bildj.length/2 + 0.5);
+				bildj = new BufferedImage[rotaciplejNombr/2];
+				final int duonLong = bildj.length/2;
 				for(int i = -bildj.length/2; i < duonLong; i++)
 					bildj[i + bildj.length/2] = Bildperant.volvBildn(tempbildj[0], -(ROTACI * i));
 				break;
@@ -192,8 +192,8 @@ public class Ludant extends Vivazh {
 		
 		for(int i = -DUONKVANTSTATJ; i < DUONKVANTSTATJ; i++)
 			if(angul>ROTACI*i && angul<ROTACI*(i+1)) {
-				offsetLudantX = -i - 1;
-				return DUONKVANTSTATJ + i - 1;
+				offsetLudantX = -i;
+				return DUONKVANTSTATJ + i;
 			}
 		
 		offsetLudantX = 0;
@@ -251,7 +251,8 @@ public class Ludant extends Vivazh {
 		super.mlgajnVivn(vivo);
 		if(plejpotenc>viv) {
 			plejpotenc = (int) viv;
-			potenc = plejpotenc;
+			if(potenc>plejpotenc)
+				potenc = plejpotenc;
 		}
 	}
 	@Override
