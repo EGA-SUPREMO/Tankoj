@@ -3,7 +3,6 @@ package qef.uzantinterfac;
 import java.awt.Color;
 import java.awt.Point;
 
-import qef.QefObjektj;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Vicperant;
 
@@ -39,7 +38,7 @@ public class Verg {
 		if(text.name()=="ATK")
 			DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].potenc, posici.x + 102, posici.y + 8);
 		else if(text.name()=="ANG")
-			DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].nunangul, posici.x + 102, posici.y + 8);
+			DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].nunanguln(), posici.x + 102, posici.y + 8);
 		else if(text.name()=="VIV")
 			DebugDesegn.desegnString(String.format("%.2f", Vicperant.ludantj[Vicperant.nunLudantn()].vivn()), posici.x + 102, posici.y + 8);
 		else
@@ -57,11 +56,11 @@ public class Verg {
 		
 			posici.y -= GRANDEC_VERTIKAL;
 		} else if(text.name()=="ANG") {
-			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunangul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
+			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunanguln() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
 			
 			posici.y += GRANDEC_VERTIKAL;
 			
-			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunangul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
+			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].nunanguln() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
 
 			posici.y -= GRANDEC_VERTIKAL;
 		} else if(text.name()=="VIV") {

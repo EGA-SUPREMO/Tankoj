@@ -144,7 +144,7 @@ public class Misil extends Vivazh {//TODO Dividu cxi tiun klason en du, unu esta
 					&& xn()+komencDamagxX>Vicperant.ludantj[i].xn() + (Vicperant.ludantj[i].largxVivazhn()>>1))
 				for(int x = -komencDamagxX; x < komencDamagxX; x++)
 					//if()
-						Vicperant.ludantj[i].malgajnVivn(Math.sin(Math.PI*(x+komencDamagxX)/damagxLargxX)*2);
+						Vicperant.ludantj[i].mlgajnVivn(Math.sin(Math.PI*(x+komencDamagxX)/damagxLargxX)*2);
 	}
 	
 }

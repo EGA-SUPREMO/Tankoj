@@ -37,7 +37,7 @@ public class Ludant extends Vivazh {
 	
 	public int plejpotenc = 100;
 	public int potenc;
-	public int nunangul;
+	private int nunangul;
 	private int experienc = 100;
 	public static final SpriteFoli ludantsprite0 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
 			Transparency.TRANSLUCENT, Color.GREEN.darker());
@@ -46,14 +46,15 @@ public class Ludant extends Vivazh {
 	public static final SpriteFoli ludantsprite2 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
 			Transparency.TRANSLUCENT, 32, 32, Color.CYAN.darker());
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
-			Transparency.TRANSLUCENT, 36, 19);
+			Transparency.TRANSLUCENT, 36, 38);
 	
 	public Ludant(final int ordenSpec, final String itenerSon, final SpriteFoli sprite,
 			final BufferedImage canonSprite) {
 		super(1, 100, itenerSon);
-		setXn(new Random().nextInt(QefObjektj.map.yn().length));
+		Random r = new Random();
+		setXn(r.nextInt(QefObjektj.map.yn().length));
 		setYn(QefObjektj.map.yn((int) xn()));
-		nunangul = new Random().nextInt(plejangul);
+		nunangul = r.nextInt(plejangul-90)+90;
 		potenc = plejpotenc/4;
 		vivazharmilar = new Vivazharmilar((Armil) Objektregistril.objektjn(599));
 		qatingec = true;
@@ -72,9 +73,10 @@ public class Ludant extends Vivazh {
 			case 0:
 				break;
 			case 1://TODO faru ke la bildoj generigxos kiam la ludanto acxetu la habilidad de escalar montoj(eble ne faru tion)
-				bildj = new BufferedImage[rotaciplejNombr/2];
-				for(int i = -bildj.length/2; i < bildj.length/2; i++)
-					bildj[i + bildj.length/2] = Bildperant.volvBildn(tempbildj[0], -(rotaci * i));
+				bildj = new BufferedImage[rotaciplejNombr/2 + 1];
+				final int duonLong = (int) ((double) bildj.length/2 + 0.5);
+				for(int i = -bildj.length/2; i < duonLong; i++)
+					bildj[i + bildj.length/2] = Bildperant.volvBildn(tempbildj[0], -(ROTACI * i));
 				break;
 		}
 	}
@@ -82,14 +84,10 @@ public class Ludant extends Vivazh {
 	protected void ordenBildj(final int angulnombr, final BufferedImage tempbild) {//FIXME CXi tiu metodo estas ne efika
 		canonBildj = new BufferedImage[angulnombr];
 		double rotacij = 2*Math.PI/angulnombr;
-		final int nombrBild = canonBildj.length>179 ? 179 : canonBildj.length;
 		
-		for(int i = 0; i < nombrBild; i++)
-			canonBildj[i] = Bildperant.volvBildn(tempbild, tempbild.getWidth()/2, tempbild.getHeight() - 2,
-					rotacij * (i));
-		for(int i = 179; i < canonBildj.length; i++)
-			canonBildj[i] = Bildperant.volvBildn(canonBildj[i - 179], tempbild.getWidth()/2, tempbild.getHeight()/2
-					+ 1, Math.PI);
+		for(int i = 0; i < canonBildj.length; i++)
+			canonBildj[i] = Bildperant.volvBildn(tempbild, tempbild.getWidth()/2, tempbild.getHeight()/2 - 2,
+					rotacij * (i+180));
 	}
 	
 	@Override
@@ -114,24 +112,22 @@ public class Ludant extends Vivazh {
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 			if(qatingec)
 				qgxisdatigatingecn = true;
-			qmovant = true;
 		}
 		if(Kontrolperant.klavar.mldextr.pulsitan() && !Kontrolperant.klavar.dextr.pulsitan() && brulazh>0) {
 			mlpliX();
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 			if(qatingec)
 				qgxisdatigatingecn = true;
-			qmovant = true;
 		}
 		if(Kontrolperant.klavar.supr.pulsitan() && !Kontrolperant.klavar.sub.pulsitan()) {
-			if(++nunangul>=plejangul)
-				nunangul--;
+			plinunanguln();
+			
 			if(qatingec)
 				qgxisdatigatingecn = true;
 		}
 		if(Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()) {
-			if(nunangul>mlplejangul)
-				nunangul--;
+			mlplinunanguln();
+			
 			if(qatingec)
 				qgxisdatigatingecn = true;
 		}
@@ -170,10 +166,14 @@ public class Ludant extends Vivazh {
 	protected void anim() {
 		if(qmovant) {
 			nunBild = statn();
-			plejangul = ANTAWDEFINITPLEJANGUL + (int) Math.toDegrees(offsetLudantX*rotaci);
-			mlplejangul = -ANTAWDEFINITPLEJANGUL + (int) Math.toDegrees(offsetLudantX*rotaci);
+			plejangul = ANTAWDEFINITPLEJANGUL + (int) Math.toDegrees((offsetLudantX)*ROTACI);
+			mlplejangul = plejangul - 180;
+			
 			if(nunangul>plejangul)
 				nunangul = plejangul;
+			else if(nunangul<mlplejangul)
+				nunangul = mlplejangul;
+			
 			qmovant = false;
 		}
 	}
@@ -189,13 +189,13 @@ public class Ludant extends Vivazh {
 		double y2 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX2))];
 		
 		double angul = Math.atan2(y2 - y1, x2 - x1);
-			
+		
 		for(int i = -DUONKVANTSTATJ; i < DUONKVANTSTATJ; i++)
-			if(angul>rotaci*i && angul<rotaci*(i+1)) {
-				offsetLudantX = -i;
-				return DUONKVANTSTATJ + i;
+			if(angul>ROTACI*i && angul<ROTACI*(i+1)) {
+				offsetLudantX = -i - 1;
+				return DUONKVANTSTATJ + i - 1;
 			}
-
+		
 		offsetLudantX = 0;
 		return DUONKVANTSTATJ;
 	}
@@ -205,14 +205,9 @@ public class Ludant extends Vivazh {
 		int posiciY = (int) Kvantperant.koordenadYalekranPosicin((int)yn()) + offsetLudantY;
 		DebugDesegn.desegnBildn(bildj[nunBild], (int) Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
 				- (Vicperant.nunludantn().largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());
-		if(nunangul>180)
-			DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
-					offsetCanonX - (Vicperant.nunludantn().largxVivazhn()>>1), posiciY + offsetCanonY2 -
-					canonBildj[nunangul].getHeight());
-		else
-			DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
-					offsetCanonX - (Vicperant.nunludantn().largxVivazhn()>>1), posiciY + offsetCanonY -
-					bildj[nunBild].getHeight());
+		
+		DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
+				offsetCanonX - (Vicperant.nunludantn().largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());
 		
 		if(m!=null)//FIXME
 			m.desegn();
@@ -239,6 +234,25 @@ public class Ludant extends Vivazh {
 
 	public Vivazharmilar vivazharmilarn() {
 		return vivazharmilar;
+	}
+	public void mlplinunanguln() {
+		if(nunangul>mlplejangul)
+			nunangul--;
+	}
+	public void plinunanguln() {
+		if(++nunangul>=plejangul)
+			nunangul--;
+	}
+	public int nunanguln() {
+		return nunangul;
+	}
+	@Override
+	public void mlgajnVivn(final double vivo) {
+		super.mlgajnVivn(vivo);
+		if(plejpotenc>viv) {
+			plejpotenc = (int) viv;
+			potenc = plejpotenc;
+		}
 	}
 	@Override
 	public void setYn(final double yo) {
