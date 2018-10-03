@@ -20,7 +20,8 @@ public class Misil extends Vivazh {//TODO Dividu cxi tiun klason en du, unu esta
 	private final static double mlplejmargexnErar = Math.PI/2 - margxenErar;
 	private final double damagxLargxX;
 	private final int komencDamagxX;
-	private final int damagxX;
+	private final int damagxaltec;
+	private final double grandec;
 	private double ekangul;
 	private double potenc;
 	private final Point2D ACCELERATION;
@@ -28,12 +29,14 @@ public class Misil extends Vivazh {//TODO Dividu cxi tiun klason en du, unu esta
 	long prevTime;
 	private final int mlplejY;
 	
-	public Misil(final int ekangulo, final int potenco, final double ekXo, final double ekYo) {
-		super(1, 10, Konstantj.ITENER_SON_MISIL);
+	public Misil(final int ekangulo, final int potenco, final int damagxo, final double ekXo, final double ekYo) {
+		super(1, damagxo, Konstantj.ITENER_SON_MISIL);
+		
+		grandec = Math.sqrt(damagx);
 		
 		damagxLargxX = damagx;
 		komencDamagxX = (int) (damagxLargxX/2);
-		damagxX = (int) (damagxLargxX/1.5);
+		damagxaltec = (int) (damagxLargxX/grandec*4);
 		
 		mlplejY =  QefObjektj.map.altMap - (int) (damagxLargxX);
 		
@@ -66,7 +69,7 @@ public class Misil extends Vivazh {//TODO Dividu cxi tiun klason en du, unu esta
 	@Override
 	public void desegn() {
 		DebugDesegn.desegnOval((int) Kvantperant.koordenadXalekranPosicin(xn()),
-				(int) Kvantperant.koordenadYalekranPosicin(yn()), 3, 3, Color.BLACK);
+				(int) Kvantperant.koordenadYalekranPosicin(yn()), (int) grandec, (int) grandec, Color.BLACK);
 	}
 	
 	public int[] atingecn () {
@@ -135,7 +138,7 @@ public class Misil extends Vivazh {//TODO Dividu cxi tiun klason en du, unu esta
 	public void exploci() {
 		for(int i = -komencDamagxX; i < komencDamagxX; i++)
 			QefObjektj.map.setYn((int) xn() + i, QefObjektj.map.yn((int) xn() + i) -
-					Math.sin(Math.PI*(i+komencDamagxX)/damagxLargxX)*damagxX);
+					Math.sin(Math.PI*(i+komencDamagxX)/damagxLargxX)*damagxaltec);
 		
 		for(int i = 0; i < Vicperant.ludantj.length; i++)
 			if(xn()-komencDamagxX<Vicperant.ludantj[i].xn() - (Vicperant.ludantj[i].largxVivazhn()>>1)

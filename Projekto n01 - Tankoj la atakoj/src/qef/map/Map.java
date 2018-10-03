@@ -27,6 +27,8 @@ public class Map {
 	private int tileeMaplargx;
 	private int tileeMapalt;
 	
+	public int spec;
+	public double durec;
 	private double vent;
 	private int xx;
 	

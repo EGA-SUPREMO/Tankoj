@@ -8,6 +8,7 @@ import java.util.Random;
 
 import qef.Konstantj;
 import qef.QefObjektj;
+import qef.estazhj.Estazhregistril;
 import qef.estazhj.Misil;
 import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
@@ -39,10 +40,13 @@ public class Ludant extends Vivazh {
 	public int potenc;
 	private int nunangul;
 	private int experienc = 100;
-	public static final SpriteFoli ludantsprite0 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
-			Transparency.TRANSLUCENT, Color.GREEN.darker());
-	public static final SpriteFoli ludantsprite1 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png", 32,
-			Transparency.TRANSLUCENT, Color.RED);
+	
+	public int nunArmil = 1;
+	
+	public static final SpriteFoli ludantsprite0 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
+			Transparency.TRANSLUCENT, 32, 32, Color.GREEN.darker());
+	public static final SpriteFoli ludantsprite1 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
+			Transparency.TRANSLUCENT, 32, 32, Color.RED);
 	public static final SpriteFoli ludantsprite2 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
 			Transparency.TRANSLUCENT, 32, 32, Color.CYAN.darker());
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
@@ -149,8 +153,16 @@ public class Ludant extends Vivazh {
 		if(qgxisdatigatingecn && !Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan()
 				 && !Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()
 				 && !Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
-			atingec = Bildperant.atingecMisil(new Misil(nunangul, potenc, xn(), yn()).atingecn());
+			atingec = Bildperant.atingecMisil(((Misil) Estazhregistril.estaezhjn(nunArmil)).atingecn());
 			qgxisdatigatingecn = false;
+		}
+		if(Kontrolperant.klavar.supriArmil) {
+			if(++nunArmil>2)
+				nunArmil--;
+		}
+		if(Kontrolperant.klavar.subiArmil) {
+			if(nunArmil>0)
+				nunArmil--;
 		}
 	}
 	
@@ -159,7 +171,7 @@ public class Ludant extends Vivazh {
 	
 	private void gxisdatigAtakn() {
 		if (Kontrolperant.klavar.qatak) {
-			m = new Misil(nunangul, potenc, xn(), yn());
+			m = (Misil) Estazhregistril.estaezhjn(nunArmil);
 		}
 	}
 	@Override
@@ -209,7 +221,7 @@ public class Ludant extends Vivazh {
 		DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
 				offsetCanonX - (Vicperant.nunludantn().largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());
 		
-		if(m!=null)//FIXME
+		if(m!=null)
 			m.desegn();
 		if(atingec!=null && Vicperant.ludantj[Vicperant.nunLudantn()]==this) {
 			if(nunangul>90)
