@@ -136,11 +136,15 @@ public class Misil extends Vivazh {//TODO Dividu cxi tiun klason en du, unu esta
 		for(int i = -komencDamagxX; i < komencDamagxX; i++)
 			QefObjektj.map.setYn((int) xn() + i, QefObjektj.map.yn((int) xn() + i) -
 					Math.sin(Math.PI*(i+komencDamagxX)/damagxLargxX)*damagxX);
+		
 		for(int i = 0; i < Vicperant.ludantj.length; i++)
-			for(int x = -komencDamagxX; x < komencDamagxX; x++)
-				if((int) (xn()+x) == (int) Vicperant.ludantj[i].xn())
-					Vicperant.ludantj[i].malgajnVivn(Math.sin(Math.PI*(x+komencDamagxX)/damagxLargxX)*2);
-		QefObjektj.map.setQmodifitn(true);
+			if(xn()-komencDamagxX<Vicperant.ludantj[i].xn() - (Vicperant.ludantj[i].largxVivazhn()>>1)
+					&& xn()+komencDamagxX>Vicperant.ludantj[i].xn() - (Vicperant.ludantj[i].largxVivazhn()>>1) ||
+					xn()-komencDamagxX<Vicperant.ludantj[i].xn() + (Vicperant.ludantj[i].largxVivazhn()>>1)
+					&& xn()+komencDamagxX>Vicperant.ludantj[i].xn() + (Vicperant.ludantj[i].largxVivazhn()>>1))
+				for(int x = -komencDamagxX; x < komencDamagxX; x++)
+					//if()
+						Vicperant.ludantj[i].malgajnVivn(Math.sin(Math.PI*(x+komencDamagxX)/damagxLargxX)*2);
 	}
 	
 }

@@ -321,6 +321,8 @@ public class Map {
 			x = x - y.length;
 		
 		y[x] = yo;
+		
+		qmodifit = true;
 	}
 	
 	public static double xn(final int x, final int kvant) {

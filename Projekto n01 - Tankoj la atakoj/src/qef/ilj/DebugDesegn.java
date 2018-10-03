@@ -92,6 +92,7 @@ public class DebugDesegn {
 	
 	public static void desegnBildn(final BufferedImage bild, final int xo, final int y) {
 		objektjDesegnita++;
+		yangxGrafikn(false);
 		if(xo + bild.getWidth() > QefObjektj.map.yn().length)
 			g.drawImage(bild, xo - QefObjektj.map.yn().length, y, null);
 		else
@@ -99,6 +100,8 @@ public class DebugDesegn {
 		
 		if(xo < QefObjektj.map.yn().length)
 			g.drawImage(bild, xo, y, null);
+
+		yangxGrafikn();
 	}
 	public static void desegnLine(final int x1, final int y1, final int x2, final int y2) {
 		objektjDesegnita++;
