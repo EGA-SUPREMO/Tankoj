@@ -1,5 +1,6 @@
 package qef.estazhj;
 
+import qef.estazhj.vivazhj.Misil;
 import qef.ilj.Vicperant;
 
 public class Estazhregistril {

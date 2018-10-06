@@ -9,7 +9,6 @@ import java.util.Random;
 import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.Estazhregistril;
-import qef.estazhj.Misil;
 import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;

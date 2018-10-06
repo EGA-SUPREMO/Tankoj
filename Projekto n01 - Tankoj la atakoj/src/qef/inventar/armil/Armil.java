@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import qef.Konstantj;
-import qef.estazhj.Misil;
+import qef.estazhj.vivazhj.Misil;
 import qef.ilj.Vicperant;
 import qef.inventar.Objekt;
 import qef.son.Son;

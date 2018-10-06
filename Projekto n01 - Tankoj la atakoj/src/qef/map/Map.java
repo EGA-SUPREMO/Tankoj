@@ -42,7 +42,6 @@ public class Map {
 	
 	private ArrayList<Spritetavol> spritetavolj;
 	
-	private BufferedImage[] paletrsprite;
 	private BufferedImage[] map;
 	
 	public ArrayList<Vivazh> vivazhar;

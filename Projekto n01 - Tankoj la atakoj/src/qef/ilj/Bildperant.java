@@ -81,6 +81,8 @@ public class Bildperant {
 	}*/
 	
 	public static BufferedImage atingecMisil(final int[] punktj) {
+		if(punktj.length==0)
+			return null;
 		int plejX = 0, mlplejX = punktj[0], plejY = punktj[punktj.length-1], mlplejY = punktj[1];
 		final int largx = punktj.length/2;
 		int largxbild;
