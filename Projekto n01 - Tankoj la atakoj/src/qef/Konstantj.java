@@ -130,7 +130,7 @@ public abstract class Konstantj {
 	public final static BufferedImage MISILSPRITE = YargxilAzhj.yargxBildn(ITENER_MISIL + 0 + ".png",
 			Transparency.TRANSLUCENT);
 	
-	public final static BufferedImage BUTON_SPRITE = YargxilAzhj.yargxBildn(ITENER_BLU_BUTON + 0 + ".png",
+	public final static BufferedImage BUTON_BLU_SPRITE = YargxilAzhj.yargxBildn(ITENER_BLU_BUTON + 0 + ".png",
 			Transparency.TRANSLUCENT);
 	
 	public static boolean altGrafik = true;
