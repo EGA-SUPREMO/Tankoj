@@ -1,4 +1,4 @@
-package qef.uzantinterfac;
+package qef.uzantinterfac.suprmenu;
 
 import java.awt.Color;
 import java.awt.Rectangle;

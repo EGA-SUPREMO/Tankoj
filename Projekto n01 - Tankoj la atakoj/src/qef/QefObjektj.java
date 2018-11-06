@@ -4,8 +4,8 @@ import qef.grafikj.Superficdesegn;
 import qef.inventar.Inventar;
 import qef.map.Map;
 import qef.statmayin.Statperant;
-import qef.uzantinterfac.Submenu;
 import qef.uzantinterfac.map.Malhelec;
+import qef.uzantinterfac.suprmenu.Submenu;
 
 public class QefObjektj {//Objektoj de la ludoj
 

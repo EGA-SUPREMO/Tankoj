@@ -18,7 +18,7 @@ import qef.ilj.Vicperant;
 import qef.kontrolj.Kontrolperant;
 import qef.kontrolj.Muy;
 import qef.statmayin.Statperant;
-import qef.uzantinterfac.Text;
+import qef.uzantinterfac.suprmenu.Text;
 
 public class Superficdesegn extends Canvas {
 	
@@ -80,7 +80,6 @@ public class Superficdesegn extends Canvas {
 			try {
 			DebugDatum.addDatumn("Promedio de fps po sekundo: " + Konstantj.qiufps/Konstantj.sekundjPasita);
 			}catch(ArithmeticException e) {/*e.printStackTrace();*/}
-			DebugDatum.addDatumn("Res: " + Text.RES.kvantn());
 			DebugDatum.addDatumn("Faktoro X: " + Konstantj.faktorX);
 			DebugDatum.addDatumn("Faktoro Y: " + Konstantj.faktorY);
 	/*		DebugDatum.addDatumn("Venonta mapo: " + QefObjektj.map.venontMapn());

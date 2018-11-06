@@ -203,4 +203,21 @@ public class Bildperant {
 		
 		return koloritbild;
 	}
+
+	public static void kreButon(int largx, int alt, int kolor, String texto) {
+		int[] pixelj = ((DataBufferInt) devenBild.getRaster().getDataBuffer()).getData();
+		devenBild.getRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
+		
+		BufferedImage koloritbild = new BufferedImage(devenBild.getWidth(), devenBild.getHeight(),
+				BufferedImage.TYPE_INT_ARGB);
+		for(int i = 0; i<pixelj.length; i++)
+			if((pixelj[i])<=0xFF000000 || pixelj[i]>=0x00FFFFFF)
+				pixelj[i] = new Color(rugx, verd, blu, new Color(pixelj[i], true).getAlpha()).getRGB();
+		
+		koloritbild.setRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
+		
+		return koloritbild;
+		
+		
+	}
 }

@@ -1,4 +1,4 @@
-package qef.uzantinterfac;
+package qef.uzantinterfac.suprmenu;
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -18,11 +18,10 @@ public class Submenu {
 		
 		MargxenAre = new Rectangle(are.x, are.height, are.width, 1);
 		
-		vergj = new Verg[4];
+		vergj = new Verg[3];
 		vergj[0] = new Verg(Color.BLUE, Text.VIV);
-		vergj[1] = new Verg(Color.YELLOW, Text.RES);
-		vergj[2] = new Verg(Color.GREEN, Text.ANG);
-		vergj[3] = new Verg(Color.RED, Text.ATK);
+		vergj[1] = new Verg(Color.GREEN, Text.ANG);
+		vergj[2] = new Verg(Color.RED, Text.ATK);
 		
 		elekteblj = new Elektebl[kvantElektebl];
 		for(int i = 0; i < kvantElektebl; i++) {

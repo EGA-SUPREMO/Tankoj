@@ -28,8 +28,8 @@ public class InventarMenu extends MenuSekci {
 		nunpez = 20;
 		ms = mso;
 		
-		pezVerg = new Rectangle(Konstantj.ludLargx - MenuStrutur.ETIKED_LARGX - gxeneralMargxen, ms.fonn().y
-				+ gxeneralMargxen, MenuStrutur.ETIKED_LARGX, vergAlt);
+		pezVerg = new Rectangle(Konstantj.ludLargx - Konstantj.ETIKED_LARGX - gxeneralMargxen, ms.fonn().y
+				+ gxeneralMargxen, Konstantj.ETIKED_LARGX, vergAlt);
 		
 	}
 

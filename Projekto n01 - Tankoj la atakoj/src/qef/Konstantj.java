@@ -20,9 +20,6 @@ public abstract class Konstantj {
 	
 	public static final int KVANT_KONSUMEBL_OBJEKT = 500;
 	
-	public static int plejRestarigad = 150;
-	public static int plejResistenc = 750;
-
 	public static int ludLargx = 960;
 	public static int ludAlt = 540;
 	
@@ -107,6 +104,9 @@ public abstract class Konstantj {
 	public final static String ITENER_SONJ = "/sounds/";
 	public final static String ITENER_SONJ_LUDANT = "player/";
 	public static final String ITENER_SON_MISIL = ITENER_SONJ_LUDANT + "pom.wav";
+	
+	public static final String ITENER_IKON = "/icon/";
+	public static final String ITENER_BLU_BUTON = ITENER_IKON + "blue_button_";
 
 	public final static Font KUTIM_FONT = YargxilAzhj.yargxFontn("/Arvin Regular.ttf");
 	
@@ -126,10 +126,20 @@ public abstract class Konstantj {
 	public final static Color PLANK_MAP_KOLOR = new Color(0x55EC06);
 	public final static Color CXIEL_MAP_KOLOR = new Color(0x99CCFF);
 	public final static Color AKV_MAP_KOLOR = new Color(0, 171, 192).brighter();
-	
+
 	public final static BufferedImage MISILSPRITE = YargxilAzhj.yargxBildn(ITENER_MISIL + 0 + ".png",
 			Transparency.TRANSLUCENT);
 	
+	public final static BufferedImage BUTON_SPRITE = YargxilAzhj.yargxBildn(ITENER_BLU_BUTON + 0 + ".png",
+			Transparency.TRANSLUCENT);
+	
 	public static boolean altGrafik = true;
+	
+	public final static int VERTIKAL_MARGXEN = 20;
+	public final static int HORIZONTAL_MARGXEN = 20;
+	public final static int ETIKED_LARGX = 100;
+	public final static int ETIKED_ALT = 20;
+	
+	public final static int MARGXEN_BUTON = 6;
 	
 }

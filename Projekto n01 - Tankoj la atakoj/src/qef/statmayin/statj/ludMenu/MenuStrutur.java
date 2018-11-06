@@ -11,11 +11,6 @@ public class MenuStrutur {
 	private Rectangle subBanner;
 	private Rectangle fon;
 	
-	public final static int VERTIKAL_MARGXEN = 20;
-	public final static int HORIZONTAL_MARGXEN = 20;
-	public final static int ETIKED_LARGX = 100;
-	public final static int ETIKED_ALT = 20;
-	
 	public MenuStrutur() {
 		
 		suprBanner = new Rectangle(0, 0, Konstantj.ludLargx, 20);

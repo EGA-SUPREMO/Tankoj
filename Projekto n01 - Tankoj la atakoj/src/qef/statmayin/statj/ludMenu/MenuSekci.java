@@ -19,8 +19,8 @@ public abstract class MenuSekci {
 		id++;
 		ID = id;
 		NOM = nomo;
-		ETIKED_MENU = new Rectangle(MenuStrutur.HORIZONTAL_MARGXEN, ID*MenuStrutur.ETIKED_ALT +
-				ID*MenuStrutur.VERTIKAL_MARGXEN, MenuStrutur.ETIKED_LARGX, MenuStrutur.ETIKED_ALT);
+		ETIKED_MENU = new Rectangle(Konstantj.HORIZONTAL_MARGXEN, ID*Konstantj.ETIKED_ALT +
+				ID*Konstantj.VERTIKAL_MARGXEN, Konstantj.ETIKED_LARGX, Konstantj.ETIKED_ALT);
 	}
 	
 	public abstract void desegn();

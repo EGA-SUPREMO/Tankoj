@@ -5,7 +5,7 @@ import java.awt.event.KeyAdapter;
 
 import qef.Konstantj;
 import qef.ilj.Vicperant;
-import qef.uzantinterfac.Text;
+import qef.uzantinterfac.suprmenu.Text;
 
 public class Klavar extends KeyAdapter {
 
@@ -104,7 +104,6 @@ public class Klavar extends KeyAdapter {
 			case Konstantj.REKOMENCI:
 				Vicperant.ludantj[Vicperant.nunLudantn()].setXn(480);
 				Vicperant.ludantj[Vicperant.nunLudantn()].setYn(280);
-				Text.RES.mlnuligKvantn();
 				break;
 			case Konstantj.QKOLEKT:
 				qkolekt = false;

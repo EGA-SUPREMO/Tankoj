@@ -65,6 +65,11 @@ public class DebugDesegn {
 		g.drawRect(x, y, largx, alt);
 	}
 	
+	public static void desegnButon(final BufferedImage buton, final int x, final int y) {
+		objektjDesegnita++;
+		g.drawImage(buton, x, y, null);
+	}
+	
 	public static void desegnRectangle(final Rectangle rect, final Color kolor) {
 		objektjDesegnita++;
 		g.setColor(kolor);
@@ -137,7 +142,6 @@ public class DebugDesegn {
 	}
 	
 	public static void desegnKolicijn() {
-
 		for(int i = 0; i < Vicperant.ludantj[Vicperant.nunLudantn()].LIMJN().length; i++)
 			desegnRectangle(Vicperant.ludantj[Vicperant.nunLudantn()].LIMJN()[i]);
 		

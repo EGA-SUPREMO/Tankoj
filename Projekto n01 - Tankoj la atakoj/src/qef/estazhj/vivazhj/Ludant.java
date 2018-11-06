@@ -152,7 +152,7 @@ public class Ludant extends Vivazh {
 		if(qgxisdatigatingecn && !Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan()
 				 && !Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()
 				 && !Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
-			atingec = Bildperant.atingecMisil(((Misil) Estazhregistril.estaezhjn(nunArmil)).atingecn());
+			//atingec = Bildperant.atingecMisil(((Misil) Estazhregistril.estaezhjn(nunArmil)).atingecn());
 			qgxisdatigatingecn = false;
 		}
 		if(Kontrolperant.klavar.supriArmil) {
