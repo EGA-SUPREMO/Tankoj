@@ -11,7 +11,6 @@ import qef.ilj.StringKvantil;
 import qef.ilj.TooltipGeneril;
 import qef.inventar.Objekt;
 import qef.inventar.armil.Armil;
-import qef.inventar.armil.Senarma;
 
 public class ArmazhMenu extends MenuSekci {
 	
@@ -104,7 +103,7 @@ public class ArmazhMenu extends MenuSekci {
 
 			DebugDesegn.setFont(DebugDesegn.Fontn().deriveFont(10f));
 			DebugDesegn.desegnString(texto, puntoInicial.x + i * (Konstantj.SPRITEFLANK + gxeneralMargxen) +
-					Konstantj.SPRITEFLANK - StringKvantil.largxStringn(texto),
+					Konstantj.SPRITEFLANK - StringKvantil.largxStringn(DebugDesegn.Graphicsn(), texto),
 					puntoInicial.y + 31);
 		}
 		DebugDesegn.setFont(DebugDesegn.Fontn().deriveFont(12f));
@@ -124,8 +123,8 @@ public class ArmazhMenu extends MenuSekci {
 
         DebugDesegn.setColor(Color.white);
 		DebugDesegn.desegnString("Armilo",
-				armiletiked.x + armiletiked.width / 2 - StringKvantil.largxStringn("Armilo") / 2,
-				armiletiked.y + armiletiked.height / 2 + StringKvantil.altStringn("Armilo") / 2);
+				armiletiked.x + armiletiked.width / 2 - StringKvantil.largxStringn(DebugDesegn.Graphicsn(), "Armilo") / 2,
+				armiletiked.y + armiletiked.height / 2 + StringKvantil.altStringn(DebugDesegn.Graphicsn(), "Armilo") / 2);
 	}
 
 	private void desegnEcpaneln() {
@@ -144,8 +143,8 @@ public class ArmazhMenu extends MenuSekci {
 		DebugDesegn.desegnRectangle(titularPanel);
 		DebugDesegn.setColor(Color.white);
 		DebugDesegn.desegnString(nombrePanel, titularPanel.x + titularPanel.width / 2
-						- StringKvantil.largxStringn(nombrePanel) / 2,
-				titularPanel.y + titularPanel.height - StringKvantil.altStringn(nombrePanel) / 2 - 4);
+						- StringKvantil.largxStringn(DebugDesegn.Graphicsn(), nombrePanel) / 2,
+				titularPanel.y + titularPanel.height - StringKvantil.altStringn(DebugDesegn.Graphicsn(), nombrePanel) / 2 - 4);
 		DebugDesegn.setColor(new Color(0xff6700));
 	}
 	

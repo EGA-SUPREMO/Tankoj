@@ -19,8 +19,8 @@ public class TooltipGeneril {
 			final Point centrCanvas = Reskalilj.reskalSupernPunktn(new Point(Konstantj.duonLudLargx,
 					Konstantj.duonLudAlt));
 			
-			final int ancho = StringKvantil.largxStringn(text);
-			final int alto = StringKvantil.altStringn(text);
+			final int ancho = StringKvantil.largxStringn(DebugDesegn.Graphicsn(), text);
+			final int alto = StringKvantil.altStringn(DebugDesegn.Graphicsn(), text);
 			final int margenFuente = 3;
 	
 			Rectangle tooltip = new Rectangle(posiciTooltip.x, posiciTooltip.y, ancho + margenFuente, alto);

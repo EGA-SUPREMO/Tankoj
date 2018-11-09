@@ -70,7 +70,7 @@ public class InventarMenu extends MenuSekci {
 			
 			DebugDesegn.setColor(Color.WHITE);
 			DebugDesegn.desegnString(text, komencPunkt.x + i*(gxeneralMargxen + Konstantj.SPRITEFLANK) +
-					Konstantj.SPRITEFLANK - StringKvantil.largxStringn(text), komencPunkt.y + Konstantj.SPRITEFLANK -
+					Konstantj.SPRITEFLANK - StringKvantil.largxStringn(DebugDesegn.Graphicsn(), text), komencPunkt.y + Konstantj.SPRITEFLANK -
 					1);
 			
 		}

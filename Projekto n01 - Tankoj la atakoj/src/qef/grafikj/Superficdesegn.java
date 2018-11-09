@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
@@ -13,12 +12,10 @@ import qef.Konstantj;
 import qef.QefObjektj;
 import qef.ilj.DebugDatum;
 import qef.ilj.DebugDesegn;
-import qef.ilj.StringKvantil;
 import qef.ilj.Vicperant;
 import qef.kontrolj.Kontrolperant;
 import qef.kontrolj.Muy;
 import qef.statmayin.Statperant;
-import qef.uzantinterfac.suprmenu.Text;
 
 public class Superficdesegn extends Canvas {
 	
@@ -55,7 +52,6 @@ public class Superficdesegn extends Canvas {
 		final Graphics g = bufer.getDrawGraphics();
 		
 		DebugDesegn.definigad(g);
-		StringKvantil.definigad(g);
 		
 		DebugDesegn.setColor(Color.BLACK);//TODO mi havas taskon relatita al tiu
 		DebugDesegn.desegnRectangle(0, 0, Konstantj.plejfenestrLargx, Konstantj.plejfenestrAlt);

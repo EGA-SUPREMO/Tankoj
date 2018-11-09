@@ -158,6 +158,9 @@ public class DebugDesegn {
 	public static Font Fontn() {
 		return g.getFont();
 	}
+	public static Graphics Graphicsn() {
+		return g;
+	}
 	public static void setColor(final Color c) {
 		g.setColor(c);
 	}

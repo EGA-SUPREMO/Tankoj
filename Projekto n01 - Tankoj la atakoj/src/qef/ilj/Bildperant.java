@@ -202,28 +202,48 @@ public class Bildperant {
 		koloritbild.setRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
 		
 		return koloritbild;
-	}//18:10
+	}
 
-	public static BufferedImage kreButon(int largx, int alt, int kolor, String texto) {
+	public static BufferedImage kreButon(int largx, int kolor, String texto) {
+		
 		int[] pixelj = ((DataBufferInt) Konstantj.BUTON_BLU_SPRITE.getRaster().getDataBuffer()).getData();
 		Konstantj.BUTON_BLU_SPRITE.getRGB(0, 0, Konstantj.BUTON_BLU_SPRITE.getWidth(),
 				Konstantj.BUTON_BLU_SPRITE.getHeight(), pixelj, 0, Konstantj.BUTON_BLU_SPRITE.getWidth());
 		
-		BufferedImage koloritbild = new BufferedImage(Konstantj.BUTON_BLU_SPRITE.getWidth(),
-				Konstantj.BUTON_BLU_SPRITE.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		BufferedImage bild = new BufferedImage(largx, Konstantj.BUTON_BLU_SPRITE.getHeight(),
+				BufferedImage.TYPE_INT_ARGB);
+		int[] bildpixelj = ((DataBufferInt) bild.getRaster().getDataBuffer()).getData();
+		
+		for(int x = 0; x<Konstantj.MARGXEN_BUTON; x++)
+			for(int y = 0; y<bild.getHeight(); y++) 
+				bildpixelj[x + y*bild.getWidth()] = pixelj[x + y*Konstantj.BUTON_BLU_SPRITE.getWidth()];
+		
 		final int max = largx - Konstantj.MARGXEN_BUTON;
-		for(int x = Konstantj.MARGXEN_BUTON; x<pixelj.length; x++)
-			for(int y = 0; y<pixelj.length; y++) {
-				int i = 0;
-				while(i<)
-				pixelj[x + y * koloritbild.getWidth()] = ;
-			}
+		int i = Konstantj.MARGXEN_BUTON;
+
+		for(; i<max; i++)
+			for(int y = 0; y<bild.getHeight(); y++) 
+				bildpixelj[i + y*bild.getWidth()] = pixelj[Konstantj.MARGXEN_BUTON +
+						y*Konstantj.BUTON_BLU_SPRITE.getWidth()];
 		
-		koloritbild.setRGB(0, 0, koloritbild.getWidth(), koloritbild.getHeight(), pixelj, 0,
-				koloritbild.getWidth());
+		final int diferenc = largx - Konstantj.BUTON_BLU_SPRITE.getWidth();
 		
-		return koloritbild;
+		for(; i<largx; i++)
+			for(int y = 0; y<bild.getHeight(); y++) 
+				bildpixelj[i + y*bild.getWidth()] = pixelj[i - diferenc +
+						y*Konstantj.BUTON_BLU_SPRITE.getWidth()];
 		
+		bild.setRGB(0, 0, bild.getWidth(), bild.getHeight(), bildpixelj, 0, bild.getWidth());
+
+		Graphics g = bild.getGraphics();
+		g.setFont(Konstantj.KUTIM_FONT.deriveFont(20f));
+		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g.drawString(texto, (bild.getWidth() - StringKvantil.largxStringn(g, texto))>>1,
+					(bild.getHeight() - StringKvantil.altStringn(g, texto))>>1);
+		g.dispose();
+		
+		return bild;
 		
 	}
 }
