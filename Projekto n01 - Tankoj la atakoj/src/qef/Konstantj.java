@@ -106,7 +106,11 @@ public abstract class Konstantj {
 	public static final String ITENER_SON_MISIL = ITENER_SONJ_LUDANT + "pom.wav";
 	
 	public static final String ITENER_IKON = "/icons/";
-	public static final String ITENER_BLU_BUTON = ITENER_IKON + "red_button_";
+	public static final String ITENER_RUGX_BUTON = ITENER_IKON + "red_button_";
+	public static final String ITENER_BLU_BUTON = ITENER_IKON + "blue_button_";
+	public static final String ITENER_FLAV_BUTON = ITENER_IKON + "yellow_button_";
+	public static final String ITENER_VERD_BUTON = ITENER_IKON + "green_button_";
+	public static final String ITENER_GRIZ_BUTON = ITENER_IKON + "grey_button_";
 	
 	public final static Font KUTIM_FONT = YargxilAzhj.yargxFontn("/kenvector_future_thin.ttf");
 	public final static Font KUTIM_FONT_BUTON = YargxilAzhj.yargxFontn("/kenvector_future.ttf");
@@ -116,9 +120,11 @@ public abstract class Konstantj {
 	
 	public final static Color KOLOR_SUPR_BANNER = Color.CYAN;
 	public final static Color KOLOR_SUB_BANNER = Color.CYAN.darker();
-	public final static Color FONKOLOR = Color.WHITE;
+	public final static Color FONKOLOR_INVENTARI = Color.WHITE;
 	
 	public final static Color KOLOR_FONSUBMENU = Color.WHITE.darker();
+	
+	public final static Color KOLOR_FONKOMENCMENU = new Color(255, 204, 0);
 	
 	public final static Color KOLOR_ATINGEC = new Color(0xCCFCB032, true).darker();
 	
@@ -128,12 +134,27 @@ public abstract class Konstantj {
 	public final static Color PLANK_MAP_KOLOR = new Color(0x55EC06);
 	public final static Color CXIEL_MAP_KOLOR = new Color(0x99CCFF);
 	public final static Color AKV_MAP_KOLOR = new Color(0, 171, 192).brighter();
-
+	
+	public final static int butonspec = 1;
+	
 	public final static BufferedImage MISILSPRITE = YargxilAzhj.yargxBildn(ITENER_MISIL + 0 + ".png",
 			Transparency.TRANSLUCENT);
+
+	public final static BufferedImage[] BUTON_SPRITE = {YargxilAzhj.yargxBildn(ITENER_BLU_BUTON + butonspec +
+			".png", Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_RUGX_BUTON + butonspec + ".png", 
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_FLAV_BUTON + butonspec + ".png",
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_VERD_BUTON + butonspec + ".png",
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_GRIZ_BUTON + butonspec + ".png",
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_BLU_BUTON + (butonspec + 2) + ".png",
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_RUGX_BUTON + (butonspec + 2) + ".png", 
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_FLAV_BUTON + (butonspec + 2) + ".png",
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_VERD_BUTON + (butonspec + 2) + ".png",
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_GRIZ_BUTON + (butonspec + 2) + ".png",
+			Transparency.TRANSLUCENT)};
 	
-	public final static BufferedImage BUTON_BLU_SPRITE = YargxilAzhj.yargxBildn(ITENER_BLU_BUTON + 1 + ".png",
-			Transparency.TRANSLUCENT);
+	public final static Color[] KOLORJ_BUTON = {Color.WHITE, new Color(23, 133, 180).darker(),
+			new Color(205, 92, 16).darker(), new Color(142, 112, 0), new Color(61, 112, 37),
+			new Color(142, 142, 142)};
 	
 	public static boolean altGrafik = true;
 	

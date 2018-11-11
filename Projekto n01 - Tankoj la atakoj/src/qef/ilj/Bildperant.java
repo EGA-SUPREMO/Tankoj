@@ -204,7 +204,8 @@ public class Bildperant {
 		return koloritbild;
 	}
 
-	public static BufferedImage kreButon(final int largx, final int kolor, final int spec, final String texto) {
+	public static BufferedImage kreButon(final int largx, final int kolor, final int spec, final int qdukolora,
+			final String texto) {
 		final int offset;
 		switch(spec) {
 			case 0:
@@ -216,18 +217,19 @@ public class Bildperant {
 			default:
 				offset = 4;
 		}
+		final int index = kolor + 5*spec;
 		
-		int[] pixelj = ((DataBufferInt) Konstantj.BUTON_BLU_SPRITE.getRaster().getDataBuffer()).getData();
-		Konstantj.BUTON_BLU_SPRITE.getRGB(0, 0, Konstantj.BUTON_BLU_SPRITE.getWidth(),
-				Konstantj.BUTON_BLU_SPRITE.getHeight(), pixelj, 0, Konstantj.BUTON_BLU_SPRITE.getWidth());
+		int[] pixelj = ((DataBufferInt) Konstantj.BUTON_SPRITE[index].getRaster().getDataBuffer()).getData();
+		Konstantj.BUTON_SPRITE[index].getRGB(0, 0, Konstantj.BUTON_SPRITE[index].getWidth(),
+				Konstantj.BUTON_SPRITE[index].getHeight(), pixelj, 0, Konstantj.BUTON_SPRITE[index].getWidth());
 		
-		BufferedImage bild = new BufferedImage(largx, Konstantj.BUTON_BLU_SPRITE.getHeight(),
+		BufferedImage bild = new BufferedImage(largx, Konstantj.BUTON_SPRITE[index].getHeight(),
 				BufferedImage.TYPE_INT_ARGB);
 		int[] bildpixelj = ((DataBufferInt) bild.getRaster().getDataBuffer()).getData();
 		
 		for(int x = 0; x<Konstantj.MARGXEN_BUTON; x++)
 			for(int y = 0; y<bild.getHeight(); y++) 
-				bildpixelj[x + y*bild.getWidth()] = pixelj[x + y*Konstantj.BUTON_BLU_SPRITE.getWidth()];
+				bildpixelj[x + y*bild.getWidth()] = pixelj[x + y*Konstantj.BUTON_SPRITE[index].getWidth()];
 		
 		final int max = largx - Konstantj.MARGXEN_BUTON;
 		int i = Konstantj.MARGXEN_BUTON;
@@ -235,14 +237,14 @@ public class Bildperant {
 		for(; i<max; i++)
 			for(int y = 0; y<bild.getHeight(); y++) 
 				bildpixelj[i + y*bild.getWidth()] = pixelj[Konstantj.MARGXEN_BUTON +
-						y*Konstantj.BUTON_BLU_SPRITE.getWidth()];
+						y*Konstantj.BUTON_SPRITE[index].getWidth()];
 		
-		final int diferenc = largx - Konstantj.BUTON_BLU_SPRITE.getWidth();
+		final int diferenc = largx - Konstantj.BUTON_SPRITE[index].getWidth();
 		
 		for(; i<largx; i++)
 			for(int y = 0; y<bild.getHeight(); y++) 
 				bildpixelj[i + y*bild.getWidth()] = pixelj[i - diferenc +
-						y*Konstantj.BUTON_BLU_SPRITE.getWidth()];
+						y*Konstantj.BUTON_SPRITE[index].getWidth()];
 		
 		bild.setRGB(0, 0, bild.getWidth(), bild.getHeight(), bildpixelj, 0, bild.getWidth());
 
@@ -250,11 +252,10 @@ public class Bildperant {
 		g.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(26f));
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		
+		g.setColor(Konstantj.KOLORJ_BUTON[(kolor + qdukolora)* qdukolora]);
 		g.drawString(texto, (bild.getWidth() - StringKvantil.largxStringn(g, texto))>>1,
 				(bild.getHeight() - offset)/2 + StringKvantil.altStringn(g, texto)/2 - StringKvantil.altStringn(g,
 						texto)/5);
-		//System.out.println((bild.getHeight() + StringKvantil.altStringn(g, texto))>>1);
 		g.dispose();
 		
 		return bild;

@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.vivazhj.Vivazh;
+import qef.uzantinterfac.Buton;
 
 public class DebugDesegn {
 	
@@ -96,15 +97,19 @@ public class DebugDesegn {
 	}
 	
 	public static void desegnBildn(final BufferedImage bild, final int xo, final int y) {
-		objektjDesegnita++;
 		yangxGrafikn(false);
-		if(xo + bild.getWidth() > QefObjektj.map.yn().length)
+		if(xo + bild.getWidth() > QefObjektj.map.yn().length) {
+			objektjDesegnita++;
 			g.drawImage(bild, xo - QefObjektj.map.yn().length, y, null);
-		else
+		}else {
+			objektjDesegnita++;
 			g.drawImage(bild, xo + QefObjektj.map.yn().length, y, null);
+		}
 		
-		if(xo < QefObjektj.map.yn().length)
+		if(xo < QefObjektj.map.yn().length) {
 			g.drawImage(bild, xo, y, null);
+			objektjDesegnita++;
+		}
 
 		yangxGrafikn();
 	}

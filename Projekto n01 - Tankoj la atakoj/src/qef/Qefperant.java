@@ -23,8 +23,7 @@ public class Qefperant {
 		 */
 		
 		//System.setProperty("sun.java2d.transaccel", "True");
-		Qefperant qp = new Qefperant("Tankoj la atakoj", Konstantj.plejfenestrLargx,
-			Konstantj.plejfenestrAlt);
+		Qefperant qp = new Qefperant("Tankoj la atakoj", Konstantj.plejfenestrLargx, Konstantj.plejfenestrAlt);
 		
 		qp.ekLudn();
 		qp.ekQefBukln();

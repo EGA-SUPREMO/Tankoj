@@ -5,7 +5,6 @@ import java.awt.event.KeyAdapter;
 
 import qef.Konstantj;
 import qef.ilj.Vicperant;
-import qef.uzantinterfac.suprmenu.Text;
 
 public class Klavar extends KeyAdapter {
 

@@ -26,7 +26,7 @@ public class MenuStrutur {
 	public void desegn() {
 		DebugDesegn.desegnRectangle(suprBanner, Konstantj.KOLOR_SUPR_BANNER);
 		DebugDesegn.desegnRectangle(subBanner, Konstantj.KOLOR_SUB_BANNER);
-		DebugDesegn.desegnRectangle(fon, Konstantj.FONKOLOR);
+		DebugDesegn.desegnRectangle(fon, Konstantj.FONKOLOR_INVENTARI);
 	}
 	
 	public Rectangle fonn() {
