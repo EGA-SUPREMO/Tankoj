@@ -106,9 +106,11 @@ public abstract class Konstantj {
 	public static final String ITENER_SON_MISIL = ITENER_SONJ_LUDANT + "pom.wav";
 	
 	public static final String ITENER_IKON = "/icons/";
-	public static final String ITENER_BLU_BUTON = ITENER_IKON + "blue_button_";
-
-	public final static Font KUTIM_FONT = YargxilAzhj.yargxFontn("/kenvector_future.ttf");
+	public static final String ITENER_BLU_BUTON = ITENER_IKON + "red_button_";
+	
+	public final static Font KUTIM_FONT = YargxilAzhj.yargxFontn("/kenvector_future_thin.ttf");
+	public final static Font KUTIM_FONT_BUTON = YargxilAzhj.yargxFontn("/kenvector_future.ttf");
+	public final static Font KUTIM_FONT_BUTON1 = YargxilAzhj.yargxFontn("/Arvin Regular.ttf");
 	
 	public final static Color ANTAWDEFINIT_KOLOR = Color.BLUE;
 	
@@ -135,10 +137,10 @@ public abstract class Konstantj {
 	
 	public static boolean altGrafik = true;
 	
-	public final static int VERTIKAL_MARGXEN = 20;
 	public final static int HORIZONTAL_MARGXEN = 20;
 	public final static int ETIKED_LARGX = 100;
 	public final static int ETIKED_ALT = 20;
+	public final static int VERTIKAL_MARGXEN = ETIKED_ALT;
 	
 	public final static int MARGXEN_BUTON = 6;
 	

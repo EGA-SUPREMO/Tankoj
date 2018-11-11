@@ -13,7 +13,7 @@ public class Buton {
 		x = xo;
 		y = yo;
 		
-		buton = Bildperant.kreButon(largx, kolor, texto);
+		buton = Bildperant.kreButon(largx, kolor, 0, texto);
 	}
 	
 }

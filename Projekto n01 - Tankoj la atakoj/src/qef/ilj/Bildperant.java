@@ -204,7 +204,18 @@ public class Bildperant {
 		return koloritbild;
 	}
 
-	public static BufferedImage kreButon(int largx, int kolor, String texto) {
+	public static BufferedImage kreButon(final int largx, final int kolor, final int spec, final String texto) {
+		final int offset;
+		switch(spec) {
+			case 0:
+				offset = 4;
+				break;
+			case 1:
+				offset = 0;
+				break;
+			default:
+				offset = 4;
+		}
 		
 		int[] pixelj = ((DataBufferInt) Konstantj.BUTON_BLU_SPRITE.getRaster().getDataBuffer()).getData();
 		Konstantj.BUTON_BLU_SPRITE.getRGB(0, 0, Konstantj.BUTON_BLU_SPRITE.getWidth(),
@@ -236,11 +247,14 @@ public class Bildperant {
 		bild.setRGB(0, 0, bild.getWidth(), bild.getHeight(), bildpixelj, 0, bild.getWidth());
 
 		Graphics g = bild.getGraphics();
-		g.setFont(Konstantj.KUTIM_FONT.deriveFont(20f));
+		g.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(26f));
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
+		
 		g.drawString(texto, (bild.getWidth() - StringKvantil.largxStringn(g, texto))>>1,
-					(bild.getHeight() - StringKvantil.altStringn(g, texto))>>1);
+				(bild.getHeight() - offset)/2 + StringKvantil.altStringn(g, texto)/2 - StringKvantil.altStringn(g,
+						texto)/5);
+		//System.out.println((bild.getHeight() + StringKvantil.altStringn(g, texto))>>1);
 		g.dispose();
 		
 		return bild;
