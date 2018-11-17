@@ -4,11 +4,11 @@ import java.awt.Rectangle;
 
 import qef.Konstantj;
 import qef.QefObjektj;
-import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 import qef.kontrolj.Kontrolperant;
 import qef.statmayin.Statlud;
 import qef.uzantinterfac.Buton;
+import qef.uzantinterfac.Panel;
 
 public class KomencMenu implements Statlud {
 	
@@ -16,18 +16,24 @@ public class KomencMenu implements Statlud {
 	private Buton yargxLud;
 	private Buton agordj;
 	private Buton elir;
+	private Panel qefpanel, duapanel;
 	private int stat, temp = 330;
-	private final static int LARGX_BUTON = Konstantj.duonLudLargx;
+	private final static int LARGX_BUTON = Konstantj.ludLargx/3;//Konstantj.duonLudLargx;
 	private final static int ALT_BUTON = 49;
 	private final static int VERTIKAL_MARGXEN = ALT_BUTON/7;
 	
 	public KomencMenu() {
-		komencLud = new Buton(Konstantj.duonLudLargx - (LARGX_BUTON>>1), Konstantj.ludAlt - VERTIKAL_MARGXEN*6 -
+		komencLud = new Buton(Konstantj.duonLudLargx - (LARGX_BUTON>>1), Konstantj.ludAlt - VERTIKAL_MARGXEN*7 -
 				ALT_BUTON*4, LARGX_BUTON, 0, 2,"Iniciar partida");
 		yargxLud = new Buton(komencLud.x, komencLud.y + ALT_BUTON + VERTIKAL_MARGXEN, LARGX_BUTON, 0, 2,
 				"Cargar partida");
 		agordj = new Buton(komencLud.x, yargxLud.y + ALT_BUTON + VERTIKAL_MARGXEN, LARGX_BUTON, 0, 3, "Opciones");
 		elir = new Buton(komencLud.x, agordj.y + ALT_BUTON + VERTIKAL_MARGXEN, LARGX_BUTON, 0, 1, "Salir");
+		qefpanel = new Panel(komencLud.x - VERTIKAL_MARGXEN*2 - 2, komencLud.y - VERTIKAL_MARGXEN*2 - 2,
+				LARGX_BUTON + VERTIKAL_MARGXEN*4 + 4, elir.y + ALT_BUTON + VERTIKAL_MARGXEN*4 - komencLud.y + 4, 4,
+				"");
+		duapanel = new Panel(qefpanel.x, qefpanel.y - ALT_BUTON, qefpanel.largx, ALT_BUTON + VERTIKAL_MARGXEN, 0,
+				"Tankoj");
 	}
 
 	@Override
@@ -94,13 +100,8 @@ public class KomencMenu implements Statlud {
 	@Override
 	public void desegn() {
 		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, Konstantj.ludAlt, Konstantj.KOLOR_FONKOMENCMENU);
-		//if(komencLud.buton==null && temp == 330) {
-		DebugDesegn.desegnButon(Bildperant.krePaneln(LARGX_BUTON + VERTIKAL_MARGXEN*2,
-				elir.y + ALT_BUTON + VERTIKAL_MARGXEN*8 - komencLud.y + 2, 4, ""), komencLud.x - VERTIKAL_MARGXEN,
-				komencLud.y - VERTIKAL_MARGXEN*7);
-		//temp = 0;
-		//}
-		//DebugDesegn.desegnButon(Bildperant.krePaneln(LARGX_BUTON, 300, 4, ""), 0, 0);
+		duapanel.desegn();
+		qefpanel.desegn();
 		komencLud.desegn();
 		yargxLud.desegn();
 		agordj.desegn();
