@@ -1,9 +1,12 @@
 package qef.statmayin;
 
 import qef.kontrolj.Kontrolperant;
+import qef.statmayin.statj.agordjMenu.AgordjMenu;
+import qef.statmayin.statj.komencLudMenu.KomencLudMenu;
 import qef.statmayin.statj.komencMenu.KomencMenu;
 import qef.statmayin.statj.lud.Ludperant;
 import qef.statmayin.statj.ludMenu.Menuperant;
+import qef.statmayin.statj.yargxLudMenu.YargxLudMenu;
 
 public class Statperant {
 	
@@ -16,10 +19,13 @@ public class Statperant {
 	}
 
 	private void ekStatj() {
-		statj = new Statlud[3];
-		statj[2] = new Ludperant();
-		statj[1] = new Menuperant();
+		statj = new Statlud[6];
 		statj[0] = new KomencMenu();
+		statj[1] = new Menuperant();
+		statj[2] = new Ludperant();
+		statj[3] = new KomencLudMenu();
+		statj[4] = new YargxLudMenu();
+		statj[5] = new AgordjMenu();
 		//Aldunu pli da statoj kaj pliigu la nombron
 	}
 	
@@ -32,12 +38,7 @@ public class Statperant {
 	}
 	
 	public void yangxNunStatn() {
-		
-		if(Kontrolperant.klavar.aktivInventari)
-			nunStat = statj[1];
-		else
-			nunStat = statj[0];
-		
+		nunStat = statj[nunStat.nunStat()];
 	}
 
 	public Statlud nunStatn() {

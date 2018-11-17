@@ -7,4 +7,5 @@ public interface Statlud {
 	
 	void desegn();
 	
+	int nunStat();
 }

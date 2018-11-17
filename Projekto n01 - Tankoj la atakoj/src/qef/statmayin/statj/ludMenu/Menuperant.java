@@ -1,6 +1,7 @@
 package qef.statmayin.statj.ludMenu;
 
 import qef.QefObjektj;
+import qef.kontrolj.Kontrolperant;
 import qef.kontrolj.Muy;
 import qef.statmayin.Statlud;
 
@@ -59,6 +60,14 @@ public class Menuperant implements Statlud {
 	
 	public MenuSekci Aktivsekcin () {
 		return aktivsekci;
+	}
+
+	@Override
+	public int nunStat() {
+		if(Kontrolperant.klavar.aktivInventari)
+			return 1;
+		else
+			return 2;
 	}
 	
 }

@@ -4,17 +4,19 @@ import java.awt.Rectangle;
 
 import qef.Konstantj;
 import qef.QefObjektj;
+import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 import qef.kontrolj.Kontrolperant;
 import qef.statmayin.Statlud;
 import qef.uzantinterfac.Buton;
 
 public class KomencMenu implements Statlud {
-
+	
 	private Buton komencLud;
 	private Buton yargxLud;
 	private Buton agordj;
 	private Buton elir;
+	private int stat, temp = 330;
 	private final static int LARGX_BUTON = Konstantj.duonLudLargx;
 	private final static int ALT_BUTON = 49;
 	private final static int VERTIKAL_MARGXEN = ALT_BUTON/7;
@@ -30,10 +32,10 @@ public class KomencMenu implements Statlud {
 
 	@Override
 	public void gxisdatig() {
-		gxisdatigSelektatObjektn();
+		gxisdatigSelektatjn();
 	}
 
-	private void gxisdatigSelektatObjektn() {//MALBELEGA KODO
+	private void gxisdatigSelektatjn() {//MALBELEGA KODO
 		if(komencLud.buton==null)
 			return;
 		
@@ -42,6 +44,7 @@ public class KomencMenu implements Statlud {
 			komencLud.yangxKolor();
 			if(QefObjektj.superfic.muyn().qclickn()) {
 				komencLud.setSpec(1);
+				stat = 3;
 			}
 			yargxLud.resetkolorn();
 			agordj.resetkolorn();
@@ -52,6 +55,7 @@ public class KomencMenu implements Statlud {
 				yargxLud.yangxKolor();
 				if(QefObjektj.superfic.muyn().qclickn()) {
 					yargxLud.setSpec(1);
+					stat = 4;
 				}
 				elir.resetkolorn();
 				agordj.resetkolorn();
@@ -61,6 +65,7 @@ public class KomencMenu implements Statlud {
 					agordj.yangxKolor();
 					if(QefObjektj.superfic.muyn().qclickn()) {
 						agordj.setSpec(1);
+						stat = 5;
 					}
 					elir.resetkolorn();
 				} else {
@@ -77,10 +82,25 @@ public class KomencMenu implements Statlud {
 			}
 		}
 	}
+	@Override
+	public int nunStat() {
+		if(stat!=0 && temp < 15) {
+			temp++;
+			return 0;
+		}
+		return stat;
+	}
 	
 	@Override
 	public void desegn() {
 		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, Konstantj.ludAlt, Konstantj.KOLOR_FONKOMENCMENU);
+		//if(komencLud.buton==null && temp == 330) {
+		DebugDesegn.desegnButon(Bildperant.krePaneln(LARGX_BUTON + VERTIKAL_MARGXEN*2,
+				elir.y + ALT_BUTON + VERTIKAL_MARGXEN*8 - komencLud.y + 2, 4, ""), komencLud.x - VERTIKAL_MARGXEN,
+				komencLud.y - VERTIKAL_MARGXEN*7);
+		//temp = 0;
+		//}
+		//DebugDesegn.desegnButon(Bildperant.krePaneln(LARGX_BUTON, 300, 4, ""), 0, 0);
 		komencLud.desegn();
 		yargxLud.desegn();
 		agordj.desegn();

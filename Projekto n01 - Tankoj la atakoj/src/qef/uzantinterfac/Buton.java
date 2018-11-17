@@ -56,8 +56,10 @@ public class Buton {
 	}
 	
 	public void desegn() {
-		if(qgxisdatig)
+		if(qgxisdatig) {
 			buton = Bildperant.kreButon(largx, kolor, spec, kolor==dukolor ? 1:0, text);
+			qgxisdatig = false;
+		}
 		DebugDesegn.desegnButon(buton, x, y);
 	}
 	

@@ -233,19 +233,22 @@ public class Bildperant {
 		
 		final int max = largx - Konstantj.MARGXEN_BUTON;
 		int i = Konstantj.MARGXEN_BUTON;
-
+		
 		for(; i<max; i++)
-			for(int y = 0; y<bild.getHeight(); y++) 
+			for(int y = 0; y<bild.getHeight(); y++)
 				bildpixelj[i + y*bild.getWidth()] = pixelj[Konstantj.MARGXEN_BUTON +
 						y*Konstantj.BUTON_SPRITE[index].getWidth()];
 		
 		final int diferenc = largx - Konstantj.BUTON_SPRITE[index].getWidth();
 		
 		for(; i<largx; i++)
-			for(int y = 0; y<bild.getHeight(); y++) 
+			for(int y = 0; y<bild.getHeight(); y++)
 				bildpixelj[i + y*bild.getWidth()] = pixelj[i - diferenc +
 						y*Konstantj.BUTON_SPRITE[index].getWidth()];
 		
+		
+//		for(int ie: pixelj)
+//			System.out.println(Integer.toHexString(ie));
 		bild.setRGB(0, 0, bild.getWidth(), bild.getHeight(), bildpixelj, 0, bild.getWidth());
 
 		Graphics g = bild.getGraphics();
@@ -259,6 +262,29 @@ public class Bildperant {
 		g.dispose();
 		
 		return bild;
+	}
+	
+	public static BufferedImage krePaneln(final int largx, final int alt, final int kolor, final String texto) {
+		if(alt<=0)
+			return null;
+		BufferedImage antauxbild = kreButon(alt, kolor + 10, 0, 0, "");
+		AffineTransform rotad = new AffineTransform();
+		rotad.rotate(Math.PI/2, 0, antauxbild.getHeight());
+		//rotad.quadrantRotate(1, 0, antauxbild.getHeight());
+		rotad.translate(-antauxbild.getHeight(), 0);
 		
+		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
+				createCompatibleImage(antauxbild.getHeight(), alt, Transparency.TRANSLUCENT);
+		
+		Graphics g = bild.getGraphics();
+		((Graphics2D)g).drawImage(antauxbild, rotad, null);
+		//g.drawImage(antauxbild, 0, 0, null);
+		//g.fillRect(bild.getWidth()-5, bild.getHeight()-5, 5, 5);
+		//g.fillRect(1, 1, bild.getWidth() - 2, bild.getHeight() - 2);
+		g.dispose();
+		Konstantj.BUTON_SPRITE[Konstantj.BUTON_SPRITE.length-1] = bild;
+		BufferedImage finbild = kreButon(largx, Konstantj.BUTON_SPRITE.length-1, 0, 0, "");
+		
+		return finbild;
 	}
 }

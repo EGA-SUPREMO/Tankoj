@@ -16,13 +16,19 @@ public class Ludperant implements Statlud {
 	
 	@Override
 	public void desegn() {
-		
 		QefObjektj.map.desegn();
 		for(Ludant ludant: Vicperant.ludantj)
 			ludant.desegn();
 		QefObjektj.malhelec.desegn();
 		QefObjektj.submenu.desegn();
-		
+	}
+
+	@Override
+	public int nunStat() {
+		if(Kontrolperant.klavar.aktivInventari)
+			return 1;
+		else
+			return 2;
 	}
 	
 }

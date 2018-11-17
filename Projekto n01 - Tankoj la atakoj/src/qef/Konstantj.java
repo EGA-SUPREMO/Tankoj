@@ -150,7 +150,12 @@ public abstract class Konstantj {
 			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_FLAV_BUTON + (butonspec + 2) + ".png",
 			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_VERD_BUTON + (butonspec + 2) + ".png",
 			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_GRIZ_BUTON + (butonspec + 2) + ".png",
-			Transparency.TRANSLUCENT)};
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_BLU_BUTON + 5 + ".png",
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_RUGX_BUTON + 5 + ".png", 
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_FLAV_BUTON + 5 + ".png",
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_VERD_BUTON + 5 + ".png",
+			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_GRIZ_BUTON + 5 + ".png",
+			Transparency.TRANSLUCENT), null};
 	
 	public final static Color[] KOLORJ_BUTON = {Color.WHITE, new Color(23, 133, 180).darker(),
 			new Color(205, 92, 16).darker(), new Color(142, 112, 0), new Color(61, 112, 37),
