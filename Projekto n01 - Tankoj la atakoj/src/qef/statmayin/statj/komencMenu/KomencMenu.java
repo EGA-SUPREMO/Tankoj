@@ -94,7 +94,9 @@ public class KomencMenu implements Statlud {
 			return 0;
 		}
 		temp = 0;
-		return stat;
+		final int stat1 = stat;
+		stat = 0;
+		return stat1;
 	}
 	
 	@Override

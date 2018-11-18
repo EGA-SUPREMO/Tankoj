@@ -72,6 +72,10 @@ public class KomencLudMenu implements Statlud {
 			return 3;
 		}
 		temp = 0;
-		return stat;
+		final int stat1 = stat;
+		stat = 3;
+		dawrigi.resetspecn();
+		elir.resetspecn();
+		return stat1;
 	}
 }
