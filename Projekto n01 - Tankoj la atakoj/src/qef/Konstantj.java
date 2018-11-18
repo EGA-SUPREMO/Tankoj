@@ -181,7 +181,7 @@ public abstract class Konstantj {
 	public final static int VERTIKAL_MARGXEN = ETIKED_ALT;
 	
 	public final static int MARGXEN_BUTON = 6;
-	public final static int KOMENC_MENU_VERTIKAL_MARGXEN = Konstantj.KOMENC_MENU_ALT_BUTON/7;
 	public final static int KOMENC_MENU_ALT_BUTON = 49;
+	public final static int KOMENC_MENU_VERTIKAL_MARGXEN = KOMENC_MENU_ALT_BUTON/7;
 	
 }
