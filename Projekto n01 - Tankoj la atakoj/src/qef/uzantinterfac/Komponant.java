@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Komponant {
 
-	public BufferedImage buton;
+	protected BufferedImage bild;
 	public final int x, largx;
 	public int kolor;
 	public int y;

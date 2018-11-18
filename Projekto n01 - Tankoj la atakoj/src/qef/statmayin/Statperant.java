@@ -46,7 +46,7 @@ public class Statperant {
 	}
 
 	public boolean qStatludn() {
-		return nunStat == statj[0];
+		return nunStat == statj[2];
 	}
 	
 	public void gxisdatig() {

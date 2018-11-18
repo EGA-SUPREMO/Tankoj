@@ -15,9 +15,9 @@ public class Panel extends Komponant {
 	@Override
 	public void desegn() {
 		if(qgxisdatig) {
-			buton = Bildperant.krePaneln(largx, alt, kolor, text);
+			bild = Bildperant.krePaneln(largx, alt, kolor, text);
 			qgxisdatig = false;
 		}
-		DebugDesegn.desegnButon(buton, x, y);
+		DebugDesegn.desegnKomponantn(bild, x, y);
 	}
 }

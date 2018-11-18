@@ -3,13 +3,10 @@ package qef.ilj;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-//import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.geom.AffineTransform;
-//import java.awt.geom.AffineTransformOp;
-//import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
@@ -17,68 +14,6 @@ import qef.Konstantj;
 import qef.QefObjektj;
 
 public class Bildperant {
-/*	private AffineTransform at;
-	private int alturaImagen;
-	private int anchoImagen;
-	private double grados;
-	
-	public Bildperant(int alturaImagen, int anchuraImagen) {
-		at = new AffineTransform();
-		this.alturaImagen = alturaImagen;
-		this.anchoImagen = anchuraImagen;
-	}
-	
-	public void rotate(double grados) {
-		this.grados = grados;
-		at.rotate(grados, anchoImagen / 2, alturaImagen / 2);
-	}*/
-	
-/*	public void findTranslation() {
-		Point2D p2din, p2dout;
-		p2din = hallarPtoATraslacion();
-		p2dout = at.transform(p2din, null);
-		double ytrans = p2dout.getY();
-		
-		p2din = hallarPtoBTraslacion();
-		p2dout = at.transform(p2din, null);
-		double xtrans = p2dout.getX();
-		AffineTransform tat = new AffineTransform();
-		
-		tat.translate(-xtrans, -ytrans);
-		at.preConcatenate(tat);
-	}
-	
-	private Point2D hallarPtoATraslacion() {
-		Point2D p2din;
-		if (grados >= 0 && grados <= 90) {
-			p2din = new Point2D.Double(0.0, 0.0);
-		} else if (grados > 90 && grados <= 180) {
-			p2din = new Point2D.Double(0.0, alturaImagen);
-		} else if (grados > 180 && grados <= 270) {
-			p2din = new Point2D.Double(anchoImagen, alturaImagen);
-		} else {
-			p2din = new Point2D.Double(anchoImagen, 0.0);
-		}
-		return p2din;
-	}
-	
-	private Point2D hallarPtoBTraslacion() {
-		Point2D p2din;
-		if (grados >= 0 && grados <= 90) {
-			p2din = new Point2D.Double(0.0, alturaImagen);
-		} else if (grados > 90 && grados <= 180) {
-			p2din = new Point2D.Double(anchoImagen, alturaImagen);
-		} else if (grados > 180 && grados <= 270) {
-			p2din = new Point2D.Double(anchoImagen, 0.0);
-		} else {
-			p2din = new Point2D.Double(0.0, 0.0);
-		}
-		return p2din;
-	}*/
-/*	
-	public AffineTransform getTransform() {
-		return at;
-	}*/
 	
 	public static BufferedImage atingecMisil(final int[] punktj) {
 		if(punktj.length==0)
@@ -272,24 +207,28 @@ public class Bildperant {
 		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
 				createCompatibleImage(antauxbild.getHeight(), alt, Transparency.TRANSLUCENT);
 		{
-		Graphics g = bild.getGraphics();
-		((Graphics2D)g).drawImage(antauxbild, rotad, null);
-		g.dispose();
+			Graphics g = bild.getGraphics();
+			((Graphics2D)g).drawImage(antauxbild, rotad, null);
+			g.dispose();
 		}
 		
 		Konstantj.BUTON_SPRITE[Konstantj.BUTON_SPRITE.length-1] = bild;
 		BufferedImage finbild = kreButon(largx, Konstantj.BUTON_SPRITE.length-1, 0, 0, "");
 		
-		{
 		Graphics g = finbild.getGraphics();
 		g.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(26f));
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawString(texto, (finbild.getWidth() - StringKvantil.largxStringn(g, texto))>>1,
-				Konstantj.MARGXEN_BUTON*2 - 2 + StringKvantil.altStringn(g, texto));
+				Konstantj.MARGXEN_BUTON*2 - 2 + StringKvantil.altStringn(g, texto) -
+				StringKvantil.altStringn(g, texto)/5);
 		g.dispose();
-		}
 		
 		return finbild;
+	}
+	
+	public static BufferedImage kreSlidern(final int largx, final int mlplej, final int plej, final int kolor) {
+		
+		return null;
 	}
 }

@@ -66,9 +66,9 @@ public class DebugDesegn {
 		g.drawRect(x, y, largx, alt);
 	}
 	
-	public static void desegnButon(final BufferedImage buton, final int x, final int y) {
+	public static void desegnKomponantn(final BufferedImage bild, final int x, final int y) {
 		objektjDesegnita++;
-		g.drawImage(buton, x, y, null);
+		g.drawImage(bild, x, y, null);
 	}
 	
 	public static void desegnRectangle(final Rectangle rect, final Color kolor) {

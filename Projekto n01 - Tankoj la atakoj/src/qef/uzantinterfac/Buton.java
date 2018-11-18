@@ -47,10 +47,10 @@ public class Buton extends Komponant {
 	@Override
 	public void desegn() {
 		if(qgxisdatig) {
-			buton = Bildperant.kreButon(largx, kolor, spec, kolor==dukolor ? 1:0, text);
+			bild = Bildperant.kreButon(largx, kolor, spec, kolor==dukolor ? 1:0, text);
 			qgxisdatig = false;
 		}
-		DebugDesegn.desegnButon(buton, x, y);
+		DebugDesegn.desegnKomponantn(bild, x, y);
 	}
 	
 }
