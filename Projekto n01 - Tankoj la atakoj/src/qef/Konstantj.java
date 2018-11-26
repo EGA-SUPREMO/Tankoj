@@ -112,11 +112,11 @@ public abstract class Konstantj {
 	public static final String ITENER_VERD_BUTON = ITENER_IKON + "green_button_";
 	public static final String ITENER_GRIZ_BUTON = ITENER_IKON + "grey_button_";
 	
-	public static final String ITENER_RUGX_SLIDER = ITENER_IKON + "red_sliderUp";
-	public static final String ITENER_BLU_SLIDER = ITENER_IKON + "blue_sliderUp";
-	public static final String ITENER_FLAV_SLIDER = ITENER_IKON + "yellow_sliderUp";
-	public static final String ITENER_VERD_SLIDER = ITENER_IKON +"green_sliderUp";
-	public static final String ITENER_GRIZ_SLIDER = ITENER_IKON + "grey_sliderUp";
+	public static final String ITENER_RUGX_SLIDER = ITENER_IKON + "red_slider";
+	public static final String ITENER_BLU_SLIDER = ITENER_IKON + "blue_slider";
+	public static final String ITENER_FLAV_SLIDER = ITENER_IKON + "yellow_slider";
+	public static final String ITENER_VERD_SLIDER = ITENER_IKON +"green_slider";
+	public static final String ITENER_GRIZ_SLIDER = ITENER_IKON + "grey_slider";
 	
 	public final static Font KUTIM_FONT = YargxilAzhj.yargxFontn("/kenvector_future_thin.ttf");
 	public final static Font KUTIM_FONT_BUTON = YargxilAzhj.yargxFontn("/kenvector_future.ttf");
@@ -163,15 +163,18 @@ public abstract class Konstantj {
 			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_GRIZ_BUTON + 5 + ".png",
 			Transparency.TRANSLUCENT), null};
 	
-	public final static BufferedImage[] SLIDER_SPRITE = {YargxilAzhj.yargxBildn(ITENER_BLU_SLIDER + ".png",
-			Transparency.TRANSLUCENT), YargxilAzhj.yargxBildn(ITENER_RUGX_SLIDER + ".png", Transparency.TRANSLUCENT),
-			YargxilAzhj.yargxBildn(ITENER_FLAV_SLIDER + ".png", Transparency.TRANSLUCENT),
-			YargxilAzhj.yargxBildn(ITENER_VERD_SLIDER + ".png", Transparency.TRANSLUCENT),
-			YargxilAzhj.yargxBildn(ITENER_GRIZ_SLIDER + ".png", Transparency.TRANSLUCENT)};
+	public final static BufferedImage[] SLIDER_SPRITE = {
+			YargxilAzhj.yargxBildn(ITENER_BLU_SLIDER + "Up.png", Transparency.TRANSLUCENT),
+			YargxilAzhj.yargxBildn(ITENER_RUGX_SLIDER + "Up.png", Transparency.TRANSLUCENT),
+			YargxilAzhj.yargxBildn(ITENER_FLAV_SLIDER + "Up.png", Transparency.TRANSLUCENT),
+			YargxilAzhj.yargxBildn(ITENER_VERD_SLIDER + "Up.png", Transparency.TRANSLUCENT),
+			YargxilAzhj.yargxBildn(ITENER_GRIZ_SLIDER + "Up.png", Transparency.TRANSLUCENT),
+			YargxilAzhj.yargxBildn(ITENER_GRIZ_SLIDER + "_1.png", Transparency.TRANSLUCENT),
+			YargxilAzhj.yargxBildn(ITENER_GRIZ_SLIDER + "End.png", Transparency.TRANSLUCENT)};
 	
 	public final static Color[] KOLORJ_BUTON = {Color.WHITE, new Color(23, 133, 180).darker(),
 			new Color(205, 92, 16).darker(), new Color(142, 112, 0), new Color(61, 112, 37),
-			new Color(142, 142, 142)};
+			new Color(153, 153, 153)};
 	
 	public static boolean altGrafik = true;
 	
@@ -183,5 +186,6 @@ public abstract class Konstantj {
 	public final static int MARGXEN_BUTON = 6;
 	public final static int KOMENC_MENU_ALT_BUTON = 49;
 	public final static int KOMENC_MENU_VERTIKAL_MARGXEN = KOMENC_MENU_ALT_BUTON/7;
+	public final static int KOMENC_MENU_BUTONPLEJTEMP = 16;
 	
 }

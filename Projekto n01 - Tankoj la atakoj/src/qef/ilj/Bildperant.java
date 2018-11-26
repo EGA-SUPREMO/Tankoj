@@ -12,6 +12,7 @@ import java.awt.image.DataBufferInt;
 
 import qef.Konstantj;
 import qef.QefObjektj;
+import qef.uzantinterfac.Slider;
 
 public class Bildperant {
 	
@@ -40,8 +41,8 @@ public class Bildperant {
 		else if(largxbild<1)
 			return null;
 		
-		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
-				createCompatibleImage(largxbild, altbild, Transparency.TRANSLUCENT);
+		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration().createCompatibleImage(largxbild, altbild, Transparency.TRANSLUCENT);
 		Graphics g = bild.getGraphics();
 		
 		if(Konstantj.altGrafik)
@@ -58,8 +59,9 @@ public class Bildperant {
 	}
 	
 	public static BufferedImage kreBildn(final Color c) {
-		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
-				createCompatibleImage(Konstantj.SPRITEALT, Konstantj.SPRITELARGX, Transparency.OPAQUE);
+		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration().createCompatibleImage(Konstantj.SPRITEALT, Konstantj.SPRITELARGX,
+						Transparency.OPAQUE);
 		Graphics g = bild.getGraphics();
 		
 		g.setColor(c);
@@ -70,8 +72,8 @@ public class Bildperant {
 	}
 	
 	public static BufferedImage gxisdatigMapn(final int ekx, final int largx) {
-		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
-				createCompatibleImage(largx, QefObjektj.map.altMap, Transparency.OPAQUE);
+		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration(). createCompatibleImage(largx, QefObjektj.map.altMap, Transparency.OPAQUE);
 		Graphics g = bild.getGraphics();
 		
 		g.setColor(Konstantj.AKV_MAP_KOLOR);//FIXME LA AKVO ESTAS STRANGA DE CXI TIU METODO
@@ -197,18 +199,17 @@ public class Bildperant {
 	}
 	
 	public static BufferedImage krePaneln(final int largx, final int alt, final int kolor, final String texto) {
-		if(alt<=0)
-			return null;
-		BufferedImage antauxbild = kreButon(alt, kolor + 10, 0, 0, "");
+		BufferedImage antawbild = kreButon(alt, kolor + 10, 0, 0, "");
 		AffineTransform rotad = new AffineTransform();
-		rotad.rotate(Math.PI/2, 0, antauxbild.getHeight());
-		rotad.translate(-antauxbild.getHeight(), 0);
+		rotad.rotate(Math.PI/2, 0, antawbild.getHeight());
+		rotad.translate(-antawbild.getHeight(), 0);
 		
-		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration().
-				createCompatibleImage(antauxbild.getHeight(), alt, Transparency.TRANSLUCENT);
+		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration().createCompatibleImage(antawbild.getHeight(), alt,
+						Transparency.TRANSLUCENT);
 		{
 			Graphics g = bild.getGraphics();
-			((Graphics2D)g).drawImage(antauxbild, rotad, null);
+			((Graphics2D)g).drawImage(antawbild, rotad, null);
 			g.dispose();
 		}
 		
@@ -227,8 +228,66 @@ public class Bildperant {
 		return finbild;
 	}
 	
-	public static BufferedImage kreSlidern(final int largx, final int mlplej, final int plej, final int kolor) {
+	public static BufferedImage kreLineoSlidern(final Slider slider) {
+		Konstantj.BUTON_SPRITE[Konstantj.BUTON_SPRITE.length-1] = Konstantj.SLIDER_SPRITE[5];
 		
-		return null;
+		
+		BufferedImage antawbild = kreButon(slider.largx - Konstantj.SLIDER_SPRITE[6].getWidth()*2,
+				Konstantj.BUTON_SPRITE.length - 1, 0, 0, "");
+		
+		Graphics gg = antawbild.getGraphics();
+		((Graphics2D) gg).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		gg.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(16f));
+		gg.dispose();
+		
+		final int mlplejX = (int)(Konstantj.SLIDER_SPRITE[6].getHeight()/(float) 2 -
+				(float) StringKvantil.largxStringn(gg, slider.mlplej + "")/2);
+		final int plejX = (int) (slider.largx - Konstantj.SLIDER_SPRITE[6].getHeight()/(float) 2 -
+				(float) StringKvantil.largxStringn(gg, slider.plejn() + "")/2 +
+				StringKvantil.largxStringn(gg, slider.plejn() + ""));
+		final int offsetX = mlplejX<0? -mlplejX : 0;
+		slider.mlplejOffsetX = offsetX;
+		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration().createCompatibleImage(offsetX + plejX, 40,
+						Transparency.TRANSLUCENT);
+		
+		Graphics g = bild.getGraphics();
+		g.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(16f));
+		g.setColor(Konstantj.KOLORJ_BUTON[5]);
+		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g.drawImage(Konstantj.SLIDER_SPRITE[6], offsetX, 0, null);
+		g.drawImage(antawbild, Konstantj.SLIDER_SPRITE[6].getWidth() + offsetX, 3, null);
+		g.drawImage(Konstantj.SLIDER_SPRITE[6], slider.largx - Konstantj.SLIDER_SPRITE[6].getWidth() + offsetX, 0,
+				null);
+		g.drawString("" + slider.mlplej, mlplejX + offsetX,
+				(int) (StringKvantil.altStringn(g, "" + slider.mlplej)*1.3));
+		g.drawString("" + slider.plejn(), plejX - StringKvantil.largxStringn(g, slider.plejn() + "") + offsetX,
+				(int) (StringKvantil.altStringn(g, "" + slider.plejn())*1.3));
+		g.dispose();
+		
+		return bild;
 	}
+	
+	public static BufferedImage kreSlidern(final int nombr, final int kolor, final int qdukolora) {
+		final int offset = 3;
+		final int offset2 = 10;
+		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration().createCompatibleImage(Konstantj.SLIDER_SPRITE[kolor].getWidth(),
+						Konstantj.SLIDER_SPRITE[kolor].getHeight(), Transparency.TRANSLUCENT);
+		
+		Graphics g = bild.getGraphics();
+		g.drawImage(Konstantj.SLIDER_SPRITE[kolor], 0, 0, null);
+		g.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(16f));
+		g.setColor(Konstantj.KOLORJ_BUTON[(kolor + qdukolora)* qdukolora]);
+		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g.drawString("" + nombr, ((bild.getWidth() - StringKvantil.largxStringn(g, "" + nombr))>>1) +
+				StringKvantil.largxStringn(g, "" + nombr)/5, (bild.getHeight() - offset - offset2)/2 +
+				StringKvantil.altStringn(g, nombr + "")/2 - StringKvantil.altStringn(g, "" + nombr)/5 + offset2);
+		
+		return bild;
+	}
+	
 }

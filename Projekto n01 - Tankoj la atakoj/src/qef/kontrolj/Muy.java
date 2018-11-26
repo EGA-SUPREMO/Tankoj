@@ -21,9 +21,12 @@ public class Muy extends MouseAdapter {//Musxo
 	private final Cursor kursor;
 	private Point posici, reskalitPosici;
 	private Canvas canvas;
-	
+
 	private boolean qclick;
 	private boolean qclick2;
+	
+	private boolean qpresiteclick;
+	private boolean qpresiteclick2;
 	
 	public Muy(final Canvas canvas) {
 		
@@ -72,6 +75,12 @@ public class Muy extends MouseAdapter {//Musxo
 	public boolean qclick2n() {
 		return qclick2;
 	}
+	public boolean qpresiteclickn() {
+		return qpresiteclick;
+	}
+	public boolean qpresiteclick2n() {
+		return qpresiteclick2;
+	}
 	public void resetQclickjn() {
 		qclick = false;
 		qclick2 = false;
@@ -81,8 +90,19 @@ public class Muy extends MouseAdapter {//Musxo
 	public void mousePressed(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			qclick = true;
+			qpresiteclick = true;
 		} else if (SwingUtilities.isRightMouseButton(e)) {
 			qclick2 = true;
+			qpresiteclick2 = true;
+		}
+	}
+	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		if (SwingUtilities.isLeftMouseButton(e)) {
+			qpresiteclick = false;
+		} else if (SwingUtilities.isRightMouseButton(e)) {
+			qpresiteclick2 = false;
 		}
 	}
 	

@@ -14,10 +14,14 @@ public class Panel extends Komponant {
 	
 	@Override
 	public void desegn() {
+		DebugDesegn.desegnKomponantn(bild, x, y);
+	}
+
+	@Override
+	public void gxisdatig() {
 		if(qgxisdatig) {
 			bild = Bildperant.krePaneln(largx, alt, kolor, text);
 			qgxisdatig = false;
 		}
-		DebugDesegn.desegnKomponantn(bild, x, y);
 	}
 }

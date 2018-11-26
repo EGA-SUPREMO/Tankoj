@@ -22,7 +22,6 @@ public class Qefperant {
 	
 	private String titol;
 	
-//	private Fenestr fenestr;
 	private Son fonmuzik;
 	
 	public static void main(String[] args) {

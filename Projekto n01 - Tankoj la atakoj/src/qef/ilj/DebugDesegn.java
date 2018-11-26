@@ -11,7 +11,6 @@ import java.awt.image.BufferedImage;
 import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.vivazhj.Vivazh;
-import qef.uzantinterfac.Buton;
 
 public class DebugDesegn {
 	

@@ -16,12 +16,12 @@ public class Buton extends Komponant {
 		dukolor = dukoloro;
 		spec = 0;
 	}
-
+	
 	public void yangxKolor() {
 		kolor = dukolor;
 		qgxisdatig = true;
 	}
-	public void resetkolorn() {
+	public void resetButonn() {
 		if(kolor == dukolor) {
 			kolor = unukolor;
 			y -= spec*4;
@@ -46,11 +46,15 @@ public class Buton extends Komponant {
 	
 	@Override
 	public void desegn() {
+		DebugDesegn.desegnKomponantn(bild, x, y);
+	}
+
+	@Override
+	public void gxisdatig() {
 		if(qgxisdatig) {
 			bild = Bildperant.kreButon(largx, kolor, spec, kolor==dukolor ? 1:0, text);
 			qgxisdatig = false;
 		}
-		DebugDesegn.desegnKomponantn(bild, x, y);
 	}
 	
 }
