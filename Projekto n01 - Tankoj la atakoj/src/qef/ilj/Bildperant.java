@@ -184,15 +184,22 @@ public class Bildperant {
 						y*Konstantj.BUTON_SPRITE[index].getWidth()];
 		
 		bild.setRGB(0, 0, bild.getWidth(), bild.getHeight(), bildpixelj, 0, bild.getWidth());
-
+		
+		aldonTextn(bild, 0, offset, Konstantj.KOLORJ_BUTON[(kolor + qdukolora)* qdukolora], texto, 26f);
+		
+		return bild;
+	}
+	public static BufferedImage aldonTextn(final BufferedImage bild, final int offsetX, final int offsetY,
+			final Color kolor, final String text, final float grandec) {
+		
 		Graphics g = bild.getGraphics();
-		g.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(26f));
+		g.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(grandec));
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(Konstantj.KOLORJ_BUTON[(kolor + qdukolora)* qdukolora]);
-		g.drawString(texto, (bild.getWidth() - StringKvantil.largxStringn(g, texto))>>1,
-				(bild.getHeight() - offset)/2 + StringKvantil.altStringn(g, texto)/2 - StringKvantil.altStringn(g,
-						texto)/5);
+		g.setColor(kolor);
+		g.drawString(text, (bild.getWidth() + offsetX + 5 - StringKvantil.largxStringn(g, text))>>1,
+				(bild.getHeight() - offsetY)/2 + StringKvantil.altStringn(g, text)/2 - StringKvantil.altStringn(g,
+						text)/5);
 		g.dispose();
 		
 		return bild;

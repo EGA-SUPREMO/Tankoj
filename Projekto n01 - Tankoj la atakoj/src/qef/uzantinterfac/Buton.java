@@ -1,25 +1,36 @@
 package qef.uzantinterfac;
 
+import java.awt.Rectangle;
+
+import qef.Konstantj;
+import qef.QefObjektj;
 import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 
 public class Buton extends Komponant {
 	
 	//public static int selektit = 0;
-	private int spec;
+	protected int spec;
 	public final int unukolor, dukolor;
+	public int statDeLaMenu;
+	public Rectangle kolici;
+	public final static int LARGX_BUTON = Konstantj.ludLargx/3;//Konstantj.duonLudLargx;
 	
-	public Buton(final int xo, final int yo, final int largxo, final int koloro, final int dukoloro,
+	public Buton(final int xo, final int yo, final int largxo, final int koloro, final int dukoloro, final int stato,
 			final String texto) {
 		super(xo, yo, largxo, koloro, texto);
 		unukolor = koloro;
 		dukolor = dukoloro;
 		spec = 0;
+		statDeLaMenu = stato;
+		kolici = new Rectangle(xo, yo, largxo, Konstantj.KOMENC_MENU_ALT_BUTON);
 	}
 	
 	public void yangxKolor() {
-		kolor = dukolor;
-		qgxisdatig = true;
+		if(kolor != dukolor) {
+			kolor = dukolor;
+			qgxisdatig = true;
+		}
 	}
 	public void resetButonn() {
 		if(kolor == dukolor) {
@@ -30,16 +41,27 @@ public class Buton extends Komponant {
 		}
 	}
 	public void setSpec(final int speco) {
-		if(speco==1 && spec != speco) {
-			y += 4;
-			spec = speco;
-			qgxisdatig = true;
+		if(spec == speco)
+			return;
+		if(speco==0) {
+			y -= 4;
 		}
+		if(speco==1) {
+			y += 4;
+		}
+		spec = speco;
+		qgxisdatig = true;
 	}
-	public void resetspecn() {
+	public void resetSpecn() {
 		if(spec == 1) {
 			spec = 0;
 			y -= 4;
+			qgxisdatig = true;
+		}
+	}
+	public void resetKolorn() {
+		if(kolor == dukolor) {
+			kolor = unukolor;
 			qgxisdatig = true;
 		}
 	}
@@ -55,6 +77,18 @@ public class Buton extends Komponant {
 			bild = Bildperant.kreButon(largx, kolor, spec, kolor==dukolor ? 1:0, text);
 			qgxisdatig = false;
 		}
+		final Rectangle muy = QefObjektj.superfic.muyn().rectangleReskalitPosicin();
+		if(muy.intersects(kolici)) {
+			yangxKolor();
+			if(QefObjektj.superfic.muyn().qclickn()) {
+				setSpec(1);
+			}
+			
+		} else
+			resetButonn();
 	}
 	
+	public int specn() {
+		return spec;
+	}
 }

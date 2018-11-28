@@ -30,7 +30,7 @@ public class Slider extends Komponant {
 		y2 = yo + 4;
 		slider = Bildperant.kreSlidern(nun, kolor, qdukolora);
 		bild = Bildperant.kreLineoSlidern(this);
-		alt = slider.getHeight() + 4 + bild.getHeight();
+		alt = slider.getHeight() + 4;
 		mlplejOffsetX = 0;
 		x2 = (int) (xo + (double) nun/(plejo - mlplejo + 1)*largxo) - slider.getWidth()/2 + 2;
 	}
