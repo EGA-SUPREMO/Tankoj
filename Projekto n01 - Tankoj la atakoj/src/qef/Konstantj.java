@@ -199,8 +199,11 @@ public abstract class Konstantj {
 	public final static int KOMENC_MENU_VERTIKAL_MARGXEN = KOMENC_MENU_ALT_BUTON/7;
 	public final static int KOMENC_MENU_BUTONPLEJTEMP = 16;
 	
-	public final static BufferedImage FON1 = YargxilAzhj.yargxSkalitBildn("/background2.png", Transparency.OPAQUE,
-			149 - Konstantj.MARGXEN_BUTON*2);
+	public final static BufferedImage[] QEFFONJ = {
+			YargxilAzhj.yargxSkalitBildn("/background0.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
+			YargxilAzhj.yargxSkalitBildn("/background1.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2), 
+			YargxilAzhj.yargxSkalitBildn("/background2.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2), 
+			YargxilAzhj.yargxSkalitBildn("/background3.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2)};
 
 	public final static BufferedImage IX = YargxilAzhj.yargxBildn(Konstantj.ITENER_GRIZ + "cross.png",
 			Transparency.TRANSLUCENT);

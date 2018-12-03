@@ -301,8 +301,9 @@ public class Bildperant {
 		return bild;
 	}
 	
-	public static BufferedImage yangxButonAltn(final BufferedImage bild, final int alt, final int speco) {
+	public static BufferedImage yangxButonAltn(final BufferedImage bild, final int alto, final int speco) {
 		final int spec = speco==1? 0 : 1;
+		final int alt = alto - 4*speco;
 		BufferedImage finbild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 				.getDefaultConfiguration().createCompatibleImage(bild.getWidth(), alt,
 						Transparency.TRANSLUCENT);

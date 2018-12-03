@@ -59,9 +59,10 @@ public class Buton extends Komponant {
 		if(spec == speco)
 			return;
 		if(speco==0) {
+			kolor = unukolor;
 			y -= 4;
-		}
-		if(speco==1) {
+		} else if(speco==1) {
+			kolor = dukolor;
 			y += 4;
 		}
 		spec = speco;
