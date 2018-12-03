@@ -14,11 +14,10 @@ import qef.ilj.StringKvantil;
 
 public class Label extends Komponant {
 	
-	public int alt;
 	private Font font;
 	
 	public Label(final int xo, final int yo, final int koloro, final Font fonto, final String texto) {
-		super(xo, yo, 0, koloro, texto);
+		super(xo, yo, 0, 1, koloro, texto);
 		BufferedImage tempbild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 				.getDefaultConfiguration().createCompatibleImage(1, 1, Transparency.TRANSLUCENT);
 		
@@ -52,6 +51,7 @@ public class Label extends Komponant {
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawString(text, 0, alt);
 		g.dispose();
+		aldonAldonayjn(0);
 	}
 	
 }

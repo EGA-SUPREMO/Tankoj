@@ -39,12 +39,12 @@ public class KomencLudMenu implements Statlud {
 		
 		final int x = ludantnombr.xn() + ludantnombr.largxn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN;
 		sliderLudantnombr = new Slider(x,
-				ludantnombr.yn() + 2, qefpanel.largxn() - 2 - x + qefpanel.xn() -
+				ludantnombr.yn() + 2, qefpanel.largxn() - 5 - x + qefpanel.xn() -
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2, 2, 8, 2);
-		//ludantnombr.y = sliderLudantnombr.yn() + sliderLudantnombr.alt/2 - ludantnombr.alt/2;// - ludantnombr.alt;
-		tempilvic = new Presbuton(ludantnombr.xn(), sliderLudantnombr.yn() + sliderLudantnombr.alt +
+		
+		tempilvic = new Presbuton(ludantnombr.xn(), sliderLudantnombr.yn() + sliderLudantnombr.altn() +
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, 
-				qefpanel.largxn() - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4, 0, 2,
+				qefpanel.largxn() - 3 - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4, 0, 2,
 				Konstantj.KUTIM_FONT.deriveFont(14 + 2f),
 				"Temporizador de turnos desactivado", "Temporizador de turnos activado");
 		final int textnombrLargx = 80;
@@ -55,7 +55,7 @@ public class KomencLudMenu implements Statlud {
 		
 		simplMod = new Presbuton(tempilvic.xn(), tempilvic.yn() + Konstantj.KOMENC_MENU_ALT_BUTON +
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, (int)
-				(qefpanel.largxn()/2 - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2.5), 0, 2,
+				(qefpanel.largxn()/2 - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2.5 - 2.5), 0, 2,
 				Konstantj.KUTIM_FONT_BUTON.deriveFont(14 + 2f), "Modo simple",
 				"Modo complejo");
 		kunVicjMod = new Presbuton(simplMod.xn() + simplMod.largxn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN,
@@ -64,24 +64,39 @@ public class KomencLudMenu implements Statlud {
 				"Modo con turnos");
 		
 		mapj = new Label(simplMod.xn(), simplMod.yn() + Konstantj.KOMENC_MENU_ALT_BUTON +
-				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, 5, Konstantj.KUTIM_FONT.deriveFont(22f), "Mapas");
+				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, 5, Konstantj.KUTIM_FONT.deriveFont(24f), "Mapas:");
 		
-		Konstantj.BUTON_SPRITE[Konstantj.BUTON_SPRITE.length-1] = Konstantj.normal;
-		dezertmap = new Presbuton(simplMod.xn(), mapj.yn() + mapj.alt, (qefpanel.largxn() - 4 -
-				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4)/3, 3, 2,
-				Konstantj.KUTIM_FONT_BUTON, "", "");
-		//dezertmap.
 		
-		final int butonX = qefpanel.xn() + 2 + Konstantj.KOMENC_MENU_ALT_BUTON +
+		final int butonX = qefpanel.xn() + 2 + Konstantj.KOMENC_MENU_ALT_BUTON - 1 +
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*3;
-		dawrigi = new Buton(butonX, qefpanel.yn() + qefpanel.alt - 2 - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 -
+		dawrigi = new Buton(butonX, qefpanel.yn() + qefpanel.altn() - 2 - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 -
 				Konstantj.KOMENC_MENU_ALT_BUTON, qefpanel.largxn() - 2 - butonX + qefpanel.xn() -
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2, 3, 3, 2, "Continuar");
-		eliri = new Buton(qefpanel.xn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 + 2, dawrigi.yn(),
-				Konstantj.KOMENC_MENU_ALT_BUTON, 1, 1, 0, "");
+		dawrigi.aldonKomponantn(Konstantj.CHECK, (Konstantj.KOMENC_MENU_ALT_BUTON - 1 - Konstantj.IX.getWidth())/2,
+				(Konstantj.KOMENC_MENU_ALT_BUTON - Konstantj.IX.getHeight() - 4)/2, 0);
+		dawrigi.aldonKomponantn(Konstantj.CHECK, (Konstantj.KOMENC_MENU_ALT_BUTON - 1 - Konstantj.IX.getWidth())/2,
+				(Konstantj.KOMENC_MENU_ALT_BUTON - Konstantj.CHECK.getHeight() - 4)/2, 1);
 		
-		qefpanel.aldonKomponantn(ludantnombr);
-		qefpanel.aldonKomponantn(mapj);
+		eliri = new Buton(qefpanel.xn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 + 2, dawrigi.yn(),
+				Konstantj.KOMENC_MENU_ALT_BUTON - 1, 1, 1, 0, "");
+		eliri.aldonKomponantn(Konstantj.IX, (eliri.largxn() - Konstantj.IX.getWidth())/2,
+				(Konstantj.KOMENC_MENU_ALT_BUTON - Konstantj.IX.getHeight() - 4)/2, 0);
+		eliri.aldonKomponantn(Konstantj.IX, (eliri.largxn() - Konstantj.IX.getWidth())/2,
+				(Konstantj.KOMENC_MENU_ALT_BUTON - Konstantj.IX.getHeight() - 4)/2, 1);
+
+		dezertmap = new Presbuton(simplMod.xn(), mapj.yn() + mapj.altn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN,
+				(qefpanel.largxn() - 4 - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4)/3,
+				(dawrigi.yn() - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*3 -
+						(mapj.yn() + mapj.altn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN))/3, 3, 2,
+				Konstantj.KUTIM_FONT_BUTON, "", "");
+		
+		dezertmap.aldonKomponantn(Konstantj.FON1, (dezertmap.largxn() - Konstantj.FON1.getWidth())/2,
+				(dezertmap.altn() - Konstantj.FON1.getHeight())/2, 0);
+		dezertmap.aldonKomponantn(Konstantj.FON1, (dezertmap.largxn() - Konstantj.FON1.getWidth())/2,
+				(dezertmap.altn() - Konstantj.FON1.getHeight())/2, 1);
+		
+		qefpanel.aldonKomponantn(ludantnombr, 0);
+		qefpanel.aldonKomponantn(mapj, 0);
 		
 	}
 	

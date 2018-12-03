@@ -106,17 +106,24 @@ public abstract class Konstantj {
 	public static final String ITENER_SON_MISIL = ITENER_SONJ_LUDANT + "pom.wav";
 	
 	public static final String ITENER_IKON = "/icons/";
-	public static final String ITENER_RUGX_BUTON = ITENER_IKON + "red_button_";
-	public static final String ITENER_BLU_BUTON = ITENER_IKON + "blue_button_";
-	public static final String ITENER_FLAV_BUTON = ITENER_IKON + "yellow_button_";
-	public static final String ITENER_VERD_BUTON = ITENER_IKON + "green_button_";
-	public static final String ITENER_GRIZ_BUTON = ITENER_IKON + "grey_button_";
 	
-	public static final String ITENER_RUGX_SLIDER = ITENER_IKON + "red_slider";
-	public static final String ITENER_BLU_SLIDER = ITENER_IKON + "blue_slider";
-	public static final String ITENER_FLAV_SLIDER = ITENER_IKON + "yellow_slider";
-	public static final String ITENER_VERD_SLIDER = ITENER_IKON +"green_slider";
-	public static final String ITENER_GRIZ_SLIDER = ITENER_IKON + "grey_slider";
+	public static final String ITENER_RUGX = ITENER_IKON + "red_";
+	public static final String ITENER_BLU = ITENER_IKON + "blue_";
+	public static final String ITENER_FLAV = ITENER_IKON + "yellow_";
+	public static final String ITENER_VERD = ITENER_IKON + "green_";
+	public static final String ITENER_GRIZ = ITENER_IKON + "grey_";
+	
+	public static final String ITENER_RUGX_BUTON = ITENER_RUGX + "button_";
+	public static final String ITENER_BLU_BUTON = ITENER_BLU + "button_";
+	public static final String ITENER_FLAV_BUTON = ITENER_FLAV + "button_";
+	public static final String ITENER_VERD_BUTON = ITENER_VERD + "button_";
+	public static final String ITENER_GRIZ_BUTON = ITENER_GRIZ + "button_";
+	
+	public static final String ITENER_RUGX_SLIDER = ITENER_RUGX + "slider";
+	public static final String ITENER_BLU_SLIDER = ITENER_BLU + "slider";
+	public static final String ITENER_FLAV_SLIDER = ITENER_FLAV + "slider";
+	public static final String ITENER_VERD_SLIDER = ITENER_VERD +"slider";
+	public static final String ITENER_GRIZ_SLIDER = ITENER_GRIZ + "slider";
 	
 	public final static Font KUTIM_FONT = YargxilAzhj.yargxFontn("/kenvector_future_thin.ttf");
 	public final static Font KUTIM_FONT_BUTON = YargxilAzhj.yargxFontn("/kenvector_future.ttf");
@@ -179,8 +186,6 @@ public abstract class Konstantj {
 	public final static BufferedImage TEXTKAMP_SPRITE = YargxilAzhj.yargxBildn(ITENER_IKON + "/text_field.png",
 			Transparency.TRANSLUCENT);
 	
-	public final static BufferedImage normal = YargxilAzhj.yargxBildn("/background0.png", Transparency.TRANSLUCENT,
-			149);
 	
 	public static boolean altGrafik = true;
 	
@@ -193,5 +198,13 @@ public abstract class Konstantj {
 	public final static int KOMENC_MENU_ALT_BUTON = 49;
 	public final static int KOMENC_MENU_VERTIKAL_MARGXEN = KOMENC_MENU_ALT_BUTON/7;
 	public final static int KOMENC_MENU_BUTONPLEJTEMP = 16;
+	
+	public final static BufferedImage FON1 = YargxilAzhj.yargxSkalitBildn("/background2.png", Transparency.OPAQUE,
+			149 - Konstantj.MARGXEN_BUTON*2);
+
+	public final static BufferedImage IX = YargxilAzhj.yargxBildn(Konstantj.ITENER_GRIZ + "cross.png",
+			Transparency.TRANSLUCENT);
+	public final static BufferedImage CHECK = YargxilAzhj.yargxBildn(Konstantj.ITENER_GRIZ + "checkmark.png",
+			Transparency.TRANSLUCENT);
 	
 }

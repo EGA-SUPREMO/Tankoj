@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Transparency;
 import java.awt.geom.AffineTransform;
@@ -285,7 +286,7 @@ public class Bildperant {
 		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 				.getDefaultConfiguration().createCompatibleImage(Konstantj.SLIDER_SPRITE[kolor].getWidth(),
 						Konstantj.SLIDER_SPRITE[kolor].getHeight(), Transparency.TRANSLUCENT);
-
+		
 		Graphics g = bild.getGraphics();
 		g.drawImage(Konstantj.SLIDER_SPRITE[kolor], 0, 0, null);
 		g.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(16f));
@@ -295,8 +296,29 @@ public class Bildperant {
 		g.drawString("" + nombr, ((bild.getWidth() - StringKvantil.largxStringn(g, "" + nombr))>>1) +
 				StringKvantil.largxStringn(g, "" + nombr)/5, (bild.getHeight() - offset - offset2)/2 +
 				StringKvantil.altStringn(g, nombr + "")/2 - StringKvantil.altStringn(g, "" + nombr)/5 + offset2);
+		g.dispose();
 		
 		return bild;
+	}
+	
+	public static BufferedImage yangxButonAltn(final BufferedImage bild, final int alt, final int speco) {
+		final int spec = speco==1? 0 : 1;
+		BufferedImage finbild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration().createCompatibleImage(bild.getWidth(), alt,
+						Transparency.TRANSLUCENT);
+		
+		Graphics g = finbild.getGraphics();
+		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g.drawImage(bild.getSubimage(0, 0, bild.getWidth(), Konstantj.MARGXEN_BUTON), 0, 0, null);
+		g.drawImage(bild.getSubimage(0, Konstantj.MARGXEN_BUTON, bild.getWidth(), bild.getHeight() -
+				Konstantj.MARGXEN_BUTON*2 - 4*spec).getScaledInstance(bild.getWidth(), alt -
+						Konstantj.MARGXEN_BUTON*2, Image.SCALE_SMOOTH), 0, Konstantj.MARGXEN_BUTON, null);
+		g.drawImage(bild.getSubimage(0, bild.getHeight() - Konstantj.MARGXEN_BUTON - 4*spec, bild.getWidth(),
+				Konstantj.MARGXEN_BUTON + 4*spec), 0, alt - Konstantj.MARGXEN_BUTON - 4*spec, null);
+		g.dispose();
+		
+		return finbild;
 	}
 	
 	public static BufferedImage aldonKomponantn(final BufferedImage bild, final BufferedImage komponant,

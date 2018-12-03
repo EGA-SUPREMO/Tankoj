@@ -11,10 +11,18 @@ public class Presbuton extends Buton {
 	
 	private String text2;
 	private Font font;
-	
+
 	public Presbuton(final int xo, final int yo, final int largxo, final int koloro, final int dukoloro,
 			final Font fonto, final String texto, final String texto2) {
 		super(xo, yo, largxo, koloro, dukoloro, -1, texto);
+		text2 = texto2;
+		font = fonto;
+		qgxisdatig = true;
+		definigBildn();
+	}
+	public Presbuton(final int xo, final int yo, final int largxo, final int alt, final int koloro,
+			final int dukoloro, final Font fonto, final String texto, final String texto2) {
+		super(xo, yo, largxo, alt, koloro, dukoloro, -1, texto);
 		text2 = texto2;
 		font = fonto;
 		qgxisdatig = true;
@@ -40,6 +48,11 @@ public class Presbuton extends Buton {
 			final int qdukolora = kolor==dukolor ? 1:0;
 			bild = Bildperant.aldonTextn(Bildperant.kreButon(largx, kolor, spec, qdukolora, ""), 0, (spec>0? 0 : 1)*4,
 					Konstantj.KOLORJ_BUTON[(kolor + qdukolora)* qdukolora], spec>0? text2 : text, font);
+			
+			if(qalt)
+				bild = Bildperant.yangxButonAltn(bild, alt, spec);
+			
+			aldonAldonayjn(spec);
 			qgxisdatig = false;
 		}
 	}

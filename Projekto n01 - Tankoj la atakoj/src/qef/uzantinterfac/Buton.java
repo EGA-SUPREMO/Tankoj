@@ -14,15 +14,30 @@ public class Buton extends Komponant {
 	public final int unukolor, dukolor;
 	public int statDeLaMenu;
 	public final static int LARGX_BUTON = Konstantj.ludLargx/3;//Konstantj.duonLudLargx;
+	public boolean qalt;
 	
 	public Buton(final int xo, final int yo, final int largxo, final int koloro, final int dukoloro, final int stato,
 			final String texto) {
-		super(xo, yo, largxo, koloro, texto);
+		super(xo, yo, largxo, 2, koloro, texto);
 		unukolor = koloro;
 		dukolor = dukoloro;
 		spec = 0;
 		statDeLaMenu = stato;
-		kolici = new Rectangle(xo, yo, largxo, Konstantj.KOMENC_MENU_ALT_BUTON);
+		alt = Konstantj.KOMENC_MENU_ALT_BUTON;
+		kolici = new Rectangle(xo, yo, largxo, alt);
+		qalt = false;
+		definigBildn();
+	}
+	public Buton(final int xo, final int yo, final int largxo, final int alto, final int koloro, final int dukoloro, final int stato,
+			final String texto) {
+		super(xo, yo, largxo, 2, koloro, texto);
+		unukolor = koloro;
+		dukolor = dukoloro;
+		spec = 0;
+		statDeLaMenu = stato;
+		alt = alto;
+		kolici = new Rectangle(xo, yo, largxo, alto);
+		qalt = true;
 		definigBildn();
 	}
 	
@@ -88,12 +103,22 @@ public class Buton extends Komponant {
 	public int specn() {
 		return spec;
 	}
-
+	@Override
+	public void setAltn(final int alto) {
+		super.setAltn(alto);
+		qalt = true;
+	}
 	@Override
 	public void definigBildn() {
 		if(qgxisdatig) {
+			
 			bild = Bildperant.kreButon(largx, kolor, spec, kolor==dukolor ? 1:0, text);
+			if(qalt)
+				bild = Bildperant.yangxButonAltn(bild, alt, spec);
+			
+			aldonAldonayjn(spec);
 			qgxisdatig = false;
 		}
 	}
+	
 }

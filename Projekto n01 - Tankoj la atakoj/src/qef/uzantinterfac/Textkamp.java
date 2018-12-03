@@ -8,7 +8,7 @@ public class Textkamp extends Komponant {
 	
 	public Textkamp(final int xo, final int yo, final int largxo, final int spec,
 			final String texto) {
-		super(xo, yo, largxo, 0, texto);
+		super(xo, yo, largxo, 1, 0, texto);
 		definigBildn();
 	}
 	
@@ -30,6 +30,7 @@ public class Textkamp extends Komponant {
 			bild = Bildperant.kreButon(largx, Konstantj.BUTON_SPRITE.length-1, 0, 0, "");
 			bild = Bildperant.aldonTextn(bild, 0, 0, Konstantj.KOLORJ_BUTON[5], text,
 					Konstantj.KUTIM_FONT_BUTON.deriveFont(12f + 2f));
+			aldonAldonayjn(0);
 			qgxisdatig = false;
 		}
 	}

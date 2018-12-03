@@ -16,23 +16,22 @@ public class Slider extends Komponant {
 	public int mlplejOffsetX;
 	private boolean qgxisdatigSlidern;
 	private int x2, y2;
-	public final int alt;
 	
 	public Slider(final int xo, final int yo, final int largxo, final int mlplejo, final int plejo,
 			final int koloro) {
-		super(xo, yo, largxo, koloro, "");
+		super(xo, yo, largxo, 1, koloro, "");
 		
 		mlplej = mlplejo;
 		plej = plejo;
 		qdukolora = 0;
-		nun = plejo/2;
+		nun = mlplejo + (plejo - mlplejo)/2;
 		qgxisdatigSlidern = true;
 		y2 = yo + 4;
 		definigBildn();
 		
 		alt = slider.getHeight() + 4;
 		mlplejOffsetX = 0;
-		x2 = (int) (xo + (double) nun/(plejo - mlplejo)*largxo) - slider.getWidth()/2 + 2;
+		x2 = (int) (xo + (double) (nun - 2)/(plejo - mlplejo)*largxo) - slider.getWidth()/2 + 2;
 	}
 	
 	@Override
@@ -98,6 +97,7 @@ public class Slider extends Komponant {
 	public void definigBildn() {
 		if(qgxisdatig) {
 			bild = Bildperant.kreLineoSlidern(this);
+			aldonAldonayjn(0);
 			qgxisdatig = false;
 		}
 		if(qgxisdatigSlidern) {
