@@ -1,6 +1,7 @@
 package qef.ilj;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
@@ -185,15 +186,16 @@ public class Bildperant {
 		
 		bild.setRGB(0, 0, bild.getWidth(), bild.getHeight(), bildpixelj, 0, bild.getWidth());
 		
-		aldonTextn(bild, 0, offset, Konstantj.KOLORJ_BUTON[(kolor + qdukolora)* qdukolora], texto, 26f);
+		aldonTextn(bild, 0, offset, Konstantj.KOLORJ_BUTON[(kolor + qdukolora)* qdukolora], texto,
+				Konstantj.KUTIM_FONT_BUTON.deriveFont(26f));
 		
 		return bild;
 	}
 	public static BufferedImage aldonTextn(final BufferedImage bild, final int offsetX, final int offsetY,
-			final Color kolor, final String text, final float grandec) {
+			final Color kolor, final String text, final Font font) {
 		
 		Graphics g = bild.getGraphics();
-		g.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(grandec));
+		g.setFont(font);
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setColor(kolor);
@@ -239,7 +241,7 @@ public class Bildperant {
 		Konstantj.BUTON_SPRITE[Konstantj.BUTON_SPRITE.length-1] = Konstantj.SLIDER_SPRITE[5];
 		
 		
-		BufferedImage antawbild = kreButon(slider.largx - Konstantj.SLIDER_SPRITE[6].getWidth()*2,
+		BufferedImage antawbild = kreButon(slider.largxn() - Konstantj.SLIDER_SPRITE[6].getWidth()*2,
 				Konstantj.BUTON_SPRITE.length - 1, 0, 0, "");
 		
 		Graphics gg = antawbild.getGraphics();
@@ -250,7 +252,7 @@ public class Bildperant {
 		
 		final int mlplejX = (int)(Konstantj.SLIDER_SPRITE[6].getHeight()/(float) 2 -
 				(float) StringKvantil.largxStringn(gg, slider.mlplej + "")/2);
-		final int plejX = (int) (slider.largx - Konstantj.SLIDER_SPRITE[6].getHeight()/(float) 2 -
+		final int plejX = (int) (slider.largxn() - Konstantj.SLIDER_SPRITE[6].getHeight()/(float) 2 -
 				(float) StringKvantil.largxStringn(gg, slider.plejn() + "")/2 +
 				StringKvantil.largxStringn(gg, slider.plejn() + ""));
 		final int offsetX = mlplejX<0? -mlplejX : 0;
@@ -266,7 +268,7 @@ public class Bildperant {
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawImage(Konstantj.SLIDER_SPRITE[6], offsetX, 0, null);
 		g.drawImage(antawbild, Konstantj.SLIDER_SPRITE[6].getWidth() + offsetX, 3, null);
-		g.drawImage(Konstantj.SLIDER_SPRITE[6], slider.largx - Konstantj.SLIDER_SPRITE[6].getWidth() + offsetX, 0,
+		g.drawImage(Konstantj.SLIDER_SPRITE[6], slider.largxn() - Konstantj.SLIDER_SPRITE[6].getWidth() + offsetX, 0,
 				null);
 		g.drawString("" + slider.mlplej, mlplejX + offsetX,
 				(int) (StringKvantil.altStringn(g, "" + slider.mlplej)*1.3));
@@ -283,7 +285,7 @@ public class Bildperant {
 		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 				.getDefaultConfiguration().createCompatibleImage(Konstantj.SLIDER_SPRITE[kolor].getWidth(),
 						Konstantj.SLIDER_SPRITE[kolor].getHeight(), Transparency.TRANSLUCENT);
-		
+
 		Graphics g = bild.getGraphics();
 		g.drawImage(Konstantj.SLIDER_SPRITE[kolor], 0, 0, null);
 		g.setFont(Konstantj.KUTIM_FONT_BUTON.deriveFont(16f));
@@ -297,4 +299,13 @@ public class Bildperant {
 		return bild;
 	}
 	
+	public static BufferedImage aldonKomponantn(final BufferedImage bild, final BufferedImage komponant,
+			final int x, final int y) {
+		
+		Graphics g = bild.getGraphics();
+		g.drawImage(komponant, x, y, null);
+		g.dispose();
+		
+		return bild;
+	}
 }

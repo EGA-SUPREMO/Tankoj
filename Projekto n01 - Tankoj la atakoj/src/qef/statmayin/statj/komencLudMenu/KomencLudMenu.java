@@ -8,6 +8,7 @@ import qef.uzantinterfac.Presbuton;
 import qef.uzantinterfac.Label;
 import qef.uzantinterfac.Panel;
 import qef.uzantinterfac.Slider;
+import qef.uzantinterfac.Textkamp;
 
 public class KomencLudMenu implements Statlud {
 	
@@ -16,45 +17,71 @@ public class KomencLudMenu implements Statlud {
 	private Presbuton simplMod, kunVicjMod;
 	private Panel qefpanel;
 	private Label ludantnombr;
-	private Label ailudantnombr;
+	private Presbuton tempilvic;
+	private Textkamp textnombr;
 	private Slider sliderLudantnombr;
-	private Slider sliderAiludantnombr;
+	private Label mapj;
+	private Presbuton dezertmap;
+	private Presbuton selvamap;
+	private Presbuton mesamap;
+	private Presbuton praderamap;
+	private Presbuton negxmap;
+	private Presbuton urbmap;
+	private Presbuton metalmap;
 	
 	public KomencLudMenu() {
 		qefpanel = new Panel(Konstantj.duonLudLargx>>1, Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2,
 				Konstantj.duonLudLargx, Konstantj.ludAlt - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4, 4, "");
 		
-		ludantnombr = new Label(qefpanel.x + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2,
-				qefpanel.y + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2, 5, Konstantj.KUTIM_FONT.deriveFont(16f),
+		ludantnombr = new Label(qefpanel.xn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 + 2,
+				qefpanel.yn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2, 5, Konstantj.KUTIM_FONT.deriveFont(16f),
 				"Numero de jugadores:");
-		ailudantnombr = new Label(ludantnombr.x, ludantnombr.y + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, 5,
-				Konstantj.KUTIM_FONT.deriveFont(16f), "Numero de IA's:");
-
-		final int x = ludantnombr.x + ludantnombr.largx + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN;
-
-		sliderLudantnombr = new Slider(x,
-				ludantnombr.y, qefpanel.largx - 2 - x + qefpanel.x -
-				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2, 2, 8, 2);
-		sliderAiludantnombr = new Slider(x,
-				sliderLudantnombr.y + sliderLudantnombr.alt + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN,
-				qefpanel.largx - 2 - x + qefpanel.x - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2, 0,
-				sliderLudantnombr.nun, 2);
-		ludantnombr.y = sliderLudantnombr.y + sliderLudantnombr.alt/2 - ludantnombr.alt/2;
-		ailudantnombr.y = sliderAiludantnombr.y + sliderAiludantnombr.alt/2 - ailudantnombr.alt/2;
-
-		simplMod = new Presbuton(ludantnombr.x, sliderAiludantnombr.y + sliderAiludantnombr.alt +
-				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, (int)
-				(qefpanel.largx/2 - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2.5), 0, 2, "Modo simple",
-				"Modo complejo");
-		kunVicjMod = new Presbuton(simplMod.x + simplMod.largx + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, simplMod.y,
-				simplMod.largx, 0, 2, "Modo sin turnos", "Modo con turnos");
 		
-		final int butonX = qefpanel.x + 2 + Konstantj.KOMENC_MENU_ALT_BUTON + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*3;
-		dawrigi = new Buton(butonX, qefpanel.y + qefpanel.alt - 2 - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 -
-				Konstantj.KOMENC_MENU_ALT_BUTON, qefpanel.largx - 2 - butonX + qefpanel.x -
+		final int x = ludantnombr.xn() + ludantnombr.largxn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN;
+		sliderLudantnombr = new Slider(x,
+				ludantnombr.yn() + 2, qefpanel.largxn() - 2 - x + qefpanel.xn() -
+				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2, 2, 8, 2);
+		//ludantnombr.y = sliderLudantnombr.yn() + sliderLudantnombr.alt/2 - ludantnombr.alt/2;// - ludantnombr.alt;
+		tempilvic = new Presbuton(ludantnombr.xn(), sliderLudantnombr.yn() + sliderLudantnombr.alt +
+				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, 
+				qefpanel.largxn() - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4, 0, 2,
+				Konstantj.KUTIM_FONT.deriveFont(14 + 2f),
+				"Temporizador de turnos desactivado", "Temporizador de turnos activado");
+		final int textnombrLargx = 80;
+		textnombr = new Textkamp(tempilvic.xn() + tempilvic.largxn() - textnombrLargx, tempilvic.yn(),
+				textnombrLargx, 1, "2093");
+		tempilvic.setLargxn(tempilvic.largxn() - textnombr.largxn() - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN);
+		
+		
+		simplMod = new Presbuton(tempilvic.xn(), tempilvic.yn() + Konstantj.KOMENC_MENU_ALT_BUTON +
+				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, (int)
+				(qefpanel.largxn()/2 - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2.5), 0, 2,
+				Konstantj.KUTIM_FONT_BUTON.deriveFont(14 + 2f), "Modo simple",
+				"Modo complejo");
+		kunVicjMod = new Presbuton(simplMod.xn() + simplMod.largxn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN,
+				simplMod.yn(),
+				simplMod.largxn(), 0, 2, Konstantj.KUTIM_FONT_BUTON.deriveFont(14 + 2f), "Modo sin turnos",
+				"Modo con turnos");
+		
+		mapj = new Label(simplMod.xn(), simplMod.yn() + Konstantj.KOMENC_MENU_ALT_BUTON +
+				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, 5, Konstantj.KUTIM_FONT.deriveFont(22f), "Mapas");
+		
+		Konstantj.BUTON_SPRITE[Konstantj.BUTON_SPRITE.length-1] = Konstantj.normal;
+		dezertmap = new Presbuton(simplMod.xn(), mapj.yn() + mapj.alt, (qefpanel.largxn() - 4 -
+				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4)/3, 3, 2,
+				Konstantj.KUTIM_FONT_BUTON, "", "");
+		//dezertmap.
+		
+		final int butonX = qefpanel.xn() + 2 + Konstantj.KOMENC_MENU_ALT_BUTON +
+				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*3;
+		dawrigi = new Buton(butonX, qefpanel.yn() + qefpanel.alt - 2 - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 -
+				Konstantj.KOMENC_MENU_ALT_BUTON, qefpanel.largxn() - 2 - butonX + qefpanel.xn() -
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2, 3, 3, 2, "Continuar");
-		eliri = new Buton(qefpanel.x + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 + 2, dawrigi.y,
+		eliri = new Buton(qefpanel.xn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 + 2, dawrigi.yn(),
 				Konstantj.KOMENC_MENU_ALT_BUTON, 1, 1, 0, "");
+		
+		qefpanel.aldonKomponantn(ludantnombr);
+		qefpanel.aldonKomponantn(mapj);
 		
 	}
 	
@@ -69,10 +96,11 @@ public class KomencLudMenu implements Statlud {
 		eliri.gxisdatig();
 		qefpanel.gxisdatig();
 		sliderLudantnombr.gxisdatig();
-		sliderAiludantnombr.gxisdatig();
 		simplMod.gxisdatig();
 		kunVicjMod.gxisdatig();
-		sliderAiludantnombr.setPlejn(sliderLudantnombr.nun);
+		tempilvic.gxisdatig();
+		textnombr.gxisdatig();
+		dezertmap.gxisdatig();
 	}
 
 	private void gxisdatigSelektatjn() {
@@ -83,11 +111,11 @@ public class KomencLudMenu implements Statlud {
 		DebugDesegn.desegnRectangle(0, 0, Konstantj.ludLargx, Konstantj.ludAlt, Konstantj.KOLOR_FONKOMENCMENU);
 		qefpanel.desegn();
 		sliderLudantnombr.desegn();
-		sliderAiludantnombr.desegn();
-		ludantnombr.desegn();
-		ailudantnombr.desegn();
+		tempilvic.desegn();
+		textnombr.desegn();
 		simplMod.desegn();
 		kunVicjMod.desegn();
+		dezertmap.desegn();
 		dawrigi.desegn();
 		eliri.desegn();
 	}

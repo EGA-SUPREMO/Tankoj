@@ -198,6 +198,9 @@ public abstract class Vivazh implements Estazh {
 		return new Rectangle((int) x, (int) y, largxVivazh, altVivazh);
 	}
 	
+	public void resetVivn() {
+		viv = plejviv;
+	}
 	public void mlgajnVivn(final double d) {
         if ((viv = viv - d) < 0)
             viv = 0;

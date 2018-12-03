@@ -258,6 +258,11 @@ public class Ludant extends Vivazh {
 		return nunangul;
 	}
 	@Override
+	public void resetVivn() {
+		super.resetVivn();
+		plejpotenc = (int) viv;
+	}
+	@Override
 	public void mlgajnVivn(final double vivo) {
 		super.mlgajnVivn(vivo);
 		if(plejpotenc>viv) {

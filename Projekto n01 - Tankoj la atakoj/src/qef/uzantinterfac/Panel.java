@@ -10,6 +10,7 @@ public class Panel extends Komponant {
 	public Panel(final int xo, final int yo, final int largxo, final int alto, final int koloro, final String texto) {
 		super(xo, yo, largxo, koloro, texto);
 		alt = alto;
+		definigBildn();
 	}
 	
 	@Override
@@ -19,6 +20,10 @@ public class Panel extends Komponant {
 
 	@Override
 	public void gxisdatig() {
+	}
+
+	@Override
+	public void definigBildn() {
 		if(qgxisdatig) {
 			bild = Bildperant.krePaneln(largx, alt, kolor, text);
 			qgxisdatig = false;

@@ -176,6 +176,12 @@ public abstract class Konstantj {
 			new Color(205, 92, 16).darker(), new Color(142, 112, 0), new Color(61, 112, 37),
 			new Color(153, 153, 153)};
 	
+	public final static BufferedImage TEXTKAMP_SPRITE = YargxilAzhj.yargxBildn(ITENER_IKON + "/text_field.png",
+			Transparency.TRANSLUCENT);
+	
+	public final static BufferedImage normal = YargxilAzhj.yargxBildn("/background0.png", Transparency.TRANSLUCENT,
+			149);
+	
 	public static boolean altGrafik = true;
 	
 	public final static int HORIZONTAL_MARGXEN = 20;

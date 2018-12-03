@@ -22,18 +22,18 @@ public class KomencMenu implements Statlud {
 		butonj[0] = new Buton(Konstantj.duonLudLargx - (Buton.LARGX_BUTON>>1), Konstantj.ludAlt -
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*7 - Konstantj.KOMENC_MENU_ALT_BUTON*4, Buton.LARGX_BUTON, 0,
 				2, 3, "Iniciar partida");
-		butonj[1] = new Buton(butonj[0].x, butonj[0].y + Konstantj.KOMENC_MENU_ALT_BUTON +
+		butonj[1] = new Buton(butonj[0].xn(), butonj[0].yn() + Konstantj.KOMENC_MENU_ALT_BUTON +
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, Buton.LARGX_BUTON, 0, 2, 4, "Cargar partida");
-		butonj[2] = new Buton(butonj[0].x, butonj[1].y + Konstantj.KOMENC_MENU_ALT_BUTON +
+		butonj[2] = new Buton(butonj[0].xn(), butonj[1].yn() + Konstantj.KOMENC_MENU_ALT_BUTON +
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, Buton.LARGX_BUTON, 0, 3, 5, "Opciones");
-		butonj[3] = new Buton(butonj[0].x, butonj[2].y + Konstantj.KOMENC_MENU_ALT_BUTON +
+		butonj[3] = new Buton(butonj[0].xn(), butonj[2].yn() + Konstantj.KOMENC_MENU_ALT_BUTON +
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, Buton.LARGX_BUTON, 0, 1, -1, "Salir");
 		
-		qefpanel = new Panel(butonj[0].x - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 - 2,
-				butonj[0].y - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 - 2, Buton.LARGX_BUTON +
-				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4 + 4, butonj[3].y + Konstantj.KOMENC_MENU_ALT_BUTON +
-				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4 - butonj[0].y + 4, 4, "");
-		duapanel = new Panel(qefpanel.x, qefpanel.y - Konstantj.KOMENC_MENU_ALT_BUTON, qefpanel.largx,
+		qefpanel = new Panel(butonj[0].xn() - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 - 2,
+				butonj[0].yn() - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 - 2, Buton.LARGX_BUTON +
+				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4 + 4, butonj[3].yn() + Konstantj.KOMENC_MENU_ALT_BUTON +
+				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4 - butonj[0].yn() + 4, 4, "");
+		duapanel = new Panel(qefpanel.xn(), qefpanel.yn() - Konstantj.KOMENC_MENU_ALT_BUTON, qefpanel.largxn(),
 				Konstantj.KOMENC_MENU_ALT_BUTON + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, 0, "Tankoj");
 	}
 
@@ -52,7 +52,8 @@ public class KomencMenu implements Statlud {
 	private void gxisdatigSelektatjn() {//MALBELEGA KODO
 		final Rectangle muy = QefObjektj.superfic.muyn().rectangleReskalitPosicin();
 		
-		if(muy.intersects(new Rectangle(butonj[3].x, butonj[3].y, Buton.LARGX_BUTON, Konstantj.KOMENC_MENU_ALT_BUTON))) {
+		if(muy.intersects(new Rectangle(butonj[3].xn(), butonj[3].yn(), Buton.LARGX_BUTON,
+				Konstantj.KOMENC_MENU_ALT_BUTON))) {
 			if(QefObjektj.superfic.muyn().qclickn()) {
 				Kontrolperant.klavar.elir();
 			}

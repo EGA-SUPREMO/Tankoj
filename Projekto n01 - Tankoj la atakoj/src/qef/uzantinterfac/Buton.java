@@ -13,7 +13,6 @@ public class Buton extends Komponant {
 	protected int spec;
 	public final int unukolor, dukolor;
 	public int statDeLaMenu;
-	public Rectangle kolici;
 	public final static int LARGX_BUTON = Konstantj.ludLargx/3;//Konstantj.duonLudLargx;
 	
 	public Buton(final int xo, final int yo, final int largxo, final int koloro, final int dukoloro, final int stato,
@@ -24,6 +23,7 @@ public class Buton extends Komponant {
 		spec = 0;
 		statDeLaMenu = stato;
 		kolici = new Rectangle(xo, yo, largxo, Konstantj.KOMENC_MENU_ALT_BUTON);
+		definigBildn();
 	}
 	
 	public void yangxKolor() {
@@ -73,10 +73,7 @@ public class Buton extends Komponant {
 
 	@Override
 	public void gxisdatig() {
-		if(qgxisdatig) {
-			bild = Bildperant.kreButon(largx, kolor, spec, kolor==dukolor ? 1:0, text);
-			qgxisdatig = false;
-		}
+		definigBildn();
 		final Rectangle muy = QefObjektj.superfic.muyn().rectangleReskalitPosicin();
 		if(muy.intersects(kolici)) {
 			yangxKolor();
@@ -90,5 +87,13 @@ public class Buton extends Komponant {
 	
 	public int specn() {
 		return spec;
+	}
+
+	@Override
+	public void definigBildn() {
+		if(qgxisdatig) {
+			bild = Bildperant.kreButon(largx, kolor, spec, kolor==dukolor ? 1:0, text);
+			qgxisdatig = false;
+		}
 	}
 }

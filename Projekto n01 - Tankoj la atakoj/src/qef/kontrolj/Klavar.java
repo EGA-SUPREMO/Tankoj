@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
 import qef.Konstantj;
+import qef.estazhj.vivazhj.Ludant;
 import qef.ilj.Vicperant;
 
 public class Klavar extends KeyAdapter {
@@ -101,6 +102,7 @@ public class Klavar extends KeyAdapter {
 				elir();
 				break;
 			case Konstantj.REKOMENCI:
+				restorig();
 				Vicperant.ludantj[Vicperant.nunLudantn()].setXn(480);
 				Vicperant.ludantj[Vicperant.nunLudantn()].setYn(280);
 				break;
@@ -108,6 +110,10 @@ public class Klavar extends KeyAdapter {
 				qkolekt = false;
 				break;
 		}
+	}
+	public void restorig() {
+		for(Ludant l: Vicperant.ludantj)
+			l.resetVivn();;
 	}
 	
 	public void elir() {

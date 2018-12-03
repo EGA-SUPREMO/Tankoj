@@ -28,11 +28,11 @@ public class Slider extends Komponant {
 		nun = plejo/2;
 		qgxisdatigSlidern = true;
 		y2 = yo + 4;
-		slider = Bildperant.kreSlidern(nun, kolor, qdukolora);
-		bild = Bildperant.kreLineoSlidern(this);
+		definigBildn();
+		
 		alt = slider.getHeight() + 4;
 		mlplejOffsetX = 0;
-		x2 = (int) (xo + (double) nun/(plejo - mlplejo + 1)*largxo) - slider.getWidth()/2 + 2;
+		x2 = (int) (xo + (double) nun/(plejo - mlplejo)*largxo) - slider.getWidth()/2 + 2;
 	}
 	
 	@Override
@@ -43,17 +43,8 @@ public class Slider extends Komponant {
 
 	@Override
 	public void gxisdatig() {
-		if(qgxisdatig) {
-			bild = Bildperant.kreLineoSlidern(this);
-			qgxisdatig = false;
-		}
-		if(qgxisdatigSlidern) {
-			slider = Bildperant.kreSlidern(nun, kolor, qdukolora);
-			qgxisdatigSlidern = false;
-		}
-		
+		definigBildn();
 		gxisdatigSlidern();
-		
 	}
 
 	private void gxisdatigSlidern() {
@@ -101,5 +92,17 @@ public class Slider extends Komponant {
 	}
 	public int plejn() {
 		return plej;
+	}
+
+	@Override
+	public void definigBildn() {
+		if(qgxisdatig) {
+			bild = Bildperant.kreLineoSlidern(this);
+			qgxisdatig = false;
+		}
+		if(qgxisdatigSlidern) {
+			slider = Bildperant.kreSlidern(nun, kolor, qdukolora);
+			qgxisdatigSlidern = false;
+		}
 	}
 }
