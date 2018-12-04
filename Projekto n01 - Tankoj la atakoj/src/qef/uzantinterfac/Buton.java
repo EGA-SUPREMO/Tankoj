@@ -15,6 +15,7 @@ public class Buton extends Komponant {
 	public int statDeLaMenu;
 	public final static int LARGX_BUTON = Konstantj.ludLargx/3;//Konstantj.duonLudLargx;
 	public boolean qalt;
+	public int temp;
 	
 	public Buton(final int xo, final int yo, final int largxo, final int koloro, final int dukoloro, final int stato,
 			final String texto) {
@@ -26,6 +27,7 @@ public class Buton extends Komponant {
 		alt = Konstantj.KOMENC_MENU_ALT_BUTON;
 		kolici = new Rectangle(xo, yo, largxo, alt);
 		qalt = false;
+		temp = 0;
 		definigBildn();
 	}
 	public Buton(final int xo, final int yo, final int largxo, final int alto, final int koloro, final int dukoloro, final int stato,
@@ -38,6 +40,7 @@ public class Buton extends Komponant {
 		alt = alto;
 		kolici = new Rectangle(xo, yo, largxo, alto);
 		qalt = true;
+		temp = 0;
 		definigBildn();
 	}
 	
@@ -70,6 +73,7 @@ public class Buton extends Komponant {
 	}
 	public void resetSpecn() {
 		if(spec == 1) {
+			temp = 0;
 			spec = 0;
 			y -= 4;
 			qgxisdatig = true;
@@ -89,16 +93,22 @@ public class Buton extends Komponant {
 
 	@Override
 	public void gxisdatig() {
-		definigBildn();
+		
 		final Rectangle muy = QefObjektj.superfic.muyn().rectangleReskalitPosicin();
 		if(muy.intersects(kolici)) {
 			yangxKolor();
 			if(QefObjektj.superfic.muyn().qclickn()) {
 				setSpec(1);
 			}
-			
 		} else
 			resetButonn();
+		
+		if(spec!=0)
+			if(temp++>Konstantj.KOMENC_MENU_DUONBUTONPLEJTEMP) {
+				resetSpecn();
+			}
+
+		definigBildn();
 	}
 	
 	public int specn() {

@@ -86,5 +86,8 @@ public abstract class Komponant {
 			aldonayj[i] = null;
 		qgxisdatig = true;
 	}
-	
+	public Rectangle kolicin() {
+		return kolici;
+	}
+	//CAMEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRRRRAAA
 }

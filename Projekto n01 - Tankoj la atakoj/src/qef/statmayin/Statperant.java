@@ -1,7 +1,7 @@
 package qef.statmayin;
 
-import qef.kontrolj.Kontrolperant;
 import qef.statmayin.statj.agordjMenu.AgordjMenu;
+import qef.statmayin.statj.elektLudantjnmenu.ElektLudantjnmenu;
 import qef.statmayin.statj.komencLudMenu.KomencLudMenu;
 import qef.statmayin.statj.komencMenu.KomencMenu;
 import qef.statmayin.statj.lud.Ludperant;
@@ -19,13 +19,14 @@ public class Statperant {
 	}
 
 	private void ekStatj() {
-		statj = new Statlud[6];
+		statj = new Statlud[7];
 		statj[0] = new KomencMenu();
 		statj[1] = new Menuperant();
 		statj[2] = new Ludperant();
 		statj[3] = new KomencLudMenu();
 		statj[4] = new YargxLudMenu();
 		statj[5] = new AgordjMenu();
+		statj[6] = new ElektLudantjnmenu();
 		//Aldunu pli da statoj kaj pliigu la nombron
 	}
 	

@@ -31,7 +31,7 @@ public abstract class Misilatingec extends Misil {
 
 		executShotn(1.3/200*potenc, vent);
 		
-		while(rapidecY > 0 && nuny >= QefObjektj.map.yn(nunx)) {
+		/*while(rapidecY > 0 && nuny >= QefObjektj.map.yn(nunx)) {
 			
 			int i = 0;
 			b:
@@ -44,7 +44,7 @@ public abstract class Misilatingec extends Misil {
 			nuny = (int) yo;
 			punkt.add(nunx);
 			punkt.add(nuny);
-		}
+		}*/
 		int[] punktj = new int[punkt.size()];
 		for(int j = 0; j < punktj.length; j++)
 			punktj[j] = punkt.poll();
@@ -52,12 +52,12 @@ public abstract class Misilatingec extends Misil {
 		return punktj;
 	}
 	private static void atingecMov(final double dt) {
-		nunX = scaleAddAssign(nunX, dt, rapidecX);
-		nunY = scaleAddAssign(nunY, dt, rapidecY);
+		//nunX = scaleAddAssign(nunX, dt, rapidecX);
+		//nunY = scaleAddAssign(nunY, dt, rapidecY);
 	}
 
 	private static void executShotn(final double rapidec, final double vent) {
-		kalkulRapidec(rapidec, vent, ACCELERATION.getY());
+		//kalkulRapidec(rapidec, vent, ACCELERATION.getY());
 		atingecMov(rapidec);
 	}
 	

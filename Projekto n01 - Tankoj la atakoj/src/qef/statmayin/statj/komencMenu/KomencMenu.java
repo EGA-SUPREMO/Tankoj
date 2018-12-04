@@ -1,9 +1,6 @@
 package qef.statmayin.statj.komencMenu;
 
-import java.awt.Rectangle;
-
 import qef.Konstantj;
-import qef.QefObjektj;
 import qef.ilj.DebugDesegn;
 import qef.kontrolj.Kontrolperant;
 import qef.statmayin.Statlud;
@@ -49,17 +46,9 @@ public class KomencMenu implements Statlud {
 		duapanel.gxisdatig();
 	}
 
-	private void gxisdatigSelektatjn() {//MALBELEGA KODO
-		final Rectangle muy = QefObjektj.superfic.muyn().rectangleReskalitPosicin();
-		
-		if(muy.intersects(new Rectangle(butonj[3].xn(), butonj[3].yn(), Buton.LARGX_BUTON,
-				Konstantj.KOMENC_MENU_ALT_BUTON))) {
-			if(QefObjektj.superfic.muyn().qclickn()) {
-				Kontrolperant.klavar.elir();
-			}
-		} else {
-			butonj[3].resetButonn();
-		}
+	private void gxisdatigSelektatjn() {
+		if(butonj[3].specn()==1)
+			Kontrolperant.klavar.elir();
 	}
 	@Override
 	public int nunStat() {
@@ -69,8 +58,6 @@ public class KomencMenu implements Statlud {
 				break;
 			}
 		if(stat!=0 && temp < Konstantj.KOMENC_MENU_BUTONPLEJTEMP) {
-			if(temp >= Konstantj.KOMENC_MENU_BUTONPLEJTEMP>>1)
-				butonj[stat-3].resetSpecn();
 			temp++;
 			return 0;
 		}

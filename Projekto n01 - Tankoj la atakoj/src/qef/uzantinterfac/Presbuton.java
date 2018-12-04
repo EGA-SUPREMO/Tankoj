@@ -32,6 +32,7 @@ public class Presbuton extends Buton {
 	@Override
 	public void gxisdatig() {
 		definigBildn();
+		
 		final Rectangle muy = QefObjektj.superfic.muyn().rectangleReskalitPosicin();
 		if(muy.intersects(kolici)) {
 			yangxKolor();

@@ -15,15 +15,18 @@ public class Slider extends Komponant {
 	public int nun, qdukolora;
 	public int mlplejOffsetX;
 	private boolean qgxisdatigSlidern;
+	private final int unukolor, dukolor;
 	private int x2, y2;
 	
 	public Slider(final int xo, final int yo, final int largxo, final int mlplejo, final int plejo,
-			final int koloro) {
-		super(xo, yo, largxo, 1, koloro, "");
+			final int unukoloro, final int dukoloro) {
+		super(xo, yo, largxo, 1, unukoloro, "");
 		
 		mlplej = mlplejo;
 		plej = plejo;
 		qdukolora = 0;
+		unukolor = unukoloro;
+		dukolor = dukoloro;
 		nun = mlplejo + (plejo - mlplejo)/2;
 		qgxisdatigSlidern = true;
 		y2 = yo + 4;
@@ -64,12 +67,14 @@ public class Slider extends Komponant {
 	public void yangxKolor() {
 		if(qdukolora == 0) {
 			qdukolora = 1;
+			kolor = dukolor;
 			qgxisdatigSlidern = true;
 		}
 	}
 	public void resetKolorn() {
 		if(qdukolora == 1) {
 			qdukolora = 0;
+			kolor = unukolor;
 			qgxisdatigSlidern = true;
 		}
 	}
