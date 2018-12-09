@@ -183,7 +183,7 @@ public abstract class Konstantj {
 			new Color(205, 92, 16).darker(), new Color(142, 112, 0), new Color(61, 112, 37),
 			new Color(153, 153, 153)};
 	
-	public final static BufferedImage TEXTKAMP_SPRITE = YargxilAzhj.yargxBildn(ITENER_IKON + "/text_field.png",
+	public final static BufferedImage TEXTKAMP_SPRITE = YargxilAzhj.yargxBildn(ITENER_IKON + "text_field.png",
 			Transparency.TRANSLUCENT);
 	
 	
@@ -201,14 +201,14 @@ public abstract class Konstantj {
 	public final static int KOMENC_MENU_DUONBUTONPLEJTEMP = KOMENC_MENU_BUTONPLEJTEMP>>1;
 	
 	public final static BufferedImage[] QEFFONJ = {
-			YargxilAzhj.yargxSkalitBildn("/background0.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
-			YargxilAzhj.yargxSkalitBildn("/background1.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
-			YargxilAzhj.yargxSkalitBildn("/background2.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
-			YargxilAzhj.yargxSkalitBildn("/background3.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
-			YargxilAzhj.yargxSkalitBildn("/background0.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
-			YargxilAzhj.yargxSkalitBildn("/background1.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
-			YargxilAzhj.yargxSkalitBildn("/background2.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
-			YargxilAzhj.yargxSkalitBildn("/background3.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2)};
+		YargxilAzhj.yargxSkalitBildn("/background0_mini.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
+		YargxilAzhj.yargxSkalitBildn("/background1_mini.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
+		YargxilAzhj.yargxSkalitBildn("/background2_mini.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
+		YargxilAzhj.yargxSkalitBildn("/background3_mini.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
+		YargxilAzhj.yargxSkalitBildn("/background4_mini.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
+		YargxilAzhj.yargxSkalitBildn("/background0_mini.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
+		YargxilAzhj.yargxSkalitBildn("/background1_mini.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2),
+		YargxilAzhj.yargxSkalitBildn("/background2_mini.png", Transparency.OPAQUE, 145 - Konstantj.MARGXEN_BUTON*2)};
 
 	public final static BufferedImage IX = YargxilAzhj.yargxBildn(Konstantj.ITENER_GRIZ + "cross.png",
 			Transparency.TRANSLUCENT);

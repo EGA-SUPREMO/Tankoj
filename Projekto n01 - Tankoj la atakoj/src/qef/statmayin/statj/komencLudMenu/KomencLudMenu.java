@@ -66,7 +66,7 @@ public class KomencLudMenu implements Statlud {
 		
 		map = new Label(simplMod.xn(), simplMod.yn() + Konstantj.KOMENC_MENU_ALT_BUTON +
 				Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN, 5,
-				Konstantj.KUTIM_FONT.deriveFont(Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN), "Mapas:");
+				Konstantj.KUTIM_FONT.deriveFont(Konstantj.FONTGRANDEC), "Mapas:");
 		
 		
 		final int butonX = qefpanel.xn() + 2 + Konstantj.KOMENC_MENU_ALT_BUTON - 1 +

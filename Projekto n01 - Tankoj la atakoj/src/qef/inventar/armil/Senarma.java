@@ -1,10 +1,6 @@
 package qef.inventar.armil;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-
 import qef.Konstantj;
-import qef.estazhj.vivazhj.Vivazh;
 
 public class Senarma extends Armil{
 	

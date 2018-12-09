@@ -26,7 +26,7 @@ public class Statperant {
 		statj[3] = new KomencLudMenu();
 		statj[4] = new YargxLudMenu();
 		statj[5] = new AgordjMenu();
-		statj[6] = new ElektLudantjnmenu();
+		statj[6] = new ElektLudantjnmenu((KomencLudMenu) statj[3]);
 		//Aldunu pli da statoj kaj pliigu la nombron
 	}
 	

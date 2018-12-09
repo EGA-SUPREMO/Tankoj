@@ -2,11 +2,8 @@ package qef.inventar.armil;
 
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 import qef.Konstantj;
-import qef.estazhj.vivazhj.Misil;
-import qef.ilj.Vicperant;
 import qef.inventar.Objekt;
 import qef.son.Son;
 import qef.sprite.SpriteFoli;

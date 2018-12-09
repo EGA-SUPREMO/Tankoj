@@ -30,8 +30,8 @@ public class Buton extends Komponant {
 		temp = 0;
 		definigBildn();
 	}
-	public Buton(final int xo, final int yo, final int largxo, final int alto, final int koloro, final int dukoloro, final int stato,
-			final String texto) {
+	public Buton(final int xo, final int yo, final int largxo, final int alto, final int koloro, final int dukoloro,
+			final int stato, final String texto) {
 		super(xo, yo, largxo, 2, koloro, texto);
 		unukolor = koloro;
 		dukolor = dukoloro;

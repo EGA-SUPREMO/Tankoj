@@ -32,7 +32,8 @@ public class Muy extends MouseAdapter {//Musxo
 		
 		Toolkit i = Toolkit.getDefaultToolkit();
 		
-		BufferedImage ikon = YargxilAzhj.yargxBildn("/icons/cursor.png", Transparency.TRANSLUCENT);
+		BufferedImage ikon = YargxilAzhj.yargxBildn(Konstantj.ITENER_IKON + "cursor_0.png",
+				Transparency.TRANSLUCENT);
 		
 		kursor = i.createCustomCursor(ikon, new Point(0, 0), "Kursoro defauxlta");
 

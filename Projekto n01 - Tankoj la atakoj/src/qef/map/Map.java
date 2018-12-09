@@ -4,10 +4,10 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
-import org.json.simple.parser.JSONParser;
+//import org.json.simple.JSONObject;
+//import org.json.simple.JSONArray;
+//import org.json.simple.parser.ParseException;
+//import org.json.simple.parser.JSONParser;
 
 import qef.Konstantj;
 import qef.QefObjektj;
@@ -23,6 +23,7 @@ public class Map {
 	
 	private Random r;
 	private int rangoX, rangoY;
+	@SuppressWarnings("unused")
 	private int limiteX, limiteY;
 	private int tileeMaplargx;
 	private int tileeMapalt;
@@ -30,7 +31,7 @@ public class Map {
 	public int spec;
 	public double durec;
 	private double vent;
-	private int xx;
+	//private int xx;
 	
 	private static final int xAxenVideblTilej = (int) ((float)Konstantj.ludLargx/Konstantj.SPRITEFLANK + 2.99);
 	private static final int yAxenVideblTilej = (int) ((float)Konstantj.ludAlt/Konstantj.SPRITEFLANK + 0.99);
@@ -40,7 +41,7 @@ public class Map {
 	public int komencpunktX;
 	public int komencpunktY;
 	
-	private ArrayList<Spritetavol> spritetavolj;
+	//private ArrayList<Spritetavol> spritetavolj;
 	
 	private BufferedImage[] map;
 	
@@ -62,7 +63,7 @@ public class Map {
 		limiteY = 0;
 		
 		vivazhar = new ArrayList<>();
-		spritetavolj = new ArrayList<>();
+		//spritetavolj = new ArrayList<>();
 		
 		int[] frequencies = {1, 1, 2, 3, 4, 8};
 		float[] amplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
@@ -271,7 +272,7 @@ public class Map {
 			DebugDesegn.desegnBildn(map[i], (int) Kvantperant.koordenadXalekranPosicin(i*Konstantj.SPRITELARGX), 0);
 		DebugDesegn.yangxGrafikn();
 	}
-	
+	/*
 	private JSONObject JSONObjektn(final String JSONkod) {
 		JSONParser lector = new JSONParser();
 		JSONObject JSONObjekt = null;
@@ -302,7 +303,7 @@ public class Map {
 	
 	private int intAlJSONn(final JSONObject objektJSON, final String clave) {
 		return Integer.parseInt(objektJSON.get(clave).toString());
-	}
+	}*/
 	
 	public double[] yn() {//TODO FORIRGU CXI TIUN	 METODON
 		return y;

@@ -15,7 +15,7 @@ public abstract class Komponant {
 	protected int largx, alt;
 	public int kolor;
 	protected int y;
-	public final String text;
+	public String text;
 	protected Rectangle kolici;
 	protected boolean qgxisdatig;
 	
@@ -33,7 +33,18 @@ public abstract class Komponant {
 	public abstract void desegn();
 	
 	public abstract void gxisdatig();
-
+	
+	public void aldonCentritKomponantn(final BufferedImage komponant, final int offsetX, final int offsetY,
+			final int i) {
+		if(aldonayj[i]==null)
+			aldonayj[i] = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+					.getDefaultConfiguration().createCompatibleImage(bild.getWidth(), bild.getHeight(),
+							Transparency.TRANSLUCENT);
+		Bildperant.aldonKomponantn(aldonayj[i], komponant, (bild.getWidth() + offsetX - komponant.getWidth())/2,
+				(bild.getHeight() + offsetY - komponant.getHeight())/2);
+		aldonAldonayjn(i);
+	}
+	
 	public void aldonKomponantn(final Komponant komponant, final int i) {
 		if(aldonayj[i]==null)
 			aldonayj[i] = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
@@ -50,6 +61,7 @@ public abstract class Komponant {
 		Bildperant.aldonKomponantn(aldonayj[i], komponant, xo, yo);
 		aldonAldonayjn(i);
 	}
+	
 	protected void aldonAldonayjn(final int i) {
 		if(aldonayj[i]==null)
 			aldonayj[i] = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
@@ -80,14 +92,24 @@ public abstract class Komponant {
 		qgxisdatig = true;
 	}
 	public void setAltn(final int alto) {
+		if(alt == alto)
+			return;
 		alt = alto;
 		kolici.height = alto;
 		for(int i = 0; i < aldonayj.length; i++)
 			aldonayj[i] = null;
 		qgxisdatig = true;
 	}
+	public void setYn(final int yo) {
+		y = yo;
+		kolici.y = yo;
+		qgxisdatig = true;
+	}
 	public Rectangle kolicin() {
 		return kolici;
+	}
+	public BufferedImage bildn() {
+		return bild;
 	}
 	//CAMEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRRRRRRAAA
 }

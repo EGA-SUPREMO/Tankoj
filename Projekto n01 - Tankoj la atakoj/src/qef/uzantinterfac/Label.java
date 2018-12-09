@@ -27,6 +27,7 @@ public class Label extends Komponant {
 		largx = StringKvantil.largxStringn(g, text);
 		g.dispose();
 		
+		alt -= alt*7/16;
 		font = fonto;
 		definigBildn();
 	}
@@ -50,6 +51,7 @@ public class Label extends Komponant {
 		((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.drawString(text, 0, alt);
+		
 		g.dispose();
 		aldonAldonayjn(0);
 	}
