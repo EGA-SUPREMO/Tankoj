@@ -60,17 +60,13 @@ public class Bildperant {
 		return bild;
 	}
 	
-	public static BufferedImage kreBildn(final Color c) {
-		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration().createCompatibleImage(Konstantj.SPRITEALT, Konstantj.SPRITELARGX,
-						Transparency.OPAQUE);
-		Graphics g = bild.getGraphics();
+	public static BufferedImage[] dividBildnLawLargxspriten(final BufferedImage bild) {
+		BufferedImage[] finbildj = new BufferedImage[bild.getWidth()/Konstantj.SPRITELARGX];
 		
-		g.setColor(c);
-		g.fillRect(0, 0, bild.getWidth(), bild.getHeight());
-		g.dispose();
+		for(int i = 0; i < finbildj.length; i++)
+			finbildj[i] = bild.getSubimage(i*Konstantj.SPRITELARGX, 0, Konstantj.SPRITELARGX, bild.getHeight());
 		
-		return bild;
+		return finbildj;
 	}
 	
 	public static BufferedImage gxisdatigMapn(final int ekx, final int largx) {
@@ -82,6 +78,8 @@ public class Bildperant {
 		g.fillRect(0, 0, largx, QefObjektj.map.altMap);
 		g.setColor(Konstantj.CXIEL_MAP_KOLOR);
 		g.fillRect(0, 0, largx, QefObjektj.map.altMap - 100);
+		g.drawImage(Konstantj.QEFFONJ_BIOMJ[ekx/Konstantj.SPRITELARGX +
+		                                    QefObjektj.map.nunbiom*Konstantj.largxArrayQEFFONJ_BIOMJ], 0, 0, null);
 		g.setColor(Konstantj.PLANK_NEGX_MAP_KOLOR);
 		
 		for(int x = 0; x < largx; x++)

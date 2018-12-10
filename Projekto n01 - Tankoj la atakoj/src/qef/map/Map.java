@@ -1,5 +1,6 @@
 package qef.map;
 
+import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,6 +18,7 @@ import qef.ilj.BruGeneril;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.Vicperant;
+import qef.ilj.YargxilAzhj;
 import qef.kontrolj.Kontrolperant;
 
 public class Map {
@@ -31,7 +33,7 @@ public class Map {
 	public int spec;
 	public double durec;
 	private double vent;
-	//private int xx;
+	public int nunbiom = 3;
 	
 	private static final int xAxenVideblTilej = (int) ((float)Konstantj.ludLargx/Konstantj.SPRITEFLANK + 2.99);
 	private static final int yAxenVideblTilej = (int) ((float)Konstantj.ludAlt/Konstantj.SPRITEFLANK + 0.99);
@@ -70,8 +72,27 @@ public class Map {
 		y = BruGeneril.generMapn(frequencies, amplitudes);
 		offsetMap = 400;
 		altMap = offsetMap + 155;
-		map = new BufferedImage[2];//TODO NE SKALAS DE LA GRANDECO DE LA LUDO
+		map = new BufferedImage[Konstantj.ludLargx/Konstantj.SPRITELARGX];//TODO ALJXETAS ERAROJ SE LA NOMBRO NE ...
+		
+		for(int i = 0; i < Konstantj.PLEJ_BIOMJ; i++) {
+			final BufferedImage[] tempBildarj = Bildperant.dividBildnLawLargxspriten(
+					YargxilAzhj.yargxSkalitBildn("/background" + i + ".png", Transparency.OPAQUE,
+							Konstantj.ludLargx));
+			for(int j = 0; j < tempBildarj.length; j++)
+				Konstantj.QEFFONJ_BIOMJ[i + j*tempBildarj.length] = tempBildarj[j];
+		}
+		
 		/*String enhav = YargxilAzhj.yargxTextn(Konstantj.ITENER_MAP + itener + ".tmx");
+		 
+		 
+			        YargxilAzhj.yargxSkalitBildn("/background0.jpg", Transparency.OPAQUE, ludLargx),
+			        YargxilAzhj.yargxSkalitBildn("/background1.png", Transparency.OPAQUE, ludLargx),
+			        YargxilAzhj.yargxSkalitBildn("/background2.png", Transparency.OPAQUE, ludLargx),
+			        YargxilAzhj.yargxSkalitBildn("/background3.png", Transparency.OPAQUE, ludLargx),
+			        YargxilAzhj.yargxSkalitBildn("/background4.jpg", Transparency.OPAQUE, ludLargx),
+			        YargxilAzhj.yargxSkalitBildn("/background0.jpg", Transparency.OPAQUE, ludLargx),
+			        YargxilAzhj.yargxSkalitBildn("/background1.png", Transparency.OPAQUE, ludLargx),
+			        YargxilAzhj.yargxSkalitBildn("/background2.png", Transparency.OPAQUE, ludLargx)};
 		
 		final JSONObject globalJSON = JSONObjektn(enhav);
 		tileeMaplargx = intAlJSONn(globalJSON, "width");
@@ -90,7 +111,7 @@ public class Map {
 		for (int i = 0; i < tavolj.size(); i++) {
 			JSONObject tavoldatumj = JSONObjektn(tavolj.get(i).toString());
 
-//			int anchoCapa = obtenerIntDesdeJSON(datosCapa, "width");TODO MI PETEGAS VIN(MIN) KE "FIX"-U CXI TIO
+//			int anchoCapa = obtenerIntDesdeJSON(datosCapa, "width");
 //			int altoCapa = obtenerIntDesdeJSON(datosCapa, "height");
 			int tavollargx = tileeMaplargx;
 			int tavolalt = tileeMapalt;
@@ -305,7 +326,7 @@ public class Map {
 		return Integer.parseInt(objektJSON.get(clave).toString());
 	}*/
 	
-	public double[] yn() {//TODO FORIRGU CXI TIUN	 METODON
+	public double[] yn() {//TODO FORIRGU CXI TIUN METODON
 		return y;
 	}
 	public double yn(int xo) {

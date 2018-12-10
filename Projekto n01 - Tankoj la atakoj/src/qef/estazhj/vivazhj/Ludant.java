@@ -59,7 +59,7 @@ public class Ludant extends Vivazh {
 		setYn(QefObjektj.map.yn((int) xn()));
 		nunangul = r.nextInt(plejangul-90)+90;
 		potenc = plejpotenc/4;
-		vivazharmilar = new Vivazharmilar((Armil) Objektregistril.objektjn(599));
+		vivazharmilar = new Vivazharmilar((Armil) Objektregistril.objektjn(500));
 		qatingec = true;
 		qgxisdatigatingecn = false;
 		

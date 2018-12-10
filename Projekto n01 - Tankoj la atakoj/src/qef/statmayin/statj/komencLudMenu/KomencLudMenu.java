@@ -102,14 +102,15 @@ public class KomencLudMenu implements Statlud {
 						y*(Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN + altMap),
 						largxMap - (x==2? 1 : 0), altMap, 0, 2, Konstantj.KUTIM_FONT_BUTON, "", "");
 		
-				mapj[x + y*vicj].aldonKomponantn(Konstantj.QEFFONJ[x + y*vicj],
-						(largxMap - Konstantj.QEFFONJ[x + y*vicj].getWidth())/2,
-						(altMap - Konstantj.QEFFONJ[x].getHeight())/2, 0);
-				mapj[x + y*vicj].aldonKomponantn(Konstantj.QEFFONJ[x + y*vicj],
-						(largxMap - Konstantj.QEFFONJ[x + y*vicj].getWidth())/2,
-						(altMap - Konstantj.QEFFONJ[x].getHeight())/2, 1);
+				mapj[x + y*vicj].aldonKomponantn(Konstantj.QEFFONETJ_BIOMJ[x + y*vicj],
+						(largxMap - Konstantj.QEFFONETJ_BIOMJ[x + y*vicj].getWidth())/2,
+						(altMap - Konstantj.QEFFONETJ_BIOMJ[x].getHeight() - 4)/2, 0);
+				mapj[x + y*vicj].aldonKomponantn(Konstantj.QEFFONETJ_BIOMJ[x + y*vicj],
+						(largxMap - Konstantj.QEFFONETJ_BIOMJ[x + y*vicj].getWidth())/2,
+						(altMap - Konstantj.QEFFONETJ_BIOMJ[x].getHeight() - 4)/2, 1);
 				mapj[x + y*vicj].setSpec(1);
 			}
+		
 		tempnomo = new Buton(mapj[2].xn(), mapj[6].yn(), largxMap,
 				(altMap - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN)/2, 0, 2, -1, "Aleatorio");
 		tempnomo1 = new Presbuton(tempnomo.xn(), tempnomo.yn() + tempnomo.altn() +
