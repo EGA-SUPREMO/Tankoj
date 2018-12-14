@@ -67,9 +67,13 @@ public class Map {
 		vivazhar = new ArrayList<>();
 		//spritetavolj = new ArrayList<>();
 		
-		int[] frequencies = {1, 1, 2, 3, 4, 8};
+		
+		
+		int[] frekvencij = {1, 1, 2, 3, 4, 8};
 		float[] amplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
-		y = BruGeneril.generMapn(frequencies, amplitudes);
+		
+		
+		y = BruGeneril.generMapn(frekvencij, amplitudes);
 		offsetMap = 400;
 		altMap = offsetMap + 155;
 		map = new BufferedImage[Konstantj.ludLargx/Konstantj.SPRITELARGX];//TODO ALJXETAS ERAROJ SE LA NOMBRO NE ...
@@ -78,22 +82,12 @@ public class Map {
 			final BufferedImage[] tempBildarj = Bildperant.dividBildnLawLargxspriten(
 					YargxilAzhj.yargxSkalitBildn("/background" + i + ".png", Transparency.OPAQUE,
 							Konstantj.ludLargx));
-			for(int j = 0; j < tempBildarj.length; j++)
-				Konstantj.QEFFONJ_BIOMJ[i + j*tempBildarj.length] = tempBildarj[j];
+			for(int j = 0; j < tempBildarj.length; j++) {
+				Konstantj.QEFFONJ_BIOMJ[j + i*tempBildarj.length] = tempBildarj[j];
+			}
 		}
 		
-		/*String enhav = YargxilAzhj.yargxTextn(Konstantj.ITENER_MAP + itener + ".tmx");
-		 
-		 
-			        YargxilAzhj.yargxSkalitBildn("/background0.jpg", Transparency.OPAQUE, ludLargx),
-			        YargxilAzhj.yargxSkalitBildn("/background1.png", Transparency.OPAQUE, ludLargx),
-			        YargxilAzhj.yargxSkalitBildn("/background2.png", Transparency.OPAQUE, ludLargx),
-			        YargxilAzhj.yargxSkalitBildn("/background3.png", Transparency.OPAQUE, ludLargx),
-			        YargxilAzhj.yargxSkalitBildn("/background4.jpg", Transparency.OPAQUE, ludLargx),
-			        YargxilAzhj.yargxSkalitBildn("/background0.jpg", Transparency.OPAQUE, ludLargx),
-			        YargxilAzhj.yargxSkalitBildn("/background1.png", Transparency.OPAQUE, ludLargx),
-			        YargxilAzhj.yargxSkalitBildn("/background2.png", Transparency.OPAQUE, ludLargx)};
-		
+		/*
 		final JSONObject globalJSON = JSONObjektn(enhav);
 		tileeMaplargx = intAlJSONn(globalJSON, "width");
 		tileeMapalt = intAlJSONn(globalJSON, "height");

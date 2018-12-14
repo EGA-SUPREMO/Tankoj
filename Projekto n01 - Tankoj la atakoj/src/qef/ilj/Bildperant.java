@@ -74,8 +74,8 @@ public class Bildperant {
 				.getDefaultConfiguration(). createCompatibleImage(largx, QefObjektj.map.altMap, Transparency.OPAQUE);
 		Graphics g = bild.getGraphics();
 		
-		g.setColor(Konstantj.AKV_MAP_KOLOR);//FIXME LA AKVO ESTAS STRANGA DE CXI TIU METODO
-		g.fillRect(0, 0, largx, QefObjektj.map.altMap);
+//		g.setColor(Konstantj.AKV_MAP_KOLOR);//FIXME LA AKVO ESTAS STRANGA DE CXI TIU METODO
+//		g.fillRect(0, 0, largx, QefObjektj.map.altMap);
 		g.setColor(Konstantj.CXIEL_MAP_KOLOR);
 		g.fillRect(0, 0, largx, QefObjektj.map.altMap - 100);
 		g.drawImage(Konstantj.QEFFONJ_BIOMJ[ekx/Konstantj.SPRITELARGX +

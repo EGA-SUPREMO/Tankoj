@@ -23,10 +23,11 @@ import qef.sprite.SpriteFoli;
 public class Ludant extends Vivazh {
 
 	protected BufferedImage[] bildj, canonBildj;
-	private final static int ANTAWDEFINITRAD_X1 = -10, ANTAWDEFINITRAD_X2 = 11;
+	private final static int ANTAWDEFINITRAD_X1 = -8, ANTAWDEFINITRAD_X2 = 8;
 	private int radX1 = ANTAWDEFINITRAD_X1, radX2 = ANTAWDEFINITRAD_X2;
 	private int offsetLudantY = 2;
 	private int offsetLudantX = 0;
+	@SuppressWarnings("unused")
 	private int offsetCanonX = -2, offsetCanonY = 1, offsetCanonY2 = 3;
 	private static final int ANTAWDEFINITPLEJANGUL = Konstantj.canonAngulnombr/2;
 	public int plejangul, mlplejangul;
@@ -39,17 +40,19 @@ public class Ludant extends Vivazh {
 	public int potenc;
 	private int nunangul;
 	private int experienc = 100;
+	@SuppressWarnings("unused")
+	private int resistec;
 	
 	public int nunArmil = 1;
 	
 	public static final SpriteFoli ludantsprite0 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
-			Transparency.TRANSLUCENT, 32, 32, Color.GREEN.darker());
+			Transparency.TRANSLUCENT, 24, 24, Color.GREEN.darker());
 	public static final SpriteFoli ludantsprite1 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
-			Transparency.TRANSLUCENT, 32, 32, Color.RED);
+			Transparency.TRANSLUCENT, 24, 24, Color.RED);
 	public static final SpriteFoli ludantsprite2 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
-			Transparency.TRANSLUCENT, 32, 32, Color.CYAN.darker());
+			Transparency.TRANSLUCENT, 24, 24, Color.CYAN.darker());
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
-			Transparency.TRANSLUCENT, 36, 38);
+			Transparency.TRANSLUCENT, 27, 29);
 	
 	public Ludant(final int ordenSpec, final String itenerSon, final SpriteFoli sprite,
 			final BufferedImage canonSprite) {
@@ -66,8 +69,8 @@ public class Ludant extends Vivazh {
 		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
 		ordenBildj(ordenSpec, sprite.spritejn());
 		
-		largxVivazh = 32;
-		altVivazh = 32;
+		largxVivazh = 24;
+		altVivazh = 24;
 		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
 	}
 	
@@ -152,7 +155,7 @@ public class Ludant extends Vivazh {
 		if(qgxisdatigatingecn && !Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan()
 				 && !Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()
 				 && !Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
-			//atingec = Bildperant.atingecMisil(((Misil) Estazhregistril.estaezhjn(nunArmil)).atingecn());
+			atingec = Bildperant.atingecMisil(((Misil) Estazhregistril.estaezhjn(nunArmil)).trajekt.atingecn());
 			qgxisdatigatingecn = false;
 		}
 		if(Kontrolperant.klavar.supriArmil) {
