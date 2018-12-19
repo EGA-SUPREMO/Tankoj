@@ -14,7 +14,6 @@ import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.vivazhj.Vivazh;
 import qef.ilj.Bildperant;
-import qef.ilj.BruGeneril;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.Vicperant;
@@ -33,7 +32,7 @@ public class Map {
 	public int spec;
 	public double durec;
 	private double vent;
-	public int nunbiom = 3;
+	public int nunbiom = 2;
 	
 	private static final int xAxenVideblTilej = (int) ((float)Konstantj.ludLargx/Konstantj.SPRITEFLANK + 2.99);
 	private static final int yAxenVideblTilej = (int) ((float)Konstantj.ludAlt/Konstantj.SPRITEFLANK + 0.99);
@@ -68,12 +67,7 @@ public class Map {
 		//spritetavolj = new ArrayList<>();
 		
 		
-		
-		int[] frekvencij = {1, 1, 2, 3, 4, 8};
-		float[] amplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
-		
-		
-		y = BruGeneril.generMapn(frekvencij, amplitudes);
+		y = Konstantj.biomj[nunbiom].yn();
 		offsetMap = 400;
 		altMap = offsetMap + 155;
 		map = new BufferedImage[Konstantj.ludLargx/Konstantj.SPRITELARGX];//TODO ALJXETAS ERAROJ SE LA NOMBRO NE ...

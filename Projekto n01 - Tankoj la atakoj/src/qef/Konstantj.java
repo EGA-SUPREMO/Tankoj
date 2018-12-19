@@ -7,6 +7,9 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import qef.ilj.YargxilAzhj;
+import qef.map.Biom;
+import qef.map.Urb;
+import qef.map.mes.Mes;
 
 public abstract class Konstantj {
 	
@@ -227,5 +230,20 @@ public abstract class Konstantj {
 	
 	public final static float FONTGRANDEC = 22f;
 	public final static int LUDANTPLEJNOMBR = 8;
+
+	static int[] frekvencij = {1, 1, 2, 3, 4, 8};
+	static float[] amplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
+
+	static int[] urbfrekvencij = {3, 2};//TODO tempa
+	static float[] urbamplitudes = {0.71f, 0.8f};//tempa
+	
+	static int[] mesfrekvencij = {10, 23, 5, 2, 1};//TODO tempa
+	static float[] mesamplitudes = {0.03f, 0.05f, 0.13f, 0.1f, 0.26f};//tempa
+	
+	public final static Biom[] biomj = {new Biom(frekvencij, amplitudes, 15, PLANK_MAP_KOLOR),
+			new Urb(urbfrekvencij, urbamplitudes, 13, Color.DARK_GRAY), new Mes(mesfrekvencij, mesamplitudes, 35,
+			new Color(185, 50, 10)), new Biom(frekvencij, amplitudes, 50, Konstantj.PLANK_NEGX_MAP_KOLOR)};
+	
+	public static int mapgrandec = Konstantj.ludLargx;
 	
 }

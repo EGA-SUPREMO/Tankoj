@@ -80,7 +80,7 @@ public class Bildperant {
 		g.fillRect(0, 0, largx, QefObjektj.map.altMap - 100);
 		g.drawImage(Konstantj.QEFFONJ_BIOMJ[ekx/Konstantj.SPRITELARGX +
 		                                    QefObjektj.map.nunbiom*Konstantj.largxArrayQEFFONJ_BIOMJ], 0, 0, null);
-		g.setColor(Konstantj.PLANK_NEGX_MAP_KOLOR);
+		g.setColor(Konstantj.biomj[QefObjektj.map.nunbiom].kolorn());
 		
 		for(int x = 0; x < largx; x++)
 			g.drawLine(x, (int) Kvantperant.koordenadYalekranPosicin(QefObjektj.map.yn()[ekx + x]), x, 

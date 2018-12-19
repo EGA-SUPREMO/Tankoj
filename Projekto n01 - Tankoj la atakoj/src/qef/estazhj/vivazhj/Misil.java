@@ -24,7 +24,8 @@ public class Misil extends Vivazh {
 		
 		damagxLargxX = damagx;
 		komencDamagxX = (int) (damagxLargxX/2);
-		damagxaltec = (int) (damagxLargxX/grandec*4);
+		//damagxaltec = (int) (damagxLargxX*Math.sqrt(damagxLargxX)/grandec);
+		damagxaltec = (int) (damagx*0.7);
 		
 		mlplejY =  QefObjektj.map.altMap - (int) (damagxLargxX);
 		

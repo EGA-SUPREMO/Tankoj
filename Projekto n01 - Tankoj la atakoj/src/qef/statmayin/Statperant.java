@@ -31,7 +31,7 @@ public class Statperant {
 	}
 	
 	private void definNunStatn() {
-		nunStat = statj[0];
+		nunStat = statj[2];
 	}
 
 	public void yangxNunStatn(final int posici) {
