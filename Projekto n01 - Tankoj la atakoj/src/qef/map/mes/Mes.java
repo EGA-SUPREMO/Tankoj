@@ -20,11 +20,12 @@ public class Mes extends Biom {
 		final int hazard = (int) (r.nextDouble()*100);
 		final int plejMontj = hazard<53? 2 : hazard<81? 3 : hazard<93? 1 : 0;
 		for(int i = 0; i < plejMontj; i++) {
-			final double[] mont = Partmesmont.partmesmontn((int) (r.nextDouble()*Konstantj.mapgrandec/(plejMontj + 1)),
-					altgrandec*2);
 			
-			for(int j = 0; j < mont.length; j++)
-				yo[j] = yo[j] + mont[j];
+			final Mesmont mont = new Mesmont((int) (r.nextDouble()*Konstantj.mapgrandec/(plejMontj)),
+					altgrandec);
+			
+			for(int j = 0; j < mont.y.length; j++)
+				yo[j + i*mont.y.length] += mont.y[j];
 		}
 	}
 	

@@ -5,15 +5,21 @@ import java.util.Random;
 public class Partmesmont {
 	
 	final static Random r = new Random();
+	final double[] y;
+	double largxExtrem;
+	final double transextremLargx;
+	final double extremplejalt;
+	final double supr;
+	final double altecTransextrem;
 	
-	public static double[] partmesmontn(final int largx, final int alt) {
-		final double[] y = new double[largx];
-		double largxExtrem = largx/3;
-		final double transextremLargx = largxExtrem/12;
+	public Partmesmont(final int largx, final int alt) {
+		y = new double[largx];
+		largxExtrem = largx/3;
+		transextremLargx = largxExtrem/12;
 		largxExtrem -= transextremLargx; 
-		final double extremplejalt = largx*largx;
-		final double supr = alt*4;
-		final double altecTransextrem = (alt-((largxExtrem*largxExtrem/extremplejalt)*supr))/transextremLargx;
+		extremplejalt = largx*largx;
+		supr = alt*4;
+		altecTransextrem = (alt-((largxExtrem*largxExtrem/extremplejalt)*supr))/transextremLargx;
 
 		for(int i = 0; i < largxExtrem; i++)
 			y[i] = (i*i/extremplejalt)*supr;
@@ -30,9 +36,6 @@ public class Partmesmont {
 		for(int i = 0; i < transextremLargx; i++)
 			y[(int) (largx - largxExtrem - i - 1)] = y[(int) (largx - largxExtrem)] + altecTransextrem*i;
 		
-		
-		
-		return y;
 	}
 	
 }
