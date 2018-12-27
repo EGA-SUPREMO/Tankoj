@@ -1,9 +1,10 @@
-package qef.estazhj.vivazhj;
+package qef.estazhj.vivazhj.misil;
 
 import java.awt.Color;
 
 import qef.Konstantj;
 import qef.QefObjektj;
+import qef.estazhj.vivazhj.Vivazh;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.Vicperant;
@@ -13,19 +14,19 @@ public class Misil extends Vivazh {
 	private final double damagxLargxX;
 	private final int komencDamagxX;
 	private final int damagxaltec;
-	private final double grandec;
+	private final int grandec;
 	private final int mlplejY;
 	public final KalkuliTrajektn trajekt;
 	
 	public Misil(final int ekangulo, final int potenco, final int damagxo, final double ekXo, final double ekYo) {
 		super(1, damagxo, Konstantj.ITENER_SON_MISIL);
 		
-		grandec = Math.sqrt(damagx);
+		grandec = (int) Math.sqrt(damagx);
 		
 		damagxLargxX = damagx;
 		komencDamagxX = (int) (damagxLargxX/2);
 		//damagxaltec = (int) (damagxLargxX*Math.sqrt(damagxLargxX)/grandec);
-		damagxaltec = (int) (damagx*0.7);
+		damagxaltec = (int) (damagx*0.7 * QefObjektj.map.mldurec);
 		
 		mlplejY =  QefObjektj.map.altMap - (int) (damagxLargxX);
 		
@@ -38,27 +39,36 @@ public class Misil extends Vivazh {
 
 	@Override
 	public void gxisdatig() {
-		if(yn() >= QefObjektj.map.yn()[(int) xn()] && yn()<mlplejY)
-			trajekt.executShotn();
-		else {
-			Vicperant.nunludantn().m = null;
-			exploci();
-			for(int i = 0; i < Vicperant.ludantj.length; i++)
-				Vicperant.ludantj[i].setYn(QefObjektj.map.yn()[(int) Vicperant.ludantj[i].xn()]);
-			Vicperant.venontNunLudantn(xn());
-		}
+		for(int i = 0; i < 10; i++)
+			if(yn() >= QefObjektj.map.yn()[(int) xn()] && yn()<mlplejY)
+				trajekt.executShotn();
+			else {
+				Vicperant.nunludantn().m = null;
+				exploci();
+				for(int j = 0; j < Vicperant.ludantj.length; j++)
+					Vicperant.ludantj[j].setYn(QefObjektj.map.yn()[(int) Vicperant.ludantj[j].xn()]);
+				Vicperant.venontNunLudantn(xn());
+				break;
+			}
 	}
 	@Override
 	public void desegn() {
 		DebugDesegn.desegnOval((int) Kvantperant.koordenadXalekranPosicin(xn()),
-				(int) Kvantperant.koordenadYalekranPosicin(yn()), (int) grandec, (int) grandec, Color.BLACK);
+				(int) Kvantperant.koordenadYalekranPosicin(yn()), grandec, grandec, Color.BLACK);
 	}
 	
 	public void exploci() {
+		mlkonstruMapn();
+		mlgajnVivDeludantj();
+	}
+	
+	protected void mlkonstruMapn() {
 		for(int i = -komencDamagxX; i < komencDamagxX; i++)
 			QefObjektj.map.setYn((int) xn() + i, QefObjektj.map.yn((int) xn() + i) -
 					Math.sin(Math.PI*(i+komencDamagxX)/damagxLargxX)*damagxaltec);
-		
+	}
+	
+	protected void mlgajnVivDeludantj() {
 		for(int i = 0; i < Vicperant.ludantj.length; i++)
 			if(xn()-komencDamagxX<Vicperant.ludantj[i].xn() - (Vicperant.ludantj[i].largxVivazhn()>>1)
 					&& xn()+komencDamagxX>Vicperant.ludantj[i].xn() - (Vicperant.ludantj[i].largxVivazhn()>>1) ||

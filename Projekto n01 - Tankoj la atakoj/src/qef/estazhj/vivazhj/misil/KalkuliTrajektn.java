@@ -1,4 +1,4 @@
-package qef.estazhj.vivazhj;
+package qef.estazhj.vivazhj.misil;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
@@ -62,7 +62,7 @@ public class KalkuliTrajektn {
 			ACCELERATION.setLocation(Math.random()/10-0.05, ACCELERATION.getY());
 
 		executShotn(1.3/200*potenc);
-		
+		;
 		while(misil.rapidecY > 0 && nuny >= QefObjektj.map.yn(nunx)) {
 			
 			int i = 0;

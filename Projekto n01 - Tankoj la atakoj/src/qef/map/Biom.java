@@ -10,12 +10,15 @@ public class Biom {
 	private final int[] frekvencij;
 	private final float[] amplitudes;
 	private final Color kolor;
+	public final double mldurec;
 	
-	public Biom(final int[] frekvencioj, final float[] amplitudeso, final int altgrandeco, final Color koloro) {
+	public Biom(final int[] frekvencioj, final float[] amplitudeso, final int altgrandeco, final double mldureco,
+			final Color koloro) {
 		frekvencij = frekvencioj;
 		amplitudes = amplitudeso;
 		altgrandec = altgrandeco;
 		kolor = koloro;
+		mldurec = mldureco;
 	}
 	
 	public double[] yn() {

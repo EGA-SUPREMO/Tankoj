@@ -10,8 +10,9 @@ public class Mes extends Biom {
 	
 	private static Random r = new Random();
 	
-	public Mes(final int[] frekvencioj, final float[] amplitudeso, final int altgrandeco, final Color koloro) {
-		super(frekvencioj, amplitudeso, altgrandeco, koloro);
+	public Mes(final int[] frekvencioj, final float[] amplitudeso, final int altgrandeco, final double mldureco,
+			final Color koloro) {
+		super(frekvencioj, amplitudeso, altgrandeco, mldureco, koloro);
 		
 	}
 	

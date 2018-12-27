@@ -9,6 +9,7 @@ import java.util.Random;
 import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.Estazhregistril;
+import qef.estazhj.vivazhj.misil.Misil;
 import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
@@ -78,11 +79,11 @@ public class Ludant extends Vivazh {
 		switch(spec) {
 			case 0:
 				break;
-			case 1://TODO faru ke la bildoj generigxos kiam la ludanto acxetu la habilidad de escalar montoj(eble ne faru tion)
+			case 1://TODO faru ke la bildoj generigxos kiam la ludanto acxetu la habilidad de escalar montoj(eble ne faru tion) kaj tio estas uzita en la metodo de la atoma misilo
 				bildj = new BufferedImage[rotaciplejNombr/2];
 				final int duonLong = bildj.length/2;
-				for(int i = -bildj.length/2; i < duonLong; i++)
-					bildj[i + bildj.length/2] = Bildperant.volvBildn(tempbildj[0], -(ROTACI * i));
+				for(int i = -duonLong; i < duonLong; i++)
+					bildj[i + duonLong] = Bildperant.volvBildn(tempbildj[0], -(ROTACI * i));
 				break;
 		}
 	}
@@ -221,7 +222,7 @@ public class Ludant extends Vivazh {
 				- (Vicperant.nunludantn().largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());
 		
 		DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
-				offsetCanonX - (Vicperant.nunludantn().largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());
+				offsetCanonX - (Vicperant.nunludantn().largxVivazhn()>>1) + offsetLudantX, posiciY - bildj[nunBild].getHeight());
 		
 		if(m!=null)
 			m.desegn();

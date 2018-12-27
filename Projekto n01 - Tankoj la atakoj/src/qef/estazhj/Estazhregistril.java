@@ -1,6 +1,7 @@
 package qef.estazhj;
 
-import qef.estazhj.vivazhj.Misil;
+import qef.estazhj.vivazhj.misil.Atommisil;
+import qef.estazhj.vivazhj.misil.Misil;
 import qef.ilj.Vicperant;
 
 public class Estazhregistril {
@@ -14,7 +15,10 @@ public class Estazhregistril {
 				return new Misil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 30,
 						Vicperant.nunludantn().xn(), Vicperant.nunludantn().yn());
 			case 2:
-				return new Misil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 300,
+				return new Atommisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 100,
+						Vicperant.nunludantn().xn(), Vicperant.nunludantn().yn());
+			case 3:
+				return new Atommisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 300,
 						Vicperant.nunludantn().xn(), Vicperant.nunludantn().yn());
 			default:
 				return null;

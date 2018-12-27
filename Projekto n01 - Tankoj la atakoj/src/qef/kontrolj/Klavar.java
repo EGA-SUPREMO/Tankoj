@@ -105,6 +105,7 @@ public class Klavar extends KeyAdapter {
 				restorig();
 				Vicperant.ludantj[Vicperant.nunLudantn()].setXn(480);
 				Vicperant.ludantj[Vicperant.nunLudantn()].setYn(280);
+				Vicperant.ludantj[Vicperant.nunLudantn()].resetVivn();
 				break;
 			case Konstantj.QKOLEKT:
 				qkolekt = false;

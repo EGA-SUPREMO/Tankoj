@@ -85,7 +85,7 @@ public abstract class Konstantj {
 	public static boolean qyangxSpriteFoli = false;
 	public static int canonAngulnombr = 360;
 	public static final byte LUDRAPIDEC = 1;
-	public static final double MISILRAPIDEC = 0.3;
+	public static final double MISILRAPIDEC = 0.03;
 	
 	public final static String SUFIX_MAP = ".egam";
 	public final static String ITENER_MAP = "/maps/";
@@ -95,6 +95,7 @@ public abstract class Konstantj {
 	public final static String ITENER_LUDANT = ITENER_VIVAZH + "player_";
 	public final static String ITENER_LUDANT_CANON = ITENER_VIVAZH + "canon_";
 	public final static String ITENER_MISIL = ITENER_VIVAZH + "misil_";
+	public final static String ITENER_ATOMMISIL = ITENER_VIVAZH + "atom_misil_";
 	public final static String ITENER_MALAMIK = ITENER_VIVAZH + "enemy_";
 	public final static String ITENER_ZOMBI = ITENER_MALAMIK + "zombie_";
 	
@@ -154,6 +155,8 @@ public abstract class Konstantj {
 	
 	public final static BufferedImage MISILSPRITE = YargxilAzhj.yargxBildn(ITENER_MISIL + 0 + ".png",
 	        Transparency.TRANSLUCENT);
+	
+	public final static BufferedImage[] ATOMMISILSPRITE = new BufferedImage[360];
 	
 	public final static BufferedImage[] BUTON_SPRITE = {
 	        YargxilAzhj.yargxBildn(ITENER_BLU_BUTON + butonspec + ".png", Transparency.TRANSLUCENT),
@@ -240,9 +243,10 @@ public abstract class Konstantj {
 	static int[] mesfrekvencij = {10, 23, 5, 2, 1};//TODO tempa
 	static float[] mesamplitudes = {0.03f, 0.05f, 0.13f, 0.1f, 0.26f};//tempa
 	
-	public final static Biom[] biomj = {new Biom(frekvencij, amplitudes, 15, PLANK_MAP_KOLOR),
-			new Urb(urbfrekvencij, urbamplitudes, 13, Color.DARK_GRAY), new Mes(mesfrekvencij, mesamplitudes, 35,
-			new Color(185, 50, 10)), new Biom(frekvencij, amplitudes, 50, Konstantj.PLANK_NEGX_MAP_KOLOR)};
+	public final static Biom[] biomj = {new Biom(frekvencij, amplitudes, 15, 1, PLANK_MAP_KOLOR),
+			new Urb(urbfrekvencij, urbamplitudes, 130, 0.5, Color.DARK_GRAY),
+			new Mes(mesfrekvencij, mesamplitudes, 35/*5*/, 0.75,
+			new Color(185, 50, 10)), new Biom(frekvencij, amplitudes, 50, 0.9, Konstantj.PLANK_NEGX_MAP_KOLOR)};
 	
 	public static int mapgrandec = Konstantj.ludLargx;
 	
