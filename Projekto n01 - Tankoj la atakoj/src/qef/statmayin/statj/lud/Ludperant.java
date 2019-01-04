@@ -10,7 +10,11 @@ public class Ludperant implements Statlud {
 	
 	@Override
 	public void gxisdatig() {
-		Vicperant.ludantj[Vicperant.nunLudantn()].gxisdatig();
+		if(Vicperant.nunMisiln()==null)
+			Vicperant.ludantj[Vicperant.nunLudantn()].gxisdatig();
+		else
+			Vicperant.nunMisiln().gxisdatig();
+		
 		QefObjektj.map.gxisdatig();
 	}
 	
@@ -19,6 +23,8 @@ public class Ludperant implements Statlud {
 		QefObjektj.map.desegn();
 		for(Ludant ludant: Vicperant.ludantj)
 			ludant.desegn();
+		if(Vicperant.nunMisiln()!=null)
+			Vicperant.nunMisiln().desegn();
 		QefObjektj.malhelec.desegn();
 		QefObjektj.submenu.desegn();
 	}

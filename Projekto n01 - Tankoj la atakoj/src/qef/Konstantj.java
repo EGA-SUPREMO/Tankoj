@@ -85,7 +85,7 @@ public abstract class Konstantj {
 	public static boolean qyangxSpriteFoli = false;
 	public static int canonAngulnombr = 360;
 	public static final byte LUDRAPIDEC = 1;
-	public static final double MISILRAPIDEC = 0.03;
+	public static final double MISILRAPIDEC = 0.003;
 	
 	public final static String SUFIX_MAP = ".egam";
 	public final static String ITENER_MAP = "/maps/";
@@ -152,11 +152,6 @@ public abstract class Konstantj {
 	public final static Color AKV_MAP_KOLOR = new Color(0, 171, 192).brighter();
 	
 	public final static int butonspec = 1;
-	
-	public final static BufferedImage MISILSPRITE = YargxilAzhj.yargxBildn(ITENER_MISIL + 0 + ".png",
-	        Transparency.TRANSLUCENT);
-	
-	public final static BufferedImage[] ATOMMISILSPRITE = new BufferedImage[360];
 	
 	public final static BufferedImage[] BUTON_SPRITE = {
 	        YargxilAzhj.yargxBildn(ITENER_BLU_BUTON + butonspec + ".png", Transparency.TRANSLUCENT),
@@ -246,7 +241,7 @@ public abstract class Konstantj {
 	public final static Biom[] biomj = {new Biom(frekvencij, amplitudes, 15, 1, PLANK_MAP_KOLOR),
 			new Urb(urbfrekvencij, urbamplitudes, 130, 0.5, Color.DARK_GRAY),
 			new Mes(mesfrekvencij, mesamplitudes, 35/*5*/, 0.75,
-			new Color(185, 50, 10)), new Biom(frekvencij, amplitudes, 50, 0.9, Konstantj.PLANK_NEGX_MAP_KOLOR)};
+			new Color(185, 50, 10)), new Biom(frekvencij, amplitudes, 50, 0.85, Konstantj.PLANK_NEGX_MAP_KOLOR)};
 	
 	public static int mapgrandec = Konstantj.ludLargx;
 	

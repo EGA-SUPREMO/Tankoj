@@ -32,7 +32,7 @@ public class Map {
 	public int spec;
 	public double mldurec;
 	private double vent;
-	public int nunbiom = 1;
+	public int nunbiom = 3;
 	
 	private static final int xAxenVideblTilej = (int) ((float)Konstantj.ludLargx/Konstantj.SPRITEFLANK + 2.99);
 	private static final int yAxenVideblTilej = (int) ((float)Konstantj.ludAlt/Konstantj.SPRITEFLANK + 0.99);
@@ -80,6 +80,7 @@ public class Map {
 				Konstantj.QEFFONJ_BIOMJ[j + i*tempBildarj.length] = tempBildarj[j];
 			}
 		}
+		mldurec = Konstantj.biomj[nunbiom].mldurec;
 		
 		/*
 		final JSONObject globalJSON = JSONObjektn(enhav);

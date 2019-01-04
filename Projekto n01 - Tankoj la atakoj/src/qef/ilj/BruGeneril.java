@@ -29,7 +29,7 @@ public class BruGeneril {
 		double[] output = new double[Konstantj.mapgrandec];
 		double phase = r.nextDouble() + 2*Math.PI;
 		for(int x = 0; x < Konstantj.mapgrandec; x++)
-			output[x] = (int) Math.round(altgrandec*Math.sin(2*Math.PI*frekvenc*x/Konstantj.mapgrandec + phase));
+			output[x] = altgrandec*Math.sin(2*Math.PI*frekvenc*x/Konstantj.mapgrandec + phase);
 		return output;
 	}
 	

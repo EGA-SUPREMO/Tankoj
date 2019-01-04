@@ -61,14 +61,14 @@ public class KalkuliTrajektn {
 		else
 			ACCELERATION.setLocation(Math.random()/10-0.05, ACCELERATION.getY());
 
-		executShotn(1.3/200*potenc);
+		executShotn(1.3*potenc);
 		;
 		while(misil.rapidecY > 0 && nuny >= QefObjektj.map.yn(nunx)) {
 			
 			int i = 0;
 			b:
 			while(nunx == (int) misil.xn() && nuny == (int) misil.yn()) {
-				executShotn(1.3/200*potenc);
+				executShotn(1.3*potenc);
 				if(i++>60)
 					break b;
 			}

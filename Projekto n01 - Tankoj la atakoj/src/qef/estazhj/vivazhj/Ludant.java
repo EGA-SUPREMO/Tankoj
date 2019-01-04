@@ -32,7 +32,6 @@ public class Ludant extends Vivazh {
 	private int offsetCanonX = -2, offsetCanonY = 1, offsetCanonY2 = 3;
 	private static final int ANTAWDEFINITPLEJANGUL = Konstantj.canonAngulnombr/2;
 	public int plejangul, mlplejangul;
-	public Misil m;
 	protected Vivazharmilar vivazharmilar;
 	private boolean qatingec, qgxisdatigatingecn;
 	private BufferedImage atingec;
@@ -101,16 +100,12 @@ public class Ludant extends Vivazh {
 	public void gxisdatig() {
 		if(venontDamagxit > 0)
 			venontDamagxit -= 1000000/60;
-		if(m!=null) {//FIXME
-			Kontrolperant.klavar.qatak = false;
-			m.gxisdatig();
-		} else {
-			gxisdatigAtakn();
-			yangxMapn();
-			yangxSpriten();
-			mov();
-			anim();
-		}
+		gxisdatigAtakn();
+		yangxMapn();
+		yangxSpriten();
+		mov();
+		anim();
+		
 	}
 	
 	private void mov() {//1 = maldekstre, 2 = dekstre
@@ -160,12 +155,14 @@ public class Ludant extends Vivazh {
 			qgxisdatigatingecn = false;
 		}
 		if(Kontrolperant.klavar.supriArmil) {
-			if(++nunArmil>2)
+			if(++nunArmil>4)
 				nunArmil--;
+			Kontrolperant.klavar.supriArmil = false;
 		}
 		if(Kontrolperant.klavar.subiArmil) {
 			if(nunArmil>0)
 				nunArmil--;
+			Kontrolperant.klavar.subiArmil = false;
 		}
 	}
 	
@@ -174,8 +171,11 @@ public class Ludant extends Vivazh {
 	
 	private void gxisdatigAtakn() {
 		if (Kontrolperant.klavar.qatak) {
-			m = (Misil) Estazhregistril.estaezhjn(nunArmil);
+			Vicperant.setNunMisiln((Misil) Estazhregistril.estaezhjn(nunArmil));
+			Kontrolperant.klavar.qatak = false;
 		}
+		if(Vicperant.nunMisiln()==null)//FIXME
+			Kontrolperant.klavar.qatak = false;
 	}
 	@Override
 	protected void anim() {
@@ -224,9 +224,7 @@ public class Ludant extends Vivazh {
 		DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
 				offsetCanonX - (Vicperant.nunludantn().largxVivazhn()>>1) + offsetLudantX, posiciY - bildj[nunBild].getHeight());
 		
-		if(m!=null)
-			m.desegn();
-		if(atingec!=null && Vicperant.ludantj[Vicperant.nunLudantn()]==this) {
+		if(atingec!=null && Vicperant.ludantj[Vicperant.nunLudantn()]==this && Vicperant.nunMisiln() == null) {
 			if(nunangul>90)
 				DebugDesegn.desegnBildn(atingec, (int) Kvantperant.koordenadXalekranPosicin(xn()),
 						(int) Kvantperant.koordenadYalekranPosicin(yn()) - atingec.getHeight());
