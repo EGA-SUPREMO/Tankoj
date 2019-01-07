@@ -11,13 +11,11 @@ import qef.ilj.Vicperant;
 
 public class Misil extends Vivazh {
 	
-	private final double damagxLargxX;
+	protected final double damagxLargxX;
 	private final int komencDamagxX;
-	private final int damagxaltec;
+	protected final int damagxaltec;
 	protected final int grandec;
-	private final int mlplejY;
 	public final KalkuliTrajektn trajekt;
-	public boolean ega;
 	
 	public Misil(final int ekangulo, final int potenco, final int damagxo, final double ekXo, final double ekYo) {
 		super(1, damagxo, Konstantj.ITENER_SON_MISIL);
@@ -29,8 +27,7 @@ public class Misil extends Vivazh {
 		//damagxaltec = (int) (damagxLargxX*Math.sqrt(damagxLargxX)/grandec);
 		damagxaltec = (int) (damagx*0.7 * QefObjektj.map.mldurec);
 		
-		mlplejY =  QefObjektj.map.altMap - (int) (damagxLargxX);
-		ega = true;
+		//mlplejY =  QefObjektj.map.altMap - (int) (damagxLargxX);
 		setXn(ekXo);
 		setYn(ekYo + 10);
 		
@@ -41,15 +38,13 @@ public class Misil extends Vivazh {
 	@Override
 	public void gxisdatig() {
 		for(int i = 0; i < 10; i++)
-			if(yn() >= QefObjektj.map.yn()[(int) xn()] && yn()<mlplejY)
+			if(yn() >= QefObjektj.map.yn()[(int) xn()])
 				trajekt.executShotn();
 			else {
 				exploci();
 				
 				for(int j = 0; j < Vicperant.ludantj.length; j++)
 					Vicperant.ludantj[j].setYn(QefObjektj.map.yn()[(int) Vicperant.ludantj[j].xn()]);
-				if(ega)
-					Vicperant.venontNunLudantn();
 				break;
 			}
 	}
@@ -62,7 +57,7 @@ public class Misil extends Vivazh {
 	public void exploci() {
 		mlkonstruMapn();
 		mlgajnVivDeludantj();
-		forigMisiln();
+		venontVicn();
 	}
 	
 	protected void mlkonstruMapn() {
@@ -81,9 +76,9 @@ public class Misil extends Vivazh {
 					//if()
 						Vicperant.ludantj[i].mlgajnVivn(Math.sin(Math.PI*(x+komencDamagxX)/damagxLargxX)*2);
 	}
-	protected void forigMisiln() {
-		if(ega)
-			Vicperant.setNunMisiln(null);
+	protected void venontVicn() {
+		Vicperant.setNunMisiln(null);
+		Vicperant.venontNunLudantn();
 	}
 	
 }

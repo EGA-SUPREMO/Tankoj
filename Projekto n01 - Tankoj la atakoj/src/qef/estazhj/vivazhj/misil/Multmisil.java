@@ -4,11 +4,10 @@ import qef.ilj.Vicperant;
 
 public class Multmisil extends Misil {
 	
-	private Misil[] misilj;
+	protected Misil[] misilj;
 	
 	public Multmisil(final int ekangulo, final int potenco, final int damagxo, final double ekXo, final double ekYo) {
 		super(ekangulo, potenco, damagxo, ekXo, ekYo);
-		ega = false;
 	}
 	
 	@Override
@@ -19,11 +18,11 @@ public class Multmisil extends Misil {
 			int j = misilj.length;
 			for(int i = 0; i < misilj.length; i++) {
 				if(misilj[i]!=null) {
-					j--;
 					misilj[i].gxisdatig();
-				}
+				} else
+					j--;
 			}
-			if(j==0) {
+			if(j<1) {
 				Vicperant.setNunMisiln(null);
 				Vicperant.venontNunLudantn();
 			}
@@ -44,14 +43,13 @@ public class Multmisil extends Misil {
 	public void exploci() {
 		misilj = new Misil[5];
 		for(int i = 0; i < misilj.length; i++) {
-			misilj[i] = new Misil(180/misilj.length*i, 7, 15, xn(), Math.sin(Math.PI*2/i)*grandec + yn());
-			misilj[i].ega = false;
+			misilj[i] = new Misilet(180/misilj.length*i, 70, 50, i, this);
 		}
 		
 		super.exploci();
 	}
 	
 	@Override
-	protected void forigMisiln() {
+	protected void venontVicn() {
 	}
 }
