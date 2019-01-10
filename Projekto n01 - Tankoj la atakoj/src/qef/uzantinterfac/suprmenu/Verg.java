@@ -12,7 +12,7 @@ public class Verg {
 	private final static int GRANDEC_VERTIKAL = 4;
 	private Color kolor, darkKolor;
 //	private static int id = 0;
-	private static int largx = 100;
+	private static int largx = 180;
 	private Point posici;
 	private Text text;
 	
@@ -49,7 +49,7 @@ public class Verg {
 
 		if(text.name()=="ATK") {
 			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].potenc * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
-		
+			//NO HAY NADA MAS PERMANENTE QUE UNA SOLUCION TEMPORAL
 			posici.y += GRANDEC_VERTIKAL;
 		
 			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].potenc * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);

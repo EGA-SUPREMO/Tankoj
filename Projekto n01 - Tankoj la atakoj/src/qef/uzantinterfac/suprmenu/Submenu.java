@@ -11,7 +11,6 @@ public class Submenu {
 	private static Rectangle are = new Rectangle(0, 0, Konstantj.ludLargx, Konstantj.altSubmenu);
 	private Rectangle MargxenAre;
 	private Verg[] vergj;
-	private Elektebl[] elekteblj;
 	private static int kvantElektebl = 3;
 	
 	public Submenu() {
@@ -23,17 +22,11 @@ public class Submenu {
 		vergj[1] = new Verg(Color.GREEN, Text.ANG);
 		vergj[2] = new Verg(Color.RED, Text.ATK);
 		
-		elekteblj = new Elektebl[kvantElektebl];
-		for(int i = 0; i < kvantElektebl; i++) {
-			elekteblj[i] = new Elektebl(i);
-		}
-		
 	}
 	
 	public void desegn() {
 		desegnSubmenufonn();
 		desegnVergjn();
-		desegnElektebljn();
 	}
 	
 	private void desegnSubmenufonn() {
@@ -46,11 +39,6 @@ public class Submenu {
 	private void desegnVergjn() {
 		for(int i = 0; i < vergj.length; i++)
 			vergj[i].desegn();
-	}
-	
-	private void desegnElektebljn() {
-		for(int i = 0; i < elekteblj.length; i++) 
-			elekteblj[i].desegn();;
 	}
 	
 	static int kvantElektebln() {
