@@ -197,13 +197,10 @@ public class Ludant extends Vivazh {
 		radX1 = ANTAWDEFINITRAD_X1 + offsetLudantX;
 		radX2 = ANTAWDEFINITRAD_X2 + offsetLudantX;
 		
-		int x1 = (int) Map.xn((int) xn(), radX1);
-		int x2 = (int) Map.xn((int) xn(), radX2);
-		
 		double y1 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX1))];
 		double y2 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX2))];
 		
-		double angul = Math.atan2(y2 - y1, x2 - x1);
+		double angul = Math.atan2(y2 - y1, radX2 - radX1);
 		
 		for(int i = -DUONKVANTSTATJ; i < DUONKVANTSTATJ; i++)
 			if(angul>ROTACI*i && angul<ROTACI*(i+1)) {

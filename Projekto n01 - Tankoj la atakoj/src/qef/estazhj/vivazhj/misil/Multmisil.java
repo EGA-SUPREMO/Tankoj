@@ -1,5 +1,6 @@
 package qef.estazhj.vivazhj.misil;
 
+import qef.QefObjektj;
 import qef.ilj.Vicperant;
 
 public class Multmisil extends Misil {
@@ -42,8 +43,11 @@ public class Multmisil extends Misil {
 	@Override
 	public void exploci() {
 		misilj = new Misil[5];
+		final double offsetRad = Math.atan2(QefObjektj.map.yn((int) (xn() - komencDamagxX))
+				- QefObjektj.map.yn((int) (xn() + komencDamagxX)), damagxLargxX) + Math.PI;
+		final int offsetDegree = (int) Math.toDegrees(offsetRad) - 180;
 		for(int i = 0; i < misilj.length; i++) {
-			misilj[i] = new Misilet(180/misilj.length*i, 70, 50, i, this);
+			misilj[i] = new Misilet(180/misilj.length*i + offsetDegree, 7, 15, offsetRad, i+1, this);
 		}
 		
 		super.exploci();

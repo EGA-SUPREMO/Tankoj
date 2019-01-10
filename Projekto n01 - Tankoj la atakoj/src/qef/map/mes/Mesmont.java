@@ -1,7 +1,5 @@
 package qef.map.mes;
 
-import qef.Konstantj;
-
 public class Mesmont {
 	
 	public final double[] y;

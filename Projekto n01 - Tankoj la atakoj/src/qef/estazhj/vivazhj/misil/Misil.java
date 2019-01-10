@@ -12,7 +12,7 @@ import qef.ilj.Vicperant;
 public class Misil extends Vivazh {
 	
 	protected final double damagxLargxX;
-	private final int komencDamagxX;
+	protected final int komencDamagxX;
 	protected final int damagxaltec;
 	protected final int grandec;
 	public final KalkuliTrajektn trajekt;
@@ -38,9 +38,9 @@ public class Misil extends Vivazh {
 	@Override
 	public void gxisdatig() {
 		for(int i = 0; i < 10; i++)
-			if(yn() >= QefObjektj.map.yn()[(int) xn()])
+			if(yn() >= QefObjektj.map.yn()[(int) xn()]) {
 				trajekt.executShotn();
-			else {
+			} else {
 				exploci();
 				
 				for(int j = 0; j < Vicperant.ludantj.length; j++)

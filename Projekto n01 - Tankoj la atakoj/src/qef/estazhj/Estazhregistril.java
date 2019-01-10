@@ -24,7 +24,7 @@ public class Estazhregistril {
 				return new Atommisileg(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 300,
 						Vicperant.nunludantn().xn(), Vicperant.nunludantn().yn(), 2, 23);
 			case 4:
-				return new Multmisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 10,
+				return new Multmisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 15,
 						Vicperant.nunludantn().xn(), Vicperant.nunludantn().yn());
 			default:
 				return null;
