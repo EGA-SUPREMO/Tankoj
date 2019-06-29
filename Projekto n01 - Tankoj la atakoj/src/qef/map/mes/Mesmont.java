@@ -12,9 +12,9 @@ public class Mesmont {
 		final int plejMontj = hazard<53? 2 : hazard<81? 3 : 4;
 		int antawlargx = largx;
 		for(int i = 0; i < plejMontj; i++) {
-			Partmesmont partmesmont = new Partmesmont((int) (Math.random()*antawlargx),
+			Partmesmont partmesmont = new Partmesmont((int) (y.length/4 + Math.random()*(antawlargx - y.length/4)),
 					altgrandec*2);
-			if(i==0)
+			if(i!=0)
 				antawlargx = partmesmont.y.length;
 			
 			for(int j = 0; j < partmesmont.y.length; j++)
