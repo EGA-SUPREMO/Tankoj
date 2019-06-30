@@ -32,7 +32,7 @@ public class Map {
 	public int spec;
 	public double mldurec;
 	private double vent;
-	public int nunbiom = 2;
+	public int nunbiom = 4;
 	
 	private static final int xAxenVideblTilej = (int) ((float)Konstantj.ludLargx/Konstantj.SPRITEFLANK + 2.99);
 	private static final int yAxenVideblTilej = (int) ((float)Konstantj.ludAlt/Konstantj.SPRITEFLANK + 0.99);

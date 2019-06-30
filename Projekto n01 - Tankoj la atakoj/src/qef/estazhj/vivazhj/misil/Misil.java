@@ -67,14 +67,28 @@ public class Misil extends Vivazh {
 	}
 	
 	protected void mlgajnVivDeludantj() {
-		for(int i = 0; i < Vicperant.ludantj.length; i++)
-			if(xn()-komencDamagxX<Vicperant.ludantj[i].xn() - (Vicperant.ludantj[i].largxVivazhn()>>1)
+		for(int i = 0; i < Vicperant.ludantj.length; i++) {
+			/*if(xn()-komencDamagxX<Vicperant.ludantj[i].xn() - (Vicperant.ludantj[i].largxVivazhn()>>1)
 					&& xn()+komencDamagxX>Vicperant.ludantj[i].xn() - (Vicperant.ludantj[i].largxVivazhn()>>1) ||
 					xn()-komencDamagxX<Vicperant.ludantj[i].xn() + (Vicperant.ludantj[i].largxVivazhn()>>1)
 					&& xn()+komencDamagxX>Vicperant.ludantj[i].xn() + (Vicperant.ludantj[i].largxVivazhn()>>1))
 				for(int x = -komencDamagxX; x < komencDamagxX; x++)
 					//if()
-						Vicperant.ludantj[i].mlgajnVivn(Math.sin(Math.PI*(x+komencDamagxX)/damagxLargxX)*2);
+						Vicperant.ludantj[i].mlgajnVivn(Math.sin(Math.PI*(x+komencDamagxX)/damagxLargxX)*2);*/
+			double distanc = Kvantperant.kakulDistancn((int) xn(), (int) yn(),
+					(int) Vicperant.ludantj[i].xn(), (int) Vicperant.ludantj[i].yn());
+			final double dudistanc = QefObjektj.map.yn().length - distanc;
+			
+			distanc = distanc<dudistanc? distanc: dudistanc;
+			
+			final double damagxX = damagxLargxX + (Vicperant.ludantj[i].largxVivazhn()>>1);
+			
+			if(distanc <= damagxX) {
+				final double potenc = distanc/damagxX;
+				Vicperant.ludantj[i].mlgajnVivn(Math.pow(potenc*damagx, 2));
+			}
+			
+		}
 	}
 	protected void venontVicn() {
 		Vicperant.setNunMisiln(null);

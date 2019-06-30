@@ -148,6 +148,7 @@ public abstract class Konstantj {
 	
 	public final static Color PLANK_NEGX_MAP_KOLOR = new Color(0xFFFFFF);
 	public final static Color PLANK_MAP_KOLOR = new Color(0x55EC06);
+	public final static Color SABL_MAP_KOLOR = new Color(0xE6D457);
 	public final static Color CXIEL_MAP_KOLOR = new Color(0x99CCFF);
 	public final static Color AKV_MAP_KOLOR = new Color(0, 171, 192).brighter();
 	
@@ -241,7 +242,8 @@ public abstract class Konstantj {
 	public final static Biom[] biomj = {new Biom(frekvencij, amplitudes, 15, 1, PLANK_MAP_KOLOR),
 			new Urb(urbfrekvencij, urbamplitudes, 130, 0.5, Color.DARK_GRAY),
 			new Mes(mesfrekvencij, mesamplitudes, 35/*5*/, 0.75,
-			new Color(185, 50, 10)), new Biom(frekvencij, amplitudes, 50, 0.85, Konstantj.PLANK_NEGX_MAP_KOLOR)};
+			new Color(185, 50, 10)), new Biom(frekvencij, amplitudes, 50, 0.85, Konstantj.PLANK_NEGX_MAP_KOLOR),
+			new Biom(frekvencij, amplitudes, 10, 1.85, Konstantj.SABL_MAP_KOLOR)};
 	
 	public static int mapgrandec = Konstantj.ludLargx;
 	
