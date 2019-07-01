@@ -7,6 +7,7 @@ import qef.estazhj.vivazhj.misil.Misil;
 
 public class Vicperant {
 	
+	private static int stat = 2;
 	private static int neaktivLudantj = 0;
 	private static int nunLudant = 0;
 	
@@ -44,8 +45,10 @@ public class Vicperant {
 			
 			if(neaktivLudantj<ludantj.length)
 				return venontNunLudantn();
-			else
+			else {
+				stat = 7;
 				return 0;
+			}
 		}
 		neaktivLudantj = 0;
 		QefObjektj.map.venontVicn();
@@ -53,4 +56,7 @@ public class Vicperant {
 		return nunLudant;
 	}
 	
+	public static int statn() {
+		return stat;
+	}
 }

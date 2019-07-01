@@ -34,9 +34,7 @@ public class Ludperant implements Statlud {
 			return 1;
 		else
 			return 2;*/
-		if(Vicperant.neaktivLudantjn()>=Vicperant.ludantj.length)
-			return 5;
-		return 2;
+		return Vicperant.statn();
 	}
 	
 }
