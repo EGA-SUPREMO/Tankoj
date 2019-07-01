@@ -79,7 +79,6 @@ public class Misil extends Vivazh {
 			if(distanc <= damagxX) {
 				final double potenc = (damagxX - distanc)/damagxX;
 				Vicperant.ludantj[i].mlgajnVivn(Math.pow(potenc*damagx, 2)/(damagx*damagx)*damagx);
-				System.out.println(Math.pow(potenc*damagx, 2)/(damagx*damagx)*damagx + " - " + distanc + " - " + i);
 			}
 			
 		}

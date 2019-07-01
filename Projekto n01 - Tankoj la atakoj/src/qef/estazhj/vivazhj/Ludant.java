@@ -98,6 +98,8 @@ public class Ludant extends Vivazh {
 	
 	@Override
 	public void gxisdatig() {
+		if(vivn()<=0)
+			return;
 		if(venontDamagxit > 0)
 			venontDamagxit -= 1000000/60;
 		gxisdatigAtakn();
@@ -214,6 +216,8 @@ public class Ludant extends Vivazh {
 	
 	@Override
 	public void desegn() {
+		if(vivn()<=0)
+			return;
 		int posiciY = (int) Kvantperant.koordenadYalekranPosicin((int)yn()) + offsetLudantY;
 		DebugDesegn.desegnBildn(bildj[nunBild], (int) Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
 				- (Vicperant.nunludantn().largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());

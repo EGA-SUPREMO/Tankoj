@@ -3,7 +3,6 @@ package qef.statmayin.statj.lud;
 import qef.QefObjektj;
 import qef.estazhj.vivazhj.Ludant;
 import qef.ilj.Vicperant;
-import qef.kontrolj.Kontrolperant;
 import qef.statmayin.Statlud;
 
 public class Ludperant implements Statlud {
@@ -31,10 +30,13 @@ public class Ludperant implements Statlud {
 
 	@Override
 	public int nunStat() {
-		if(Kontrolperant.klavar.aktivInventari)
+		/*if(Kontrolperant.klavar.aktivInventari)
 			return 1;
 		else
-			return 2;
+			return 2;*/
+		if(Vicperant.neaktivLudantjn()>=Vicperant.ludantj.length)
+			return 5;
+		return 2;
 	}
 	
 }

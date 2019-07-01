@@ -7,6 +7,7 @@ import qef.estazhj.vivazhj.misil.Misil;
 
 public class Vicperant {
 	
+	private static int neaktivLudantj = 0;
 	private static int nunLudant = 0;
 	
 	public static Ludant[] ludantj = new Ludant[] {new Ludant(1, Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
@@ -29,12 +30,24 @@ public class Vicperant {
 	public static Misil nunMisiln() {
 		return nunMisil;
 	}
+	public static int neaktivLudantjn() {
+		return neaktivLudantj;
+	}
 	
 	public static int venontNunLudantn() {//FIXME
 		//Eble a maniero por fix cxi tion estas aldoni booleano en kiu estas true dum presado kaj false...
 		//if(Kontrolperant.klavar.qatak)
 		if(++nunLudant>=ludantj.length)
 			nunLudant = 0;
+		if(nunludantn().vivn()<=0) {
+			neaktivLudantj++;
+			
+			if(neaktivLudantj<ludantj.length)
+				return venontNunLudantn();
+			else
+				return 0;
+		}
+		neaktivLudantj = 0;
 		QefObjektj.map.venontVicn();
 		
 		return nunLudant;
