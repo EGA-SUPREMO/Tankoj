@@ -98,18 +98,16 @@ public class DebugDesegn {
 	public static void desegnBildn(final BufferedImage bild, final int xo, final int y) {
 		yangxGrafikn(false);
 		if(xo + bild.getWidth() > QefObjektj.map.yn().length) {
-			objektjDesegnita++;
 			g.drawImage(bild, xo - QefObjektj.map.yn().length, y, null);
 		}else {
-			objektjDesegnita++;
 			g.drawImage(bild, xo + QefObjektj.map.yn().length, y, null);
 		}
 		
+		objektjDesegnita++;
 		if(xo < QefObjektj.map.yn().length) {
 			g.drawImage(bild, xo, y, null);
 			objektjDesegnita++;
 		}
-
 		yangxGrafikn();
 	}
 	public static void desegnLine(final int x1, final int y1, final int x2, final int y2) {

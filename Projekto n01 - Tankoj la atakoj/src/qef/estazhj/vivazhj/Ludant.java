@@ -36,6 +36,7 @@ public class Ludant extends Vivazh {
 	private boolean qatingec, qgxisdatigatingecn;
 	private BufferedImage atingec;
 	
+	private int movec = 0;//duonrotaciplejNombr>>4;
 	public int plejpotenc = 100;
 	public int potenc;
 	private int nunangul;
@@ -107,18 +108,28 @@ public class Ludant extends Vivazh {
 		yangxSpriten();
 		mov();
 		anim();
-		
 	}
 	
-	private void mov() {//1 = maldekstre, 2 = dekstre
+	private void mov() {
 		if(Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan() && brulazh>0) {
+			
 			pliX();
+			nunBild = statn((int) xn());
+			if(nunBild<movec || nunBild>duonrotaciplejNombr - movec) {
+				mlpliX();
+			}
+			
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 			if(qatingec)
 				qgxisdatigatingecn = true;
 		}
 		if(Kontrolperant.klavar.mldextr.pulsitan() && !Kontrolperant.klavar.dextr.pulsitan() && brulazh>0) {
 			mlpliX();
+			nunBild = statn((int) xn());
+			if(nunBild<movec || nunBild>duonrotaciplejNombr - movec) {
+				pliX();
+			}
+			
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 			if(qatingec)
 				qgxisdatigatingecn = true;
@@ -182,7 +193,6 @@ public class Ludant extends Vivazh {
 	@Override
 	protected void anim() {
 		if(qmovant) {
-			nunBild = statn();
 			plejangul = ANTAWDEFINITPLEJANGUL + (int) Math.toDegrees((offsetLudantX)*ROTACI);
 			mlplejangul = plejangul - 180;
 			
@@ -195,18 +205,18 @@ public class Ludant extends Vivazh {
 		}
 	}
 	//TODO SXangxu la klaso de tiu metodo
-	private int statn() {
+	private int statn(final int x) {
 		radX1 = ANTAWDEFINITRAD_X1 + offsetLudantX;
 		radX2 = ANTAWDEFINITRAD_X2 + offsetLudantX;
 		
-		double y1 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX1))];
-		double y2 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX2))];
+		double y1 = QefObjektj.map.yn()[(int) (Map.xn(x, radX1))];
+		double y2 = QefObjektj.map.yn()[(int) (Map.xn(x, radX2))];
 		
 		double angul = Math.atan2(y2 - y1, radX2 - radX1);
 		
 		for(int i = -DUONKVANTSTATJ; i < DUONKVANTSTATJ; i++)
 			if(angul>ROTACI*i && angul<ROTACI*(i+1)) {
-				offsetLudantX = -i;
+				offsetLudantX = (int) (-i*0.6);
 				return DUONKVANTSTATJ + i;
 			}
 		
@@ -236,6 +246,11 @@ public class Ludant extends Vivazh {
 			if(qgxisdatigatingecn)
 				atingec = null;
 		}
+		if(Kontrolperant.klavar.debug)
+			DebugDesegn.desegnMargxenRectangle(
+					(int) Kvantperant.koordenadXalekranPosicin(xn() - (bildj[nunBild].getWidth()>>1)),
+					(int) Kvantperant.koordenadYalekranPosicin(yn() - (bildj[nunBild].getHeight()>>1)),
+					bildj[nunBild].getWidth(), bildj[nunBild].getHeight(), Color.BLUE);
 	}
 
 	public void setSpriteFoli(final SpriteFoli foli, final int ordenSpec) {

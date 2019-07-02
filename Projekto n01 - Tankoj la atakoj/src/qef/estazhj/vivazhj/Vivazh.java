@@ -19,9 +19,10 @@ public abstract class Vivazh implements Estazh {
 	protected int nunBild;
 	protected int brulazh;
 
-	protected static final int KVANTSTATJ = 16;
+	protected static final int KVANTSTATJ = 32;
 	protected static final int DUONKVANTSTATJ = KVANTSTATJ/2;
 	protected static final int rotaciplejNombr = KVANTSTATJ*2;
+	protected static final int duonrotaciplejNombr = rotaciplejNombr/2;
 	protected static final double ROTACI = 2*Math.PI/rotaciplejNombr;
 	public double rapidecX, rapidecY;
 	
@@ -192,6 +193,7 @@ public abstract class Vivazh implements Estazh {
 		y = yo;
 	}
 	public void setYn(final double y) {
+		brulazh -= this.y > y? this.y - y : y - this.y;
 		this.y = y;
 	}
 	public Rectangle nunposiciare() {

@@ -53,7 +53,7 @@ public abstract class Konstantj {
 	
 	public final static int SUPR = KeyEvent.VK_W;
 	public final static int SUB = KeyEvent.VK_S;
-	public final static int MLDEXTR = KeyEvent.VK_A;
+	public final static int MLDEXTR = KeyEvent.VK_Q;
 	public final static int DEXTR = KeyEvent.VK_D;
 	public final static int KURI = KeyEvent.VK_SHIFT;
 	public final static int ELIRI = KeyEvent.VK_ESCAPE;
@@ -85,7 +85,7 @@ public abstract class Konstantj {
 	public static boolean qyangxSpriteFoli = false;
 	public static int canonAngulnombr = 360;
 	public static final byte LUDRAPIDEC = 1;
-	public static final double MISILRAPIDEC = 0.02;//0.0015
+	public static final double MISILRAPIDEC = 0.0003;//0.03
 	
 	public final static String SUFIX_MAP = ".egam";
 	public final static String ITENER_MAP = "/maps/";

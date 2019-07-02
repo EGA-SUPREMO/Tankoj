@@ -1,5 +1,6 @@
 package qef.estazhj.vivazhj.misil;
 
+import java.awt.Color;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 
@@ -8,6 +9,7 @@ import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.YargxilAzhj;
+import qef.kontrolj.Kontrolperant;
 
 public class Misileg extends Misil {
 	
@@ -41,7 +43,7 @@ public class Misileg extends Misil {
 		antawY = yn();
 		super.gxisdatig();
 		nunBild = ((int) Math.toDegrees(Math.atan2(antawY - yn(), antawX - xn())) + 180) +
-				spec*Konstantj.canonAngulnombr;
+				spec*Konstantj.canonAngulnombr;//FIXME ERaRO MaLBONa KaJ MISTERIOSO
 	}
 	
 	@Override
@@ -49,6 +51,11 @@ public class Misileg extends Misil {
 		DebugDesegn.desegnBildn(BILDJ[nunBild],
 				(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[nunBild].getWidth()>>1)),
 				(int) Kvantperant.koordenadYalekranPosicin(yn() - (BILDJ[nunBild].getHeight()>>1)));
+		if(Kontrolperant.klavar.debug)
+			DebugDesegn.desegnMargxenRectangle(
+					(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[nunBild].getWidth()>>1)),
+					(int) Kvantperant.koordenadYalekranPosicin(yn() - (BILDJ[nunBild].getHeight()>>1)),
+					BILDJ[nunBild].getWidth(), BILDJ[nunBild].getHeight(), Color.BLUE);
 	}
 	
 }
