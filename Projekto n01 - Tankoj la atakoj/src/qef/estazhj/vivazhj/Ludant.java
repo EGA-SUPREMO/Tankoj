@@ -230,12 +230,12 @@ public class Ludant extends Vivazh {
 			return;
 		int posiciY = (int) Kvantperant.koordenadYalekranPosicin((int)yn()) + offsetLudantY;
 		DebugDesegn.desegnBildn(bildj[nunBild], (int) Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
-				- (Vicperant.nunludantn().largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());
+				- (largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());
 		
 		DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
-				offsetCanonX - (Vicperant.nunludantn().largxVivazhn()>>1) + offsetLudantX, posiciY - bildj[nunBild].getHeight());
+				offsetCanonX - (largxVivazhn()>>1) + offsetLudantX, posiciY - bildj[nunBild].getHeight());
 		
-		if(atingec!=null && Vicperant.ludantj[Vicperant.nunLudantn()]==this && Vicperant.nunMisiln() == null) {
+		if(atingec!=null && Vicperant.nunMisiln() == null) {
 			if(nunangul>90)
 				DebugDesegn.desegnBildn(atingec, (int) Kvantperant.koordenadXalekranPosicin(xn()),
 						(int) Kvantperant.koordenadYalekranPosicin(yn()) - atingec.getHeight());
@@ -247,10 +247,9 @@ public class Ludant extends Vivazh {
 				atingec = null;
 		}
 		if(Kontrolperant.klavar.debug)
-			DebugDesegn.desegnMargxenRectangle(
-					(int) Kvantperant.koordenadXalekranPosicin(xn() - (bildj[nunBild].getWidth()>>1)),
-					(int) Kvantperant.koordenadYalekranPosicin(yn() - (bildj[nunBild].getHeight()>>1)),
-					bildj[nunBild].getWidth(), bildj[nunBild].getHeight(), Color.BLUE);
+			DebugDesegn.desegnMargxenRectangle((int) Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
+					- (largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight(), bildj[nunBild].getWidth(),
+					bildj[nunBild].getHeight(), Color.BLUE);
 	}
 
 	public void setSpriteFoli(final SpriteFoli foli, final int ordenSpec) {

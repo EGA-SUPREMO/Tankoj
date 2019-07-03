@@ -8,8 +8,8 @@ import java.awt.image.BufferedImage;
 
 import qef.ilj.YargxilAzhj;
 import qef.map.Biom;
-import qef.map.Urb;
 import qef.map.mes.Mes;
+import qef.map.urb.Urb;
 
 public abstract class Konstantj {
 	
@@ -85,7 +85,7 @@ public abstract class Konstantj {
 	public static boolean qyangxSpriteFoli = false;
 	public static int canonAngulnombr = 360;
 	public static final byte LUDRAPIDEC = 1;
-	public static final double MISILRAPIDEC = 0.0003;//0.03
+	public static final double MISILRAPIDEC = 0.03;//0.03
 	
 	public final static String SUFIX_MAP = ".egam";
 	public final static String ITENER_MAP = "/maps/";
