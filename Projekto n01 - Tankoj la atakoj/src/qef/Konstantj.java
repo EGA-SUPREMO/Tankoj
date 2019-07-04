@@ -48,6 +48,7 @@ public abstract class Konstantj {
 	public static int largxCentr = duonLudLargx - DUONSPRITEFLANK;
 	
 	public final static int PLEJ_BIOMJ = 8;
+	public final static int PLEJ_MISILJ = 5;
 	
 	public final static int nombroKlablj = 256;
 	

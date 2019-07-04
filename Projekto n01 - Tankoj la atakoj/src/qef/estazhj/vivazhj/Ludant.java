@@ -15,8 +15,6 @@ import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.Vicperant;
 import qef.ilj.YargxilAzhj;
-import qef.inventar.Objektregistril;
-import qef.inventar.armil.Armil;
 import qef.kontrolj.Kontrolperant;
 import qef.map.Map;
 import qef.sprite.SpriteFoli;
@@ -32,7 +30,7 @@ public class Ludant extends Vivazh {
 	private int offsetCanonX = 0, offsetCanonY = 1, offsetCanonY2 = 3;
 	private static final int ANTAWDEFINITPLEJANGUL = Konstantj.canonAngulnombr/2;
 	public int plejangul, mlplejangul;
-	protected Vivazharmilar vivazharmilar;
+	protected final int[] armilar;
 	private boolean qatingec, qgxisdatigatingecn;
 	private BufferedImage atingec;
 	
@@ -63,9 +61,10 @@ public class Ludant extends Vivazh {
 		setYn(QefObjektj.map.yn((int) xn()));
 		nunangul = r.nextInt(plejangul-90)+90;
 		potenc = plejpotenc/4;
-		vivazharmilar = new Vivazharmilar((Armil) Objektregistril.objektjn(500));
+		armilar = komnecarmilarn();
 		qatingec = true;
 		qgxisdatigatingecn = false;
+		
 		
 		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
 		ordenBildj(ordenSpec, sprite.spritejn());
@@ -75,11 +74,24 @@ public class Ludant extends Vivazh {
 		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
 	}
 	
+	private int[] komnecarmilarn() {
+		final int[] novarmilar = new int[Konstantj.PLEJ_MISILJ];
+		
+		novarmilar[0] = 999999;
+		novarmilar[1] = 50;
+		novarmilar[2] = 25;
+		novarmilar[3] = 6;
+		novarmilar[4] = 1;
+		
+		
+		return novarmilar;
+	}
+
 	protected void ordenBildj(final int spec, final BufferedImage[] tempbildj) {
 		switch(spec) {
 			case 0:
 				break;
-			case 1://TODO faru ke la bildoj generigxos kiam la ludanto acxetu la habilidad de escalar montoj(eble ne faru tion) kaj tio estas uzita en la metodo de la atoma misilo
+			case 1:
 				bildj = new BufferedImage[rotaciplejNombr/2];
 				final int duonLong = bildj.length/2;
 				for(int i = -duonLong; i < duonLong; i++)
@@ -168,13 +180,11 @@ public class Ludant extends Vivazh {
 			qgxisdatigatingecn = false;
 		}
 		if(Kontrolperant.klavar.supriArmil) {
-			if(++nunArmil>4)
-				nunArmil--;
+			pliNunArmiln();
 			Kontrolperant.klavar.supriArmil = false;
 		}
 		if(Kontrolperant.klavar.subiArmil) {
-			if(nunArmil>0)
-				nunArmil--;
+			mlpliNunArmiln();
 			Kontrolperant.klavar.subiArmil = false;
 		}
 	}
@@ -185,10 +195,9 @@ public class Ludant extends Vivazh {
 	private void gxisdatigAtakn() {
 		if (Kontrolperant.klavar.qatak) {
 			Vicperant.setNunMisiln((Misil) Estazhregistril.estaezhjn(nunArmil));
+			mlpliArmilarn();
 			Kontrolperant.klavar.qatak = false;
 		}
-		if(Vicperant.nunMisiln()==null)
-			Kontrolperant.klavar.qatak = false;
 	}
 	@Override
 	protected void anim() {
@@ -260,9 +269,6 @@ public class Ludant extends Vivazh {
 		return experienc;
 	}
 
-	public Vivazharmilar vivazharmilarn() {
-		return vivazharmilar;
-	}
 	public void mlplinunanguln() {
 		if(nunangul>mlplejangul)
 			nunangul--;
@@ -273,6 +279,26 @@ public class Ludant extends Vivazh {
 	}
 	public int nunanguln() {
 		return nunangul;
+	}
+
+	private void pliNunArmiln() {
+		if(++nunArmil>=Konstantj.PLEJ_MISILJ)
+			nunArmil = 0;
+		if(armilar[nunArmil]<1)
+			pliNunArmiln();
+	}
+	private void mlpliNunArmiln() {
+		if(nunArmil>0)
+			nunArmil--;
+		else
+			nunArmil = Konstantj.PLEJ_MISILJ-1;
+		if(armilar[nunArmil]<1)
+			mlpliNunArmiln();
+	}
+	private void mlpliArmilarn() {
+		armilar[nunArmil]--;
+		if(armilar[nunArmil]<1)
+			pliNunArmiln();
 	}
 	@Override
 	public void resetVivn() {
