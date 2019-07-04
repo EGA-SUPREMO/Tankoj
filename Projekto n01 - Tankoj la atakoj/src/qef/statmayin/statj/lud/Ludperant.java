@@ -10,7 +10,7 @@ public class Ludperant implements Statlud {
 	@Override
 	public void gxisdatig() {
 		if(Vicperant.nunMisiln()==null)
-			Vicperant.ludantj[Vicperant.nunLudantn()].gxisdatig();
+			Vicperant.nunludantn().gxisdatig();
 		else
 			Vicperant.nunMisiln().gxisdatig();
 		

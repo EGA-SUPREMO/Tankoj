@@ -187,7 +187,7 @@ public class Ludant extends Vivazh {
 			Vicperant.setNunMisiln((Misil) Estazhregistril.estaezhjn(nunArmil));
 			Kontrolperant.klavar.qatak = false;
 		}
-		if(Vicperant.nunMisiln()==null)//FIXME
+		if(Vicperant.nunMisiln()==null)
 			Kontrolperant.klavar.qatak = false;
 	}
 	@Override

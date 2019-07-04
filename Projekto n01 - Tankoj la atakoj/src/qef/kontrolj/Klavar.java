@@ -57,7 +57,8 @@ public class Klavar extends KeyAdapter {
 				qkolekt = true;
 				break;
 			case Konstantj.ATAKI:
-				qatak = true;
+				if(Vicperant.nunMisiln()==null)
+					qatak = true;
 				break;
 		}
 	}
