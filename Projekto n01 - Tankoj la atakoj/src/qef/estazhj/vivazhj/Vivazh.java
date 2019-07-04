@@ -19,7 +19,7 @@ public abstract class Vivazh implements Estazh {
 	protected int nunBild;
 	protected int brulazh;
 
-	protected static final int KVANTSTATJ = 32;
+	protected static final int KVANTSTATJ = 128;
 	protected static final int DUONKVANTSTATJ = KVANTSTATJ/2;
 	protected static final int rotaciplejNombr = KVANTSTATJ*2;
 	protected static final int duonrotaciplejNombr = rotaciplejNombr/2;

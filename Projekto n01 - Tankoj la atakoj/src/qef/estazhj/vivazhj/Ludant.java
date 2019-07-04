@@ -216,7 +216,7 @@ public class Ludant extends Vivazh {
 		
 		for(int i = -DUONKVANTSTATJ; i < DUONKVANTSTATJ; i++)
 			if(angul>ROTACI*i && angul<ROTACI*(i+1)) {
-				offsetLudantX = (int) (-i*0.6);
+				offsetLudantX = (int) (-i/6);
 				return DUONKVANTSTATJ + i;
 			}
 		
@@ -293,6 +293,10 @@ public class Ludant extends Vivazh {
 		super.setYn(yo);
 		qmovant = true;
 		anim();
+	}
+	
+	public int offsetLudantXn() {
+		return offsetLudantX;
 	}
 	
 }

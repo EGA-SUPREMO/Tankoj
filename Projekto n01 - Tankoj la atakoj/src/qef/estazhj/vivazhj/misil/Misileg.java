@@ -50,11 +50,11 @@ public class Misileg extends Misil {
 	public void desegn() {
 		DebugDesegn.desegnBildn(BILDJ[nunBild],
 				(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[nunBild].getWidth()>>1)),
-				(int) Kvantperant.koordenadYalekranPosicin(yn() - (BILDJ[nunBild].getHeight()>>1)));
+				(int) Kvantperant.koordenadYalekranPosicin(yn() + (BILDJ[nunBild].getHeight()>>1)));
 		if(Kontrolperant.klavar.debug)
 			DebugDesegn.desegnMargxenRectangle(
 					(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[nunBild].getWidth()>>1)),
-					(int) Kvantperant.koordenadYalekranPosicin(yn() - (BILDJ[nunBild].getHeight()>>1)),
+					(int) Kvantperant.koordenadYalekranPosicin(yn() + (BILDJ[nunBild].getHeight()>>1)),
 					BILDJ[nunBild].getWidth(), BILDJ[nunBild].getHeight(), Color.BLUE);
 	}
 	

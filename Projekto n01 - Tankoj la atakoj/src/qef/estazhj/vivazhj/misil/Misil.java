@@ -29,7 +29,7 @@ public class Misil extends Vivazh {
 		
 		//mlplejY =  QefObjektj.map.altMap - (int) (damagxLargxX);
 		setXn(ekXo);
-		setYn(ekYo + 10);
+		setYn(ekYo);
 		
 		trajekt = new KalkuliTrajektn(this, QefObjektj.map.ventn(), ekangulo, potenco);
 		

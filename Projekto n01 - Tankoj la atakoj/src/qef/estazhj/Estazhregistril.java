@@ -13,23 +13,23 @@ public class Estazhregistril {
 		switch(id) {
 			case 0:
 				return new Misil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 10,
-						Vicperant.nunludantn().xn() + (Vicperant.nunludantn().largxVivazhn()>>1),
+						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1));
 			case 1:
 				return new Misileg(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 30,
-						Vicperant.nunludantn().xn() + (Vicperant.nunludantn().largxVivazhn()>>1),
+						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1), 0, 11);
 			case 2:
 				return new Atommisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 100,
-						Vicperant.nunludantn().xn() + (Vicperant.nunludantn().largxVivazhn()>>1),
+						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1), 1, 15);
 			case 3:
 				return new Atommisileg(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 300,
-						Vicperant.nunludantn().xn() + (Vicperant.nunludantn().largxVivazhn()>>1),
+						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1), 2, 23);
 			case 4:
 				return new Multmisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 15,
-						Vicperant.nunludantn().xn() + (Vicperant.nunludantn().largxVivazhn()>>1),
+						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1));
 			default:
 				return null;

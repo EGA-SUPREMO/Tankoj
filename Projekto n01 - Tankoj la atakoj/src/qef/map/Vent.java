@@ -12,10 +12,10 @@ public class Vent {
 		temp++;
 		
 		if(temp>1200) {
-			for(int i = 0; i < y.length-2; i++)
-				novY[i] = (y[i] + y[i+1] + y[i+2])/3;
-			novY[y.length-2] = (y[y.length-2] + y[y.length-1] + y[0])/3;
-			novY[y.length-1] = (y[y.length-1] + y[0] + y[1])/3;
+			for(int i = 1; i < y.length-1; i++)
+				novY[i] = (y[i-1] + y[i] + y[i+1])/3;
+			novY[0] = (y[y.length-1] + y[0] + y[1])/3;
+			novY[y.length-1] = (y[y.length-2] + y[y.length-1] + y[0])/3;
 			System.arraycopy(novY, 0, y, 0, y.length);
 			QefObjektj.map.setQmodifitn(true);
 			temp = 0;
