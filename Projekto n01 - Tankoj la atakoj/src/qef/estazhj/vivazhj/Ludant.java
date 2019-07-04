@@ -27,9 +27,9 @@ public class Ludant extends Vivazh {
 	private final static int ANTAWDEFINITRAD_X1 = -8, ANTAWDEFINITRAD_X2 = 8;
 	private int radX1 = ANTAWDEFINITRAD_X1, radX2 = ANTAWDEFINITRAD_X2;
 	private int offsetLudantY = 2;
-	private int offsetLudantX = 0;
+	private double offsetLudantX = 0;
 	@SuppressWarnings("unused")
-	private int offsetCanonX = -2, offsetCanonY = 1, offsetCanonY2 = 3;
+	private int offsetCanonX = 0, offsetCanonY = 1, offsetCanonY2 = 3;
 	private static final int ANTAWDEFINITPLEJANGUL = Konstantj.canonAngulnombr/2;
 	public int plejangul, mlplejangul;
 	protected Vivazharmilar vivazharmilar;
@@ -193,7 +193,7 @@ public class Ludant extends Vivazh {
 	@Override
 	protected void anim() {
 		if(qmovant) {
-			plejangul = ANTAWDEFINITPLEJANGUL + (int) Math.toDegrees((offsetLudantX)*ROTACI);
+			plejangul = ANTAWDEFINITPLEJANGUL + (int) Math.toDegrees((offsetLudantX*8)*ROTACI);
 			mlplejangul = plejangul - 180;
 			
 			if(nunangul>plejangul)
@@ -206,8 +206,8 @@ public class Ludant extends Vivazh {
 	}
 	//TODO SXangxu la klaso de tiu metodo
 	private int statn(final int x) {
-		radX1 = ANTAWDEFINITRAD_X1 + offsetLudantX;
-		radX2 = ANTAWDEFINITRAD_X2 + offsetLudantX;
+		radX1 = (int) (ANTAWDEFINITRAD_X1 + offsetLudantX);
+		radX2 = (int) (ANTAWDEFINITRAD_X2 + offsetLudantX);
 		
 		double y1 = QefObjektj.map.yn()[(int) (Map.xn(x, radX1))];
 		double y2 = QefObjektj.map.yn()[(int) (Map.xn(x, radX2))];
@@ -216,7 +216,7 @@ public class Ludant extends Vivazh {
 		
 		for(int i = -DUONKVANTSTATJ; i < DUONKVANTSTATJ; i++)
 			if(angul>ROTACI*i && angul<ROTACI*(i+1)) {
-				offsetLudantX = (int) (-i/6);
+				offsetLudantX = -i/7;
 				return DUONKVANTSTATJ + i;
 			}
 		
@@ -229,11 +229,11 @@ public class Ludant extends Vivazh {
 		if(vivn()<=0)
 			return;
 		int posiciY = (int) Kvantperant.koordenadYalekranPosicin((int)yn()) + offsetLudantY;
-		DebugDesegn.desegnBildn(bildj[nunBild], (int) Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
-				- (largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());
+		DebugDesegn.desegnBildn(bildj[nunBild], (int) (Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
+				- (largxVivazhn()>>1)), posiciY - bildj[nunBild].getHeight());
 		
-		DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
-				offsetCanonX - (largxVivazhn()>>1) + offsetLudantX, posiciY - bildj[nunBild].getHeight());
+		DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) (Kvantperant.koordenadXalekranPosicin(xn()) +
+				offsetCanonX - (largxVivazhn()>>1) + offsetLudantX*0.9), posiciY - bildj[nunBild].getHeight());
 		
 		if(atingec!=null && Vicperant.nunMisiln() == null) {
 			if(nunangul>90)
@@ -247,8 +247,8 @@ public class Ludant extends Vivazh {
 				atingec = null;
 		}
 		if(Kontrolperant.klavar.debug)
-			DebugDesegn.desegnMargxenRectangle((int) Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
-					- (largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight(), bildj[nunBild].getWidth(),
+			DebugDesegn.desegnMargxenRectangle((int) (Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
+					- (largxVivazhn()>>1)), posiciY - bildj[nunBild].getHeight(), bildj[nunBild].getWidth(),
 					bildj[nunBild].getHeight(), Color.BLUE);
 	}
 
@@ -296,7 +296,7 @@ public class Ludant extends Vivazh {
 	}
 	
 	public int offsetLudantXn() {
-		return offsetLudantX;
+		return (int) offsetLudantX;
 	}
 	
 }
