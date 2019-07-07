@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import qef.QefObjektj;
 import qef.estazhj.Estazh;
 //import qef.son.Son;
+import qef.ilj.Vicperant;
 
 public abstract class Vivazh implements Estazh {
 	
@@ -197,9 +198,12 @@ public abstract class Vivazh implements Estazh {
 	public void resetVivn() {
 		viv = plejviv;
 	}
-	public void mlgajnVivn(final double d) {
+	public void mlgajnVivn(final double d, final int plejdamagx, final int nunLudant) {
         if ((viv = viv - d) < 0)
             viv = 0;
+        
+		final double potenc = (plejdamagx - d)/plejdamagx;
+		Vicperant.ludantj[nunLudant].pliMonn(Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx);
 	}
 	
 }

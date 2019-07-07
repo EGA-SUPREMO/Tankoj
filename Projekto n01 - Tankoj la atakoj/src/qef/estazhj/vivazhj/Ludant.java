@@ -38,11 +38,12 @@ public class Ludant extends Vivazh {
 	public int plejpotenc = 100;
 	public int potenc;
 	private int nunangul;
-	private int experienc = 100;
+	private double mon = 0;
 	@SuppressWarnings("unused")
 	private int resistec;
 	
 	public int nunArmil = 1;
+	private final String nom;
 	
 	public static final SpriteFoli ludantsprite0 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
 			Transparency.TRANSLUCENT, 24, 24, Color.GREEN.darker());
@@ -53,7 +54,7 @@ public class Ludant extends Vivazh {
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
 			Transparency.TRANSLUCENT, 27, 29);
 	
-	public Ludant(final int ordenSpec, final String itenerSon, final SpriteFoli sprite,
+	public Ludant(final int ordenSpec, final String nomo, final String itenerSon, final SpriteFoli sprite,
 			final BufferedImage canonSprite) {
 		super(1, 100, itenerSon);
 		Random r = new Random();
@@ -64,7 +65,7 @@ public class Ludant extends Vivazh {
 		armilar = komnecarmilarn();
 		qatingec = true;
 		qgxisdatigatingecn = false;
-		
+		nom = nomo;
 		
 		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
 		ordenBildj(ordenSpec, sprite.spritejn());
@@ -267,8 +268,8 @@ public class Ludant extends Vivazh {
 		ordenBildj(ordenSpec, foli.spritejn());
 	}
 	
-	public int experiencn() {
-		return experienc;
+	public double monn() {
+		return mon;
 	}
 
 	public void mlplinunanguln() {
@@ -302,14 +303,17 @@ public class Ludant extends Vivazh {
 		if(armilar[nunArmil]<1)
 			pliNunArmiln();
 	}
+	public void pliMonn(final double mono) {
+		mon += mono;
+	}
 	@Override
 	public void resetVivn() {
 		super.resetVivn();
 		plejpotenc = (int) viv;
 	}
 	@Override
-	public void mlgajnVivn(final double vivo) {
-		super.mlgajnVivn(vivo);
+	public void mlgajnVivn(final double vivo, final int plejdamagx, final int nunLudant) {
+		super.mlgajnVivn(vivo, plejdamagx, nunLudant);
 		if(plejpotenc>viv) {
 			plejpotenc = (int) viv;
 			if(potenc>plejpotenc)
@@ -328,7 +332,9 @@ public class Ludant extends Vivazh {
 		qmovant = true;
 		anim();
 	}
-	
+	public String nomn() {
+		return nom;
+	}
 	public int offsetLudantXn() {
 		return (int) offsetLudantX;
 	}

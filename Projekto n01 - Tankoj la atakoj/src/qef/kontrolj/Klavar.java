@@ -85,10 +85,12 @@ public class Klavar extends KeyAdapter {
 				supriPotenc = false;
 				break;
 			case Konstantj.SUBIARMIL:
-				subiArmil = true;
+				if(Vicperant.nunMisiln()==null)
+					subiArmil = true;
 				break;
 			case Konstantj.SUPRIARMIL:
-				supriArmil = true;
+				if(Vicperant.nunMisiln()==null)
+					supriArmil = true;
 				break;
 			case Konstantj.KURI:
 				kuri = false;
