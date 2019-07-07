@@ -25,11 +25,11 @@ public class Estazhregistril {
 						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1));
 			case 3:
-				return new Atommisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 100,
+				return new Atommisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 125,
 						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1), 1, 15);
 			case 4:
-				return new Atommisileg(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 300,
+				return new Atommisileg(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 350,
 						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1), 2, 23);
 			case 5:

@@ -83,7 +83,7 @@ public class Ludant extends Vivazh {
 		novarmilar[2] = 25;
 		novarmilar[3] = 6;
 		novarmilar[4] = 1;
-		novarmilar[5] = 1999;
+		novarmilar[5] = 10;
 		
 		
 		return novarmilar;
@@ -127,10 +127,10 @@ public class Ludant extends Vivazh {
 	private void mov() {
 		if(Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan() && brulazh>0) {
 			
-			pliX();
+			pliXn();
 			nunBild = statn((int) xn());
 			if(nunBild<movec || nunBild>duonrotaciplejNombr - movec) {
-				mlpliX();
+				mlpliXn();
 			}
 			
 			setYn(QefObjektj.map.yn()[(int) xn()]);
@@ -138,10 +138,10 @@ public class Ludant extends Vivazh {
 				qgxisdatigatingecn = true;
 		}
 		if(Kontrolperant.klavar.mldextr.pulsitan() && !Kontrolperant.klavar.dextr.pulsitan() && brulazh>0) {
-			mlpliX();
+			mlpliXn();
 			nunBild = statn((int) xn());
 			if(nunBild<movec || nunBild>duonrotaciplejNombr - movec) {
-				pliX();
+				pliXn();
 			}
 			
 			setYn(QefObjektj.map.yn()[(int) xn()]);
@@ -319,6 +319,12 @@ public class Ludant extends Vivazh {
 	@Override
 	public void setYn(final double yo) {
 		super.setYn(yo);
+		qmovant = true;
+		anim();
+	}
+	@Override
+	public void setXn(final double xo) {
+		super.setXn(xo);
 		qmovant = true;
 		anim();
 	}

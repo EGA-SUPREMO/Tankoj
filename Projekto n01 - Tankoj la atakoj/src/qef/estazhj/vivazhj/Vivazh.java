@@ -4,16 +4,10 @@ import java.awt.Rectangle;
 
 import qef.QefObjektj;
 import qef.estazhj.Estazh;
-import qef.son.Son;
+//import qef.son.Son;
 
 public abstract class Vivazh implements Estazh {
-	/*
-	 * 
-	 * 0:supre aux sube
-	 * 1:maldekstre
-	 * 2:dekstre
-	 * 
-	 */
+	
 	private double x, y;
 	protected final Rectangle[] LIMJ;
 	protected int nunBild;
@@ -152,7 +146,7 @@ public abstract class Vivazh implements Estazh {
 		return y;
 	}
 	
-	public void pliX() {
+	public void pliXn() {
 		x += rapidecX;
 		if(x<QefObjektj.map.yn().length) {
 		} else {
@@ -160,11 +154,11 @@ public abstract class Vivazh implements Estazh {
 		}
 		brulazh -= rapidecX;
 	}
-	public void pliY() {
+	public void pliYn() {
 		y += rapidecY;
 		brulazh -= rapidecY;
 	}
-	public void mlpliX() {
+	public void mlpliXn() {
 		if(x>0) {
 			x -= rapidecX;
 		} else {
@@ -172,7 +166,7 @@ public abstract class Vivazh implements Estazh {
 		}
 		brulazh -= rapidecX;
 	}
-	public void mlpliY() {
+	public void mlpliYn() {
 		y -= rapidecY;
 		brulazh -= rapidecY;
 	}

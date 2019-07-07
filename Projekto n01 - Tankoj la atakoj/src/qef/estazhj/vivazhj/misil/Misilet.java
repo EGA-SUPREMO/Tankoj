@@ -18,8 +18,6 @@ public class Misilet extends Misil {
 		super(trajekto, damagxo, multmisilo.xn(), multmisilo.yn());
 		multmisil = multmisilo;
 		id = ido-1;
-		
-		setXn(xn() - id);
 	}
 	@Override
 	protected void venontVicn() {
