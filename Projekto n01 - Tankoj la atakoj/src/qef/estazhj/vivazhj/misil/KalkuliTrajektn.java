@@ -7,12 +7,12 @@ import java.util.ArrayDeque;
 import qef.Konstantj;
 import qef.QefObjektj;
 
-public class KalkuliTrajektn {
+public class KalkuliTrajektn implements Cloneable {
 
 	private final static double margxenErar = Math.PI/2*0.04;
 	private final static double plejmargexnErar = Math.PI/2 + margxenErar;
 	private final static double mlplejmargexnErar = Math.PI/2 - margxenErar;
-	private final Misil misil;
+	private Misil misil;
 	private Point2D ACCELERATION;
 	private double ekangul;
 	private double potenc;
@@ -83,5 +83,22 @@ public class KalkuliTrajektn {
 		
 		return punktj;
 	}
+	public void setMisiln(final Misil m) {
+		m.rapidecX = misil.rapidecX;
+		m.rapidecY = misil.rapidecY;
+		misil = m;
+	}
 	
+	public Misil misiln() {
+		return misil;
+	}
+	
+	public KalkuliTrajektn n() {
+		try {
+			return (KalkuliTrajektn) (clone());
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

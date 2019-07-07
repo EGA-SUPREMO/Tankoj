@@ -1,7 +1,6 @@
 package qef.estazhj.vivazhj.misil;
 
 import qef.QefObjektj;
-import qef.ilj.Vicperant;
 
 public class Multmisil extends Misil {
 	
@@ -23,10 +22,9 @@ public class Multmisil extends Misil {
 				} else
 					j--;
 			}
-			if(j<1) {
-				Vicperant.setNunMisiln(null);
-				Vicperant.venontNunLudantn();
-			}
+			if(j<1)
+				super.venontVicn();
+			
 		}
 	}
 	
@@ -35,9 +33,10 @@ public class Multmisil extends Misil {
 		if(misilj == null)
 			super.desegn();
 		else
-			for(int i = 0; i < misilj.length; i++)
+			for(int i = 0; i < misilj.length; i++) {
 				if(misilj[i]!=null)
 					misilj[i].desegn();
+			}
 	}
 	
 	@Override

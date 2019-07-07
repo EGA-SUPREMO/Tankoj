@@ -30,7 +30,7 @@ public abstract class Vivazh implements Estazh {
 	protected double viv, plejviv;
 	protected int damagx;
 	
-	protected Son damagxit;
+	//protected Son damagxit;
 	protected long longDamagxit, venontDamagxit;
 	protected boolean qmovant = false;
 
@@ -48,8 +48,8 @@ public abstract class Vivazh implements Estazh {
 		damagx = damagxo;
 		LIMJ = new Rectangle[limj];
 
-		damagxit = new Son(itenerSon, 0);
-		longDamagxit = damagxit.longsonn();
+		//damagxit = new Son(itenerSon, 0);
+		//longDamagxit = damagxit.longsonn();
 		
 	}
 	
@@ -64,8 +64,8 @@ public abstract class Vivazh implements Estazh {
 		this.plejviv = plejviv;
 		LIMJ = limj;
 
-		damagxit = new Son(itenerSon, 0);
-		longDamagxit = damagxit.longsonn();
+		//damagxit = new Son(itenerSon, 0);
+		//longDamagxit = damagxit.longsonn();
 	}
 	
 	protected void anim() {

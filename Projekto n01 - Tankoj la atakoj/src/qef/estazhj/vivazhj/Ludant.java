@@ -72,6 +72,7 @@ public class Ludant extends Vivazh {
 		largxVivazh = 24;
 		altVivazh = 24;
 		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
+		nunBild = statn((int) xn());
 	}
 	
 	private int[] komnecarmilarn() {
@@ -82,6 +83,7 @@ public class Ludant extends Vivazh {
 		novarmilar[2] = 25;
 		novarmilar[3] = 6;
 		novarmilar[4] = 1;
+		novarmilar[5] = 1999;
 		
 		
 		return novarmilar;

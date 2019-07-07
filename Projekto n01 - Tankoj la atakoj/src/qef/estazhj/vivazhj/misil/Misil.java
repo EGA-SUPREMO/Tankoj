@@ -16,7 +16,7 @@ public class Misil extends Vivazh {
 	protected final int damagxaltec;
 	protected final int grandec;
 	public final KalkuliTrajektn trajekt;
-	
+
 	public Misil(final int ekangulo, final int potenco, final int damagxo, final double ekXo, final double ekYo) {
 		super(1, damagxo, Konstantj.ITENER_SON_MISIL);
 		
@@ -32,6 +32,24 @@ public class Misil extends Vivazh {
 		setYn(ekYo);
 		
 		trajekt = new KalkuliTrajektn(this, QefObjektj.map.ventn(), ekangulo, potenco);
+		
+	}
+	
+	public Misil(final KalkuliTrajektn trajekto,final int damagxo, final double ekXo, final double ekYo) {
+		super(1, damagxo, Konstantj.ITENER_SON_MISIL);
+		
+		grandec = (int) Math.sqrt(damagx);
+		
+		damagxLargxX = damagx;
+		komencDamagxX = (int) (damagxLargxX/2);
+		//damagxaltec = (int) (damagxLargxX*Math.sqrt(damagxLargxX)/grandec);
+		damagxaltec = (int) (damagx*0.7 * QefObjektj.map.mldurec);
+		
+		//mlplejY =  QefObjektj.map.altMap - (int) (damagxLargxX);
+		setXn(ekXo);
+		setYn(ekYo);
+		
+		trajekt = trajekto;
 		
 	}
 

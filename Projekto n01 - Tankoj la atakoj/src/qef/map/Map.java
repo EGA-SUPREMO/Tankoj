@@ -55,7 +55,7 @@ public class Map {
 	
 	public Map(final int itener) {
 		r = new Random();
-		vent = 0.1d + r.nextDouble()*r.nextDouble()*0.8d;
+		vent = 0.1d + r.nextDouble()*r.nextDouble()*0.6d;
 		if(r.nextBoolean())
 			vent = -vent;
 		rangoX = 0;

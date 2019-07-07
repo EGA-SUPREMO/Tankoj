@@ -2,6 +2,7 @@ package qef.estazhj;
 
 import qef.estazhj.vivazhj.misil.Atommisil;
 import qef.estazhj.vivazhj.misil.Atommisileg;
+import qef.estazhj.vivazhj.misil.Banmisil;
 import qef.estazhj.vivazhj.misil.Misil;
 import qef.estazhj.vivazhj.misil.Misileg;
 import qef.estazhj.vivazhj.misil.Multmisil;
@@ -31,6 +32,10 @@ public class Estazhregistril {
 				return new Atommisileg(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 300,
 						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1), 2, 23);
+			case 5:
+				return new Banmisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 30,
+						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
+						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1));
 			default:
 				return null;
 		}
