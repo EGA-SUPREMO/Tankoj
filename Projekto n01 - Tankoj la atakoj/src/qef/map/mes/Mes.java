@@ -5,6 +5,7 @@ import java.util.Random;
 
 import qef.Konstantj;
 import qef.map.Biom;
+import qef.map.Vent;
 
 public class Mes extends Biom {
 	
@@ -28,6 +29,7 @@ public class Mes extends Biom {
 			for(int j = 0; j < mont.y.length; j++)
 				yo[j + i*mont.y.length] += mont.y[j];
 		}
+		Vent.forigBrun(yo);
 	}
 	
 }

@@ -241,7 +241,7 @@ public abstract class Konstantj {
 	static float[] mesamplitudes = {0.03f, 0.05f, 0.13f, 0.1f, 0.26f};//tempa
 	
 	public final static Biom[] biomj = {new Biom(frekvencij, amplitudes, 15, 1, PLANK_MAP_KOLOR),
-			new Urb(urbfrekvencij, urbamplitudes, 130, 0.5, Color.DARK_GRAY),
+			new Urb(urbfrekvencij, urbamplitudes, 4, 0.33, Color.GRAY),
 			new Mes(mesfrekvencij, mesamplitudes, 35/*5*/, 0.75,
 			new Color(185, 50, 10)), new Biom(frekvencij, amplitudes, 50, 0.85, Konstantj.PLANK_NEGX_MAP_KOLOR),
 			new Biom(frekvencij, amplitudes, 10, 1.85, Konstantj.SABL_MAP_KOLOR)};
