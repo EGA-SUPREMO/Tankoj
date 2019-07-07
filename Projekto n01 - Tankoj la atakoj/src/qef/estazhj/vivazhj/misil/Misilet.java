@@ -15,12 +15,12 @@ public class Misilet extends Misil {
 	
 	public Misilet(final KalkuliTrajektn trajekto, final int damagxo, final double offset, final int ido,
 			final Multmisil multmisilo) {
-		super(trajekto, damagxo, multmisilo.xn() + Math.cos(Math.PI*2/ido + offset)*(multmisilo.damagxLargxX/2),
-				Math.sin(Math.PI*2/ido + offset)*(multmisilo.damagxaltec/2) + multmisilo.yn());
+		super(trajekto, damagxo, multmisilo.xn(), multmisilo.yn());
 		multmisil = multmisilo;
 		id = ido-1;
+		
+		setXn(xn() - id);
 	}
-	
 	@Override
 	protected void venontVicn() {
 		multmisil.misilj[id] = null;
