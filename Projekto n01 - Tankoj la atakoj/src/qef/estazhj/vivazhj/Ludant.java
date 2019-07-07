@@ -44,17 +44,12 @@ public class Ludant extends Vivazh {
 	
 	public int nunArmil = 1;
 	private final String nom;
+	private final Color kolor;
 	
-	public static final SpriteFoli ludantsprite0 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
-			Transparency.TRANSLUCENT, 24, 24, Color.GREEN.darker());
-	public static final SpriteFoli ludantsprite1 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
-			Transparency.TRANSLUCENT, 24, 24, Color.RED);
-	public static final SpriteFoli ludantsprite2 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
-			Transparency.TRANSLUCENT, 24, 24, Color.CYAN.darker());
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
 			Transparency.TRANSLUCENT, 27, 29);
 	
-	public Ludant(final int ordenSpec, final String nomo, final String itenerSon, final SpriteFoli sprite,
+	public Ludant(final int ordenSpec, final String nomo, final String itenerSon, final Color koloro,
 			final BufferedImage canonSprite) {
 		super(1, 100, itenerSon);
 		Random r = new Random();
@@ -66,9 +61,11 @@ public class Ludant extends Vivazh {
 		qatingec = true;
 		qgxisdatigatingecn = false;
 		nom = nomo;
+		kolor = koloro;
 		
 		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
-		ordenBildj(ordenSpec, sprite.spritejn());
+		ordenBildj(ordenSpec, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
+				Transparency.TRANSLUCENT, 24, 24, kolor).spritejn());
 		
 		largxVivazh = 24;
 		altVivazh = 24;
@@ -82,7 +79,7 @@ public class Ludant extends Vivazh {
 		novarmilar[0] = 999999;
 		novarmilar[1] = 50;
 		novarmilar[2] = 25;
-		novarmilar[3] = 6;
+		novarmilar[3] = 5;
 		novarmilar[4] = 1;
 		novarmilar[5] = 10;
 		
@@ -337,6 +334,10 @@ public class Ludant extends Vivazh {
 	}
 	public int offsetLudantXn() {
 		return (int) offsetLudantX;
+	}
+
+	public Color kolorn() {
+		return kolor;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package qef.ilj;
 
+import java.awt.Color;
+
 import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.vivazhj.Ludant;
@@ -11,10 +13,10 @@ public class Vicperant {
 	private static int neaktivLudantj = 0;
 	private static int nunLudant = 0;
 	
-	public static Ludant[] ludantj = new Ludant[] {new Ludant(1, "EGAJaimito", Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
-			Ludant.ludantsprite0, Ludant.armil), new Ludant(1, "Panchito", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 
-			Ludant.ludantsprite1, Ludant.armil), new Ludant(1, "Jaimito", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 
-			Ludant.ludantsprite2, Ludant.armil)};
+	public static Ludant[] ludantj = new Ludant[] {new Ludant(1, "EGA", Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
+			Color.GREEN.darker(), Ludant.armil), new Ludant(1, "Panchito", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 
+			Color.RED, Ludant.armil), new Ludant(1, "Jaimito", Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
+			Color.CYAN.darker(), Ludant.armil)};
 	private static Misil nunMisil;
 
 	public static int nunLudantn() {
@@ -35,15 +37,13 @@ public class Vicperant {
 		return neaktivLudantj;
 	}
 	
-	public static int venontNunLudantn() {//FIXME
-		//Eble a maniero por fix cxi tion estas aldoni booleano en kiu estas true dum presado kaj false...
-		//if(Kontrolperant.klavar.qatak)
+	public static int venontNunLudantn() {
 		if(++nunLudant>=ludantj.length)
 			nunLudant = 0;
 		if(nunludantn().vivn()<=0) {
 			neaktivLudantj++;
 			
-			if(neaktivLudantj<ludantj.length)
+			if(neaktivLudantj<ludantj.length - 2)
 				return venontNunLudantn();
 			else {
 				stat = 7;

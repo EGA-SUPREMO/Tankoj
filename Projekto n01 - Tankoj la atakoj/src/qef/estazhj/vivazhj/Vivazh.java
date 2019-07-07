@@ -198,12 +198,23 @@ public abstract class Vivazh implements Estazh {
 	public void resetVivn() {
 		viv = plejviv;
 	}
-	public void mlgajnVivn(final double d, final int plejdamagx, final int nunLudant) {
-        if ((viv = viv - d) < 0)
-            viv = 0;
+	public void mlgajnVivn(double d, final int plejdamagx, final int nunLudant) {
+		if(viv==0) {
+			return;
+		}
+		viv -= d;
+        if (viv < 0) {
+    		if(Vicperant.ludantj[nunLudant]!=this)
+    			d += viv;
+        	viv = 0;
+        }
         
-		final double potenc = (plejdamagx - d)/plejdamagx;
-		Vicperant.ludantj[nunLudant].pliMonn(Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx);
+		final double potenc = d/plejdamagx;
+		if(Vicperant.ludantj[nunLudant]==this)
+			Vicperant.ludantj[nunLudant].pliMonn(-Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx);
+		else
+			Vicperant.ludantj[nunLudant].pliMonn(Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx);
+		
 	}
 	
 }
