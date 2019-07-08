@@ -43,20 +43,24 @@ public class Vicperant {
 		if(nunludantn().vivn()<=0) {
 			neaktivLudantj++;
 			
-			if(neaktivLudantj<ludantj.length - 2)
+			if(neaktivLudantj<ludantj.length - 1)
 				return venontNunLudantn();
 			else {
 				stat = 7;
-				return 0;
+				return nunLudant;
 			}
+
 		}
 		neaktivLudantj = 0;
 		QefObjektj.map.venontVicn();
 		
 		return nunLudant;
 	}
-	
+
 	public static int statn() {
 		return stat;
+	}
+	public static void sesStatn(final int stato) {
+		stat = stato;
 	}
 }
