@@ -30,7 +30,7 @@ public class Misileg extends Misil {
 			for(int i = -duonLong; i < duonLong; i++)
 				BILDJ[(i + duonLong) + speco*Konstantj.canonAngulnombr] =
 						Bildperant.volvBildn(BILDJ[0 + speco*Konstantj.canonAngulnombr],
-						-(Math.PI*2/(BILDJ.length/plejspec)*(i + 135)));
+						-(Math.PI*2/(BILDJ.length/plejspec)*(i + 135)));//FIXME ERaRO MaLBONa KaJ MISTERIOSO
 			
 		}
 		spec = speco;
@@ -43,7 +43,7 @@ public class Misileg extends Misil {
 		antawY = yn();
 		super.gxisdatig();
 		nunBild = ((int) Math.toDegrees(Math.atan2(antawY - yn(), antawX - xn())) + 180) +
-				spec*Konstantj.canonAngulnombr;//FIXME ERaRO MaLBONa KaJ MISTERIOSO
+				spec*Konstantj.canonAngulnombr;
 	}
 	
 	@Override

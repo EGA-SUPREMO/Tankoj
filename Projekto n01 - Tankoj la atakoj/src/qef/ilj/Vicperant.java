@@ -40,21 +40,27 @@ public class Vicperant {
 	public static int venontNunLudantn() {
 		if(++nunLudant>=ludantj.length)
 			nunLudant = 0;
-		if(nunludantn().vivn()<=0) {
-			neaktivLudantj++;
-			
-			if(neaktivLudantj<ludantj.length - 1)
-				return venontNunLudantn();
-			else {
-				stat = 7;
-				return nunLudant;
-			}
-
-		}
-		neaktivLudantj = 0;
+		qaktivLudant();
 		QefObjektj.map.venontVicn();
 		
 		return nunLudant;
+	}
+	public static boolean qaktivLudant() {
+		for(int i = 0; i < ludantj.length; i++)
+			if(ludantj[i].vivn()<=0) {
+				neaktivLudantj++;
+				
+				if(neaktivLudantj<ludantj.length - 1) {
+				}else {
+					stat = 7;
+					nunLudant = i;
+					
+					neaktivLudantj = 0;
+					return false;
+				}
+			}
+		neaktivLudantj = 0;
+		return true;
 	}
 
 	public static int statn() {
