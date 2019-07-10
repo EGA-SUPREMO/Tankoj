@@ -40,6 +40,7 @@ public class Klavar extends KeyAdapter {
 				break;
 			case Konstantj.KURI:
 				kuri = true;
+				Konstantj.ANGULRAPIDEC = 3;
 				break;
 			case Konstantj.SUBIPOTENC:
 				subiPotenc = true;
@@ -93,25 +94,21 @@ public class Klavar extends KeyAdapter {
 					supriArmil = true;
 				break;
 			case Konstantj.KURI:
+				Konstantj.ANGULRAPIDEC = 1;
+				for(int i = 0; i < Vicperant.ludantj.length; i++)
+					Vicperant.ludantj[i].rapidecX = 1;
 				kuri = false;
 				break;
 			case Konstantj.ELIRI:
 				elir();
 				break;
 			case Konstantj.REKOMENCI:
-				restorig();
-				Vicperant.ludantj[Vicperant.nunLudantn()].setXn(480);
-				Vicperant.ludantj[Vicperant.nunLudantn()].setYn(280);
-				Vicperant.ludantj[Vicperant.nunLudantn()].resetVivn();
+				Ludant.teleir();
 				break;
 			case Konstantj.QKOLEKT:
 				qkolekt = false;
 				break;
 		}
-	}
-	public void restorig() {
-		for(Ludant l: Vicperant.ludantj)
-			l.resetVivn();;
 	}
 	
 	public void elir() {

@@ -42,9 +42,12 @@ public class Ludant extends Vivazh {
 	@SuppressWarnings("unused")
 	private int resistec;
 	
+	public int teleirazhj = 7;
 	public int nunArmil = 1;
 	private final String nom;
 	private final Color kolor;
+	public double mediRapidecX = 0.7;
+	public double eficientBrulazh = 0.05;
 	
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
 			Transparency.TRANSLUCENT, 27, 29);
@@ -53,7 +56,7 @@ public class Ludant extends Vivazh {
 			final BufferedImage canonSprite) {
 		super(1, 100, itenerSon);
 		
-		definad();
+		definigad();
 		armilar = komnecarmilarn();
 		qatingec = true;
 		qgxisdatigatingecn = false;
@@ -75,8 +78,8 @@ public class Ludant extends Vivazh {
 		novarmilar[0] = 999999;
 		novarmilar[1] = 50;
 		novarmilar[2] = 25;
-		novarmilar[3] = 5;
-		novarmilar[4] = 1;
+		novarmilar[3] = 500;
+		novarmilar[4] = 100;
 		novarmilar[5] = 10;
 		
 		
@@ -120,7 +123,7 @@ public class Ludant extends Vivazh {
 	
 	private void mov() {
 		if(Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan() && brulazh>0) {
-			
+			yangxRapidec();
 			pliXn();
 			nunBild = statn((int) xn());
 			if(nunBild<movec || nunBild>duonrotaciplejNombr - movec) {
@@ -132,6 +135,7 @@ public class Ludant extends Vivazh {
 				qgxisdatigatingecn = true;
 		}
 		if(Kontrolperant.klavar.mldextr.pulsitan() && !Kontrolperant.klavar.dextr.pulsitan() && brulazh>0) {
+			yangxRapidec();
 			mlpliXn();
 			nunBild = statn((int) xn());
 			if(nunBild<movec || nunBild>duonrotaciplejNombr - movec) {
@@ -228,7 +232,13 @@ public class Ludant extends Vivazh {
 		offsetLudantX = 0;
 		return DUONKVANTSTATJ;
 	}
-	
+	private void yangxRapidec() {
+		if(Kontrolperant.klavar.kuri) {
+			rapidecX = mediRapidecX*4;
+		}else {
+			rapidecX = mediRapidecX;
+		}
+	}
 	@Override
 	public void desegn() {
 		if(vivn()<=0)
@@ -267,11 +277,12 @@ public class Ludant extends Vivazh {
 
 	public void mlplinunanguln() {
 		if(nunangul>mlplejangul)
-			nunangul--;
+			nunangul -= Konstantj.ANGULRAPIDEC;
 	}
 	public void plinunanguln() {
-		if(++nunangul>=plejangul)
-			nunangul--;
+		nunangul += Konstantj.ANGULRAPIDEC; 
+		if(nunangul>=plejangul)
+			nunangul -= Konstantj.ANGULRAPIDEC;
 	}
 	public int nunanguln() {
 		return nunangul;
@@ -303,15 +314,15 @@ public class Ludant extends Vivazh {
 	public void resetVivn() {
 		super.resetVivn();
 		plejpotenc = (int) viv;
-		definad();
+		definigad();
 	}
 	@Override
 	public void mlgajnVivn(final double vivo, final int plejdamagx, final int nunLudant) {
 		super.mlgajnVivn(vivo, plejdamagx, nunLudant);
 		if(plejpotenc>viv) {
-			plejpotenc = (int) viv;
-			if(potenc>plejpotenc)
-				potenc = plejpotenc;
+			//plejpotenc = (int) viv;
+			if(potenc>plejpotenc);
+				//potenc = plejpotenc;
 		}
 	}
 	@Override
@@ -332,12 +343,20 @@ public class Ludant extends Vivazh {
 	public int offsetLudantXn() {
 		return (int) offsetLudantX;
 	}
-
 	public Color kolorn() {
 		return kolor;
 	}
-	public void definad() {
-		
+	public static void teleir() {
+		if(Vicperant.nunludantn().teleirazhj>0) {
+			Vicperant.nunludantn().teleirazhj--;
+			Vicperant.nunludantn().setXn(Kvantperant.koordenadEkranPosicialXn(QefObjektj.superfic.muyn().posicin().x + (Vicperant.nunludantn().largxVivazh>>1)));
+			Vicperant.nunludantn().setSenmidifYn(Kvantperant.koordenadYalekranPosicin(QefObjektj.superfic.muyn().posicin().y));
+			Vicperant.venontNunLudantn();
+		}
+	}
+	@Override
+	public void definigad() {
+		super.definigad();
 		Random r = new Random();
 		setXn(r.nextInt(QefObjektj.map.yn().length));
 		setYn(QefObjektj.map.yn((int) xn()));

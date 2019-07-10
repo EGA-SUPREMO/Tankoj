@@ -35,12 +35,12 @@ public abstract class Vivazh implements Estazh {
 		this.altVivazh = 32;
 		this.nunBild = 0;
 		this.rapidecX = 1;
-		brulazh = 20000;
 		x = 0;
 		y = 0;
-		viv = 100;
+		viv = 1;
 		plejviv = viv;
 		damagx = damagxo;
+		definigad();
 		LIMJ = new Rectangle[limj];
 
 		//damagxit = new Son(itenerSon, 0);
@@ -153,7 +153,7 @@ public abstract class Vivazh implements Estazh {
 		} else {
 			x = rapidecX;
 		}
-		brulazh -= rapidecX;
+		brulazh -= rapidecX*rapidecX;
 	}
 	public void pliYn() {
 		y += rapidecY;
@@ -165,7 +165,7 @@ public abstract class Vivazh implements Estazh {
 		} else {
 			x = QefObjektj.map.yn().length - rapidecX;
 		}
-		brulazh -= rapidecX;
+		brulazh -= rapidecX*rapidecX;
 	}
 	public void mlpliYn() {
 		y -= rapidecY;
@@ -195,11 +195,15 @@ public abstract class Vivazh implements Estazh {
 		return new Rectangle((int) x, (int) y, largxVivazh, altVivazh);
 	}
 	
+	public void definigad() {
+		brulazh = 6000;
+	}
+	
 	public void resetVivn() {
 		viv = plejviv;
 	}
 	public void mlgajnVivn(double d, final int plejdamagx, final int nunLudant) {
-		if(viv==0) {
+		if(viv<=0) {
 			return;
 		}
 		viv -= d;
@@ -207,6 +211,8 @@ public abstract class Vivazh implements Estazh {
     		if(Vicperant.ludantj[nunLudant]!=this)
     			d += -Math.sqrt(-viv)*1.50 - plejviv;
         	viv = 0;
+        	System.out.println(viv + " - " + d + " - " + Vicperant.ludantj[nunLudant].monn() + " - " +
+        			Vicperant.ludantj[nunLudant].nomn());
         }
         
 		final double potenc = d/plejdamagx;

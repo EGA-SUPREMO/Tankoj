@@ -80,6 +80,7 @@ public class Vicperant {
 		revivLudantj();
 		stat = 2;
 		nunLudant = 0;
+		nunMisil = null;
 	}
 
 	private static void revivLudantj() {

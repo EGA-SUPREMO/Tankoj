@@ -65,7 +65,7 @@ public class Qefperant {
 	
 	private void definigad() {
 		fonmuzik = new Son(Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 0);
-		Misileg.definigad();
+		Misileg.definigadMisiljn();
 		new Fenestr(titol);
 	}
 	

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JOptionPane;
+
 import qef.Konstantj;
 import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
@@ -38,16 +40,17 @@ public class Misileg extends Misil {
 	@Override
 	public void desegn() {//TODO Forigu cxi tion
 		try {
-			DebugDesegn.desegnBildn(BILDJ[-1],
+			DebugDesegn.desegnBildn(BILDJ[nunBild],
 					(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[nunBild].getWidth()>>1)),
 					(int) Kvantperant.koordenadYalekranPosicin(yn() + (BILDJ[nunBild].getHeight()>>1)));
 		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println(e);
+			JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
 			DebugDesegn.desegnBildn(BILDJ[0],
 					(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[0].getWidth()>>1)),
 					(int) Kvantperant.koordenadYalekranPosicin(yn() + (BILDJ[0].getHeight()>>1)));
 		} catch(NullPointerException e) {
-			definigad();
+			JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+			definigadMisiljn();
 			DebugDesegn.desegnRectangle((int) Kvantperant.koordenadXalekranPosicin(xn() - (10>>1)),
 					(int) Kvantperant.koordenadYalekranPosicin(yn() + (10>>1)), 10, 10);
 		}
@@ -58,7 +61,7 @@ public class Misileg extends Misil {
 					BILDJ[nunBild].getWidth(), BILDJ[nunBild].getHeight(), Color.BLUE);
 	}
 	
-	public static void definigad() {
+	public static void definigadMisiljn() {
 		for(int speco = 0; speco < Konstantj.plejnombrspecmisileg; speco++)
 			if(BILDJ[0 + speco*Konstantj.canonAngulnombr] == null) {
 				BILDJ[0 + speco*Konstantj.canonAngulnombr] = YargxilAzhj.yargxSkalitBildn(Konstantj.ITENER_MISIL + speco +

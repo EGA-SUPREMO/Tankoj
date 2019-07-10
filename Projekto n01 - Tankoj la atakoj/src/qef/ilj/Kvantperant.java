@@ -15,7 +15,7 @@ public class Kvantperant {
 	}
 	
 	public static double koordenadEkranPosicialXn(final double koordenad) {
-		return koordenad + Vicperant.ludantj[Vicperant.nunLudantn()].xn() + Konstantj.duonLudLargx;
+		return koordenad + Vicperant.nunludantn().xn() - Konstantj.duonLudLargx;
 	}
 	
 	public static double koordenadEkranPosicialYn(final double koordenad) {
