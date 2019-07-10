@@ -23,7 +23,8 @@ public class Mes extends Biom {
 		final int plejMontj = hazard<53? 2 : hazard<81? 3 : hazard<93? 1 : 0;
 		for(int i = 0; i < plejMontj; i++) {
 			
-			final Mesmont mont = new Mesmont((int) (r.nextDouble()*Konstantj.mapgrandec/(plejMontj)),
+			final Mesmont mont = new Mesmont(
+					(int) (yo.length/8 + r.nextDouble()*(Konstantj.mapgrandec/(plejMontj) - yo.length/8)),
 					altgrandec);
 			
 			for(int j = 0; j < mont.y.length; j++)

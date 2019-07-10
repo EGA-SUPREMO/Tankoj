@@ -7,6 +7,7 @@ import qef.ilj.DebugDesegn;
 import qef.ilj.Vicperant;
 import qef.map.Map;
 import qef.statmayin.Statlud;
+import qef.statmayin.statj.butikMenu.ButikMenu;
 
 public class Ludperant implements Statlud {
 	
@@ -22,6 +23,7 @@ public class Ludperant implements Statlud {
 			Vicperant.nunMisiln().gxisdatig();
 		
 		QefObjektj.map.gxisdatig();
+		ButikMenu.q = true;
 	}
 	
 	@Override

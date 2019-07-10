@@ -205,7 +205,7 @@ public abstract class Vivazh implements Estazh {
 		viv -= d;
         if (viv < 0) {
     		if(Vicperant.ludantj[nunLudant]!=this)
-    			d += viv/2 - plejviv;
+    			d += -Math.sqrt(-viv)*1.50 - plejviv;
         	viv = 0;
         }
         

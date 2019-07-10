@@ -28,8 +28,8 @@ public class ButikMenu implements Statlud {
 	
 	@Override
 	public void desegn() {
-		DebugDesegn.desegnString("Felicidade gano " + Vicperant.nunludantn().nomn() +
-				"!!!, el mejor de la partida", 200, 200);
+		DebugDesegn.desegnString("Felicidades gano alguien" +
+				"!!!, el mejor de la partida.", 200, 200);
 		dawrigi.desegn();
 		
 	}

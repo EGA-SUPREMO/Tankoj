@@ -7,7 +7,6 @@ import qef.QefObjektj;
 import qef.estazhj.vivazhj.Ludant;
 import qef.estazhj.vivazhj.misil.Misil;
 import qef.map.Map;
-import qef.statmayin.statj.butikMenu.ButikMenu;
 
 public class Vicperant {
 	
@@ -81,7 +80,6 @@ public class Vicperant {
 		revivLudantj();
 		stat = 2;
 		nunLudant = 0;
-		ButikMenu.q = true;
 	}
 
 	private static void revivLudantj() {
@@ -95,9 +93,6 @@ public class Vicperant {
 	}
 
 	private static void ordigLudantjnlawMlplejmon() {//TODO sxangxu cxi tion
-		System.out.println(ludantj[0].monn() + " - " + ludantj[0]);
-		System.out.println(ludantj[1].monn() + " - " + ludantj[1]);
-		System.out.println(ludantj[2].monn() + " - " + ludantj[2]);
 		Ludant templudant;
 		boolean qyang = true;
 		boolean qneyang = false;
@@ -116,36 +111,7 @@ public class Vicperant {
 						ludantj[i] = templudant;
 						qyang = true;
 					}
-					System.out.println(i);
 				}
-			//if(ludantj.length%2!=0) {
-			//	templudantj[ludantj.length - 1] = ludantj[ludantj.length - 1];
-			//}
-			
 		}
-		System.out.println(ludantj[0].monn() + " - " + ludantj[0].nomn() + " - " + ludantj[0]);
-		System.out.println(ludantj[1].monn() + " - " + ludantj[1].nomn() + " - " + ludantj[1]);
-		System.out.println(ludantj[2].monn() + " - " + ludantj[2].nomn() + " - " + ludantj[2]);
-		/*if(ludantj.length%2!=0) {
-			if(ludantj[ludantj.length-1].monn()<=ludantj[0].monn()) {
-				templudantj[0] = ludantj[ludantj.length-1];
-				for(int j = 1; j < ludantj.length; j++)
-					templudantj[j] = ludantj[j];
-				System.out.println("Estube equi");
-			} else if(ludantj[ludantj.length-2].monn()<=ludantj[ludantj.length-1].monn()) {
-				System.out.println("tmbien Estube equi");
-			} else {
-				for(int i = 0; i < ludantj.length-1; i++)
-					if(ludantj[ludantj.length-1].monn()>ludantj[i].monn() &&
-							ludantj[ludantj.length-1].monn()<ludantj[i + 1].monn()) {
-						templudantj[i + 1] = ludantj[ludantj.length-1];
-						for(int j = i + 1; j < ludantj.length; j++)
-							templudantj[j] = ludantj[j + 1];
-					}
-
-				System.out.println("y Estube equi");
-			}
-		}
-		ludantj = templudantj;*/
 	}
 }
