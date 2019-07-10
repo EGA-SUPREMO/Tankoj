@@ -52,11 +52,8 @@ public class Ludant extends Vivazh {
 	public Ludant(final int ordenSpec, final String nomo, final String itenerSon, final Color koloro,
 			final BufferedImage canonSprite) {
 		super(1, 100, itenerSon);
-		Random r = new Random();
-		setXn(r.nextInt(QefObjektj.map.yn().length));
-		setYn(QefObjektj.map.yn((int) xn()));
-		nunangul = r.nextInt(plejangul-90)+90;
-		potenc = plejpotenc/4;
+		
+		definad();
 		armilar = komnecarmilarn();
 		qatingec = true;
 		qgxisdatigatingecn = false;
@@ -70,7 +67,6 @@ public class Ludant extends Vivazh {
 		largxVivazh = 24;
 		altVivazh = 24;
 		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
-		nunBild = statn((int) xn());
 	}
 	
 	private int[] komnecarmilarn() {
@@ -307,6 +303,7 @@ public class Ludant extends Vivazh {
 	public void resetVivn() {
 		super.resetVivn();
 		plejpotenc = (int) viv;
+		definad();
 	}
 	@Override
 	public void mlgajnVivn(final double vivo, final int plejdamagx, final int nunLudant) {
@@ -339,5 +336,14 @@ public class Ludant extends Vivazh {
 	public Color kolorn() {
 		return kolor;
 	}
-	
+	public void definad() {
+		
+		Random r = new Random();
+		setXn(r.nextInt(QefObjektj.map.yn().length));
+		setYn(QefObjektj.map.yn((int) xn()));
+		
+		nunangul = r.nextInt(ANTAWDEFINITPLEJANGUL-90)+90;
+		potenc = plejpotenc/2;
+		nunBild = statn((int) xn());
+	}
 }

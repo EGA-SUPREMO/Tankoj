@@ -9,7 +9,7 @@ import qef.uzantinterfac.suprmenu.Submenu;
 
 public class QefObjektj {//Objektoj de la ludoj
 
-	public static Map map = new Map(0);
+	public static Map map = new Map((int) (Math.random()*Konstantj.PLEJ_BIOMJ));
 	public static Submenu submenu = new Submenu();
 	public static Malhelec malhelec = new Malhelec();
 	public static Superficdesegn superfic = new Superficdesegn();

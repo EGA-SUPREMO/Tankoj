@@ -8,8 +8,6 @@ import java.awt.image.BufferedImage;
 
 import qef.ilj.YargxilAzhj;
 import qef.map.Biom;
-import qef.map.mes.Mes;
-import qef.map.urb.Urb;
 
 public abstract class Konstantj {
 	
@@ -47,7 +45,7 @@ public abstract class Konstantj {
 	public static int altCentr = duonLudAlt - DUONSPRITEFLANK;
 	public static int largxCentr = duonLudLargx - DUONSPRITEFLANK;
 	
-	public final static int PLEJ_BIOMJ = 8;
+	public final static int PLEJ_BIOMJ = 5;
 	public final static int PLEJ_MISILJ = 6;
 	
 	public final static int nombroKlablj = 256;
@@ -230,21 +228,8 @@ public abstract class Konstantj {
 	
 	public final static float FONTGRANDEC = 22f;
 	public final static int LUDANTPLEJNOMBR = 8;
-
-	static int[] frekvencij = {1, 1, 2, 3, 4, 8};
-	static float[] amplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
-
-	static int[] urbfrekvencij = {3, 2};//TODO tempa
-	static float[] urbamplitudes = {0.71f, 0.8f};//tempa
 	
-	static int[] mesfrekvencij = {10, 23, 5, 2, 1};//TODO tempa
-	static float[] mesamplitudes = {0.03f, 0.05f, 0.13f, 0.1f, 0.26f};//tempa
-	
-	public final static Biom[] biomj = {new Biom(frekvencij, amplitudes, 15, 1, PLANK_MAP_KOLOR),
-			new Urb(urbfrekvencij, urbamplitudes, 4, 0.33, Color.GRAY),
-			new Mes(mesfrekvencij, mesamplitudes, 35/*5*/, 0.75,
-			new Color(185, 50, 10)), new Biom(frekvencij, amplitudes, 50, 0.85, Konstantj.PLANK_NEGX_MAP_KOLOR),
-			new Biom(frekvencij, amplitudes, 10, 1.85, Konstantj.SABL_MAP_KOLOR)};
+	public static Biom[] biomj;
 	
 	public static int mapgrandec = Konstantj.ludLargx;
 	

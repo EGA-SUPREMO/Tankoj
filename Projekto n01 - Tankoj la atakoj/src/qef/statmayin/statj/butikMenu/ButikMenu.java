@@ -7,7 +7,7 @@ import qef.statmayin.Statlud;
 import qef.uzantinterfac.Buton;
 
 public class ButikMenu implements Statlud {
-	
+	public static boolean q = true;
 	private Buton dawrigi;
 	private int stat = 7, temp = 0;
 	
@@ -35,8 +35,11 @@ public class ButikMenu implements Statlud {
 	}
 	@Override
 	public int nunStat() {
-		if(dawrigi.specn()==1)
+		if(dawrigi.specn()==1 && q) {
 			stat = dawrigi.statDeLaMenu;
+			q = false;
+			Vicperant.venontLudadn();
+		}
 		
 		if(stat!=7 && temp < Konstantj.KOMENC_MENU_BUTONPLEJTEMP) {
 			temp++;

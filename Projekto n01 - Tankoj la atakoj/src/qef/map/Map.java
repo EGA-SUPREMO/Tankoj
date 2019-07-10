@@ -1,5 +1,6 @@
 package qef.map;
 
+import java.awt.Color;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import qef.ilj.Kvantperant;
 import qef.ilj.Vicperant;
 import qef.ilj.YargxilAzhj;
 import qef.kontrolj.Kontrolperant;
+import qef.map.mes.Mes;
+import qef.map.urb.Urb;
 
 public class Map {
 	
@@ -32,7 +35,7 @@ public class Map {
 	public int spec;
 	public double mldurec;
 	private double vent;
-	public int nunbiom = 1;
+	public int nunbiom;
 	
 	private static final int xAxenVideblTilej = (int) ((float)Konstantj.ludLargx/Konstantj.SPRITEFLANK + 2.99);
 	private static final int yAxenVideblTilej = (int) ((float)Konstantj.ludAlt/Konstantj.SPRITEFLANK + 0.99);
@@ -53,9 +56,11 @@ public class Map {
 	
 	private boolean qmodifit = true;
 	
-	public Map(final int itener) {
+	public Map(final int nunbiomo) {
+		nunbiom = nunbiomo;
+		definigBiomj();
 		r = new Random();
-		vent = 0.1d + r.nextDouble()*r.nextDouble()*0.2d;
+		vent = 0.1d + r.nextDouble()*r.nextDouble()*0.1d;
 		if(r.nextBoolean())
 			vent = -vent;
 		rangoX = 0;
@@ -72,14 +77,7 @@ public class Map {
 		altMap = offsetMap + 155;
 		map = new BufferedImage[Konstantj.ludLargx/Konstantj.SPRITELARGX];//TODO ALJXETAS ERAROJ SE LA NOMBRO NE ...
 		
-		for(int i = 0; i < Konstantj.PLEJ_BIOMJ; i++) {
-			final BufferedImage[] tempBildarj = Bildperant.dividBildnLawLargxspriten(
-					YargxilAzhj.yargxSkalitBildn("/background" + i + ".png", Transparency.OPAQUE,
-							Konstantj.ludLargx));
-			for(int j = 0; j < tempBildarj.length; j++) {
-				Konstantj.QEFFONJ_BIOMJ[j + i*tempBildarj.length] = tempBildarj[j];
-			}
-		}
+		
 		mldurec = Konstantj.biomj[nunbiom].mldurec;
 		
 		/*
@@ -359,5 +357,35 @@ public class Map {
 	}
 	public void setQmodifitn(final boolean qmodif) {
 		qmodifit = qmodif;
+	}
+
+	static int[] frekvencij = {1, 1, 2, 3, 4, 8};
+	static float[] amplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
+
+	static int[] urbfrekvencij = {3, 2};//TODO tempa
+	static float[] urbamplitudes = {0.71f, 0.8f};//tempa
+	
+	static int[] mesfrekvencij = {10, 23, 5, 2, 1};//TODO tempa
+	static float[] mesamplitudes = {0.03f, 0.05f, 0.13f, 0.1f, 0.26f};//tempa
+	
+	public void definigBiomj() {
+		Konstantj.biomj = new Biom[Konstantj.PLEJ_BIOMJ];
+			
+		Konstantj.biomj[0] = new Biom(frekvencij, amplitudes, 15, 1, Konstantj.PLANK_MAP_KOLOR);
+		Konstantj.biomj[1] = new Urb(urbfrekvencij, urbamplitudes, 4, 0.33, Color.GRAY);
+		Konstantj.biomj[2] = new Mes(mesfrekvencij, mesamplitudes, 35/*5*/, 0.75, new Color(185, 50, 10));
+		Konstantj.biomj[3] = new Biom(frekvencij, amplitudes, 50, 0.85, Konstantj.PLANK_NEGX_MAP_KOLOR);
+		Konstantj.biomj[4] = new Biom(frekvencij, amplitudes, 10, 1.85, Konstantj.SABL_MAP_KOLOR);
+	}
+	
+	public static void definigBildarn() {
+		for(int i = 0; i < Konstantj.PLEJ_BIOMJ; i++) {
+			final BufferedImage[] tempBildarj = Bildperant.dividBildnLawLargxspriten(
+					YargxilAzhj.yargxSkalitBildn("/background" + i + ".png", Transparency.OPAQUE,
+							Konstantj.ludLargx));
+			for(int j = 0; j < tempBildarj.length; j++) {
+				Konstantj.QEFFONJ_BIOMJ[j + i*tempBildarj.length] = tempBildarj[j];
+			}
+		}
 	}
 }
