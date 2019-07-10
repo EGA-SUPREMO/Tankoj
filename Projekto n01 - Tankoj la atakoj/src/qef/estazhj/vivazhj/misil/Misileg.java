@@ -22,17 +22,6 @@ public class Misileg extends Misil {
 			final int speco, final int grandec) {
 		super(ekangulo, potenco, damagxo, ekXo, ekYo);
 		
-		if(BILDJ[0 + speco*Konstantj.canonAngulnombr] == null) {
-			BILDJ[0 + speco*Konstantj.canonAngulnombr] = YargxilAzhj.yargxSkalitBildn(Konstantj.ITENER_MISIL + speco +
-					".png", Transparency.TRANSLUCENT, grandec);
-			final int duonLong = (BILDJ.length/plejspec)/2;
-			
-			for(int i = -duonLong; i < duonLong; i++)
-				BILDJ[(i + duonLong) + speco*Konstantj.canonAngulnombr] =
-						Bildperant.volvBildn(BILDJ[0 + speco*Konstantj.canonAngulnombr],
-						-(Math.PI*2/(BILDJ.length/plejspec)*(i + 135)));//FIXME ERaRO MaLBONa KaJ MISTERIOSO
-			
-		}
 		spec = speco;
 		nunBild = ekangulo;
 	}
@@ -47,10 +36,21 @@ public class Misileg extends Misil {
 	}
 	
 	@Override
-	public void desegn() {
-		DebugDesegn.desegnBildn(BILDJ[nunBild],
-				(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[nunBild].getWidth()>>1)),
-				(int) Kvantperant.koordenadYalekranPosicin(yn() + (BILDJ[nunBild].getHeight()>>1)));
+	public void desegn() {//TODO Forigu cxi tion
+		try {
+			DebugDesegn.desegnBildn(BILDJ[-1],
+					(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[nunBild].getWidth()>>1)),
+					(int) Kvantperant.koordenadYalekranPosicin(yn() + (BILDJ[nunBild].getHeight()>>1)));
+		} catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println(e);
+			DebugDesegn.desegnBildn(BILDJ[0],
+					(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[0].getWidth()>>1)),
+					(int) Kvantperant.koordenadYalekranPosicin(yn() + (BILDJ[0].getHeight()>>1)));
+		} catch(NullPointerException e) {
+			definigad();
+			DebugDesegn.desegnRectangle((int) Kvantperant.koordenadXalekranPosicin(xn() - (10>>1)),
+					(int) Kvantperant.koordenadYalekranPosicin(yn() + (10>>1)), 10, 10);
+		}
 		if(Kontrolperant.klavar.debug)
 			DebugDesegn.desegnMargxenRectangle(
 					(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[nunBild].getWidth()>>1)),
@@ -58,4 +58,18 @@ public class Misileg extends Misil {
 					BILDJ[nunBild].getWidth(), BILDJ[nunBild].getHeight(), Color.BLUE);
 	}
 	
+	public static void definigad() {
+		for(int speco = 0; speco < Konstantj.plejnombrspecmisileg; speco++)
+			if(BILDJ[0 + speco*Konstantj.canonAngulnombr] == null) {
+				BILDJ[0 + speco*Konstantj.canonAngulnombr] = YargxilAzhj.yargxSkalitBildn(Konstantj.ITENER_MISIL + speco +
+						".png", Transparency.TRANSLUCENT, Konstantj.misileggrandecj[speco]);
+				final int duonLong = (BILDJ.length/plejspec)/2;
+				
+				for(int i = -duonLong; i < duonLong; i++)
+					BILDJ[(i + duonLong) + speco*Konstantj.canonAngulnombr] =
+							Bildperant.volvBildn(BILDJ[0 + speco*Konstantj.canonAngulnombr],
+							-(Math.PI*2/(BILDJ.length/plejspec)*(i + 135)));//FIXME ERaRO MaLBONa KaJ MISTERIOSO
+				
+			}
+	}
 }

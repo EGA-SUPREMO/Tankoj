@@ -13,6 +13,7 @@
 
 package qef;
 
+import qef.estazhj.vivazhj.misil.Misileg;
 import qef.grafikj.Fenestr;
 import qef.son.Son;
 
@@ -64,6 +65,7 @@ public class Qefperant {
 	
 	private void definigad() {
 		fonmuzik = new Son(Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 0);
+		Misileg.definigad();
 		new Fenestr(titol);
 	}
 	

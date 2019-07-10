@@ -47,6 +47,8 @@ public abstract class Konstantj {
 	
 	public final static int PLEJ_BIOMJ = 5;
 	public final static int PLEJ_MISILJ = 6;
+	public final static int LUDANTPLEJNOMBR = 8;
+	public static final int plejnombrspecmisileg = 3;
 	
 	public final static int nombroKlablj = 256;
 	
@@ -227,7 +229,7 @@ public abstract class Konstantj {
 	        Transparency.TRANSLUCENT);
 	
 	public final static float FONTGRANDEC = 22f;
-	public final static int LUDANTPLEJNOMBR = 8;
+	public static final int[] misileggrandecj = {11, 15, 23};
 	
 	public static Biom[] biomj;
 	
