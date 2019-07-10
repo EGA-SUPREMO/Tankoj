@@ -12,7 +12,6 @@ public abstract class Vivazh implements Estazh {
 	private double x, y;
 	protected final Rectangle[] LIMJ;
 	protected int nunBild;
-	protected int brulazh;
 
 	protected static final int KVANTSTATJ = 128;
 	protected static final int DUONKVANTSTATJ = KVANTSTATJ/2;
@@ -153,11 +152,9 @@ public abstract class Vivazh implements Estazh {
 		} else {
 			x = rapidecX;
 		}
-		brulazh -= rapidecX*rapidecX;
 	}
 	public void pliYn() {
 		y += rapidecY;
-		brulazh -= rapidecY;
 	}
 	public void mlpliXn() {
 		if(x>0) {
@@ -165,11 +162,9 @@ public abstract class Vivazh implements Estazh {
 		} else {
 			x = QefObjektj.map.yn().length - rapidecX;
 		}
-		brulazh -= rapidecX*rapidecX;
 	}
 	public void mlpliYn() {
 		y -= rapidecY;
-		brulazh -= rapidecY;
 	}
 	public void setXn(final double xo) {
 		if(xo<0) {
@@ -188,7 +183,6 @@ public abstract class Vivazh implements Estazh {
 		y = yo;
 	}
 	public void setYn(final double y) {
-		brulazh -= this.y > y? this.y - y : y - this.y;
 		this.y = y;
 	}
 	public Rectangle nunposiciare() {
@@ -196,7 +190,6 @@ public abstract class Vivazh implements Estazh {
 	}
 	
 	public void definigad() {
-		brulazh = 6000;
 	}
 	
 	public void resetVivn() {

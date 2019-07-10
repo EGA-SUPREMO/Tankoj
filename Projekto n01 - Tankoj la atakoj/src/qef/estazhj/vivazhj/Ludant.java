@@ -47,7 +47,8 @@ public class Ludant extends Vivazh {
 	private final String nom;
 	private final Color kolor;
 	public double mediRapidecX = 0.7;
-	public double eficientBrulazh = 0.05;
+	public double eficientBrulazh = 1;//0.05
+	private int brulazh;
 	
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
 			Transparency.TRANSLUCENT, 27, 29);
@@ -274,6 +275,26 @@ public class Ludant extends Vivazh {
 	public double monn() {
 		return mon;
 	}
+	@Override
+	public void pliXn() {
+		super.pliXn();
+		brulazh -= rapidecX*rapidecX*eficientBrulazh;
+	}
+	@Override
+	public void pliYn() {
+		super.pliYn();
+		brulazh -= rapidecY*eficientBrulazh;
+	}
+	@Override
+	public void mlpliXn() {
+		super.mlpliXn();
+		brulazh -= rapidecX*rapidecX*eficientBrulazh;
+	}
+	@Override
+	public void mlpliYn() {
+		super.mlpliYn();
+		brulazh -= rapidecY*eficientBrulazh;
+	}
 
 	public void mlplinunanguln() {
 		if(nunangul>mlplejangul)
@@ -328,6 +349,7 @@ public class Ludant extends Vivazh {
 	@Override
 	public void setYn(final double yo) {
 		super.setYn(yo);
+		brulazh -= (yn() > yo? yn() - yo : yo - yn())*eficientBrulazh;
 		qmovant = true;
 		anim();
 	}
@@ -364,5 +386,6 @@ public class Ludant extends Vivazh {
 		nunangul = r.nextInt(ANTAWDEFINITPLEJANGUL-90)+90;
 		potenc = plejpotenc/2;
 		nunBild = statn((int) xn());
+		brulazh = 6000;
 	}
 }
