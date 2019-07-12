@@ -49,6 +49,9 @@ public class Ludant extends Vivazh {
 	public double mediRapidecX = 0.7;
 	public double eficientBrulazh = 1;//0.05
 	private int brulazh;
+	private int revivil;
+	private int largxVivazhKolici;
+	private int altVivazhKolici;
 	
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
 			Transparency.TRANSLUCENT, 27, 29);
@@ -63,13 +66,17 @@ public class Ludant extends Vivazh {
 		qgxisdatigatingecn = false;
 		nom = nomo;
 		kolor = koloro;
+		revivil = 10;
 		
 		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
 		ordenBildj(ordenSpec, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
 				Transparency.TRANSLUCENT, 24, 24, kolor).spritejn());
-		
+
 		largxVivazh = 24;
 		altVivazh = 24;
+		
+		largxVivazhKolici = largxVivazh - offsetLudantY;
+		altVivazhKolici = altVivazh/2 - offsetLudantY;
 		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
 	}
 	
@@ -92,7 +99,7 @@ public class Ludant extends Vivazh {
 			case 0:
 				break;
 			case 1:
-				bildj = new BufferedImage[rotaciplejNombr/2];
+				bildj = new BufferedImage[duonrotaciplejNombr];
 				final int duonLong = bildj.length/2;
 				for(int i = -duonLong; i < duonLong; i++)
 					bildj[i + duonLong] = Bildperant.volvBildn(tempbildj[0], -(ROTACI * i));
@@ -189,7 +196,14 @@ public class Ludant extends Vivazh {
 			Kontrolperant.klavar.subiArmil = false;
 		}
 	}
-	
+	public void uzReviviln() {
+		if(revivil>0 && viv<plejviv) {
+			revivil--;
+			viv += 10;
+			if(viv>plejviv)
+				viv = plejviv;
+		}
+	}
 	private void yangxSpriten() {
 	}
 	
@@ -224,14 +238,14 @@ public class Ludant extends Vivazh {
 		
 		double angul = Math.atan2(y2 - y1, radX2 - radX1);
 		
-		for(int i = -DUONKVANTSTATJ; i < DUONKVANTSTATJ; i++)
+		for(int i = -KVANTSTATJ; i < KVANTSTATJ; i++)
 			if(angul>ROTACI*i && angul<ROTACI*(i+1)) {
 				offsetLudantX = -i/7;
-				return DUONKVANTSTATJ + i;
+				return KVANTSTATJ + i;
 			}
 		
 		offsetLudantX = 0;
-		return DUONKVANTSTATJ;
+		return KVANTSTATJ;
 	}
 	private void yangxRapidec() {
 		if(Kontrolperant.klavar.kuri) {
@@ -244,7 +258,7 @@ public class Ludant extends Vivazh {
 	public void desegn() {
 		if(vivn()<=0)
 			return;
-		int posiciY = (int) Kvantperant.koordenadYalekranPosicin((int)yn()) + offsetLudantY;
+		int posiciY = (int) Kvantperant.koordenadYalekranPosicin((int)yn());
 		DebugDesegn.desegnBildn(bildj[nunBild], (int) (Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
 				- (largxVivazhn()>>1)), posiciY - bildj[nunBild].getHeight());
 		
@@ -262,10 +276,11 @@ public class Ludant extends Vivazh {
 			if(qgxisdatigatingecn)
 				atingec = null;
 		}
-		if(Kontrolperant.klavar.debug)
-			DebugDesegn.desegnMargxenRectangle((int) (Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
-					- (largxVivazhn()>>1)), posiciY - bildj[nunBild].getHeight(), bildj[nunBild].getWidth(),
-					bildj[nunBild].getHeight(), Color.BLUE);
+		if(Kontrolperant.klavar.debug) {
+			final Rectangle r = nunposiciare();
+			DebugDesegn.desegnMargxenRectangle((int) (Kvantperant.koordenadXalekranPosicin(r.x)),
+					(int) (Kvantperant.koordenadYalekranPosicin(r.y)), r.width, r.height, Color.BLUE);
+		}
 	}
 
 	public void setSpriteFoli(final SpriteFoli foli, final int ordenSpec) {
@@ -334,7 +349,7 @@ public class Ludant extends Vivazh {
 	@Override
 	public void resetVivn() {
 		super.resetVivn();
-		plejpotenc = (int) viv;
+		//plejpotenc = (int) viv;
 		definigad();
 	}
 	@Override
@@ -348,7 +363,7 @@ public class Ludant extends Vivazh {
 	}
 	@Override
 	public void setYn(final double yo) {
-		super.setYn(yo);
+		super.setYn(yo - offsetLudantY);
 		brulazh -= (yn() > yo? yn() - yo : yo - yn())*eficientBrulazh;
 		qmovant = true;
 		anim();
@@ -387,5 +402,14 @@ public class Ludant extends Vivazh {
 		potenc = plejpotenc/2;
 		nunBild = statn((int) xn());
 		brulazh = 6000;
+	}
+	@Override
+	public Rectangle nunposiciare() {
+		System.out.println((double) (nunBild-(KVANTSTATJ>>1))/KVANTSTATJ);
+		final double largx = largxVivazhKolici*Math.cos((double) (nunBild-(KVANTSTATJ>>1))/KVANTSTATJ*Math.PI);
+		final double alt = altVivazhKolici*Math.sin((double) (nunBild-(KVANTSTATJ>>1))/KVANTSTATJ*Math.PI);
+		return new Rectangle((int) (xn() - (largxVivazh>>1) + (largxVivazhKolici>>1) - (largx/2)),
+				(int) (yn() + (altVivazh>>1) + (altVivazhKolici>>1) - (alt/2)),
+				(int) ((largx+alt)/2), (int) ((alt+largx)/2));
 	}
 }

@@ -13,9 +13,8 @@ public abstract class Vivazh implements Estazh {
 	protected final Rectangle[] LIMJ;
 	protected int nunBild;
 
-	protected static final int KVANTSTATJ = 128;
-	protected static final int DUONKVANTSTATJ = KVANTSTATJ/2;
-	protected static final int rotaciplejNombr = KVANTSTATJ*2;
+	protected static final int KVANTSTATJ = 64;
+	protected static final int rotaciplejNombr = 128*2;
 	protected static final int duonrotaciplejNombr = rotaciplejNombr/2;
 	protected static final double ROTACI = 2*Math.PI/rotaciplejNombr;
 	public double rapidecX, rapidecY;
@@ -27,6 +26,7 @@ public abstract class Vivazh implements Estazh {
 	//protected Son damagxit;
 	protected long longDamagxit, venontDamagxit;
 	protected boolean qmovant = false;
+	protected double resistenc = 0;
 
 	public Vivazh(final int limj, final int damagxo, final String itenerSon) {
 		

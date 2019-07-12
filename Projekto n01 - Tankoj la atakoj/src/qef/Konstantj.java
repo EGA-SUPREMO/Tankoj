@@ -58,7 +58,7 @@ public abstract class Konstantj {
 	public final static int DEXTR = KeyEvent.VK_D;
 	public final static int KURI = KeyEvent.VK_SHIFT;
 	public final static int ELIRI = KeyEvent.VK_ESCAPE;
-	public final static int REKOMENCI = KeyEvent.VK_Y;
+	public final static int TELEIR = KeyEvent.VK_T;
 	public final static int DEBUG = KeyEvent.VK_F1;
 	public final static int QKOLEKT = KeyEvent.VK_C;
 	public final static int SUBIPOTENC = KeyEvent.VK_K;
@@ -66,6 +66,7 @@ public abstract class Konstantj {
 	public final static int SUBIARMIL = KeyEvent.VK_J;
 	public final static int SUPRIARMIL = KeyEvent.VK_L;
 	public final static int ATAKI = KeyEvent.VK_SPACE;
+	public final static int REVIVIL = KeyEvent.VK_R;
 	/*
 	 * public final static int SUPR = KeyEvent.VK_W; public final static int SUB
 	 * = KeyEvent.VK_S; public final static int MLDEXTR = KeyEvent.VK_A; public
@@ -99,7 +100,6 @@ public abstract class Konstantj {
 	public final static String ITENER_MISIL = ITENER_VIVAZH + "misil_";
 	public final static String ITENER_ATOMMISIL = ITENER_VIVAZH + "atom_misil_";
 	public final static String ITENER_MALAMIK = ITENER_VIVAZH + "enemy_";
-	public final static String ITENER_ZOMBI = ITENER_MALAMIK + "zombie_";
 	
 	public final static String ITENER_OBJEKTJ = "/objects/";
 	public final static String ITENER_OBJEKT_ARMIL = ITENER_OBJEKTJ + "weapons/";

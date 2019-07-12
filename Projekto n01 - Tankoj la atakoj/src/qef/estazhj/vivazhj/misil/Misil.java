@@ -1,6 +1,7 @@
 package qef.estazhj.vivazhj.misil;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 
 import qef.Konstantj;
 import qef.QefObjektj;
@@ -17,12 +18,16 @@ public class Misil extends Vivazh {
 	protected final int grandec;
 	public final KalkuliTrajektn trajekt;
 	public final int ludant;
+	private final Rectangle[] kolicij;
+	private boolean qneelir, qelir;
 
 	public Misil(final int ekangulo, final int potenco, final int damagxo, final double ekXo,
 			final double ekYo) {
 		super(1, damagxo, Konstantj.ITENER_SON_MISIL);
 		
 		grandec = (int) Math.sqrt(damagx);
+		largxVivazh = grandec;
+		altVivazh = grandec;
 		
 		damagxLargxX = damagx;
 		komencDamagxX = (int) (damagxLargxX/2);
@@ -34,6 +39,10 @@ public class Misil extends Vivazh {
 		
 		trajekt = new KalkuliTrajektn(this, QefObjektj.map.ventn(), ekangulo, potenco);
 		
+		qneelir = true;
+		kolicij = new Rectangle[Vicperant.ludantj.length];
+		for(int i = 0; i < Vicperant.ludantj.length; i++)
+			kolicij[i] = Vicperant.ludantj[i].nunposiciare();
 	}
 	
 	public Misil(final KalkuliTrajektn trajekto,final int damagxo, final double ekXo, final double ekYo) {
@@ -51,12 +60,16 @@ public class Misil extends Vivazh {
 		
 		trajekt = trajekto;
 		
+		qneelir = true;
+		kolicij = new Rectangle[Vicperant.ludantj.length];
+		for(int i = 0; i < Vicperant.ludantj.length; i++)
+			kolicij[i] = Vicperant.ludantj[i].nunposiciare();
 	}
 
 	@Override
 	public void gxisdatig() {
 		for(int i = 0; i < 10; i++)
-			if(yn() >= QefObjektj.map.yn()[(int) xn()]) {
+			if(yn() >= QefObjektj.map.yn()[(int) xn()] && qnekolici()) {
 				trajekt.executShotn();
 			} else {
 				exploci();
@@ -66,6 +79,24 @@ public class Misil extends Vivazh {
 				break;
 			}
 	}
+	private boolean qnekolici() {
+		for(int i = 0; i < kolicij.length; i++) {
+			if(kolicij[i].intersects(new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh))) {
+				if(i == ludant && qneelir) {
+					qelir = false;
+					continue;
+				}
+				if(Vicperant.ludantj[i].vivn()!=0 && !qneelir)
+					return false;
+			}
+		}
+		if(qelir && qneelir)
+			qneelir = false;
+		else
+			qelir = true;
+		return true;
+	}
+
 	@Override
 	public void desegn() {
 		DebugDesegn.desegnOval((int) Kvantperant.koordenadXalekranPosicin(xn()),

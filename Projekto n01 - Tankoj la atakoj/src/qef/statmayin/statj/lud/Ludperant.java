@@ -40,7 +40,7 @@ public class Ludperant implements Statlud {
 		for(int i = 0; i<Vicperant.ludantj.length; i++) {
 			DebugDesegn.desegnString(Vicperant.ludantj[i].nomn(), Konstantj.ludLargx - 150, 78 + 14*i,
 					Vicperant.ludantj[i].kolorn());
-			DebugDesegn.desegnString(Vicperant.ludantj[i].monn() + "", Konstantj.ludLargx - 60, 78 + 14*i);
+			DebugDesegn.desegnString((int) Vicperant.ludantj[i].monn() + "", Konstantj.ludLargx - 60, 78 + 14*i);
 		}
 	}
 

@@ -13,6 +13,8 @@
 
 package qef;
 
+import javax.swing.JOptionPane;
+
 import qef.estazhj.vivazhj.misil.Misileg;
 import qef.grafikj.Fenestr;
 import qef.son.Son;
@@ -92,14 +94,22 @@ public class Qefperant {
 			
 			delta += tiempoTranscurrido / NS_POR_ACTUALIZACION;
 			
-			while (delta >= 1) {
-				gxisdatig();
+			while (delta >= 1) {//TODO forigu tion
+				try {
+					gxisdatig();
+				}catch(Exception e) {
+					JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+				}
 				apsAkumulita++;
 				
 				delta--;
 			}
-			
-			desegn();
+
+			try {
+				desegn();
+			}catch(Exception e) {
+				JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
+			}
 			fpsAkumulita++;
 			
 			if ((System.nanoTime() - referenciaContador) > NS_POR_SEGUNDO) {

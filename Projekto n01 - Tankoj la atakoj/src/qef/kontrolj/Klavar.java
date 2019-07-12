@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
 import qef.Konstantj;
+import qef.QefObjektj;
 import qef.estazhj.vivazhj.Ludant;
 import qef.ilj.Vicperant;
 
@@ -58,7 +59,7 @@ public class Klavar extends KeyAdapter {
 				qkolekt = true;
 				break;
 			case Konstantj.ATAKI:
-				if(Vicperant.nunMisiln()==null)
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
 					qatak = true;
 				break;
 		}
@@ -86,11 +87,11 @@ public class Klavar extends KeyAdapter {
 				supriPotenc = false;
 				break;
 			case Konstantj.SUBIARMIL:
-				if(Vicperant.nunMisiln()==null)
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
 					subiArmil = true;
 				break;
 			case Konstantj.SUPRIARMIL:
-				if(Vicperant.nunMisiln()==null)
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
 					supriArmil = true;
 				break;
 			case Konstantj.KURI:
@@ -102,7 +103,10 @@ public class Klavar extends KeyAdapter {
 			case Konstantj.ELIRI:
 				elir();
 				break;
-			case Konstantj.REKOMENCI:
+			case Konstantj.REVIVIL:
+				Vicperant.nunludantn().uzReviviln();
+				break;
+			case Konstantj.TELEIR:
 				Ludant.teleir();
 				break;
 			case Konstantj.QKOLEKT:

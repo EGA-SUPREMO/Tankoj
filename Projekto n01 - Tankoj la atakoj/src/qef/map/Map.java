@@ -60,7 +60,7 @@ public class Map {
 		nunbiom = nunbiomo;
 		definigBiomj();
 		r = new Random();
-		vent = 0.1d + r.nextDouble()*r.nextDouble()*0.1d;
+		vent = 0.2d + r.nextDouble()*r.nextDouble()*0.08d;
 		if(r.nextBoolean())
 			vent = -vent;
 		rangoX = 0;
