@@ -18,6 +18,8 @@ public class Verg {
 	private Point posici;
 	private Text text;
 	
+	int i = 0, pleji = 0;
+	
 	public Verg(final Color kolor, final Text text) {
 		
 		this.kolor = kolor;
@@ -27,7 +29,16 @@ public class Verg {
 		MEZUR_VERTIKAL = (UNUGRANDEC_VERTIKAL + VERTIKAL_MARGXEN)*text.ordinal();
 		posici = new Point(Submenu.areXn() + 35, Submenu.areYn() + MEZUR_VERTIKAL + UNUGRANDEC_VERTIKAL + DUGRANDEC_VERTIKAL);
 		//setPosicin();
-		
+		if(text.ordinal()==0) {
+			i = (int) Vicperant.nunludantn().vivn();
+			pleji = 100;
+		} else if(text.ordinal()==1) {
+			i = Vicperant.nunludantn().nunanguln();
+			pleji = 360;
+		} else if(text.ordinal()==2) {
+			i = Vicperant.nunludantn().potenc;
+			pleji = Vicperant.nunludantn().plejpotenc;
+		}
 	}
 	
 	public void desegn() {
@@ -37,14 +48,24 @@ public class Verg {
 	
 	private void desegnTextn() {
 		DebugDesegn.desegnString(text.name(), posici.x - 19, posici.y + 8);
-		DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].potenc, posici.x + largx + 2, posici.y + 8);
+		DebugDesegn.desegnString("" + i, posici.x + largx + 2, posici.y + 8);
 	}
 	
 	private void desegnVergn() {
-		DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.nunludantn().potenc*largx/text.plejkvantn(), UNUGRANDEC_VERTIKAL, kolor);
+		if(text.ordinal()==0) {
+			i = (int) Vicperant.nunludantn().vivn();
+			pleji = 100;
+		} else if(text.ordinal()==1) {
+			i = Vicperant.nunludantn().nunanguln();
+			pleji = 360;
+		} else if(text.ordinal()==2) {
+			i = Vicperant.nunludantn().potenc;
+			pleji = Vicperant.nunludantn().plejpotenc;
+		}
+		DebugDesegn.desegnRectangle(posici.x, posici.y, i*largx/pleji, UNUGRANDEC_VERTIKAL, kolor);
 		posici.y += UNUGRANDEC_VERTIKAL;
 	
-		DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.nunludantn().potenc*largx/text.plejkvantn(), DUGRANDEC_VERTIKAL, darkKolor);
+		DebugDesegn.desegnRectangle(posici.x, posici.y, i*largx/pleji, DUGRANDEC_VERTIKAL, darkKolor);
 		posici.y -= UNUGRANDEC_VERTIKAL;
 	}
 	/*

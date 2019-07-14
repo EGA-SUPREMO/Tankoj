@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Rectangle;
 
 import qef.Konstantj;
+import qef.QefObjektj;
 import qef.ilj.DebugDesegn;
+import qef.ilj.Vicperant;
 
 public class Submenu {
 	
@@ -27,6 +29,19 @@ public class Submenu {
 	public void desegn() {
 		desegnSubmenufonn();
 		desegnVergjn();
+		DebugDesegn.setFont(DebugDesegn.Fontn().deriveFont(16f));
+		DebugDesegn.desegnString(Konstantj.kampfortnomj[Vicperant.nunludantn().nunKampfortn()] + ": " +
+				Vicperant.nunludantn().kampfortnombrjn()[Vicperant.nunludantn().nunKampfortn()], 300, 15,
+				Color.BLACK);
+		DebugDesegn.desegnString(Konstantj.armilarnomj[Vicperant.nunludantn().nunArmil] + ": " +
+				Vicperant.nunludantn().armilarn()[Vicperant.nunludantn().nunArmil], 300, 30,
+				Konstantj.armilarkolorj[Vicperant.nunludantn().nunArmil]);
+		DebugDesegn.desegnString("Gasolina: " + Vicperant.nunludantn().brulazhn(), 300, 45, Color.BLACK);
+		DebugDesegn.desegnString("Reparadores: " + Vicperant.nunludantn().reviviln(), 300, 60, Color.BLACK);
+		DebugDesegn.desegnString("Teletransportador: " + Vicperant.nunludantn().teleirazhj, 550, 45, Color.BLACK);
+		DebugDesegn.desegnString("Dinero: " + ((int) Vicperant.nunludantn().monn()), 550, 15, Color.BLACK);
+		DebugDesegn.desegnString("Viento: " + QefObjektj.map.ventn()*200, 550, 60, Color.BLACK);
+		DebugDesegn.desegnString("Vida: " + ((int) Vicperant.nunludantn().vivn()), 550, 30, Color.BLACK);
 	}
 	
 	private void desegnSubmenufonn() {

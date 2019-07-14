@@ -58,6 +58,7 @@ public abstract class Konstantj {
 	public final static int KURI = KeyEvent.VK_SHIFT;
 	public final static int ELIRI = KeyEvent.VK_ESCAPE;
 	public final static int TELEIR = KeyEvent.VK_T;
+	public final static int TELEIR2 = KeyEvent.VK_V;
 	public final static int DEBUG = KeyEvent.VK_F1;
 	public final static int QKOLEKT = KeyEvent.VK_C;
 	public final static int SUBIPOTENC = KeyEvent.VK_K;
@@ -91,7 +92,7 @@ public abstract class Konstantj {
 	public static boolean qyangxSpriteFoli = false;
 	public static int canonAngulnombr = 360;
 	public static final byte LUDRAPIDEC = 1;
-	public static final double MISILRAPIDEC = 0.0003;//0.03
+	public static final double MISILRAPIDEC = 0.03;//0.03
 	public static int ANGULRAPIDEC = 1;
 	
 	public final static String SUFIX_MAP = ".egam";
@@ -235,6 +236,11 @@ public abstract class Konstantj {
 	
 	public final static float FONTGRANDEC = 22f;
 	public static final int[] misileggrandecj = {11, 15, 23};
+	public static final String[] armilarnomj = {"Misil pequegno", "Misil", "Bomba Multiple",
+			"Bomba atomica pequegna", "Bomba atomica", "Bagno Caliente"};
+	public static final Color[] armilarkolorj = {Color.BLACK, Color.DARK_GRAY, Color.ORANGE, Color.RED.darker(),
+			Color.RED, Color.ORANGE.darker()};
+	public static final String[] kampfortnomj = {"Escudo debil", "Escudo", "Escudo fuerte", "Escudo super fuerte"};
 	
 	public static Biom[] biomj;
 	

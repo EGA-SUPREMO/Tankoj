@@ -69,7 +69,7 @@ public class Ludant extends Vivazh {
 		definigad();
 		armilar = komnecarmilarn();
 		kampfortnombrj = komencKampfortjn();
-		qatingec = true;
+		qatingec = false;
 		qgxisdatigatingecn = false;
 		nom = nomo;
 		kolor = koloro;
@@ -415,6 +415,12 @@ public class Ludant extends Vivazh {
 				return true;
 		return false;
 	}
+	public int[] armilarn() {
+		return armilar;
+	}
+	public int[] kampfortnombrjn() {
+		return kampfortnombrj;
+	}
 	public void pliMonn(final double mono) {
 		mon += mono;
 	}
@@ -428,11 +434,10 @@ public class Ludant extends Vivazh {
 	@Override
 	public void mlgajnVivn(final double vivo, final int plejdamagx, final int nunLudant) {
 		super.mlgajnVivn(vivo, plejdamagx, nunLudant);
-		if(plejpotenc>viv) {
-			plejpotenc = (int) viv;
-			if(potenc>plejpotenc);
-				potenc = plejpotenc;
-		}
+		plejpotenc = (int) viv;
+		if(potenc>viv)
+			potenc = plejpotenc;
+		
 	}
 	@Override
 	public void setYn(final double yo) {
@@ -464,7 +469,8 @@ public class Ludant extends Vivazh {
 			Vicperant.nunludantn().teleirazhj--;
 			Vicperant.nunludantn().setXn(Kvantperant.koordenadEkranPosicialXn(QefObjektj.superfic.muyn().posicin().x + (Vicperant.nunludantn().largxVivazh>>1)));
 			Vicperant.nunludantn().setSenmidifYn(Kvantperant.koordenadYalekranPosicin(QefObjektj.superfic.muyn().posicin().y));
-			Vicperant.nunludantn().nunuzitKampfort.gxisdatig();
+			if(Vicperant.nunludantn().nunuzitKampfort!=null)
+				Vicperant.nunludantn().nunuzitKampfort.gxisdatig();
 			Vicperant.venontNunLudantn();
 		}
 	}
@@ -478,7 +484,7 @@ public class Ludant extends Vivazh {
 		nunangul = r.nextInt(ANTAWDEFINITPLEJANGUL-90)+90;
 		potenc = plejpotenc/2;
 		nunBild = statn((int) xn());
-		brulazh = 6000;
+		brulazh = 3000;
 	}
 	@Override
 	public Rectangle nunposiciare() {
@@ -489,5 +495,15 @@ public class Ludant extends Vivazh {
 
 	public void forigKampfortn() {
 		nunuzitKampfort = null;
+	}
+
+	public int reviviln() {
+		return revivil;
+	}
+	public int brulazhn() {
+		return brulazh;
+	}
+	public int nunKampfortn() {
+		return nunKampfort;
 	}
 }
