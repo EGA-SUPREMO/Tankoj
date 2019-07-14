@@ -2,6 +2,7 @@ package qef.map;
 
 import java.awt.Color;
 
+import qef.Konstantj;
 import qef.ilj.BruGeneril;
 
 public class Biom {
@@ -19,6 +20,7 @@ public class Biom {
 		altgrandec = altgrandeco;
 		kolor = koloro;
 		mldurec = mldureco;
+		Konstantj.plejtempVent = (int) (1200/mldurec);
 	}
 	
 	public double[] yn() {

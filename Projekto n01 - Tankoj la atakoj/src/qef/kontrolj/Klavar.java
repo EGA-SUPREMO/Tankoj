@@ -112,6 +112,9 @@ public class Klavar extends KeyAdapter {
 			case Konstantj.QKOLEKT:
 				qkolekt = false;
 				break;
+			case Konstantj.GRAFIK:
+				Konstantj.altGrafik = !Konstantj.altGrafik;
+				break;
 		}
 	}
 	

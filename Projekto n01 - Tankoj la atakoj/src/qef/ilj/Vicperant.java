@@ -15,9 +15,10 @@ public class Vicperant {
 	private static int nunLudant = 0;
 	
 	public static Ludant[] ludantj = new Ludant[] {new Ludant(1, "EGA", Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
-			Color.GREEN.darker(), Ludant.armil), new Ludant(1, "Panchito", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 
-			Color.RED, Ludant.armil), new Ludant(1, "Jaimito", Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
-			Color.CYAN.darker(), Ludant.armil)};
+			Color.GREEN.darker(), Ludant.armil, Color.BLUE.brighter()),new Ludant(1, "Panchito",
+			Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.RED, Ludant.armil, Color.ORANGE), new Ludant(1,
+			"Jaimito", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.CYAN.darker(), Ludant.armil,
+			Color.MAGENTA.darker())};
 	private static Misil nunMisil;
 
 	public static int nunLudantn() {
@@ -98,7 +99,8 @@ public class Vicperant {
 		boolean qyang = true;
 		boolean qneyang = false;
 		int lo = ludantj.length%2 == 0? 1: 2;
-		while(qyang && !qneyang) {
+		int ii = 0;
+		while(qyang && !qneyang && ii < 1) {
 			qyang = true;
 			qneyang = false;
 			
@@ -113,6 +115,8 @@ public class Vicperant {
 						qyang = true;
 					}
 				}
+			if(qyang && !qneyang)
+				ii++;
 		}
 	}
 }

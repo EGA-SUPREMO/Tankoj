@@ -1,16 +1,10 @@
-package qef.estazhj;
+package qef.estazhj.vivazhj.misil;
 
-import qef.estazhj.vivazhj.misil.Atommisil;
-import qef.estazhj.vivazhj.misil.Atommisileg;
-import qef.estazhj.vivazhj.misil.Banmisil;
-import qef.estazhj.vivazhj.misil.Misil;
-import qef.estazhj.vivazhj.misil.Misileg;
-import qef.estazhj.vivazhj.misil.Multmisil;
 import qef.ilj.Vicperant;
 
-public class Estazhregistril {
+public class Misilregistril {
 
-	public static Estazh estaezhjn(final int id) {
+	public static Misil misiljn(final int id) {
 		switch(id) {
 			case 0:
 				return new Misil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 10,

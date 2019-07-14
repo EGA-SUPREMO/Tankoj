@@ -31,6 +31,7 @@ public class Mes extends Biom {
 				yo[j + i*mont.y.length] += mont.y[j];
 		}
 		Vent.forigBrun(yo);
+		Vent.forigBrun(yo);
 	}
 	
 }

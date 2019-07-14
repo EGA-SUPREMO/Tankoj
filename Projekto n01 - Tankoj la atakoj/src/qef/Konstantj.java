@@ -16,8 +16,6 @@ public abstract class Konstantj {
 	
 	public static final int DUONSPRITEFLANK = SPRITEFLANK >> 1;
 	
-	public static final int KVANT_KONSUMEBL_OBJEKT = 500;
-	
 	public static int ludLargx = 960;
 	public static int ludAlt = 540;
 	
@@ -49,6 +47,7 @@ public abstract class Konstantj {
 	public final static int PLEJ_MISILJ = 6;
 	public final static int LUDANTPLEJNOMBR = 8;
 	public static final int plejnombrspecmisileg = 3;
+	public static final int PLEJ_KAMPFORTJ = 4;
 	
 	public final static int nombroKlablj = 256;
 	
@@ -67,6 +66,7 @@ public abstract class Konstantj {
 	public final static int SUPRIARMIL = KeyEvent.VK_L;
 	public final static int ATAKI = KeyEvent.VK_SPACE;
 	public final static int REVIVIL = KeyEvent.VK_R;
+	public final static int GRAFIK = KeyEvent.VK_G;
 	/*
 	 * public final static int SUPR = KeyEvent.VK_W; public final static int SUB
 	 * = KeyEvent.VK_S; public final static int MLDEXTR = KeyEvent.VK_A; public
@@ -235,5 +235,6 @@ public abstract class Konstantj {
 	public static Biom[] biomj;
 	
 	public static int mapgrandec = Konstantj.ludLargx;
+	public static int plejtempVent = 1200;
 	
 }

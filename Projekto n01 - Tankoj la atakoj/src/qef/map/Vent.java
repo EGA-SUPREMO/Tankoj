@@ -1,5 +1,6 @@
 package qef.map;
 
+import qef.Konstantj;
 import qef.QefObjektj;
 
 public class Vent {
@@ -11,7 +12,7 @@ public class Vent {
 		
 		temp++;
 		
-		if(temp>1200) {
+		if(temp>Konstantj.plejtempVent) {
 			for(int i = 1; i < y.length-1; i++)
 				novY[i] = (y[i-1] + y[i] + y[i+1])/3;
 			novY[0] = (y[y.length-1] + y[0] + y[1])/3;

@@ -26,7 +26,7 @@ public abstract class Vivazh implements Estazh {
 	//protected Son damagxit;
 	protected long longDamagxit, venontDamagxit;
 	protected boolean qmovant = false;
-	protected double resistenc = 0;
+	protected double resistenc = 1;
 
 	public Vivazh(final int limj, final int damagxo, final String itenerSon) {
 		
@@ -57,7 +57,8 @@ public abstract class Vivazh implements Estazh {
 		this.viv = plejviv;
 		this.plejviv = plejviv;
 		LIMJ = limj;
-
+		
+		definigad();
 		//damagxit = new Son(itenerSon, 0);
 		//longDamagxit = damagxit.longsonn();
 	}
@@ -199,7 +200,7 @@ public abstract class Vivazh implements Estazh {
 		if(viv<=0) {
 			return;
 		}
-		viv -= d;
+		viv -= d/resistenc;
         if (viv < 0) {
     		if(Vicperant.ludantj[nunLudant]!=this)
     			d += -Math.sqrt(-viv)*1.50 - plejviv;

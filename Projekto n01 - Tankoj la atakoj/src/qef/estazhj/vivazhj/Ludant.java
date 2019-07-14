@@ -8,8 +8,10 @@ import java.util.Random;
 
 import qef.Konstantj;
 import qef.QefObjektj;
-import qef.estazhj.Estazhregistril;
+import qef.estazhj.vivazhj.kampfort.Kampfort;
+import qef.estazhj.vivazhj.kampfort.Kampfortregistril;
 import qef.estazhj.vivazhj.misil.Misil;
+import qef.estazhj.vivazhj.misil.Misilregistril;
 import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
@@ -33,6 +35,7 @@ public class Ludant extends Vivazh {
 	protected final int[] armilar;
 	private boolean qatingec, qgxisdatigatingecn;
 	private BufferedImage atingec;
+	private Color dukolor;
 	
 	private int movec = 0;//duonrotaciplejNombr>>4;
 	public int plejpotenc = 100;
@@ -50,23 +53,28 @@ public class Ludant extends Vivazh {
 	public double eficientBrulazh = 1;//0.05
 	private int brulazh;
 	private int revivil;
-	private int largxVivazhKolici;
-	private int altVivazhKolici;
+	public int largxVivazhKolici;
+	public int altVivazhKolici;
+	private int[] kampfortnombrj;
+	private Kampfort nunuzitKampfort;
+	private int nunKampfort = 0;
 	
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
 			Transparency.TRANSLUCENT, 27, 29);
 	
 	public Ludant(final int ordenSpec, final String nomo, final String itenerSon, final Color koloro,
-			final BufferedImage canonSprite) {
+			final BufferedImage canonSprite, final Color dukoloro) {
 		super(1, 100, itenerSon);
 		
 		definigad();
 		armilar = komnecarmilarn();
+		kampfortnombrj = komencKampfortjn();
 		qatingec = true;
 		qgxisdatigatingecn = false;
 		nom = nomo;
 		kolor = koloro;
 		revivil = 10;
+		dukolor = dukoloro;
 		
 		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
 		ordenBildj(ordenSpec, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
@@ -75,11 +83,21 @@ public class Ludant extends Vivazh {
 		largxVivazh = 24;
 		altVivazh = 24;
 		
-		largxVivazhKolici = largxVivazh - offsetLudantY;
-		altVivazhKolici = altVivazh/2 - offsetLudantY;
+		//largxVivazhKolici = largxVivazh - offsetLudantY;
+		altVivazhKolici = altVivazh/2 - offsetLudantY*2;
+		largxVivazhKolici = altVivazhKolici;
 		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
 	}
 	
+	private int[] komencKampfortjn() {
+		final int[] novKampj = new int[Konstantj.PLEJ_KAMPFORTJ];
+		
+		for(int i = 0; i < novKampj.length; i++)
+			novKampj[i] = 8;
+		
+		return novKampj;
+	}
+
 	private int[] komnecarmilarn() {
 		final int[] novarmilar = new int[Konstantj.PLEJ_MISILJ];
 		
@@ -184,7 +202,7 @@ public class Ludant extends Vivazh {
 		if(qgxisdatigatingecn && !Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan()
 				 && !Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()
 				 && !Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
-			atingec = Bildperant.atingecMisil(((Misil) Estazhregistril.estaezhjn(nunArmil)).trajekt.atingecn());
+			atingec = Bildperant.atingecMisil(((Misil) Misilregistril.misiljn(nunArmil)).trajekt.atingecn());
 			qgxisdatigatingecn = false;
 		}
 		if(Kontrolperant.klavar.supriArmil) {
@@ -195,6 +213,12 @@ public class Ludant extends Vivazh {
 			mlpliNunArmiln();
 			Kontrolperant.klavar.subiArmil = false;
 		}
+		if(nunuzitKampfort==null)
+			nunuzitKampfort = Kampfortregistril.kampfortjn(nunKampfort);
+		else {
+			nunuzitKampfort.gxisdatig();
+		}
+		
 	}
 	public void uzReviviln() {
 		if(revivil>0 && viv<plejviv) {
@@ -209,7 +233,7 @@ public class Ludant extends Vivazh {
 	
 	private void gxisdatigAtakn() {
 		if (Kontrolperant.klavar.qatak) {
-			Vicperant.setNunMisiln((Misil) Estazhregistril.estaezhjn(nunArmil));
+			Vicperant.setNunMisiln(Misilregistril.misiljn(nunArmil));
 			mlpliArmilarn();
 			Kontrolperant.klavar.qatak = false;
 		}
@@ -264,6 +288,9 @@ public class Ludant extends Vivazh {
 		
 		DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) (Kvantperant.koordenadXalekranPosicin(xn()) +
 				offsetCanonX - (largxVivazhn()>>1) + offsetLudantX*0.9), posiciY - bildj[nunBild].getHeight());
+		
+		if(nunuzitKampfort!=null)
+			nunuzitKampfort.desegn();
 		
 		if(atingec!=null && Vicperant.nunMisiln() == null) {
 			if(nunangul>90)
@@ -383,6 +410,9 @@ public class Ludant extends Vivazh {
 	public Color kolorn() {
 		return kolor;
 	}
+	public Color dukolorn() {
+		return dukolor;
+	}
 	public static void teleir() {
 		if(Vicperant.nunludantn().teleirazhj>0) {
 			Vicperant.nunludantn().teleirazhj--;
@@ -405,11 +435,8 @@ public class Ludant extends Vivazh {
 	}
 	@Override
 	public Rectangle nunposiciare() {
-		System.out.println((double) (nunBild-(KVANTSTATJ>>1))/KVANTSTATJ);
-		final double largx = largxVivazhKolici*Math.cos((double) (nunBild-(KVANTSTATJ>>1))/KVANTSTATJ*Math.PI);
-		final double alt = altVivazhKolici*Math.sin((double) (nunBild-(KVANTSTATJ>>1))/KVANTSTATJ*Math.PI);
-		return new Rectangle((int) (xn() - (largxVivazh>>1) + (largxVivazhKolici>>1) - (largx/2)),
-				(int) (yn() + (altVivazh>>1) + (altVivazhKolici>>1) - (alt/2)),
-				(int) ((largx+alt)/2), (int) ((alt+largx)/2));
+		final int o = (int) (offsetLudantX<0? -offsetLudantX: offsetLudantX);
+		final int od = (int) (offsetLudantX<0? -1: 1);
+		return new Rectangle((int) (xn() - (largxVivazhKolici>>1) + Math.sqrt(o)*od), (int) (yn() + (altVivazh>>1)), largxVivazhKolici, altVivazhKolici);
 	}
 }

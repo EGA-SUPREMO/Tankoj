@@ -6,7 +6,6 @@ import qef.statmayin.statj.elektLudantjnmenu.ElektLudantjnmenu;
 import qef.statmayin.statj.komencLudMenu.KomencLudMenu;
 import qef.statmayin.statj.komencMenu.KomencMenu;
 import qef.statmayin.statj.lud.Ludperant;
-import qef.statmayin.statj.ludMenu.Menuperant;
 import qef.statmayin.statj.yargxLudMenu.YargxLudMenu;
 
 public class Statperant {
@@ -22,7 +21,6 @@ public class Statperant {
 	private void ekStatj() {
 		statj = new Statlud[8];
 		statj[0] = new KomencMenu();
-		statj[1] = new Menuperant();
 		statj[2] = new Ludperant();
 		statj[3] = new KomencLudMenu();
 		statj[4] = new YargxLudMenu();
