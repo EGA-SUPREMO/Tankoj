@@ -1,5 +1,7 @@
 package qef.estazhj.vivazhj.misil;
 
+import java.awt.Color;
+
 import qef.ilj.Vicperant;
 
 public class Misilregistril {
@@ -9,7 +11,7 @@ public class Misilregistril {
 			case 0:
 				return new Misil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 10,
 						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
-						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1));
+						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1), Color.BLACK);
 			case 1:
 				return new Misileg(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 30,
 						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
@@ -17,7 +19,7 @@ public class Misilregistril {
 			case 2:
 				return new Multmisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 15,
 						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
-						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1));
+						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1), Color.RED.darker());
 			case 3:
 				return new Atommisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 125,
 						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),

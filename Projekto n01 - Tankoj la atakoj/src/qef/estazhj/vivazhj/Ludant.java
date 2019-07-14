@@ -104,8 +104,8 @@ public class Ludant extends Vivazh {
 		novarmilar[0] = 999999;
 		novarmilar[1] = 50;
 		novarmilar[2] = 25;
-		novarmilar[3] = 500;
-		novarmilar[4] = 100;
+		novarmilar[3] = 5;
+		novarmilar[4] = 1;
 		novarmilar[5] = 10;
 		
 		
@@ -236,6 +236,10 @@ public class Ludant extends Vivazh {
 			viv += 10;
 			if(viv>plejviv)
 				viv = plejviv;
+			if(viv<100)
+				plejpotenc = (int) viv;
+			else
+				plejpotenc = 100;
 		}
 	}
 	private void yangxSpriten() {
@@ -417,7 +421,7 @@ public class Ludant extends Vivazh {
 	@Override
 	public void resetVivn() {
 		super.resetVivn();
-		//plejpotenc = (int) viv;
+		plejpotenc = (int) viv;
 		definigad();
 		nunuzitKampfort = null;
 	}
@@ -425,9 +429,9 @@ public class Ludant extends Vivazh {
 	public void mlgajnVivn(final double vivo, final int plejdamagx, final int nunLudant) {
 		super.mlgajnVivn(vivo, plejdamagx, nunLudant);
 		if(plejpotenc>viv) {
-			//plejpotenc = (int) viv;
+			plejpotenc = (int) viv;
 			if(potenc>plejpotenc);
-				//potenc = plejpotenc;
+				potenc = plejpotenc;
 		}
 	}
 	@Override
@@ -460,6 +464,7 @@ public class Ludant extends Vivazh {
 			Vicperant.nunludantn().teleirazhj--;
 			Vicperant.nunludantn().setXn(Kvantperant.koordenadEkranPosicialXn(QefObjektj.superfic.muyn().posicin().x + (Vicperant.nunludantn().largxVivazh>>1)));
 			Vicperant.nunludantn().setSenmidifYn(Kvantperant.koordenadYalekranPosicin(QefObjektj.superfic.muyn().posicin().y));
+			Vicperant.nunludantn().nunuzitKampfort.gxisdatig();
 			Vicperant.venontNunLudantn();
 		}
 	}

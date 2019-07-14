@@ -22,7 +22,7 @@ public class Misileg extends Misil {
 	
 	public Misileg(final int ekangulo, final int potenco, final int damagxo, final double ekXo, final double ekYo,
 			final int speco, final int grandec) {
-		super(ekangulo, potenco, damagxo, ekXo, ekYo);
+		super(ekangulo, potenco, damagxo, ekXo, ekYo, null);
 		
 		spec = speco;
 		nunBild = ekangulo;
@@ -48,11 +48,6 @@ public class Misileg extends Misil {
 			DebugDesegn.desegnBildn(BILDJ[0],
 					(int) Kvantperant.koordenadXalekranPosicin(xn() - (BILDJ[0].getWidth()>>1)),
 					(int) Kvantperant.koordenadYalekranPosicin(yn() + (BILDJ[0].getHeight()>>1)));
-		} catch(NullPointerException e) {
-			JOptionPane.showMessageDialog(null, e, "Error", JOptionPane.ERROR_MESSAGE);
-			definigadMisiljn();
-			DebugDesegn.desegnRectangle((int) Kvantperant.koordenadXalekranPosicin(xn() - (10>>1)),
-					(int) Kvantperant.koordenadYalekranPosicin(yn() + (10>>1)), 10, 10);
 		}
 		if(Kontrolperant.klavar.debug)
 			DebugDesegn.desegnMargxenRectangle(

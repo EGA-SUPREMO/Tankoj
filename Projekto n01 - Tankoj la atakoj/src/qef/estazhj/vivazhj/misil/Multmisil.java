@@ -1,13 +1,16 @@
 package qef.estazhj.vivazhj.misil;
 
+import java.awt.Color;
+
 import qef.QefObjektj;
 
 public class Multmisil extends Misil {
 	
 	protected Misil[] misilj;
 	
-	public Multmisil(final int ekangulo, final int potenco, final int damagxo, final double ekXo, final double ekYo) {
-		super(ekangulo, potenco, damagxo, ekXo, ekYo);
+	public Multmisil(final int ekangulo, final int potenco, final int damagxo, final double ekXo, final double ekYo,
+			final Color koloro) {
+		super(ekangulo, potenco, damagxo, ekXo, ekYo, koloro);
 	}
 	
 	@Override

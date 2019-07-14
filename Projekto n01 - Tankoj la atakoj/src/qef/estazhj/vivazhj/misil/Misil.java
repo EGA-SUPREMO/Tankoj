@@ -20,9 +20,10 @@ public class Misil extends Vivazh {
 	public final int ludant;
 	private final Rectangle[] kolicij;
 	private boolean qneelir, qelir;
+	private final Color kolor;
 
-	public Misil(final int ekangulo, final int potenco, final int damagxo, final double ekXo,
-			final double ekYo) {
+	public Misil(final int ekangulo, final int potenco, final int damagxo, final double ekXo, final double ekYo,
+			final Color koloro) {
 		super(1, damagxo, Konstantj.ITENER_SON_MISIL);
 		
 		grandec = (int) Math.sqrt(damagx);
@@ -33,6 +34,7 @@ public class Misil extends Vivazh {
 		komencDamagxX = (int) (damagxLargxX/2);
 		damagxaltec = (int) (damagx*0.7 * QefObjektj.map.mldurec);
 		ludant = Vicperant.nunLudantn();
+		kolor = koloro;
 		
 		setXn(ekXo);
 		setYn(ekYo);
@@ -45,15 +47,19 @@ public class Misil extends Vivazh {
 			kolicij[i] = Vicperant.ludantj[i].nunposiciare();
 	}
 	
-	public Misil(final KalkuliTrajektn trajekto,final int damagxo, final double ekXo, final double ekYo) {
+	public Misil(final KalkuliTrajektn trajekto,final int damagxo, final double ekXo, final double ekYo,
+			final Color koloro) {
 		super(1, damagxo, Konstantj.ITENER_SON_MISIL);
 		
 		grandec = (int) Math.sqrt(damagx);
+		largxVivazh = grandec;
+		altVivazh = grandec;
 		
 		damagxLargxX = damagx;
 		komencDamagxX = (int) (damagxLargxX/2);
 		damagxaltec = (int) (damagx*0.7 * QefObjektj.map.mldurec);
 		ludant = Vicperant.nunLudantn();
+		kolor = koloro;
 		
 		setXn(ekXo);
 		setYn(ekYo);
@@ -69,7 +75,7 @@ public class Misil extends Vivazh {
 	@Override
 	public void gxisdatig() {
 		for(int i = 0; i < 10; i++)
-			if(yn() >= QefObjektj.map.yn()[(int) xn()] && qnekolici()) {
+			if(yn() >= (QefObjektj.map.yn()[(int) xn()] + (grandec>>1)) && qnekolici()) {
 				trajekt.executShotn();
 			} else {
 				exploci();
@@ -81,7 +87,7 @@ public class Misil extends Vivazh {
 	}
 	private boolean qnekolici() {
 		for(int i = 0; i < kolicij.length; i++) {
-			if(kolicij[i].intersects(new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh))) {
+			if(kolicij[i].intersects(new Rectangle((int) xn(), (int) yn(), grandec, grandec))) {
 				if(i == ludant && qneelir) {
 					qelir = false;
 					continue;
@@ -100,7 +106,7 @@ public class Misil extends Vivazh {
 	@Override
 	public void desegn() {
 		DebugDesegn.desegnOval((int) Kvantperant.koordenadXalekranPosicin(xn()),
-				(int) Kvantperant.koordenadYalekranPosicin(yn()), grandec, grandec, Color.BLACK);
+				(int) Kvantperant.koordenadYalekranPosicin(yn()), grandec, grandec, kolor);
 	}
 	
 	public void exploci() {

@@ -95,11 +95,11 @@ public class Qefperant {
 			delta += tiempoTranscurrido / NS_POR_ACTUALIZACION;
 			
 			while (delta >= 1) {
-				//try {//TODO forigu tion
+				try {//TODO forigu tion
 					gxisdatig();
-				//}catch(Exception e) {
-				//	JOptionPane.showMessageDialog(null, e, "Error: gxisdatig()", JOptionPane.ERROR_MESSAGE);
-				//}
+				}catch(Exception e) {
+					JOptionPane.showMessageDialog(null, e, "Error: gxisdatig()", JOptionPane.ERROR_MESSAGE);
+				}
 				apsAkumulita++;
 				
 				delta--;

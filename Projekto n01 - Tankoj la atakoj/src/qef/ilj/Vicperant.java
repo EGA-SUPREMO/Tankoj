@@ -15,10 +15,10 @@ public class Vicperant {
 	private static int nunLudant = 0;
 	
 	public static Ludant[] ludantj = new Ludant[] {new Ludant(1, "EGA", Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
-			Color.GREEN.darker(), Ludant.armil, Color.BLUE.brighter()),new Ludant(1, "Panchito",
-			Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.RED, Ludant.armil, Color.ORANGE), new Ludant(1,
-			"Jaimito", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.CYAN.darker(), Ludant.armil,
-			Color.MAGENTA.darker())};
+			Color.GREEN.darker(), Ludant.armil, Color.BLUE.brighter()),new Ludant(1, "Oveja",
+			Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.CYAN.darker(), Ludant.armil, Color.ORANGE), //new Ludant(1,
+			//"Jaimito", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.CYAN.darker(), Ludant.armil,
+			};//Color.MAGENTA.darker())};
 	private static Misil nunMisil;
 
 	public static int nunLudantn() {

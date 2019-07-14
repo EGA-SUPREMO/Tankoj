@@ -36,7 +36,7 @@ public abstract class Vivazh implements Estazh {
 		this.rapidecX = 1;
 		x = 0;
 		y = 0;
-		viv = 1;
+		viv = 100;
 		plejviv = viv;
 		damagx = damagxo;
 		definigad();

@@ -1,12 +1,14 @@
 package qef.estazhj.vivazhj.misil;
 
+import java.awt.Color;
+
 public class Banmisil extends Multmisil {
 
 	private double antawX, antawY;
 	
 	public Banmisil(final int ekangulo, final int potenco, final int damagxo, final double ekXo,
 			final double ekYo) {
-		super(ekangulo, potenco, damagxo, ekXo, ekYo);
+		super(ekangulo, potenco, damagxo, ekXo, ekYo, Color.RED.darker());
 	}
 
 	@Override
