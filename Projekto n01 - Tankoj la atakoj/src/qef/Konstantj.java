@@ -67,6 +67,10 @@ public abstract class Konstantj {
 	public final static int ATAKI = KeyEvent.VK_SPACE;
 	public final static int REVIVIL = KeyEvent.VK_R;
 	public final static int GRAFIK = KeyEvent.VK_G;
+	public final static int UZIKAMPFORT = KeyEvent.VK_COMMA;
+	public final static int FORIGIKAMPFORT = KeyEvent.VK_E;
+	public final static int SUBIKAMPFORT = KeyEvent.VK_M;
+	public final static int SUPRIKAMPFORT = KeyEvent.VK_N;
 	/*
 	 * public final static int SUPR = KeyEvent.VK_W; public final static int SUB
 	 * = KeyEvent.VK_S; public final static int MLDEXTR = KeyEvent.VK_A; public

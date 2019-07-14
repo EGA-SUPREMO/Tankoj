@@ -23,6 +23,9 @@ public class Klavar extends KeyAdapter {
 	public boolean supriPotenc = false;
 	public boolean subiArmil = false;
 	public boolean supriArmil = false;
+	public boolean subiKampfort = false;
+	public boolean supriKampfort = false;
+	public boolean uziKampfort = false;
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -111,6 +114,18 @@ public class Klavar extends KeyAdapter {
 				break;
 			case Konstantj.QKOLEKT:
 				qkolekt = false;
+				break;
+			case Konstantj.UZIKAMPFORT:
+				uziKampfort = true;
+				break;
+			case Konstantj.FORIGIKAMPFORT:
+				Vicperant.nunludantn().forigKampfortn();
+				break;
+			case Konstantj.SUBIKAMPFORT:
+				subiKampfort = true;
+				break;
+			case Konstantj.SUPRIKAMPFORT:
+				supriKampfort = true;
 				break;
 			case Konstantj.GRAFIK:
 				Konstantj.altGrafik = !Konstantj.altGrafik;

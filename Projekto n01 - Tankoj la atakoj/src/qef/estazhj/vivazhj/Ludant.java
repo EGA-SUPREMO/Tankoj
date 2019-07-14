@@ -213,11 +213,21 @@ public class Ludant extends Vivazh {
 			mlpliNunArmiln();
 			Kontrolperant.klavar.subiArmil = false;
 		}
-		if(nunuzitKampfort==null)
-			nunuzitKampfort = Kampfortregistril.kampfortjn(nunKampfort);
-		else {
-			nunuzitKampfort.gxisdatig();
+		if(Kontrolperant.klavar.supriKampfort) {
+			pliNunKampfortn();
+			Kontrolperant.klavar.supriKampfort = false;
 		}
+		if(Kontrolperant.klavar.subiKampfort) {
+			mlpliNunKampfortn();
+			Kontrolperant.klavar.subiKampfort = false;
+		}
+		if(nunuzitKampfort!=null)
+			nunuzitKampfort.gxisdatig();
+		else if(Kontrolperant.klavar.uziKampfort) {
+			mlpliKampfortn();
+			Kontrolperant.klavar.uziKampfort = false;
+		}
+		
 		
 	}
 	public void uzReviviln() {
@@ -370,6 +380,37 @@ public class Ludant extends Vivazh {
 		if(armilar[nunArmil]<1)
 			pliNunArmiln();
 	}
+	private void pliNunKampfortn() {
+		if(++nunKampfort>=Konstantj.PLEJ_KAMPFORTJ)
+			nunKampfort = 0;
+		if(havasKampfortjn())//TODO cxi tiu metodo povas esti plie efika
+			if(armilar[nunArmil]<1)
+				pliNunKampfortn();
+	}
+
+	private void mlpliNunKampfortn() {
+		if(nunKampfort>0)
+			nunKampfort--;
+		else
+			nunKampfort = Konstantj.PLEJ_KAMPFORTJ-1;
+		if(armilar[nunArmil]<1)
+			mlpliNunKampfortn();
+	}
+	private void mlpliKampfortn() {
+		if(kampfortnombrj[nunKampfort] == 0)
+			return;
+		kampfortnombrj[nunKampfort]--;
+		
+		nunuzitKampfort = Kampfortregistril.kampfortjn(nunKampfort);
+		if(kampfortnombrj[nunKampfort]<1)
+			pliNunKampfortn();
+	}
+	private boolean havasKampfortjn() {
+		for(int i = 0; i < Konstantj.PLEJ_KAMPFORTJ; i++)
+			if(kampfortnombrj[i]>0)
+				return true;
+		return false;
+	}
 	public void pliMonn(final double mono) {
 		mon += mono;
 	}
@@ -378,6 +419,7 @@ public class Ludant extends Vivazh {
 		super.resetVivn();
 		//plejpotenc = (int) viv;
 		definigad();
+		nunuzitKampfort = null;
 	}
 	@Override
 	public void mlgajnVivn(final double vivo, final int plejdamagx, final int nunLudant) {
@@ -438,5 +480,9 @@ public class Ludant extends Vivazh {
 		final int o = (int) (offsetLudantX<0? -offsetLudantX: offsetLudantX);
 		final int od = (int) (offsetLudantX<0? -1: 1);
 		return new Rectangle((int) (xn() - (largxVivazhKolici>>1) + Math.sqrt(o)*od), (int) (yn() + (altVivazh>>1)), largxVivazhKolici, altVivazhKolici);
+	}
+
+	public void forigKampfortn() {
+		nunuzitKampfort = null;
 	}
 }
