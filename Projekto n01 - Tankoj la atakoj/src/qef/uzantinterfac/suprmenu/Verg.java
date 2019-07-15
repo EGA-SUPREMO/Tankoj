@@ -47,7 +47,7 @@ public class Verg {
 	}
 	
 	private void desegnTextn() {
-		DebugDesegn.desegnString(text.name(), posici.x - 19, posici.y + 8);
+		DebugDesegn.desegnString(text.name(), posici.x - 24, posici.y + 8);
 		DebugDesegn.desegnString("" + i, posici.x + largx + 2, posici.y + 8);
 	}
 	

@@ -325,6 +325,8 @@ public class Ludant extends Vivazh {
 		}
 		if(Kontrolperant.klavar.debug) {
 			final Rectangle r = nunposiciare();
+			if(nunuzitKampfort!=null)
+				r.y += (nunuzitKampfort.largxVivazh);
 			DebugDesegn.desegnMargxenRectangle((int) (Kvantperant.koordenadXalekranPosicin(r.x)),
 					(int) (Kvantperant.koordenadYalekranPosicin(r.y)), r.width, r.height, Color.BLUE);
 		}
@@ -506,7 +508,7 @@ public class Ludant extends Vivazh {
 			return new Rectangle((int) (xn() - (largxVivazhKolici>>1) + Math.sqrt(o)*od), (int) (yn() + (altVivazh>>1)), largxVivazhKolici, altVivazhKolici);
 		} else
 			return new Rectangle((int) (xn() - (nunuzitKampfort.largxVivazh>>1) + offsetLudantX), (int) (yn() +
-					largxVivazhKolici + (nunuzitKampfort.largxVivazh>>1)), nunuzitKampfort.largxVivazh,
+					largxVivazhKolici - (nunuzitKampfort.largxVivazh>>1)), nunuzitKampfort.largxVivazh,
 					nunuzitKampfort.largxVivazh);
 	}
 

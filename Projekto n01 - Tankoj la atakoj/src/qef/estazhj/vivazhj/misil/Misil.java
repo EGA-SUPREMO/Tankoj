@@ -88,16 +88,8 @@ public class Misil extends Vivazh {
 	private boolean qnekolici() {
 		final Rectangle misilR = new Rectangle((int) xn(), (int) yn(), grandec, grandec);
 		for(int i = 0; i < kolicij.length; i++) {
-			System.out.println(kolicij[i].x + " - " + kolicij[i].y + " - " + kolicij[i].width + " - " +
-					kolicij[i].height);
-			System.out.println(((int) xn()) + " - " + ((int) yn()) + " - " + grandec);
-			System.out.println(kolicij[i].intersects(misilR));
 			if(kolicij[i].intersects(misilR)) {
-				System.out.println(kolicij[i].x + " - " + kolicij[i].y + " - " + kolicij[i].width + " - " +
-						kolicij[i].height);
-				System.out.println(((int) xn()) + " - " + ((int) yn()) + " - " + grandec);
 				if(Vicperant.ludantj[i].vivn()>0) {
-					System.out.println("Chocoo");
 					if(i==ludant) {
 						return !qeliris;
 					} else
