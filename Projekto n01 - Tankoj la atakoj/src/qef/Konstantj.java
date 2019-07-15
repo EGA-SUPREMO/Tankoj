@@ -55,10 +55,9 @@ public abstract class Konstantj {
 	public final static int SUB = KeyEvent.VK_S;
 	public final static int MLDEXTR = KeyEvent.VK_Q;
 	public final static int DEXTR = KeyEvent.VK_D;
-	public final static int KURI = KeyEvent.VK_SHIFT;
+	public final static int KURI_KAJ_TELIR = KeyEvent.VK_SHIFT;
 	public final static int ELIRI = KeyEvent.VK_ESCAPE;
 	public final static int TELEIR = KeyEvent.VK_T;
-	public final static int TELEIR2 = KeyEvent.VK_V;
 	public final static int DEBUG = KeyEvent.VK_F1;
 	public final static int QKOLEKT = KeyEvent.VK_C;
 	public final static int SUBIPOTENC = KeyEvent.VK_K;
@@ -69,7 +68,7 @@ public abstract class Konstantj {
 	public final static int REVIVIL = KeyEvent.VK_R;
 	public final static int GRAFIK = KeyEvent.VK_G;
 	public final static int UZIKAMPFORT = KeyEvent.VK_COMMA;
-	public final static int FORIGIKAMPFORT = KeyEvent.VK_E;
+	public final static int FORIGIKAMPFORT = KeyEvent.VK_PERIOD;
 	public final static int SUBIKAMPFORT = KeyEvent.VK_M;
 	public final static int SUPRIKAMPFORT = KeyEvent.VK_N;
 	/*
@@ -92,7 +91,7 @@ public abstract class Konstantj {
 	public static boolean qyangxSpriteFoli = false;
 	public static int canonAngulnombr = 360;
 	public static final byte LUDRAPIDEC = 1;
-	public static final double MISILRAPIDEC = 0.03;//0.03
+	public static final double MISILRAPIDEC = 0.00073;//0.03
 	public static int ANGULRAPIDEC = 1;
 	
 	public final static String SUFIX_MAP = ".egam";
@@ -245,6 +244,6 @@ public abstract class Konstantj {
 	public static Biom[] biomj;
 	
 	public static int mapgrandec = Konstantj.ludLargx;
-	public static int plejtempVent = 1200;
+	public static int plejtempVent = 12000;
 	
 }

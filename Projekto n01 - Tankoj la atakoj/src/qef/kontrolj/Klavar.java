@@ -26,31 +26,42 @@ public class Klavar extends KeyAdapter {
 	public boolean subiKampfort = false;
 	public boolean supriKampfort = false;
 	public boolean uziKampfort = false;
+	public boolean teleirazh = false;
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 			case Konstantj.SUPR:
-				supr.puls();
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					supr.puls();
 				break;
 			case Konstantj.SUB:
-				sub.puls();
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					sub.puls();
 				break;
 			case Konstantj.DEXTR:
-				dextr.puls();
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					dextr.puls();
 				break;
 			case Konstantj.MLDEXTR:
-				mldextr.puls();
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					mldextr.puls();
 				break;
-			case Konstantj.KURI:
+			case Konstantj.KURI_KAJ_TELIR:
 				kuri = true;
+				
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					teleirazh = true;
+				
 				Konstantj.ANGULRAPIDEC = 3;
 				break;
 			case Konstantj.SUBIPOTENC:
-				subiPotenc = true;
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					subiPotenc = true;
 				break;
 			case Konstantj.SUPRIPOTENC:
-				supriPotenc = true;
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					supriPotenc = true;
 				break;
 			case Konstantj.DEBUG:
 				debug = !debug;
@@ -97,35 +108,44 @@ public class Klavar extends KeyAdapter {
 				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
 					supriArmil = true;
 				break;
-			case Konstantj.KURI:
+			case Konstantj.KURI_KAJ_TELIR:
 				Konstantj.ANGULRAPIDEC = 1;
 				for(int i = 0; i < Vicperant.ludantj.length; i++)
 					Vicperant.ludantj[i].rapidecX = 1;
 				kuri = false;
+				teleirazh = false;
 				break;
 			case Konstantj.ELIRI:
 				elir();
 				break;
 			case Konstantj.REVIVIL:
-				Vicperant.nunludantn().uzReviviln();
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					Vicperant.nunludantn().uzReviviln();
 				break;
 			case Konstantj.TELEIR:
-				Ludant.teleir();
+				if(teleirazh) {
+					teleirazh = false;
+					Ludant.teleir();
+				}
 				break;
 			case Konstantj.QKOLEKT:
 				qkolekt = false;
 				break;
 			case Konstantj.UZIKAMPFORT:
-				uziKampfort = true;
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					uziKampfort = true;
 				break;
 			case Konstantj.FORIGIKAMPFORT:
-				Vicperant.nunludantn().forigKampfortn();
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					Vicperant.nunludantn().forigKampfortn();
 				break;
 			case Konstantj.SUBIKAMPFORT:
-				subiKampfort = true;
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					subiKampfort = true;
 				break;
 			case Konstantj.SUPRIKAMPFORT:
-				supriKampfort = true;
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					supriKampfort = true;
 				break;
 			case Konstantj.GRAFIK:
 				Konstantj.altGrafik = !Konstantj.altGrafik;

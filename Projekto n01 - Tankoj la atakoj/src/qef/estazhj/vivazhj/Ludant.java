@@ -23,6 +23,9 @@ import qef.sprite.SpriteFoli;
 
 public class Ludant extends Vivazh {
 
+	private final int id;
+	private static int nunId = -1;
+	
 	protected BufferedImage[] bildj, canonBildj;
 	private final static int ANTAWDEFINITRAD_X1 = -8, ANTAWDEFINITRAD_X2 = 8;
 	private int radX1 = ANTAWDEFINITRAD_X1, radX2 = ANTAWDEFINITRAD_X2;
@@ -66,6 +69,9 @@ public class Ludant extends Vivazh {
 			final BufferedImage canonSprite, final Color dukoloro) {
 		super(1, 100, itenerSon);
 		
+		nunId++;
+		id = nunId;
+		
 		definigad();
 		armilar = komnecarmilarn();
 		kampfortnombrj = komencKampfortjn();
@@ -73,7 +79,7 @@ public class Ludant extends Vivazh {
 		qgxisdatigatingecn = false;
 		nom = nomo;
 		kolor = koloro;
-		revivil = 10;
+		revivil = 8;
 		dukolor = dukoloro;
 		
 		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
@@ -353,8 +359,9 @@ public class Ludant extends Vivazh {
 	}
 
 	public void mlplinunanguln() {
-		if(nunangul>mlplejangul)
-			nunangul -= Konstantj.ANGULRAPIDEC;
+		nunangul -= Konstantj.ANGULRAPIDEC;
+		if(nunangul<mlplejangul)
+			nunangul = mlplejangul;
 	}
 	public void plinunanguln() {
 		nunangul += Konstantj.ANGULRAPIDEC; 
@@ -471,6 +478,7 @@ public class Ludant extends Vivazh {
 			Vicperant.nunludantn().setSenmidifYn(Kvantperant.koordenadYalekranPosicin(QefObjektj.superfic.muyn().posicin().y));
 			if(Vicperant.nunludantn().nunuzitKampfort!=null)
 				Vicperant.nunludantn().nunuzitKampfort.gxisdatig();
+			Vicperant.nunludantn().gxisdatig();
 			Vicperant.venontNunLudantn();
 		}
 	}
@@ -478,19 +486,28 @@ public class Ludant extends Vivazh {
 	public void definigad() {
 		super.definigad();
 		Random r = new Random();
-		setXn(r.nextInt(QefObjektj.map.yn().length));
+		setXn(r.nextInt((int) ((QefObjektj.map.yn().length/Vicperant.plejLudant)*0.75)) +
+				(QefObjektj.map.yn().length/Vicperant.plejLudant)*id +
+				(QefObjektj.map.yn().length/Vicperant.plejLudant)*0.12);
 		setYn(QefObjektj.map.yn((int) xn()));
 		
 		nunangul = r.nextInt(ANTAWDEFINITPLEJANGUL-90)+90;
 		potenc = plejpotenc/2;
 		nunBild = statn((int) xn());
 		brulazh = 3000;
+		
+		anim();
 	}
 	@Override
 	public Rectangle nunposiciare() {
-		final int o = (int) (offsetLudantX<0? -offsetLudantX: offsetLudantX);
-		final int od = (int) (offsetLudantX<0? -1: 1);
-		return new Rectangle((int) (xn() - (largxVivazhKolici>>1) + Math.sqrt(o)*od), (int) (yn() + (altVivazh>>1)), largxVivazhKolici, altVivazhKolici);
+		if(nunuzitKampfort==null) {
+			final int o = (int) (offsetLudantX<0? -offsetLudantX: offsetLudantX);
+			final int od = (int) (offsetLudantX<0? -1: 1);
+			return new Rectangle((int) (xn() - (largxVivazhKolici>>1) + Math.sqrt(o)*od), (int) (yn() + (altVivazh>>1)), largxVivazhKolici, altVivazhKolici);
+		} else
+			return new Rectangle((int) (xn() - (nunuzitKampfort.largxVivazh>>1) + offsetLudantX), (int) (yn() +
+					largxVivazhKolici + (nunuzitKampfort.largxVivazh>>1)), nunuzitKampfort.largxVivazh,
+					nunuzitKampfort.largxVivazh);
 	}
 
 	public void forigKampfortn() {

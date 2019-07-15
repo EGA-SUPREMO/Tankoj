@@ -197,7 +197,7 @@ public abstract class Vivazh implements Estazh {
 		viv = plejviv;
 	}
 	public void mlgajnVivn(double d, final int plejdamagx, final int nunLudant) {
-		if(viv<=0) {
+		if(viv<=0d) {
 			return;
 		}
 		viv -= d/resistenc;

@@ -349,7 +349,7 @@ public class Map {
 		return vent;
 	}
 	public double venontVentn() {
-		return vent = r.nextDouble()/10-0.015+vent;
+		return vent = (r.nextDouble()/10-0.038)*(r.nextBoolean()? -1: 1)+vent;
 	}
 	public void venontVicn() {
 		venontVentn();

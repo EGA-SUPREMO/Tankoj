@@ -13,6 +13,8 @@
 
 package qef;
 
+import java.awt.Rectangle;
+
 import javax.swing.JOptionPane;
 
 import qef.estazhj.vivazhj.misil.Misileg;
@@ -96,6 +98,7 @@ public class Qefperant {
 			
 			while (delta >= 1) {
 				try {//TODO forigu tion
+					//System.out.println(new Rectangle(221, 41, 48, 48).intersects(new Rectangle(250, 24, 5, 5)));
 					gxisdatig();
 				}catch(Exception e) {
 					JOptionPane.showMessageDialog(null, e, "Error: gxisdatig()", JOptionPane.ERROR_MESSAGE);

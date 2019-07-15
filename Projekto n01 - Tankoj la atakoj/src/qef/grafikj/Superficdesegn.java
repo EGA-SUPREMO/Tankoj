@@ -67,8 +67,8 @@ public class Superficdesegn extends Canvas {
 		
 		g.setFont(Konstantj.KUTIM_FONT);
 		DebugDesegn.setColor(Konstantj.ANTAWDEFINIT_KOLOR);
-		DebugDesegn.desegnString("APS: " + Konstantj.aps, 10, 20);
-		DebugDesegn.desegnString("FPS: " + Konstantj.fps, 10, 30);
+		DebugDesegn.desegnString("APS: " + Konstantj.aps, 10, 83);
+		DebugDesegn.desegnString("FPS: " + Konstantj.fps, 10, 93);
 		
 		if(Kontrolperant.klavar.debug) {
 			DebugDatum.addDatumn("X: " + Vicperant.ludantj[Vicperant.nunLudantn()].xn());
@@ -88,11 +88,6 @@ public class Superficdesegn extends Canvas {
 			DebugDatum.addDatumn("Reskalita RX: " + muy.rectangleReskalitPosicin().x);
 			DebugDatum.addDatumn("Reskalita RY: " + muy.rectangleReskalitPosicin().y);
 			DebugDatum.addDatumn("Vento: " + (QefObjektj.map.ventn()*200));
-			
-			if(sp.qStatludn()) {
-				DebugDesegn.desegnKolicijn();
-			}
-			
 			DebugDatum.addDatumn("OPF: " + DebugDesegn.objektjDesegnitan());
 			DebugDatum.desegn();
 		}

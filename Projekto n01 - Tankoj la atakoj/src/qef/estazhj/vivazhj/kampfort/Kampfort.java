@@ -17,6 +17,7 @@ public class Kampfort extends Vivazh {
 		ludant = ludanto;
 		kolor = ludant.dukolorn();
 		largxVivazh = ludant.largxVivazhn()*2;
+		altVivazh = largxVivazh;
 	}
 	
 	@Override
@@ -27,8 +28,8 @@ public class Kampfort extends Vivazh {
 	
 	@Override
 	public void desegn() {
-		DebugDesegn.desegnCirkl((int) Kvantperant.koordenadXalekranPosicin(xn()) - (largxVivazh>>1) +
-				ludant.offsetLudantXn(), (int) Kvantperant.koordenadYalekranPosicin(yn()) -
+		DebugDesegn.desegnCirkl((int) Kvantperant.koordenadXalekranPosicin(ludant.xn()) - (largxVivazh>>1) +
+				ludant.offsetLudantXn(), (int) Kvantperant.koordenadYalekranPosicin(ludant.yn()) -
 				ludant.largxVivazhKolici - (largxVivazh>>1), largxVivazh, kolor);
 	}
 	

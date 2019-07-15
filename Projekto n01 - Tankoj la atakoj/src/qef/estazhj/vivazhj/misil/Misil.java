@@ -18,8 +18,8 @@ public class Misil extends Vivazh {
 	protected final int grandec;
 	public final KalkuliTrajektn trajekt;
 	public final int ludant;
-	private final Rectangle[] kolicij;
-	private boolean qneelir, qelir;
+	protected final Rectangle[] kolicij;
+	private boolean qeliris;
 	private final Color kolor;
 
 	public Misil(final int ekangulo, final int potenco, final int damagxo, final double ekXo, final double ekYo,
@@ -41,7 +41,7 @@ public class Misil extends Vivazh {
 		
 		trajekt = new KalkuliTrajektn(this, QefObjektj.map.ventn(), ekangulo, potenco);
 		
-		qneelir = true;
+		qeliris = false;
 		kolicij = new Rectangle[Vicperant.ludantj.length];
 		for(int i = 0; i < Vicperant.ludantj.length; i++)
 			kolicij[i] = Vicperant.ludantj[i].nunposiciare();
@@ -66,7 +66,7 @@ public class Misil extends Vivazh {
 		
 		trajekt = trajekto;
 		
-		qneelir = true;
+		qeliris = false;
 		kolicij = new Rectangle[Vicperant.ludantj.length];
 		for(int i = 0; i < Vicperant.ludantj.length; i++)
 			kolicij[i] = Vicperant.ludantj[i].nunposiciare();
@@ -86,20 +86,26 @@ public class Misil extends Vivazh {
 			}
 	}
 	private boolean qnekolici() {
+		final Rectangle misilR = new Rectangle((int) xn(), (int) yn(), grandec, grandec);
 		for(int i = 0; i < kolicij.length; i++) {
-			if(kolicij[i].intersects(new Rectangle((int) xn(), (int) yn(), grandec, grandec))) {
-				if(i == ludant && qneelir) {
-					qelir = false;
-					continue;
+			System.out.println(kolicij[i].x + " - " + kolicij[i].y + " - " + kolicij[i].width + " - " +
+					kolicij[i].height);
+			System.out.println(((int) xn()) + " - " + ((int) yn()) + " - " + grandec);
+			System.out.println(kolicij[i].intersects(misilR));
+			if(kolicij[i].intersects(misilR)) {
+				System.out.println(kolicij[i].x + " - " + kolicij[i].y + " - " + kolicij[i].width + " - " +
+						kolicij[i].height);
+				System.out.println(((int) xn()) + " - " + ((int) yn()) + " - " + grandec);
+				if(Vicperant.ludantj[i].vivn()>0) {
+					System.out.println("Chocoo");
+					if(i==ludant) {
+						return !qeliris;
+					} else
+						return false;
 				}
-				if(Vicperant.ludantj[i].vivn()!=0 && !qneelir)
-					return false;
-			}
+			} else if(i==ludant)
+				qeliris = true;
 		}
-		if(qelir && qneelir)
-			qneelir = false;
-		else
-			qelir = true;
 		return true;
 	}
 

@@ -37,10 +37,10 @@ public class Ludperant implements Statlud {
 		QefObjektj.submenu.desegn();
 
 		DebugDesegn.setFont(Konstantj.KUTIM_FONT.deriveFont(16f));
-		for(int i = 0; i<Vicperant.ludantj.length; i++) {
-			DebugDesegn.desegnString(Vicperant.ludantj[i].nomn(), Konstantj.ludLargx - 150, 78 + 14*i,
+		for(int i = Vicperant.ludantj.length-1; i>-1; i--) {
+			DebugDesegn.desegnString(Vicperant.ludantj[i].nomn(), Konstantj.ludLargx - 150, 78 + 14*(Vicperant.ludantj.length-1-i),
 					Vicperant.ludantj[i].kolorn());
-			DebugDesegn.desegnString((int) Vicperant.ludantj[i].monn() + "", Konstantj.ludLargx - 60, 78 + 14*i);
+			DebugDesegn.desegnString((int) Vicperant.ludantj[i].monn() + "", Konstantj.ludLargx - 60, 78 + 14*(Vicperant.ludantj.length-1-i));
 		}
 	}
 
