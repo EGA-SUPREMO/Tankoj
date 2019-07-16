@@ -15,6 +15,7 @@ package qef;
 
 import javax.swing.JOptionPane;
 
+import qef.estazhj.vivazhj.Ludant;
 import qef.estazhj.vivazhj.misil.Misileg;
 import qef.grafikj.Fenestr;
 import qef.son.Son;
@@ -69,6 +70,7 @@ public class Qefperant {
 		fonmuzik = new Son(Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 0);
 		Misileg.definigadMisiljn();
 		new Fenestr(titol);
+		Ludant.definigadj();
 	}
 	
 	private void ekQefBukln() {
@@ -107,7 +109,7 @@ public class Qefperant {
 
 			try {
 				desegn();
-			}catch(Exception e) {
+			} catch(Exception e) {
 				JOptionPane.showMessageDialog(null, e, "Error: desegn()", JOptionPane.ERROR_MESSAGE);
 			}
 			fpsAkumulita++;

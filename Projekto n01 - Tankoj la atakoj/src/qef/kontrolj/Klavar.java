@@ -7,6 +7,7 @@ import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.vivazhj.Ludant;
 import qef.ilj.Vicperant;
+import qef.ilj.YargxilAzhj;
 
 public class Klavar extends KeyAdapter {
 
@@ -154,6 +155,7 @@ public class Klavar extends KeyAdapter {
 	}
 	
 	public void elir() {
+		YargxilAzhj.skribTextn(Konstantj.ITENER_SAVJ);
 		System.exit(0);
 	}
 	

@@ -216,5 +216,7 @@ public abstract class Vivazh implements Estazh {
 			Vicperant.ludantj[nunLudant].pliMonn(Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx);
 		Vicperant.qaktivLudant();
 	}
-	
+	public double resistencn() {
+		return resistenc;
+	}
 }

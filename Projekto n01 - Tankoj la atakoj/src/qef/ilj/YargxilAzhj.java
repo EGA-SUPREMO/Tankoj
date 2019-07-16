@@ -8,17 +8,26 @@ import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
+
+import qef.Konstantj;
+import qef.estazhj.vivazhj.Ludant;
 //import javax.sound.sampled.FloatControl;
 
 public class YargxilAzhj {
@@ -30,7 +39,6 @@ public class YargxilAzhj {
 		try{
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -56,7 +64,6 @@ public class YargxilAzhj {
 		try{
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -83,7 +90,6 @@ public class YargxilAzhj {
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 			i = i.getScaledInstance((int) (i.getWidth(null)/ie), (int) (i.getHeight(null)/ie), Image.SCALE_SMOOTH);
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -110,7 +116,6 @@ public class YargxilAzhj {
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 			i = i.getScaledInstance(largx, -1, Image.SCALE_SMOOTH);
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -138,7 +143,6 @@ public class YargxilAzhj {
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 			i = i.getScaledInstance(largx, alt, Image.SCALE_SMOOTH);
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -165,7 +169,6 @@ public class YargxilAzhj {
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 			i = i.getScaledInstance(x, y, Image.SCALE_SMOOTH);
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -193,7 +196,6 @@ public class YargxilAzhj {
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 			i = i.getScaledInstance(x, y, Image.SCALE_SMOOTH);
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -212,7 +214,7 @@ public class YargxilAzhj {
 		return Bildperant.yangxKolorn(bild, kolor.getRed(), kolor.getGreen(), kolor.getBlue());
 		
 	}
-	
+
 	public static String yargxTextn(final String itener) {
 		String enhav = "";
 		
@@ -224,8 +226,8 @@ public class YargxilAzhj {
 		try {
 			while((line = r.readLine()) != null)
 				enhav += line;
+			
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.getStackTrace();
 		} finally {
 			try {
@@ -239,6 +241,52 @@ public class YargxilAzhj {
 		}
 		
 		return enhav;
+	}
+	public static String skribTextn(final String itener) {
+		String enhav = "";
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(
+					new File("res/files" + itener + 0 + ".txt").getAbsolutePath()));
+			for(int i = 0; i < Vicperant.ludantj.length; i++) {
+				enhav += Vicperant.ludantj[i].nomn();
+				enhav += "qjqjq";
+				enhav += Vicperant.ludantj[i].monn();
+				enhav += "qjqjq";
+				enhav += Vicperant.ludantj[i].teleirazhj;
+				enhav += "qjqjq";
+				enhav += Vicperant.ludantj[i].plejvivn();
+				enhav += "qjqjq";
+				enhav += Vicperant.ludantj[i].reviviln();
+				enhav += "qjqjq";
+				enhav += Vicperant.ludantj[i].eficientBrulazh;
+				enhav += "qjqjq";
+				for(int e = 0; e < Vicperant.ludantj[i].armilarn().length; e++) {
+					enhav += ", ";
+					enhav += Vicperant.ludantj[i].armilarn()[e];
+				}
+				enhav += "qjqjq";
+				enhav += Vicperant.ludantj[i].resistencn();
+				enhav += "qjqjq";
+				enhav += Vicperant.ludantj[i].plejbrulazh;
+				enhav += "qjqjq";
+				for(int e = 0; e < Vicperant.ludantj[i].kampfortnombrjn().length; e++) {
+					enhav += ", ";
+					enhav += Vicperant.ludantj[i].kampfortnombrjn()[e];
+				}
+				enhav += "qjqjq";
+				enhav += Vicperant.ludantj[i].kolorn();
+				enhav += "qjqjq";
+				enhav += Vicperant.ludantj[i].dukolorn();
+				enhav += "kxkxk";
+			}
+			bw.write(enhav);
+			bw.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+		}
+		return null;
 	}
 	
 	public static Font yargxFontn(final String itener) {

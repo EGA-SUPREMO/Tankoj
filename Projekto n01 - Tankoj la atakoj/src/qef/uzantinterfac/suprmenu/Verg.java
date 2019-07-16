@@ -62,11 +62,15 @@ public class Verg {
 			i = Vicperant.nunludantn().potenc;
 			pleji = Vicperant.nunludantn().plejpotenc;
 		}
-		DebugDesegn.desegnRectangle(posici.x, posici.y, i*largx/pleji, UNUGRANDEC_VERTIKAL, kolor);
-		posici.y += UNUGRANDEC_VERTIKAL;
-	
-		DebugDesegn.desegnRectangle(posici.x, posici.y, i*largx/pleji, DUGRANDEC_VERTIKAL, darkKolor);
-		posici.y -= UNUGRANDEC_VERTIKAL;
+		try {
+			DebugDesegn.desegnRectangle(posici.x, posici.y, i*largx/pleji, UNUGRANDEC_VERTIKAL, kolor);
+			posici.y += UNUGRANDEC_VERTIKAL;
+		
+			DebugDesegn.desegnRectangle(posici.x, posici.y, i*largx/pleji, DUGRANDEC_VERTIKAL, darkKolor);
+			posici.y -= UNUGRANDEC_VERTIKAL;
+		} catch(Exception e) {
+			
+		}
 	}
 	/*
 	private void setPosicin() {

@@ -91,7 +91,7 @@ public abstract class Konstantj {
 	public static boolean qyangxSpriteFoli = false;
 	public static int canonAngulnombr = 360;
 	public static final byte LUDRAPIDEC = 1;
-	public static final double MISILRAPIDEC = 0.00073;//0.03
+	public static final double MISILRAPIDEC = 0.073;//0.03
 	public static int ANGULRAPIDEC = 1;
 	
 	public final static String SUFIX_MAP = ".egam";
@@ -103,12 +103,8 @@ public abstract class Konstantj {
 	public final static String ITENER_LUDANT_CANON = ITENER_VIVAZH + "canon_";
 	public final static String ITENER_MISIL = ITENER_VIVAZH + "misil_";
 	public final static String ITENER_ATOMMISIL = ITENER_VIVAZH + "atom_misil_";
-	public final static String ITENER_MALAMIK = ITENER_VIVAZH + "enemy_";
 	
-	public final static String ITENER_OBJEKTJ = "/objects/";
-	public final static String ITENER_OBJEKT_ARMIL = ITENER_OBJEKTJ + "weapons/";
-	
-	public final static String ITENER_OBJEKT_OBJEKTAR = ITENER_OBJEKTJ + "sack.png";
+	public static final String ITENER_SAVJ = "/saves/";
 	
 	public final static String ITENER_SONJ = "/sounds/";
 	public final static String ITENER_SONJ_LUDANT = "player/";

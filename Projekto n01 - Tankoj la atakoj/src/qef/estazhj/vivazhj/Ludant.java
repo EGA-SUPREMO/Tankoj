@@ -55,6 +55,7 @@ public class Ludant extends Vivazh {
 	public double mediRapidecX = 0.7;
 	public double eficientBrulazh = 1;//0.05
 	private int brulazh;
+	public int plejbrulazh;
 	private int revivil;
 	public int largxVivazhKolici;
 	public int altVivazhKolici;
@@ -71,6 +72,7 @@ public class Ludant extends Vivazh {
 		
 		nunId++;
 		id = nunId;
+		plejbrulazh = 3000;
 		
 		definigad();
 		armilar = komnecarmilarn();
@@ -496,7 +498,7 @@ public class Ludant extends Vivazh {
 		nunangul = r.nextInt(ANTAWDEFINITPLEJANGUL-90)+90;
 		potenc = plejpotenc/2;
 		nunBild = statn((int) xn());
-		brulazh = 3000;
+		brulazh = plejbrulazh;
 		
 		anim();
 	}
@@ -524,5 +526,25 @@ public class Ludant extends Vivazh {
 	}
 	public int nunKampfortn() {
 		return nunKampfort;
+	}
+
+	public double plejvivn() {
+		return plejviv;
+	}
+
+	public static void definigadj() {
+		try {
+			final String[] enhav = YargxilAzhj.yargxTextn(Konstantj.ITENER_SAVJ + 0 + ".txt").split("kxkxk");
+			Ludant[] ludantj = new Ludant[enhav.length];
+			for(int i = 0; i < enhav.length; i++) {
+				final String[] datumj = enhav[i].split("qjqjq");
+				ludantj[i] = new Ludant(1, datumj[0], Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
+						Color.getColor(datumj[datumj.length-2]), Ludant.armil,
+						Color.getColor(datumj[datumj.length-1]));
+			}
+			Vicperant.ludantj = ludantj;
+		} catch(Exception e) {
+			
+		}
 	}
 }
