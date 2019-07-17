@@ -34,7 +34,7 @@ public class Ludperant implements Statlud {
 		if(Vicperant.nunMisiln()!=null)
 			Vicperant.nunMisiln().desegn();
 		QefObjektj.malhelec.desegn();
-		QefObjektj.submenu.desegn();
+		QefObjektj.suprmenu.desegn();
 
 		DebugDesegn.setFont(Konstantj.KUTIM_FONT.deriveFont(16f));
 		for(int i = Vicperant.ludantj.length-1; i>-1; i--) {

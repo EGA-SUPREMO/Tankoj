@@ -27,7 +27,7 @@ public class Verg {
 		this.text = text;
 		
 		MEZUR_VERTIKAL = (UNUGRANDEC_VERTIKAL + VERTIKAL_MARGXEN)*text.ordinal();
-		posici = new Point(Submenu.areXn() + 35, Submenu.areYn() + MEZUR_VERTIKAL + UNUGRANDEC_VERTIKAL + DUGRANDEC_VERTIKAL);
+		posici = new Point(Suprmenu.areXn() + 35, Suprmenu.areYn() + MEZUR_VERTIKAL + UNUGRANDEC_VERTIKAL + DUGRANDEC_VERTIKAL);
 		//setPosicin();
 		if(text.ordinal()==0) {
 			i = (int) Vicperant.nunludantn().vivn();
@@ -57,10 +57,12 @@ public class Verg {
 			pleji = 100;
 		} else if(text.ordinal()==1) {
 			i = Vicperant.nunludantn().nunanguln();
+			if(i < 0)
+				i = 360 - i;
 			pleji = 360;
 		} else if(text.ordinal()==2) {
 			i = Vicperant.nunludantn().potenc;
-			pleji = Vicperant.nunludantn().plejpotenc;
+			pleji = 100;
 		}
 		try {
 			DebugDesegn.desegnRectangle(posici.x, posici.y, i*largx/pleji, UNUGRANDEC_VERTIKAL, kolor);

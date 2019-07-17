@@ -5,7 +5,7 @@ import java.awt.event.KeyAdapter;
 
 import qef.Konstantj;
 import qef.QefObjektj;
-import qef.estazhj.vivazhj.Ludant;
+import qef.ilj.Ludantperant;
 import qef.ilj.Vicperant;
 import qef.ilj.YargxilAzhj;
 
@@ -126,7 +126,7 @@ public class Klavar extends KeyAdapter {
 			case Konstantj.TELEIR:
 				if(teleirazh) {
 					teleirazh = false;
-					Ludant.teleir();
+					Ludantperant.teleir();
 				}
 				break;
 			case Konstantj.QKOLEKT:
@@ -155,7 +155,7 @@ public class Klavar extends KeyAdapter {
 	}
 	
 	public void elir() {
-		//YargxilAzhj.skribTextn(Konstantj.ITENER_SAVJ);
+		YargxilAzhj.skribLudantn(Konstantj.ITENER_SAVJ + 0);
 		System.exit(0);
 	}
 	

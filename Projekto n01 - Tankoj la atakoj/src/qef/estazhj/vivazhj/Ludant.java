@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.Random;
 
 import qef.Konstantj;
@@ -17,19 +20,18 @@ import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.Vicperant;
-import qef.ilj.YargxilAzhj;
 import qef.kontrolj.Kontrolperant;
 import qef.map.Map;
 import qef.sprite.SpriteFoli;
 
-public class Ludant extends Vivazh implements Serializable {
+public class Ludant extends Vivazh implements Externalizable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private final int id;
 	private static int nunId = -1;
 	
-	protected BufferedImage[] bildj, canonBildj;
+	private BufferedImage[] bildj, canonBildj;
 	private final static int ANTAWDEFINITRAD_X1 = -8, ANTAWDEFINITRAD_X2 = 8;
 	private int radX1 = ANTAWDEFINITRAD_X1, radX2 = ANTAWDEFINITRAD_X2;
 	private int offsetLudantY = 2;
@@ -38,7 +40,7 @@ public class Ludant extends Vivazh implements Serializable {
 	private int offsetCanonX = 0, offsetCanonY = 1, offsetCanonY2 = 3;
 	private static final int ANTAWDEFINITPLEJANGUL = Konstantj.canonAngulnombr/2;
 	public int plejangul, mlplejangul;
-	protected final int[] armilar;
+	protected int[] armilar;
 	private boolean qatingec, qgxisdatigatingecn;
 	private BufferedImage atingec;
 	private Color dukolor;
@@ -48,13 +50,11 @@ public class Ludant extends Vivazh implements Serializable {
 	public int potenc;
 	private int nunangul;
 	private double mon = 0;
-	@SuppressWarnings("unused")
-	private int resistec;
 	
 	public int teleirazhj = 7;
 	public int nunArmil = 1;
-	private final String nom;
-	private final Color kolor;
+	private String nom;
+	private Color kolor;
 	public double mediRapidecX = 0.7;
 	public double eficientBrulazh = 1;//0.05
 	private int brulazh;
@@ -66,8 +66,34 @@ public class Ludant extends Vivazh implements Serializable {
 	private Kampfort nunuzitKampfort;
 	private int nunKampfort = 0;
 	
-	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
-			Transparency.TRANSLUCENT, 27, 29);
+	public Ludant() {
+		super(1, 100, null);
+		
+		nunId++;
+		id = nunId;
+		plejbrulazh = 3000;
+		
+		definigad();
+		armilar = komnecarmilarn();
+		kampfortnombrj = komencKampfortjn();
+		qatingec = false;
+		qgxisdatigatingecn = false;
+		nom = "Joseph";
+		kolor = Color.GRAY;
+		revivil = 8;
+		dukolor = Color.BLACK;
+		
+		ordenBildj(Konstantj.canonAngulnombr, Konstantj.armil);
+		ordenBildj(1, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
+				Transparency.TRANSLUCENT, 24, 24, kolor).spritejn());
+
+		largxVivazh = 24;
+		altVivazh = 24;
+		
+		altVivazhKolici = altVivazh/2 - offsetLudantY*2;
+		largxVivazhKolici = altVivazhKolici;
+		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
+	}
 	
 	public Ludant(final int ordenSpec, final String nomo, final String itenerSon, final Color koloro,
 			final BufferedImage canonSprite, final Color dukoloro) {
@@ -478,17 +504,6 @@ public class Ludant extends Vivazh implements Serializable {
 	public Color dukolorn() {
 		return dukolor;
 	}
-	public static void teleir() {
-		if(Vicperant.nunludantn().teleirazhj>0) {
-			Vicperant.nunludantn().teleirazhj--;
-			Vicperant.nunludantn().setXn(Kvantperant.koordenadEkranPosicialXn(QefObjektj.superfic.muyn().posicin().x + (Vicperant.nunludantn().largxVivazh>>1)));
-			Vicperant.nunludantn().setSenmidifYn(Kvantperant.koordenadYalekranPosicin(QefObjektj.superfic.muyn().posicin().y));
-			if(Vicperant.nunludantn().nunuzitKampfort!=null)
-				Vicperant.nunludantn().nunuzitKampfort.gxisdatig();
-			Vicperant.nunludantn().gxisdatig();
-			Vicperant.venontNunLudantn();
-		}
-	}
 	@Override
 	public void definigad() {
 		super.definigad();
@@ -520,6 +535,9 @@ public class Ludant extends Vivazh implements Serializable {
 	public void forigKampfortn() {
 		nunuzitKampfort = null;
 	}
+	public Kampfort nunuzitKampfortn() {
+		return nunuzitKampfort;
+	}
 
 	public int reviviln() {
 		return revivil;
@@ -531,23 +549,49 @@ public class Ludant extends Vivazh implements Serializable {
 		return nunKampfort;
 	}
 
-	public double plejvivn() {
+	public int plejvivn() {
 		return plejviv;
 	}
+	@Override
+	public void writeExternal(ObjectOutput o) throws IOException {
+		o.writeObject(nomn());
+		o.writeDouble(monn());
+		o.writeDouble(resistencn());
+		o.writeDouble(eficientBrulazh);
+		
+		o.writeInt(teleirazhj);
+		o.writeInt(plejvivn());
+		o.writeInt(reviviln());
+		o.writeInt(plejbrulazh);
+		
+		o.writeObject(armilarn());
+		o.writeObject(kampfortnombrjn());
+		
+		o.writeObject(kolorn());
+		o.writeObject(dukolorn());
+	}
+	@Override
+	public void readExternal(ObjectInput o) throws IOException, ClassNotFoundException {
+		nom = (String) o.readObject();
+		mon = o.readDouble();
+		resistenc = o.readDouble();
+		eficientBrulazh = o.readDouble();
 
-	public static void definigadj() {
-		try {
-			final String[] enhav = YargxilAzhj.yargxTextn(Konstantj.ITENER_SAVJ + 0 + ".txt").split("kxkxk");
-			Ludant[] ludantj = new Ludant[enhav.length];
-			for(int i = 0; i < enhav.length; i++) {
-				final String[] datumj = enhav[i].split("qjqjq");
-				ludantj[i] = new Ludant(1, datumj[0], Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
-						Color.getColor(datumj[datumj.length-2]), Ludant.armil,
-						Color.getColor(datumj[datumj.length-1]));
-			}
-			Vicperant.ludantj = ludantj;
-		} catch(Exception e) {
-			
-		}
+		teleirazhj = o.readInt();
+		plejviv = o.readInt();
+		revivil = o.readInt();
+		plejbrulazh = o.readInt();
+
+		armilar = (int[]) o.readObject();
+		kampfortnombrj = (int[]) o.readObject();
+
+		kolor = (Color) o.readObject();
+		dukolor = (Color) o.readObject();
+		
+		definigad();
+		
+		ordenBildj(Konstantj.canonAngulnombr, Konstantj.armil);
+		ordenBildj(1, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
+				Transparency.TRANSLUCENT, 24, 24, kolor).spritejn());
 	}
 }

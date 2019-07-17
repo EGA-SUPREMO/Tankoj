@@ -1,7 +1,6 @@
 package qef.estazhj.vivazhj;
 
 import java.awt.Rectangle;
-import java.io.Serializable;
 
 import qef.QefObjektj;
 import qef.estazhj.Estazh;
@@ -21,7 +20,8 @@ public abstract class Vivazh implements Estazh {
 	public double rapidecX, rapidecY;
 	
 	protected int largxVivazh, altVivazh;
-	protected double viv, plejviv;
+	protected double viv;
+	int plejviv;
 	protected int damagx;
 	
 	//protected Son damagxit;
@@ -37,8 +37,8 @@ public abstract class Vivazh implements Estazh {
 		this.rapidecX = 1;
 		x = 0;
 		y = 0;
-		viv = 100;
-		plejviv = viv;
+		plejviv = 100;
+		viv = plejviv;
 		damagx = damagxo;
 		definigad();
 		LIMJ = new Rectangle[limj];
@@ -193,7 +193,6 @@ public abstract class Vivazh implements Estazh {
 	
 	public void definigad() {
 	}
-	
 	public void resetVivn() {
 		viv = plejviv;
 	}

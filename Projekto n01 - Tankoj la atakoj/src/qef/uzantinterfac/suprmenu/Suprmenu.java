@@ -8,14 +8,14 @@ import qef.QefObjektj;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Vicperant;
 
-public class Submenu {
+public class Suprmenu {
 	
 	private static Rectangle are = new Rectangle(0, 0, Konstantj.ludLargx, Konstantj.altSubmenu);
 	private Rectangle MargxenAre;
 	private Verg[] vergj;
 	private static int kvantElektebl = 3;
 	
-	public Submenu() {
+	public Suprmenu() {
 		
 		MargxenAre = new Rectangle(are.x, are.height, are.width, 1);
 		

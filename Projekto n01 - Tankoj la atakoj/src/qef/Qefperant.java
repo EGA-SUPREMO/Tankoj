@@ -15,10 +15,11 @@ package qef;
 
 import javax.swing.JOptionPane;
 
-import qef.estazhj.vivazhj.Ludant;
 import qef.estazhj.vivazhj.misil.Misileg;
 import qef.grafikj.Fenestr;
+import qef.ilj.Ludantperant;
 import qef.son.Son;
+import qef.uzantinterfac.suprmenu.Suprmenu;
 
 public class Qefperant {
 	
@@ -67,10 +68,11 @@ public class Qefperant {
 	}
 	
 	private void definigad() {
+		Ludantperant.definigadj();
 		fonmuzik = new Son(Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 0);
 		Misileg.definigadMisiljn();
+		QefObjektj.suprmenu = new Suprmenu();
 		new Fenestr(titol);
-		Ludant.definigadj();
 	}
 	
 	private void ekQefBukln() {

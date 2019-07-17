@@ -241,5 +241,7 @@ public abstract class Konstantj {
 	
 	public static int mapgrandec = Konstantj.ludLargx;
 	public static int plejtempVent = 12000;
+	public static final BufferedImage armil = YargxilAzhj.yargxBildn(ITENER_LUDANT_CANON + 0 + ".png",
+	Transparency.TRANSLUCENT, 27, 29);
 	
 }

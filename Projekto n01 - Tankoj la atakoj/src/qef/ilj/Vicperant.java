@@ -1,7 +1,5 @@
 package qef.ilj;
 
-import java.awt.Color;
-
 import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.vivazhj.Ludant;
@@ -15,11 +13,7 @@ public class Vicperant {
 	private static int nunLudant = 0;
 	public static final int plejLudant = 3;
 	
-	public static Ludant[] ludantj = new Ludant[] {new Ludant(1, "EGA", Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
-			Color.GREEN, Ludant.armil, Color.BLUE.brighter()),new Ludant(1, "Oveja",
-			Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.CYAN.darker(), Ludant.armil, Color.ORANGE), new Ludant(1,
-			"Lo que sea", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.GREEN.darker().darker(), Ludant.armil,
-			Color.MAGENTA.darker())};
+	public static Ludant[] ludantj;
 	private static Misil nunMisil;
 
 	public static int nunLudantn() {
@@ -95,13 +89,13 @@ public class Vicperant {
 		QefObjektj.map = new Map((int) (Math.random()*Konstantj.PLEJ_BIOMJ));
 	}
 
-	private static void ordigLudantjnlawMlplejmon() {//TODO sxangxu cxi tion
+	public static void ordigLudantjnlawMlplejmon() {//TODO sxangxu cxi tion
 		Ludant templudant;
 		boolean qyang = true;
 		boolean qneyang = false;
 		int lo = ludantj.length%2 == 0? 1: 2;
 		int ii = 0;
-		while(qyang && !qneyang && ii < 1) {
+		while(qyang && !qneyang && ii < (ludantj.length<<1)) {
 			qyang = true;
 			qneyang = false;
 			

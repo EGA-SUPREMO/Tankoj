@@ -11,20 +11,14 @@ import java.awt.image.BufferedImage;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
@@ -32,7 +26,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
-import qef.Konstantj;
 import qef.estazhj.vivazhj.Ludant;
 //import javax.sound.sampled.FloatControl;
 
@@ -248,56 +241,10 @@ public class YargxilAzhj {
 		
 		return enhav;
 	}
-	public static void skribTextn(final String itener) {
-		String enhav = "";
-		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter(
-					new File("res/files" + itener + 0 + ".txt").getAbsolutePath()));
-			for(int i = 0; i < Vicperant.ludantj.length; i++) {
-				enhav += Vicperant.ludantj[i].nomn();
-				enhav += "qjqjq";
-				enhav += Vicperant.ludantj[i].monn();
-				enhav += "qjqjq";
-				enhav += Vicperant.ludantj[i].teleirazhj;
-				enhav += "qjqjq";
-				enhav += Vicperant.ludantj[i].plejvivn();
-				enhav += "qjqjq";
-				enhav += Vicperant.ludantj[i].reviviln();
-				enhav += "qjqjq";
-				enhav += Vicperant.ludantj[i].eficientBrulazh;
-				enhav += "qjqjq";
-				for(int e = 0; e < Vicperant.ludantj[i].armilarn().length; e++) {
-					enhav += ", ";
-					enhav += Vicperant.ludantj[i].armilarn()[e];
-				}
-				enhav += "qjqjq";
-				enhav += Vicperant.ludantj[i].resistencn();
-				enhav += "qjqjq";
-				enhav += Vicperant.ludantj[i].plejbrulazh;
-				enhav += "qjqjq";
-				for(int e = 0; e < Vicperant.ludantj[i].kampfortnombrjn().length; e++) {
-					enhav += ", ";
-					enhav += Vicperant.ludantj[i].kampfortnombrjn()[e];
-				}
-				enhav += "qjqjq";
-				enhav += Vicperant.ludantj[i].kolorn();
-				enhav += "qjqjq";
-				enhav += Vicperant.ludantj[i].dukolorn();
-				enhav += "kxkxk";
-			}
-			bw.write(enhav);
-			bw.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-			
-		}
-	}
 
 	public static void skribLudantn(final String itener) {
 		try {
-		
-		    // Serialize today's date to a outputstream associated to the socket
+			
 		    FileOutputStream o = new FileOutputStream("res/files" + itener);
 		    ObjectOutput s = new ObjectOutputStream(o);
 		    
@@ -308,11 +255,11 @@ public class YargxilAzhj {
 		    s.flush();
 		    s.close();
 		} catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
-	public static Ludant[] yargxLudantn(final String itener) {
+	public static Ludant[] yargxLudantjn(final String itener) {
 		Ludant[] ludantj;
 		
 		try {
