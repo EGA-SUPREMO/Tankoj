@@ -1,13 +1,16 @@
 package qef.estazhj.vivazhj.kampfort;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 import qef.estazhj.vivazhj.Ludant;
 import qef.estazhj.vivazhj.Vivazh;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 
-public class Kampfort extends Vivazh {
+public class Kampfort extends Vivazh implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	final Ludant ludant;
 	final Color kolor;

@@ -1,6 +1,7 @@
 package qef.estazhj.vivazhj;
 
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 import qef.QefObjektj;
 import qef.estazhj.Estazh;

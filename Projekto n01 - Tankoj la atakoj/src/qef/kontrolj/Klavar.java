@@ -155,7 +155,7 @@ public class Klavar extends KeyAdapter {
 	}
 	
 	public void elir() {
-		YargxilAzhj.skribTextn(Konstantj.ITENER_SAVJ);
+		//YargxilAzhj.skribTextn(Konstantj.ITENER_SAVJ);
 		System.exit(0);
 	}
 	

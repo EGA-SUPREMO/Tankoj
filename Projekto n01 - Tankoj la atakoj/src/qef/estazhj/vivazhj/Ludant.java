@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.Random;
 
 import qef.Konstantj;
@@ -21,8 +22,10 @@ import qef.kontrolj.Kontrolperant;
 import qef.map.Map;
 import qef.sprite.SpriteFoli;
 
-public class Ludant extends Vivazh {
-
+public class Ludant extends Vivazh implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private final int id;
 	private static int nunId = -1;
 	
