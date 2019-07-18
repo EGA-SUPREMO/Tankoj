@@ -45,7 +45,7 @@ public class Ludant extends Vivazh implements Externalizable {
 	private BufferedImage atingec;
 	private Color dukolor;
 	
-	private int movec = duonrotaciplejNombr>>4;
+	private int movec = duonrotaciplejNombr>>2;
 	public int plejpotenc = 100;
 	public int potenc;
 	private int nunangul;
@@ -56,7 +56,7 @@ public class Ludant extends Vivazh implements Externalizable {
 	private String nom;
 	private Color kolor;
 	public double mediRapidecX = 0.7;
-	public double eficientBrulazh = 1;//0.05
+	public double eficientBrulazh = 1;
 	private double punktj;
 	private int brulazh;
 	public int plejbrulazh;
@@ -66,6 +66,12 @@ public class Ludant extends Vivazh implements Externalizable {
 	private int[] kampfortnombrj;
 	private Kampfort nunuzitKampfort;
 	private int nunKampfort = 0;
+
+	public static int aqetbrulazh = 500;
+	private static int aqetplejviv = 10;
+	private static double aqetresistenc = 0.33;
+	private static double aqeteficientBrulazh = 0.05;
+	private static int aqetmovec = duonrotaciplejNombr>>5;
 	
 	public Ludant() {
 		super(1, 100, null);
@@ -477,7 +483,16 @@ public class Ludant extends Vivazh implements Externalizable {
 	}
 	@Override
 	public void mlgajnVivn(final double vivo, final int plejdamagx, final int nunLudant) {
+		final double antawViv = viv;
 		super.mlgajnVivn(vivo, plejdamagx, nunLudant);
+		if(nunuzitKampfort!=null) {
+			nunuzitKampfort.mlpliViv(antawViv - viv);
+			viv = antawViv;
+			if(nunuzitKampfort.viv<0) {
+				viv += nunuzitKampfort.viv;
+				nunuzitKampfort = null;
+			}
+		}
 		plejpotenc = (int) viv;
 		if(potenc>viv)
 			potenc = plejpotenc;
@@ -521,8 +536,6 @@ public class Ludant extends Vivazh implements Externalizable {
 		potenc = plejpotenc/2;
 		nunBild = statn((int) xn());
 		brulazh = plejbrulazh;
-		pliNunArmiln();
-		mlpliNunArmiln();
 		
 		anim();
 	}
@@ -603,6 +616,9 @@ public class Ludant extends Vivazh implements Externalizable {
 		dukolor = (Color) o.readObject();
 		
 		definigad();
+
+		pliNunArmiln();
+		mlpliNunArmiln();
 		
 		ordenBildj(Konstantj.canonAngulnombr, Konstantj.armil);
 		ordenBildj(1, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
@@ -624,5 +640,41 @@ public class Ludant extends Vivazh implements Externalizable {
 			mon -= Konstantj.armilarprecj[elektazh];
 			armilar[elektazh]++;
 		}
+	}
+	public void aqetTankazhn(final int elektazh) {
+		if(Konstantj.tankazhprecj[elektazh]>mon)
+			return;
+		switch(elektazh) {
+			case 0:
+				plejbrulazh += aqetbrulazh;
+				break;
+			case 1:
+				revivil++;
+				break;
+			case 2:
+				teleirazhj++;
+				break;
+			case 4:
+				plejviv += aqetplejviv ;
+				break;
+			case 5:
+				resistenc += aqetresistenc;
+				break;
+			case 6:
+				eficientBrulazh -= aqeteficientBrulazh;
+				break;
+			case 7:
+				movec -= aqetmovec;
+				break;
+			case 3:
+				break;
+			case 8:
+			case 9:
+			case 10:
+			case 11:
+				kampfortnombrj[elektazh - 8]++;
+				break;
+		}
+		mon -= Konstantj.tankazhprecj[elektazh];
 	}
 }

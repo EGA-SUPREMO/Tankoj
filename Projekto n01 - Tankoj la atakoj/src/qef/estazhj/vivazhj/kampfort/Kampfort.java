@@ -35,5 +35,9 @@ public class Kampfort extends Vivazh implements Serializable {
 				ludant.offsetLudantXn(), (int) Kvantperant.koordenadYalekranPosicin(ludant.yn()) -
 				ludant.largxVivazhKolici - (largxVivazh>>1), largxVivazh, kolor);
 	}
+
+	public void mlpliViv(double d) {
+		viv -= d;
+	}
 	
 }

@@ -31,7 +31,7 @@ public class Verg {
 		//setPosicin();
 		if(text.ordinal()==0) {
 			i = (int) Vicperant.nunludantn().vivn();
-			pleji = 100;
+			pleji = Vicperant.nunludantn().plejvivn();
 		} else if(text.ordinal()==1) {
 			i = Vicperant.nunludantn().nunanguln();
 			pleji = 360;
@@ -54,7 +54,7 @@ public class Verg {
 	private void desegnVergn() {
 		if(text.ordinal()==0) {
 			i = (int) Vicperant.nunludantn().vivn();
-			pleji = 100;
+			pleji = Vicperant.nunludantn().plejvivn();
 		} else if(text.ordinal()==1) {
 			i = Vicperant.nunludantn().nunanguln();
 			if(i < 0)

@@ -238,11 +238,12 @@ public abstract class Konstantj {
 			Color.RED, Color.ORANGE.darker()};
 	public static final String[] kampfortnomj = {"Escudo debil", "Escudo", "Escudo fuerte", "Escudo super fuerte"};
 	
+	public static final int[] tankazhprecj = {15, 20, 70, 0, 25, 50, 40, 25, 25, 100, 400, 8000};
 	public static Biom[] biomj;
 	
 	public static int mapgrandec = Konstantj.ludLargx;
 	public static int plejtempVent = 12000;
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(ITENER_LUDANT_CANON + 0 + ".png",
-	Transparency.TRANSLUCENT, 27, 29);
+			Transparency.TRANSLUCENT, 27, 29);
 	
 }

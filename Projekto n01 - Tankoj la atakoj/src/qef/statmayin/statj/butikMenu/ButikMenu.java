@@ -28,39 +28,33 @@ public class ButikMenu implements Statlud {
 	@Override
 	public void gxisdatig() {
 		dawrigi.gxisdatig();
-		if(Kontrolperant.klavar.dextr.pulsitan()) {
-			if(elektazh>0)
-				elektazh -= 0.25;
-			else
-				elektazh = 0;
-		}
 		if(Kontrolperant.klavar.mldextr.pulsitan()) {
-			if(elektazh<1)
-				elektazh += 0.25;
+			if(elektazh<1.9)
+				elektazh += 0.10;
 			else
 				elektazh = 0;
 		}
 		if(Kontrolperant.klavar.sub.pulsitan()) {
-			if(elektazh==0)
+			if(elektazh<1.1)
 				if(elektazh1>0)
-					elektazh1 -= 0.25;
+					elektazh1 -= 0.2;
 				else
 					elektazh1 = 5;
 			else
 				if(elektazh2>0)
-					elektazh2 -= 0.25;
+					elektazh2 -= 0.2;
 				else
 					elektazh2 = 11;
 		}
 		if(Kontrolperant.klavar.supr.pulsitan()) {
-			if(elektazh==0)
+			if(elektazh<1.1)
 				if(elektazh1<5)
-					elektazh1 += 0.25;
+					elektazh1 += 0.2;
 				else
 					elektazh1 = 0;
 			else
 				if(elektazh2<11)
-					elektazh2 += 0.25;
+					elektazh2 += 0.2;
 				else
 					elektazh2 = 0;
 		}
@@ -74,56 +68,37 @@ public class ButikMenu implements Statlud {
 		if(elektazh==0)
 			Vicperant.ludantj[nunL].aqetMisiln((int) elektazh1);
 		else
-			switch((int) elektazh2) {
-				case 0:
-					break;
-				case 1:
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				case 4:
-					break;
-				case 5:
-					break;
-				case 6:
-					break;
-				case 7:
-					break;
-				case 8:
-					break;
-				case 9:
-					break;
-				case 10:
-					break;
-				case 11:
-					break;
-			}
+			Vicperant.ludantj[nunL].aqetTankazhn((int) elektazh2);
 	}
 
 	@Override
 	public void desegn() {
 		DebugDesegn.setFont(DebugDesegn.Fontn().deriveFont(24f));
 		DebugDesegn.desegnString("Felicidades al ganador!!1", 200, 200);
+		DebugDesegn.desegnRectangle(96 + (int) elektazh*500, 32 + (1 - (int) elektazh)*280,
+				330 + (1 - (int) elektazh)*70,
+				22*6 + (int)elektazh*6*22, Color.DARK_GRAY.darker());
 		DebugDesegn.desegnRectangle(96, 312 + (int) (elektazh1)*22, 400, 22, Color.ORANGE.darker());
 		DebugDesegn.desegnRectangle(596, 32 + (int) (elektazh2)*22, 330, 22, Color.ORANGE.darker());
 		dawrigi.desegn();
 		for(int i = 0; i < Konstantj.kampfortnomj.length; i++)
 			DebugDesegn.desegnString(Konstantj.kampfortnomj[i] + ": " + Vicperant.ludantj[nunL].kampfortnombrjn()[i],
-					600, 160 + i*22, Color.WHITE);
+					600, 226 + i*22, Color.WHITE);
 		for(int i = 0; i < Konstantj.armilarkolorj.length; i++)
-		DebugDesegn.desegnString(Konstantj.armilarnomj[i] + ": " +
+			DebugDesegn.desegnString(Konstantj.armilarnomj[i] + ": " +
 				Vicperant.ludantj[nunL].armilarn()[i], 100, 330 + i*22,
 				Color.GRAY.brighter());
+		for(int i = 0; i < Konstantj.tankazhprecj.length; i++)
+			DebugDesegn.desegnString(Konstantj.tankazhprecj[i] + "", 530, 50 + i*22,
+				Color.WHITE);
 		DebugDesegn.desegnString("Gasolina: " + Vicperant.ludantj[nunL].plejbrulazh, 600, 50, Color.WHITE);
 		DebugDesegn.desegnString("Reparadores: " + Vicperant.ludantj[nunL].reviviln(), 600, 72, Color.WHITE);
 		DebugDesegn.desegnString("Teletransportador: " + Vicperant.ludantj[nunL].teleirazhj, 600, 94, Color.WHITE);
-		DebugDesegn.desegnString("Dinero: " + ((int) Vicperant.ludantj[nunL].monn()), 600, 138, Color.GREEN);
-		DebugDesegn.desegnString("Vida: " + ((int) Vicperant.ludantj[nunL].plejvivn()), 600, 116, Color.WHITE);
-		DebugDesegn.desegnString("Velocidad de motor: " + Vicperant.ludantj[nunL].eficientBrulazh, 600, 248, Color.WHITE);
-		DebugDesegn.desegnString("Escalar montagnas: " + Vicperant.ludantj[nunL].movecn(), 600, 270, Color.WHITE);
-		DebugDesegn.desegnString("Resistencia: " + Vicperant.ludantj[nunL].resistencn(), 600, 292, Color.WHITE);
+		DebugDesegn.desegnString("Dinero: " + ((int) Vicperant.ludantj[nunL].monn()), 600, 116, Color.GREEN);
+		DebugDesegn.desegnString("Vida: " + ((int) Vicperant.ludantj[nunL].plejvivn()), 600, 138, Color.WHITE);
+		DebugDesegn.desegnString("Velocidad de motor: " + Vicperant.ludantj[nunL].eficientBrulazh, 600, 182, Color.WHITE);
+		DebugDesegn.desegnString("Escalar montagnas: " + Vicperant.ludantj[nunL].movecn(), 600, 204, Color.WHITE);
+		DebugDesegn.desegnString("Resistencia: " + Vicperant.ludantj[nunL].resistencn(), 600, 160, Color.WHITE);
 
 		DebugDesegn.desegnBildn(Vicperant.ludantj[nunL].nunbildn(), 750, 400);
 		DebugDesegn.desegnString(Vicperant.ludantj[nunL].nomn(), 750, 450 , Color.GRAY.brighter());
