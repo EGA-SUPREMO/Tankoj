@@ -101,7 +101,7 @@ public class Vicperant {
 			
 			for(int j = 0; j < lo; j++)
 				for(int i = 1 + j; i < ludantj.length; i+=2) {
-					if(ludantj[i-1].monn()<ludantj[i].monn()) {
+					if(ludantj[i-1].punktjn()<ludantj[i].punktjn()) {
 						qneyang = true;
 					} else {
 						templudant = ludantj[i - 1];

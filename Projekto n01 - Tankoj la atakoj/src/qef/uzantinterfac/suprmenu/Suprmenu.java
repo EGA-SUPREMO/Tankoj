@@ -42,6 +42,9 @@ public class Suprmenu {
 		DebugDesegn.desegnString("Dinero: " + ((int) Vicperant.nunludantn().monn()), 550, 15, Color.BLACK);
 		DebugDesegn.desegnString("Viento: " + QefObjektj.map.ventn()*200, 550, 60, Color.BLACK);
 		DebugDesegn.desegnString("Vida: " + ((int) Vicperant.nunludantn().vivn()), 550, 30, Color.BLACK);
+
+		DebugDesegn.desegnBildn(Vicperant.nunludantn().nunbildn(), 850, 10);
+		DebugDesegn.desegnString(Vicperant.nunludantn().nomn(), 850, 50 , Vicperant.nunludantn().kolorn());
 	}
 	
 	private void desegnSubmenufonn() {

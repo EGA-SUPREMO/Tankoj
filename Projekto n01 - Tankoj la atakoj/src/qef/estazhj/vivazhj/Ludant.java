@@ -26,7 +26,7 @@ import qef.sprite.SpriteFoli;
 
 public class Ludant extends Vivazh implements Externalizable {
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2L;
 	
 	private final int id;
 	private static int nunId = -1;
@@ -45,7 +45,7 @@ public class Ludant extends Vivazh implements Externalizable {
 	private BufferedImage atingec;
 	private Color dukolor;
 	
-	private int movec = 0;//duonrotaciplejNombr>>4;
+	private int movec = duonrotaciplejNombr>>4;
 	public int plejpotenc = 100;
 	public int potenc;
 	private int nunangul;
@@ -57,6 +57,7 @@ public class Ludant extends Vivazh implements Externalizable {
 	private Color kolor;
 	public double mediRapidecX = 0.7;
 	public double eficientBrulazh = 1;//0.05
+	private double punktj;
 	private int brulazh;
 	public int plejbrulazh;
 	private int revivil;
@@ -142,7 +143,7 @@ public class Ludant extends Vivazh implements Externalizable {
 		novarmilar[1] = 50;
 		novarmilar[2] = 25;
 		novarmilar[3] = 5;
-		novarmilar[4] = 1;
+		novarmilar[4] = 10000;
 		novarmilar[5] = 10;
 		
 		
@@ -463,6 +464,9 @@ public class Ludant extends Vivazh implements Externalizable {
 	}
 	public void pliMonn(final double mono) {
 		mon += mono;
+		punktj += mono;
+		if(mon<0)
+			mon = 0;
 	}
 	@Override
 	public void resetVivn() {
@@ -517,6 +521,8 @@ public class Ludant extends Vivazh implements Externalizable {
 		potenc = plejpotenc/2;
 		nunBild = statn((int) xn());
 		brulazh = plejbrulazh;
+		pliNunArmiln();
+		mlpliNunArmiln();
 		
 		anim();
 	}
@@ -552,10 +558,14 @@ public class Ludant extends Vivazh implements Externalizable {
 	public int plejvivn() {
 		return plejviv;
 	}
+	public int movecn() {
+		return movec;
+	}
 	@Override
 	public void writeExternal(ObjectOutput o) throws IOException {
 		o.writeObject(nomn());
 		o.writeDouble(monn());
+		o.writeDouble(punktj);
 		o.writeDouble(resistencn());
 		o.writeDouble(eficientBrulazh);
 		
@@ -563,6 +573,7 @@ public class Ludant extends Vivazh implements Externalizable {
 		o.writeInt(plejvivn());
 		o.writeInt(reviviln());
 		o.writeInt(plejbrulazh);
+		o.writeInt(movec);
 		
 		o.writeObject(armilarn());
 		o.writeObject(kampfortnombrjn());
@@ -574,13 +585,16 @@ public class Ludant extends Vivazh implements Externalizable {
 	public void readExternal(ObjectInput o) throws IOException, ClassNotFoundException {
 		nom = (String) o.readObject();
 		mon = o.readDouble();
+		punktj = o.readDouble();
 		resistenc = o.readDouble();
 		eficientBrulazh = o.readDouble();
+		
 
 		teleirazhj = o.readInt();
 		plejviv = o.readInt();
 		revivil = o.readInt();
 		plejbrulazh = o.readInt();
+		movec = o.readInt();
 
 		armilar = (int[]) o.readObject();
 		kampfortnombrj = (int[]) o.readObject();
@@ -593,5 +607,22 @@ public class Ludant extends Vivazh implements Externalizable {
 		ordenBildj(Konstantj.canonAngulnombr, Konstantj.armil);
 		ordenBildj(1, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
 				Transparency.TRANSLUCENT, 24, 24, kolor).spritejn());
+	}
+
+	public BufferedImage nunbildn() {
+		return bildj[nunBild];
+	}
+	
+	public BufferedImage nuncanonbildn() {
+		return canonBildj[nunangul + 90];
+	}
+	public double punktjn() {
+		return punktj;
+	}
+	public void aqetMisiln(final int elektazh) {
+		if(mon>=Konstantj.armilarprecj[elektazh]) {
+			mon -= Konstantj.armilarprecj[elektazh];
+			armilar[elektazh]++;
+		}
 	}
 }

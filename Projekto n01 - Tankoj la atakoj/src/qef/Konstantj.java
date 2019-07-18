@@ -59,7 +59,7 @@ public abstract class Konstantj {
 	public final static int ELIRI = KeyEvent.VK_ESCAPE;
 	public final static int TELEIR = KeyEvent.VK_T;
 	public final static int DEBUG = KeyEvent.VK_F1;
-	public final static int QKOLEKT = KeyEvent.VK_C;
+	public final static int AQETI = KeyEvent.VK_C;
 	public final static int SUBIPOTENC = KeyEvent.VK_K;
 	public final static int SUPRIPOTENC = KeyEvent.VK_I;
 	public final static int SUBIARMIL = KeyEvent.VK_J;
@@ -233,6 +233,7 @@ public abstract class Konstantj {
 	public static final int[] misileggrandecj = {11, 15, 23};
 	public static final String[] armilarnomj = {"Misil pequegno", "Misil", "Bomba Multiple",
 			"Bomba atomica pequegna", "Bomba atomica", "Bagno Caliente"};
+	public static final int[] armilarprecj = {0, 30, 50, 125, 350, 60};
 	public static final Color[] armilarkolorj = {Color.BLACK, Color.DARK_GRAY, Color.ORANGE, Color.RED.darker(),
 			Color.RED, Color.ORANGE.darker()};
 	public static final String[] kampfortnomj = {"Escudo debil", "Escudo", "Escudo fuerte", "Escudo super fuerte"};

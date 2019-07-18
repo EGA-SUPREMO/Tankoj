@@ -18,7 +18,7 @@ public class Klavar extends KeyAdapter {
 	public boolean kuri = false;
 	public boolean debug = false;
 	public boolean aktivInventari = false;
-	public boolean qkolekt = false;
+	public boolean aqeti = false;
 	public boolean qatak = false;
 	public boolean subiPotenc = false;
 	public boolean supriPotenc = false;
@@ -33,26 +33,28 @@ public class Klavar extends KeyAdapter {
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 			case Konstantj.SUPR:
-				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+				if(Vicperant.nunMisiln()==null && (QefObjektj.statp.qStatludn() || QefObjektj.statp.qStatButikMenun()))
 					supr.puls();
 				break;
 			case Konstantj.SUB:
-				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn() || QefObjektj.statp.qStatButikMenun())
 					sub.puls();
 				break;
 			case Konstantj.DEXTR:
-				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn() || QefObjektj.statp.qStatButikMenun())
 					dextr.puls();
 				break;
 			case Konstantj.MLDEXTR:
-				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn() || QefObjektj.statp.qStatButikMenun())
 					mldextr.puls();
 				break;
 			case Konstantj.KURI_KAJ_TELIR:
 				kuri = true;
 				
-				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn()) {
+					//QefObjektj.superfic.muyn().yangxIkon(4);
 					teleirazh = true;
+				}
 				
 				Konstantj.ANGULRAPIDEC = 3;
 				break;
@@ -69,9 +71,6 @@ public class Klavar extends KeyAdapter {
 				break;
 			case Konstantj.AKTIV_INVENTARI:
 				aktivInventari = !aktivInventari;
-				break;
-			case Konstantj.QKOLEKT:
-				qkolekt = true;
 				break;
 			case Konstantj.ATAKI:
 				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
@@ -129,8 +128,8 @@ public class Klavar extends KeyAdapter {
 					Ludantperant.teleir();
 				}
 				break;
-			case Konstantj.QKOLEKT:
-				qkolekt = false;
+			case Konstantj.AQETI:
+				aqeti = true;
 				break;
 			case Konstantj.UZIKAMPFORT:
 				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())

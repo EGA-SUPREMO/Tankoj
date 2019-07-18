@@ -203,7 +203,7 @@ public abstract class Vivazh implements Estazh {
 		viv -= d/resistenc;
         if (viv < 0) {
     		if(Vicperant.ludantj[nunLudant]!=this)
-    			d += -Math.sqrt(-viv)*1.50 - plejviv;
+    			d += -Math.sqrt(-viv)*2 - plejviv;
         	viv = 0;
         	System.out.println(viv + " - " + d + " - " + Vicperant.ludantj[nunLudant].monn() + " - " +
         			Vicperant.ludantj[nunLudant].nomn());
@@ -211,9 +211,9 @@ public abstract class Vivazh implements Estazh {
         
 		final double potenc = d/plejdamagx;
 		if(Vicperant.ludantj[nunLudant]==this)
-			Vicperant.ludantj[nunLudant].pliMonn(-Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx);
+			Vicperant.ludantj[nunLudant].pliMonn((-Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx)*2);
 		else
-			Vicperant.ludantj[nunLudant].pliMonn(Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx);
+			Vicperant.ludantj[nunLudant].pliMonn((Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx)*2);
 		Vicperant.qaktivLudant();
 	}
 	public double resistencn() {

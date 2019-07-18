@@ -7,7 +7,6 @@ import qef.ilj.DebugDesegn;
 import qef.ilj.Vicperant;
 import qef.map.Map;
 import qef.statmayin.Statlud;
-import qef.statmayin.statj.butikMenu.ButikMenu;
 
 public class Ludperant implements Statlud {
 	
@@ -23,7 +22,6 @@ public class Ludperant implements Statlud {
 			Vicperant.nunMisiln().gxisdatig();
 		
 		QefObjektj.map.gxisdatig();
-		ButikMenu.q = true;
 	}
 	
 	@Override
@@ -40,7 +38,7 @@ public class Ludperant implements Statlud {
 		for(int i = Vicperant.ludantj.length-1; i>-1; i--) {
 			DebugDesegn.desegnString(Vicperant.ludantj[i].nomn(), Konstantj.ludLargx - 150, 78 + 14*(Vicperant.ludantj.length-1-i),
 					Vicperant.ludantj[i].kolorn());
-			DebugDesegn.desegnString((int) Vicperant.ludantj[i].monn() + "", Konstantj.ludLargx - 60, 78 + 14*(Vicperant.ludantj.length-1-i));
+			DebugDesegn.desegnString((int) Vicperant.ludantj[i].punktjn() + "", Konstantj.ludLargx - 60, 78 + 14*(Vicperant.ludantj.length-1-i));
 		}
 	}
 

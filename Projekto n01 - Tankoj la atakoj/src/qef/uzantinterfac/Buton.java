@@ -16,6 +16,7 @@ public class Buton extends Komponant {
 	public final static int LARGX_BUTON = Konstantj.ludLargx/3;//Konstantj.duonLudLargx;
 	public boolean qalt;
 	public int temp;
+	private boolean pulsit;
 	
 	public Buton(final int xo, final int yo, final int largxo, final int koloro, final int dukoloro, final int stato,
 			final String texto) {
@@ -27,6 +28,7 @@ public class Buton extends Komponant {
 		alt = Konstantj.KOMENC_MENU_ALT_BUTON;
 		kolici = new Rectangle(xo, yo, largxo, alt);
 		qalt = false;
+		pulsit = false;
 		temp = 0;
 		definigBildn();
 	}
@@ -40,6 +42,7 @@ public class Buton extends Komponant {
 		alt = alto;
 		kolici = new Rectangle(xo, yo, largxo, alto);
 		qalt = true;
+		pulsit = false;
 		temp = 0;
 		definigBildn();
 	}
@@ -78,6 +81,7 @@ public class Buton extends Komponant {
 			y -= 4;
 			qgxisdatig = true;
 		}
+		pulsit = true;
 	}
 	public void resetKolorn() {
 		if(kolor == dukolor) {
@@ -113,6 +117,11 @@ public class Buton extends Komponant {
 	
 	public int specn() {
 		return spec;
+	}
+	public boolean pulsitn() {
+		final boolean pulsit1 = pulsit;
+		pulsit = false;
+		return pulsit1;
 	}
 	@Override
 	public void setAltn(final int alto) {

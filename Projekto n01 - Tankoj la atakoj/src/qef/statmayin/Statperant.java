@@ -44,9 +44,12 @@ public class Statperant {
 	public Statlud nunStatn() {
 		return nunStat;
 	}
-
+	
 	public boolean qStatludn() {
 		return nunStat == statj[2];
+	}
+	public boolean qStatButikMenun() {
+		return nunStat == statj[7];
 	}
 	
 	public void gxisdatig() {
