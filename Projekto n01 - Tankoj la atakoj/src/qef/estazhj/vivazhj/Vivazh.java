@@ -196,14 +196,21 @@ public abstract class Vivazh implements Estazh {
 	public void resetVivn() {
 		viv = plejviv;
 	}
+	public void setPlejvivn(final int plejvivo) {
+		plejviv = plejvivo;
+	}
+	public int plejvivn() {
+		return plejviv;
+	}
 	public void mlgajnVivn(double d, final int plejdamagx, final int nunLudant) {
 		if(viv<=0d) {
 			return;
 		}
-		viv -= d/resistenc;
+		mlpliVivn(d);
+		
         if (viv < 0) {
     		if(Vicperant.ludantj[nunLudant]!=this)
-    			d += -Math.sqrt(-viv)*2 - plejviv;
+    			d += -Math.sqrt(-viv)*4 - plejviv;
         	viv = 0;
         	System.out.println(viv + " - " + d + " - " + Vicperant.ludantj[nunLudant].monn() + " - " +
         			Vicperant.ludantj[nunLudant].nomn());
@@ -215,6 +222,10 @@ public abstract class Vivazh implements Estazh {
 		else
 			Vicperant.ludantj[nunLudant].pliMonn((Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx)*2);
 		Vicperant.qaktivLudant();
+	}
+	
+	public void mlpliVivn(final double vivo) {
+		viv -= vivo/resistenc;
 	}
 	public double resistencn() {
 		return resistenc;

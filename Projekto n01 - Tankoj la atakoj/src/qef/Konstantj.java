@@ -53,7 +53,7 @@ public abstract class Konstantj {
 	
 	public final static int SUPR = KeyEvent.VK_W;
 	public final static int SUB = KeyEvent.VK_S;
-	public final static int MLDEXTR = KeyEvent.VK_A;
+	public final static int MLDEXTR = KeyEvent.VK_Q;
 	public final static int DEXTR = KeyEvent.VK_D;
 	public final static int KURI_KAJ_TELIR = KeyEvent.VK_SHIFT;
 	public final static int ELIRI = KeyEvent.VK_ESCAPE;

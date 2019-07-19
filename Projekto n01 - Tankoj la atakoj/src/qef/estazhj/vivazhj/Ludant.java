@@ -149,7 +149,7 @@ public class Ludant extends Vivazh implements Externalizable {
 		novarmilar[1] = 50;
 		novarmilar[2] = 25;
 		novarmilar[3] = 0;
-		novarmilar[4] = 0;
+		novarmilar[4] = 10;
 		novarmilar[5] = 0;
 		
 		
@@ -483,20 +483,24 @@ public class Ludant extends Vivazh implements Externalizable {
 	}
 	@Override
 	public void mlgajnVivn(final double vivo, final int plejdamagx, final int nunLudant) {
-		final double antawViv = viv;
 		super.mlgajnVivn(vivo, plejdamagx, nunLudant);
-		if(nunuzitKampfort!=null) {
-			nunuzitKampfort.mlpliViv(antawViv - viv);
-			viv = antawViv;
-			if(nunuzitKampfort.viv<0) {
-				viv += nunuzitKampfort.viv;
-				nunuzitKampfort = null;
-			}
-		}
+
 		plejpotenc = (int) viv;
 		if(potenc>viv)
 			potenc = plejpotenc;
 		
+	}
+	@Override
+	public void mlpliVivn(final double vivo) {
+		if(nunuzitKampfort!=null) {
+			nunuzitKampfort.mlpliVivn(vivo);
+			
+			if(nunuzitKampfort.viv<0) {
+				viv += nunuzitKampfort.viv;
+				nunuzitKampfort = null;
+			}
+		} else
+			super.mlpliVivn(vivo);
 	}
 	@Override
 	public void setYn(final double yo) {

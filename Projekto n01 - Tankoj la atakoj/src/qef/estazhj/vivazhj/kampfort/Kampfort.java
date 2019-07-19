@@ -21,6 +21,8 @@ public class Kampfort extends Vivazh implements Serializable {
 		kolor = ludant.dukolorn();
 		largxVivazh = ludant.largxVivazhn()*2;
 		altVivazh = largxVivazh;
+		setPlejvivn(vivo);
+		viv = plejvivn();
 	}
 	
 	@Override
@@ -35,8 +37,8 @@ public class Kampfort extends Vivazh implements Serializable {
 				ludant.offsetLudantXn(), (int) Kvantperant.koordenadYalekranPosicin(ludant.yn()) -
 				ludant.largxVivazhKolici - (largxVivazh>>1), largxVivazh, kolor);
 	}
-
-	public void mlpliViv(double d) {
+	@Override
+	public void mlpliVivn(double d) {
 		viv -= d;
 	}
 	
