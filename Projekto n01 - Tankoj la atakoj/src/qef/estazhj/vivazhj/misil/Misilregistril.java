@@ -29,7 +29,7 @@ public class Misilregistril {
 						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1), 2, 23);
 			case 5:
-				return new Banmisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 30,
+				return new Banmisil(Vicperant.nunludantn().nunanguln(), Vicperant.nunludantn().potenc, 35,
 						Vicperant.nunludantn().xn() + Vicperant.nunludantn().offsetLudantXn(),
 						Vicperant.nunludantn().yn() + (Vicperant.nunludantn().altVivazhn()>>1));
 			default:

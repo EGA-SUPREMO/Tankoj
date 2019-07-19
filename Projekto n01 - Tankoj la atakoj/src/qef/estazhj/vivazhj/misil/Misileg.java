@@ -61,6 +61,10 @@ public class Misileg extends Misil {
 			if(BILDJ[0 + speco*Konstantj.canonAngulnombr] == null) {
 				BILDJ[0 + speco*Konstantj.canonAngulnombr] = YargxilAzhj.yargxSkalitBildn(Konstantj.ITENER_MISIL + speco +
 						".png", Transparency.TRANSLUCENT, Konstantj.misileggrandecj[speco]);
+				BILDJ[0 + speco*Konstantj.canonAngulnombr] =
+						Bildperant.yangxKolorn(BILDJ[0 + speco*Konstantj.canonAngulnombr],
+								Konstantj.misilegKolorj[speco].getRed(), Konstantj.misilegKolorj[speco].getGreen(),
+								Konstantj.misilegKolorj[speco].getBlue());
 				final int duonLong = (BILDJ.length/plejspec)/2;
 				
 				for(int i = -duonLong; i < duonLong; i++)

@@ -231,14 +231,15 @@ public abstract class Konstantj {
 	
 	public final static float FONTGRANDEC = 22f;
 	public static final int[] misileggrandecj = {11, 15, 23};
+	public static final Color[] misilegKolorj = {Color.BLACK, Color.RED.darker(), Color.RED};
 	public static final String[] armilarnomj = {"Misil pequegno", "Misil", "Bomba Multiple",
 			"Bomba atomica pequegna", "Bomba atomica", "Bagno Caliente"};
-	public static final int[] armilarprecj = {0, 30, 50, 125, 350, 60};
+	public static final int[] armilarprecj = {0, 30, 50, 125, 350, 90};
 	public static final Color[] armilarkolorj = {Color.BLACK, Color.DARK_GRAY, Color.ORANGE, Color.RED.darker(),
 			Color.RED, Color.ORANGE.darker()};
 	public static final String[] kampfortnomj = {"Escudo debil", "Escudo", "Escudo fuerte", "Escudo super fuerte"};
 	
-	public static final int[] tankazhprecj = {15, 20, 70, 0, 25, 50, 40, 25, 25, 100, 400, 8000};
+	public static final int[] tankazhprecj = {15, 20, 70, 0, 25, 50, 40, 25, 25, 100, 300, 700};
 	public static Biom[] biomj;
 	
 	public static int mapgrandec = Konstantj.ludLargx;

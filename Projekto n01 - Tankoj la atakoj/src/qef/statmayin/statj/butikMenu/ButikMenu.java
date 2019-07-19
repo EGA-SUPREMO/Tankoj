@@ -29,7 +29,7 @@ public class ButikMenu implements Statlud {
 	public void gxisdatig() {
 		dawrigi.gxisdatig();
 		if(Kontrolperant.klavar.mldextr.pulsitan()) {
-			if(elektazh<1.9)
+			if(elektazh<1.99)
 				elektazh += 0.10;
 			else
 				elektazh = 0;
@@ -74,12 +74,14 @@ public class ButikMenu implements Statlud {
 	@Override
 	public void desegn() {
 		DebugDesegn.setFont(DebugDesegn.Fontn().deriveFont(24f));
-		DebugDesegn.desegnString("Felicidades al ganador!!1", 200, 200);
-		DebugDesegn.desegnRectangle(96 + (int) elektazh*500, 32 + (1 - (int) elektazh)*280,
-				330 + (1 - (int) elektazh)*70,
+		DebugDesegn.desegnString("Felicidades al ganador!!1", 96, 200);
+		DebugDesegn.desegnRectangle((int) elektazh*500, 32 + (1 - (int) elektazh)*280,
+				434 + (1 - (int) elektazh)*40,
 				22*6 + (int)elektazh*6*22, Color.DARK_GRAY.darker());
-		DebugDesegn.desegnRectangle(96, 312 + (int) (elektazh1)*22, 400, 22, Color.ORANGE.darker());
-		DebugDesegn.desegnRectangle(596, 32 + (int) (elektazh2)*22, 330, 22, Color.ORANGE.darker());
+		if(elektazh<1)
+			DebugDesegn.desegnRectangle(0, 312 + (int) (elektazh1)*22, 474, 22, Color.ORANGE.darker());
+		else
+			DebugDesegn.desegnRectangle(500, 32 + (int) (elektazh2)*22, 434, 22, Color.ORANGE.darker());
 		dawrigi.desegn();
 		for(int i = 0; i < Konstantj.kampfortnomj.length; i++)
 			DebugDesegn.desegnString(Konstantj.kampfortnomj[i] + ": " + Vicperant.ludantj[nunL].kampfortnombrjn()[i],
@@ -89,7 +91,10 @@ public class ButikMenu implements Statlud {
 				Vicperant.ludantj[nunL].armilarn()[i], 100, 330 + i*22,
 				Color.GRAY.brighter());
 		for(int i = 0; i < Konstantj.tankazhprecj.length; i++)
-			DebugDesegn.desegnString(Konstantj.tankazhprecj[i] + "", 530, 50 + i*22,
+			DebugDesegn.desegnString(Konstantj.tankazhprecj[i] + " $", 506, 50 + i*22,
+				Color.WHITE);
+		for(int i = 0; i < Konstantj.armilarprecj.length; i++)
+			DebugDesegn.desegnString(Konstantj.armilarprecj[i] + " $", 22, 330 + i*22,
 				Color.WHITE);
 		DebugDesegn.desegnString("Gasolina: " + Vicperant.ludantj[nunL].plejbrulazh, 600, 50, Color.WHITE);
 		DebugDesegn.desegnString("Reparadores: " + Vicperant.ludantj[nunL].reviviln(), 600, 72, Color.WHITE);

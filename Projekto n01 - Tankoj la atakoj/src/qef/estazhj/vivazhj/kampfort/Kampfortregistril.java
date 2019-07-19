@@ -10,11 +10,11 @@ public class Kampfortregistril {
 			case 0:
 				return new Kampfort(50, Vicperant.nunludantn(), "");
 			case 1:
-				return new Kampfort(200, Vicperant.nunludantn(), "");
+				return new Kampfort(150, Vicperant.nunludantn(), "");
 			case 2:
-				return new Kampfort(4000, Vicperant.nunludantn(), "");
+				return new Kampfort(450, Vicperant.nunludantn(), "");
 			case 3:
-				return new Kampfort(80000, Vicperant.nunludantn(), "");
+				return new Kampfort(1000, Vicperant.nunludantn(), "");
 			default:
 				return null;
 		}

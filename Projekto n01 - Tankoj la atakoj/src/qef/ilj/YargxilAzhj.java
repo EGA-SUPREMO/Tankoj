@@ -188,7 +188,7 @@ public class YargxilAzhj {
 		
 	}
 	public static BufferedImage yargxBildn(final String itener, final int diafanec, final int x, final int y,
-			final Color kolor) {//Carga una imagen compatible opaca
+			final Color kolor) {
 		
 		Image i = null;
 		

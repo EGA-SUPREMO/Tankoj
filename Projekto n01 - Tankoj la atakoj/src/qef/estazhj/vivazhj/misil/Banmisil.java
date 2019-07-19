@@ -28,7 +28,7 @@ public class Banmisil extends Multmisil {
 		final double offsetRad = 0;
 
 		for(int i = 0; i < misilj.length; i++) {
-			misilj[i] = new Misilet(trajekt.n(), 15, offsetRad, i+1, this);
+			misilj[i] = new Misilet(trajekt.n(), 25, offsetRad, i+1, this);
 			misilj[i].trajekt.setMisiln(misilj[i]);
 
 			misilj[i].rapidecX -= misilj[i].rapidecX*(0.066*(i+1));
