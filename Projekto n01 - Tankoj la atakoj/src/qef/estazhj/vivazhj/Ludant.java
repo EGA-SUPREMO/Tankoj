@@ -148,9 +148,9 @@ public class Ludant extends Vivazh implements Externalizable {
 		novarmilar[0] = 999999;
 		novarmilar[1] = 50;
 		novarmilar[2] = 25;
-		novarmilar[3] = 5;
-		novarmilar[4] = 10000;
-		novarmilar[5] = 10;
+		novarmilar[3] = 0;
+		novarmilar[4] = 0;
+		novarmilar[5] = 0;
 		
 		
 		return novarmilar;

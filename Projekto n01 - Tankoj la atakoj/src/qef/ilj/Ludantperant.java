@@ -9,7 +9,7 @@ import qef.estazhj.vivazhj.Ludant;
 public class Ludantperant {
 
 	public static void definigadj() {
-		Ludant[] lj = YargxilAzhj.yargxLudantjn(Konstantj.ITENER_SAVJ + 0);
+		Ludant[] lj = YargxilAzhj.yargxLudantjn(Konstantj.ITENER_SAVJ + 1);
 		if(lj != null) {
 			Vicperant.ludantj = lj;
 			

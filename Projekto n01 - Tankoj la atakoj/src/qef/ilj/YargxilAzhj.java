@@ -25,6 +25,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
+import javax.swing.JOptionPane;
 
 import qef.estazhj.vivazhj.Ludant;
 //import javax.sound.sampled.FloatControl;
@@ -255,6 +256,7 @@ public class YargxilAzhj {
 		    s.flush();
 		    s.close();
 		} catch(Exception e) {
+			JOptionPane.showMessageDialog(null, e.getStackTrace(), "Error: Guardado", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}
@@ -273,6 +275,7 @@ public class YargxilAzhj {
 		    s.close();
 		} catch(Exception e) {
 			ludantj = null;
+			JOptionPane.showMessageDialog(null, e.getStackTrace(), "Error: Lectura", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 		return ludantj;
