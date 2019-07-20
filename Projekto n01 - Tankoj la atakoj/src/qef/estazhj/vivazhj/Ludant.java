@@ -93,9 +93,9 @@ public class Ludant extends Vivazh implements Externalizable {
 		ordenBildj(Konstantj.canonAngulnombr, Konstantj.armil);
 		ordenBildj(1, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
 				Transparency.TRANSLUCENT, 24, 24, kolor).spritejn());
-
-		largxVivazh = 24;
-		altVivazh = 24;
+		
+		largxVivazh = bildj[0].getWidth();
+		altVivazh = largxVivazh;
 		
 		altVivazhKolici = altVivazh/2 - offsetLudantY*2;
 		largxVivazhKolici = altVivazhKolici;
@@ -123,9 +123,9 @@ public class Ludant extends Vivazh implements Externalizable {
 		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
 		ordenBildj(ordenSpec, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
 				Transparency.TRANSLUCENT, 24, 24, kolor).spritejn());
-
-		largxVivazh = 24;
-		altVivazh = 24;
+		
+		largxVivazh = bildj[0].getWidth();
+		altVivazh = largxVivazh;
 		
 		//largxVivazhKolici = largxVivazh - offsetLudantY;
 		altVivazhKolici = altVivazh/2 - offsetLudantY*2;
@@ -149,7 +149,7 @@ public class Ludant extends Vivazh implements Externalizable {
 		novarmilar[1] = 50;
 		novarmilar[2] = 25;
 		novarmilar[3] = 0;
-		novarmilar[4] = 10;
+		novarmilar[4] = 10000;
 		novarmilar[5] = 0;
 		
 		

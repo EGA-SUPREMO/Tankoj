@@ -132,7 +132,8 @@ public class Klavar extends KeyAdapter {
 				aqeti = true;
 				break;
 			case Konstantj.UZIKAMPFORT:
-				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn() &&
+						Vicperant.nunludantn().nunuzitKampfortn()==null)
 					uziKampfort = true;
 				break;
 			case Konstantj.FORIGIKAMPFORT:

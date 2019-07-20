@@ -109,8 +109,12 @@ public abstract class Konstantj {
 	public final static String ITENER_SONJ = "/sounds/";
 	public final static String ITENER_SONJ_LUDANT = "player/";
 	public static final String ITENER_SON_MISIL = ITENER_SONJ_LUDANT + "pom.wav";
-	
+
 	public static final String ITENER_IKON = "/icons/";
+	public static final String ITENER_OBJEKTJ = "/objects/";
+	
+	
+	public static final String ITENER_KAMPFORTJ = ITENER_OBJEKTJ + "shield_";
 	
 	public static final String ITENER_RUGX = ITENER_IKON + "red_";
 	public static final String ITENER_BLU = ITENER_IKON + "blue_";

@@ -1,12 +1,17 @@
 package qef.estazhj.vivazhj.kampfort;
 
 import java.awt.Color;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
+import qef.Konstantj;
 import qef.estazhj.vivazhj.Ludant;
 import qef.estazhj.vivazhj.Vivazh;
+import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
+import qef.ilj.YargxilAzhj;
 
 public class Kampfort extends Vivazh implements Serializable {
 	
@@ -14,12 +19,15 @@ public class Kampfort extends Vivazh implements Serializable {
 	
 	final Ludant ludant;
 	final Color kolor;
+	final BufferedImage bild;
 	
-	public Kampfort(final int vivo, final Ludant ludanto, final String itenerSon) {
+	public Kampfort(final int vivo, final Ludant ludanto, final int itener, final String itenerSon) {
 		super(1, 1, itenerSon);
 		ludant = ludanto;
 		kolor = ludant.dukolorn();
-		largxVivazh = ludant.largxVivazhn()*2;
+		bild = YargxilAzhj.yargxBildn(Konstantj.ITENER_KAMPFORTJ + itener + ".png", Transparency.TRANSLUCENT, kolor);
+		Bildperant.yangxTuteKolorn(bild, kolor);
+		largxVivazh = bild.getWidth();
 		altVivazh = largxVivazh;
 		setPlejvivn(vivo);
 		viv = plejvivn();
@@ -33,9 +41,9 @@ public class Kampfort extends Vivazh implements Serializable {
 	
 	@Override
 	public void desegn() {
-		DebugDesegn.desegnCirkl((int) Kvantperant.koordenadXalekranPosicin(ludant.xn()) - (largxVivazh>>1) +
+		DebugDesegn.desegnBildn(bild, (int) Kvantperant.koordenadXalekranPosicin(ludant.xn()) - (largxVivazh>>1) +
 				ludant.offsetLudantXn(), (int) Kvantperant.koordenadYalekranPosicin(ludant.yn()) -
-				ludant.largxVivazhKolici - (largxVivazh>>1), largxVivazh, kolor);
+				ludant.largxVivazhKolici - (largxVivazh>>1));
 	}
 	@Override
 	public void mlpliVivn(double d) {
