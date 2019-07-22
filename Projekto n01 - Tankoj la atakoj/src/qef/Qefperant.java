@@ -15,6 +15,7 @@ package qef;
 
 import javax.swing.JOptionPane;
 
+import qef.estazhj.vivazhj.kampfort.Kampfort;
 import qef.estazhj.vivazhj.misil.Misileg;
 import qef.grafikj.Fenestr;
 import qef.ilj.Ludantperant;
@@ -71,6 +72,7 @@ public class Qefperant {
 		Ludantperant.definigadj();
 		fonmuzik = new Son(Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 0);
 		Misileg.definigadMisiljn();
+		Kampfort.definigadj();
 		QefObjektj.suprmenu = new Suprmenu();
 		new Fenestr(titol);
 	}
@@ -103,6 +105,7 @@ public class Qefperant {
 					gxisdatig();
 				}catch(Exception e) {
 					JOptionPane.showMessageDialog(null, e, "Error: gxisdatig()", JOptionPane.ERROR_MESSAGE);
+					e.printStackTrace();
 				}
 				apsAkumulita++;
 				
@@ -113,6 +116,7 @@ public class Qefperant {
 				desegn();
 			} catch(Exception e) {
 				JOptionPane.showMessageDialog(null, e, "Error: desegn()", JOptionPane.ERROR_MESSAGE);
+				e.printStackTrace();
 			}
 			fpsAkumulita++;
 			

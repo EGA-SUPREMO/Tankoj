@@ -21,16 +21,17 @@ public class Kampfort extends Vivazh implements Serializable {
 	final Color kolor;
 	final BufferedImage bild;
 	
-	public Kampfort(final int vivo, final Ludant ludanto, final int itener, final String itenerSon) {
+	public Kampfort(final int vivo, final Ludant ludanto, final int spec, final String itenerSon) {
 		super(1, 1, itenerSon);
 		ludant = ludanto;
 		kolor = ludant.dukolorn();
-		bild = YargxilAzhj.yargxBildn(Konstantj.ITENER_KAMPFORTJ + itener + ".png", Transparency.TRANSLUCENT, kolor);
-		Bildperant.yangxTuteKolorn(bild, kolor);
+		bild = Bildperant.kopiBildn(Konstantj.KAMPFORTBILDJ[spec]);
+		Bildperant.yangxTuteKolorjn(bild, kolor);
 		largxVivazh = bild.getWidth();
 		altVivazh = largxVivazh;
 		setPlejvivn(vivo);
 		viv = plejvivn();
+		
 	}
 	
 	@Override
@@ -39,6 +40,11 @@ public class Kampfort extends Vivazh implements Serializable {
 		setYn(ludant.yn());
 	}
 	
+	public static void definigadj() {
+		for(int i = 0; i < Konstantj.PLEJ_KAMPFORTJ; i++)
+			Konstantj.KAMPFORTBILDJ[i] = YargxilAzhj.yargxBildn(Konstantj.ITENER_KAMPFORTJ + i + ".png", Transparency.TRANSLUCENT);
+		
+	}
 	@Override
 	public void desegn() {
 		DebugDesegn.desegnBildn(bild, (int) Kvantperant.koordenadXalekranPosicin(ludant.xn()) - (largxVivazh>>1) +

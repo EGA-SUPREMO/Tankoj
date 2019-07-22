@@ -147,6 +147,8 @@ public abstract class Vivazh implements Estazh {
 	public double yn() {
 		return y;
 	}
+	public static void definigadj() {
+	}
 	
 	public void pliXn() {
 		x += rapidecX;

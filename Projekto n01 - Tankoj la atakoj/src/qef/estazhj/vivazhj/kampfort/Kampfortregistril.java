@@ -8,13 +8,17 @@ public class Kampfortregistril {
 
 		switch(id) {
 			case 0:
-				return new Kampfort(50, Vicperant.nunludantn(), 4, "");
+				return new Kampfort(50, Vicperant.nunludantn(), 0, "");
 			case 1:
 				return new Kampfort(150, Vicperant.nunludantn(), 1, "");
 			case 2:
 				return new Kampfort(450, Vicperant.nunludantn(), 2, "");
 			case 3:
 				return new Kampfort(1000, Vicperant.nunludantn(), 3, "");
+			case 4:
+				return new Kampfort(150, Vicperant.nunludantn(), 4, "");
+			case 5:
+				return new Kampfort(450, Vicperant.nunludantn(), 5, "");
 			default:
 				return null;
 		}

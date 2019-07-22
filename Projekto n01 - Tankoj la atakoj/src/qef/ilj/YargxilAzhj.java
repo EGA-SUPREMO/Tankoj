@@ -246,7 +246,7 @@ public class YargxilAzhj {
 	public static void skribLudantn(final String itener) {
 		try {
 			
-		    FileOutputStream o = new FileOutputStream("res/files" + itener);
+		    FileOutputStream o = new FileOutputStream(itener);
 		    ObjectOutput s = new ObjectOutputStream(o);
 		    
 		    s.writeInt(Vicperant.ludantj.length);
@@ -256,7 +256,7 @@ public class YargxilAzhj {
 		    s.flush();
 		    s.close();
 		} catch(Exception e) {
-			JOptionPane.showMessageDialog(null, e.getStackTrace(), "Error: Guardado", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getStackTrace(), "Error de guardado: " + e.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}
@@ -265,7 +265,7 @@ public class YargxilAzhj {
 		Ludant[] ludantj;
 		
 		try {
-		    FileInputStream o = new FileInputStream("res/files" + itener);
+		    FileInputStream o = new FileInputStream(itener);
 		    ObjectInputStream s = new ObjectInputStream(o);
 		    
 		    ludantj = new Ludant[s.readInt()];
@@ -275,7 +275,7 @@ public class YargxilAzhj {
 		    s.close();
 		} catch(Exception e) {
 			ludantj = null;
-			JOptionPane.showMessageDialog(null, e.getStackTrace(), "Error: Lectura", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getStackTrace(), "Error de lectura: " + e.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 		return ludantj;

@@ -47,7 +47,7 @@ public abstract class Konstantj {
 	public final static int PLEJ_MISILJ = 6;
 	public final static int LUDANTPLEJNOMBR = 8;
 	public static final int plejnombrspecmisileg = 3;
-	public static final int PLEJ_KAMPFORTJ = 4;
+	public static final int PLEJ_KAMPFORTJ = 6;
 	
 	public final static int nombroKlablj = 256;
 	
@@ -241,7 +241,7 @@ public abstract class Konstantj {
 	public static final int[] armilarprecj = {0, 30, 50, 125, 350, 90};
 	public static final Color[] armilarkolorj = {Color.BLACK, Color.DARK_GRAY, Color.ORANGE, Color.RED.darker(),
 			Color.RED, Color.ORANGE.darker()};
-	public static final String[] kampfortnomj = {"Escudo debil", "Escudo", "Escudo fuerte", "Escudo super fuerte"};
+	public static final String[] kampfortnomj = {"1Escudo debil", "2Escudo", "3Escudo debil", "4Escudo", "5Escudo fuerte", "6Escudo super fuerte"};
 	
 	public static final int[] tankazhprecj = {15, 20, 70, 0, 25, 50, 40, 25, 25, 100, 300, 700};
 	public static Biom[] biomj;
@@ -250,5 +250,6 @@ public abstract class Konstantj {
 	public static int plejtempVent = 12000;
 	public static final BufferedImage armil = YargxilAzhj.yargxBildn(ITENER_LUDANT_CANON + 0 + ".png",
 			Transparency.TRANSLUCENT, 27, 29);
+	public static final BufferedImage[] KAMPFORTBILDJ = new BufferedImage[PLEJ_KAMPFORTJ];
 	
 }

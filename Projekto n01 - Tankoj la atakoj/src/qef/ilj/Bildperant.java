@@ -140,7 +140,7 @@ public class Bildperant {
 		
 		return koloritbild;
 	}
-	
+
 	public static BufferedImage yangxTuteKolorn(final BufferedImage devenBild, final Color kolor) {
 		//FIXME CXI TIO ESTAS TRE NEEFIKA
 		final int rugx = kolor.getRed(), blu = kolor.getBlue(), verd = kolor.getGreen();
@@ -152,6 +152,24 @@ public class Bildperant {
 		for(int i = 0; i<pixelj.length; i++)
 			pixelj[i] = new Color(rugx, verd, blu, new Color(pixelj[i], true).getAlpha()).getRGB();
 		
+		koloritbild.setRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
+		
+		return koloritbild;
+	}
+	public static BufferedImage yangxTuteKolorjn(final BufferedImage devenBild, final Color kolor) {
+		//FIXME CXI TIO ESTAS TRE NEEFIKA
+		final int rugx = kolor.getRed(), blu = kolor.getBlue(), verd = kolor.getGreen();
+		int[] pixelj = ((DataBufferInt) devenBild.getRaster().getDataBuffer()).getData();
+		devenBild.getRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
+		
+		BufferedImage koloritbild = new BufferedImage(devenBild.getWidth(), devenBild.getHeight(),
+				BufferedImage.TYPE_INT_ARGB);
+		Color nunKolor;
+		for(int i = 0; i<pixelj.length; i++) {
+			nunKolor = new Color(pixelj[i], true);
+			pixelj[i] = new Color((rugx + nunKolor.getRed())/2, (verd + nunKolor.getGreen())/2,
+					(blu + nunKolor.getBlue())/2, nunKolor.getAlpha()).getRGB();
+		}
 		koloritbild.setRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
 		
 		return koloritbild;
@@ -335,7 +353,7 @@ public class Bildperant {
 		
 		return finbild;
 	}
-	
+
 	public static BufferedImage aldonKomponantn(final BufferedImage bild, final BufferedImage komponant,
 			final int x, final int y) {
 		
@@ -344,5 +362,15 @@ public class Bildperant {
 		g.dispose();
 		
 		return bild;
+	}
+	public static BufferedImage kopiBildn(final BufferedImage bild) {
+		BufferedImage novbild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration().createCompatibleImage(bild.getWidth(), bild.getHeight(),
+						Transparency.TRANSLUCENT);
+		Graphics g = novbild.getGraphics();
+		g.drawImage(bild, 0, 0, null);
+		g.dispose();
+		
+		return novbild;
 	}
 }
