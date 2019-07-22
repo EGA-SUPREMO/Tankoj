@@ -95,7 +95,7 @@ public class Vicperant {
 		boolean qneyang = false;
 		int lo = ludantj.length%2 == 0? 1: 2;
 		int ii = 0;
-		while(qyang && !qneyang && ii < (ludantj.length<<1)) {
+		while(qyang && !qneyang && ii < (ludantj.length<<4)) {
 			qyang = true;
 			qneyang = false;
 			
