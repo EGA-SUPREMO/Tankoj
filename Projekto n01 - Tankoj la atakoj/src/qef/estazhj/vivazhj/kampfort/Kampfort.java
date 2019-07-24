@@ -25,8 +25,8 @@ public class Kampfort extends Vivazh implements Serializable {
 		super(1, 1, itenerSon);
 		ludant = ludanto;
 		kolor = ludant.dukolorn();
-		bild = Bildperant.kopiBildn(Konstantj.KAMPFORTBILDJ[spec]);
-		Bildperant.yangxTuteKolorjn(bild, kolor);
+		bild = Bildperant.kopiBildn(Konstantj.KAMPFORTBILDJ[spec]);//TODO Faru ke cxi tio estis unu varieblo antauxdefinita
+		Bildperant.yangxTuteKolorjn(bild, kolor);//Kaj cxi tio
 		largxVivazh = bild.getWidth();
 		altVivazh = largxVivazh;
 		setPlejvivn(vivo);

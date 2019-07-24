@@ -27,7 +27,7 @@ public class BruGeneril {
 	
 	private static double[] brun(final int frekvenc) {
 		double[] output = new double[Konstantj.mapgrandec];
-		double phase = r.nextDouble() + 2*Math.PI;
+		double phase = r.nextDouble()*2*Math.PI;
 		for(int x = 0; x < Konstantj.mapgrandec; x++)
 			output[x] = altgrandec*Math.sin(2*Math.PI*frekvenc*x/Konstantj.mapgrandec + phase);
 		return output;

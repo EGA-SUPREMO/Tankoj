@@ -43,7 +43,7 @@ public abstract class Konstantj {
 	public static int altCentr = duonLudAlt - DUONSPRITEFLANK;
 	public static int largxCentr = duonLudLargx - DUONSPRITEFLANK;
 	
-	public final static int PLEJ_BIOMJ = 5;
+	public final static int PLEJ_BIOMJ = 7;
 	public final static int PLEJ_MISILJ = 6;
 	public final static int LUDANTPLEJNOMBR = 8;
 	public static final int plejnombrspecmisileg = 3;

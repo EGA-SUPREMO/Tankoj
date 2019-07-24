@@ -359,8 +359,8 @@ public class Map {
 		qmodifit = qmodif;
 	}
 
-	static int[] frekvencij = {1, 1, 2, 3, 4, 8};
-	static float[] amplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
+	static int[] plankFrekvencij = {1, 1, 2, 3, 4, 8};
+	static float[] plankamplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
 
 	static int[] urbfrekvencij = {3, 2};//TODO tempa
 	static float[] urbamplitudes = {0.71f, 0.8f};//tempa
@@ -371,11 +371,13 @@ public class Map {
 	public void definigBiomj() {
 		Konstantj.biomj = new Biom[Konstantj.PLEJ_BIOMJ];
 			
-		Konstantj.biomj[0] = new Biom(frekvencij, amplitudes, 15, 1, Konstantj.PLANK_MAP_KOLOR);
+		Konstantj.biomj[0] = new Biom(plankFrekvencij, plankamplitudes, 15, 1, Konstantj.PLANK_MAP_KOLOR);
 		Konstantj.biomj[1] = new Urb(urbfrekvencij, urbamplitudes, 4, 0.33, Color.GRAY);
 		Konstantj.biomj[2] = new Mes(mesfrekvencij, mesamplitudes, 35/*5*/, 0.75, new Color(185, 50, 10));
-		Konstantj.biomj[3] = new Biom(frekvencij, amplitudes, 50, 0.85, Konstantj.PLANK_NEGX_MAP_KOLOR);
-		Konstantj.biomj[4] = new Biom(frekvencij, amplitudes, 10, 1.85, Konstantj.SABL_MAP_KOLOR);
+		Konstantj.biomj[3] = new Biom(plankFrekvencij, plankamplitudes, 50, 0.85, Konstantj.PLANK_NEGX_MAP_KOLOR);
+		Konstantj.biomj[4] = new Biom(plankFrekvencij, plankamplitudes, 10, 1.85, Konstantj.SABL_MAP_KOLOR);
+		Konstantj.biomj[5] = new Ytali(10, Color.GRAY);
+		Konstantj.biomj[6] = new Biom(plankFrekvencij, plankamplitudes, 13, 1, new Color(50, 35, 60));
 	}
 	
 	public static void definigBildarn() {
