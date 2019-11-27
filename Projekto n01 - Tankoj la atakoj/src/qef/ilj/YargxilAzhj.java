@@ -8,18 +8,27 @@ import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
-import javax.sound.sampled.FloatControl;
+import javax.swing.JOptionPane;
+
+import qef.estazhj.vivazhj.Ludant;
+//import javax.sound.sampled.FloatControl;
 
 public class YargxilAzhj {
 	
@@ -30,7 +39,6 @@ public class YargxilAzhj {
 		try{
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -56,7 +64,6 @@ public class YargxilAzhj {
 		try{
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -83,7 +90,6 @@ public class YargxilAzhj {
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 			i = i.getScaledInstance((int) (i.getWidth(null)/ie), (int) (i.getHeight(null)/ie), Image.SCALE_SMOOTH);
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -101,7 +107,8 @@ public class YargxilAzhj {
 		
 		return bild;
 		
-	}	public static BufferedImage yargxSkalitBildn(final String itener, final int diafanec, final int largx) {//Carga una imagen compatible opaca
+	}
+	public static BufferedImage yargxSkalitBildn(final String itener, final int diafanec, final int largx) {//Carga una imagen compatible opaca
 		
 		Image i = null;
 		
@@ -109,7 +116,33 @@ public class YargxilAzhj {
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 			i = i.getScaledInstance(largx, -1, Image.SCALE_SMOOTH);
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
+			e.printStackTrace();
+		} catch(Exception e) {
+			System.out.println("/images" + itener);
+			//System.out.println(e.getMessage());
+			//System.out.println(e.getCause().getLocalizedMessage());
+		}
+		
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		
+		BufferedImage bild = gc.createCompatibleImage(i.getWidth(null), i.getHeight(null), diafanec);//Imagen Acelerada
+		
+		Graphics g = bild.getGraphics();
+		g.drawImage(i, 0, 0, null);
+		g.dispose();
+		
+		return bild;
+		
+	}
+	public static BufferedImage yargxSkalitBildn(final String itener, final int diafanec, final int largx,
+			final int alt) {
+		
+		Image i = null;
+		
+		try{
+			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
+			i = i.getScaledInstance(largx, alt, Image.SCALE_SMOOTH);
+		} catch(IOException e) {
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -136,7 +169,6 @@ public class YargxilAzhj {
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 			i = i.getScaledInstance(x, y, Image.SCALE_SMOOTH);
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -156,7 +188,7 @@ public class YargxilAzhj {
 		
 	}
 	public static BufferedImage yargxBildn(final String itener, final int diafanec, final int x, final int y,
-			final Color kolor) {//Carga una imagen compatible opaca
+			final Color kolor) {
 		
 		Image i = null;
 		
@@ -164,7 +196,6 @@ public class YargxilAzhj {
 			i = ImageIO.read(ClassLoader.class.getResource("/images" + itener));
 			i = i.getScaledInstance(x, y, Image.SCALE_SMOOTH);
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.printStackTrace();
 		} catch(Exception e) {
 			System.out.println("/images" + itener);
@@ -183,7 +214,7 @@ public class YargxilAzhj {
 		return Bildperant.yangxKolorn(bild, kolor.getRed(), kolor.getGreen(), kolor.getBlue());
 		
 	}
-	
+
 	public static String yargxTextn(final String itener) {
 		String enhav = "";
 		
@@ -195,8 +226,8 @@ public class YargxilAzhj {
 		try {
 			while((line = r.readLine()) != null)
 				enhav += line;
+			
 		} catch(IOException e) {
-			System.out.println("CONO DE SU MAQUINA");
 			e.getStackTrace();
 		} finally {
 			try {
@@ -211,7 +242,44 @@ public class YargxilAzhj {
 		
 		return enhav;
 	}
+
+	public static void skribLudantn(final String itener) {
+		try {
+			
+		    FileOutputStream o = new FileOutputStream(itener);
+		    ObjectOutput s = new ObjectOutputStream(o);
+		    
+		    s.writeInt(Vicperant.ludantj.length);
+		    
+		    for(int i = 0; i < Vicperant.ludantj.length; i++)
+		    	s.writeObject(Vicperant.ludantj[i]);
+		    s.flush();
+		    s.close();
+		} catch(Exception e) {
+			JOptionPane.showMessageDialog(null, e.getStackTrace(), "Error de guardado: " + e.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+	}
 	
+	public static Ludant[] yargxLudantjn(final String itener) {
+		Ludant[] ludantj;
+		
+		try {
+		    FileInputStream o = new FileInputStream(itener);
+		    ObjectInputStream s = new ObjectInputStream(o);
+		    
+		    ludantj = new Ludant[s.readInt()];
+		    for(int i = 0; i < ludantj.length; i++)
+		    	ludantj[i] = (Ludant) s.readObject();
+		    
+		    s.close();
+		} catch(Exception e) {
+			ludantj = null;
+			JOptionPane.showMessageDialog(null, e.getStackTrace(), "Error de lectura: " + e.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+		return ludantj;
+	}
 	public static Font yargxFontn(final String itener) {
 		
 		Font font;

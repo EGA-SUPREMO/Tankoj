@@ -3,9 +3,9 @@ package qef.uzantinterfac.suprmenu;
 import qef.ilj.Vicperant;
 
 public enum Text {
-	VIV((int) Vicperant.ludantj[Vicperant.nunLudantn()].vivn(), 100),
-	ANG(Vicperant.ludantj[Vicperant.nunLudantn()].nunanguln(), 180),
-	ATK(Vicperant.ludantj[Vicperant.nunLudantn()].potenc, Vicperant.ludantj[Vicperant.nunLudantn()].plejpotenc);
+	VIV((int) Vicperant.nunludantn().vivn(), 100),
+	ANG(Vicperant.nunludantn().nunanguln(), 180),
+	ATK(Vicperant.nunludantn().potenc, Vicperant.nunludantn().plejpotenc);
 	
 	private Integer kvant;
 	private Integer plejkvant;

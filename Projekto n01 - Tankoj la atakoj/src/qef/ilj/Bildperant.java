@@ -60,17 +60,13 @@ public class Bildperant {
 		return bild;
 	}
 	
-	public static BufferedImage kreBildn(final Color c) {
-		BufferedImage bild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration().createCompatibleImage(Konstantj.SPRITEALT, Konstantj.SPRITELARGX,
-						Transparency.OPAQUE);
-		Graphics g = bild.getGraphics();
+	public static BufferedImage[] dividBildnLawLargxspriten(final BufferedImage bild) {
+		BufferedImage[] finbildj = new BufferedImage[bild.getWidth()/Konstantj.SPRITELARGX];
 		
-		g.setColor(c);
-		g.fillRect(0, 0, bild.getWidth(), bild.getHeight());
-		g.dispose();
+		for(int i = 0; i < finbildj.length; i++)
+			finbildj[i] = bild.getSubimage(i*Konstantj.SPRITELARGX, 0, Konstantj.SPRITELARGX, bild.getHeight());
 		
-		return bild;
+		return finbildj;
 	}
 	
 	public static BufferedImage gxisdatigMapn(final int ekx, final int largx) {
@@ -78,11 +74,13 @@ public class Bildperant {
 				.getDefaultConfiguration(). createCompatibleImage(largx, QefObjektj.map.altMap, Transparency.OPAQUE);
 		Graphics g = bild.getGraphics();
 		
-		g.setColor(Konstantj.AKV_MAP_KOLOR);//FIXME LA AKVO ESTAS STRANGA DE CXI TIU METODO
-		g.fillRect(0, 0, largx, QefObjektj.map.altMap);
+//		g.setColor(Konstantj.AKV_MAP_KOLOR);//FIXME LA AKVO ESTAS STRANGA DE CXI TIU METODO
+//		g.fillRect(0, 0, largx, QefObjektj.map.altMap);
 		g.setColor(Konstantj.CXIEL_MAP_KOLOR);
 		g.fillRect(0, 0, largx, QefObjektj.map.altMap - 100);
-		g.setColor(Konstantj.PLANK_NEGX_MAP_KOLOR);
+		g.drawImage(Konstantj.QEFFONJ_BIOMJ[ekx/Konstantj.SPRITELARGX +
+		                                    QefObjektj.map.nunbiom*Konstantj.largxArrayQEFFONJ_BIOMJ], 0, 0, null);
+		g.setColor(Konstantj.biomj[QefObjektj.map.nunbiom].kolorn());
 		
 		for(int x = 0; x < largx; x++)
 			g.drawLine(x, (int) Kvantperant.koordenadYalekranPosicin(QefObjektj.map.yn()[ekx + x]), x, 
@@ -135,9 +133,43 @@ public class Bildperant {
 		BufferedImage koloritbild = new BufferedImage(devenBild.getWidth(), devenBild.getHeight(),
 				BufferedImage.TYPE_INT_ARGB);
 		for(int i = 0; i<pixelj.length; i++)
-			if((pixelj[i])<=0xFF000000 || pixelj[i]>=0x00FFFFFF)
+			if((pixelj[i])<=(0xFF000000) || pixelj[i]>=0x00FFFFFF)
 				pixelj[i] = new Color(rugx, verd, blu, new Color(pixelj[i], true).getAlpha()).getRGB();
 		
+		koloritbild.setRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
+		
+		return koloritbild;
+	}
+
+	public static BufferedImage yangxTuteKolorn(final BufferedImage devenBild, final Color kolor) {
+		//FIXME CXI TIO ESTAS TRE NEEFIKA
+		final int rugx = kolor.getRed(), blu = kolor.getBlue(), verd = kolor.getGreen();
+		int[] pixelj = ((DataBufferInt) devenBild.getRaster().getDataBuffer()).getData();
+		devenBild.getRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
+		
+		BufferedImage koloritbild = new BufferedImage(devenBild.getWidth(), devenBild.getHeight(),
+				BufferedImage.TYPE_INT_ARGB);
+		for(int i = 0; i<pixelj.length; i++)
+			pixelj[i] = new Color(rugx, verd, blu, new Color(pixelj[i], true).getAlpha()).getRGB();
+		
+		koloritbild.setRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
+		
+		return koloritbild;
+	}
+	public static BufferedImage yangxTuteKolorjn(final BufferedImage devenBild, final Color kolor) {
+		//FIXME CXI TIO ESTAS TRE NEEFIKA
+		final int rugx = kolor.getRed(), blu = kolor.getBlue(), verd = kolor.getGreen();
+		int[] pixelj = ((DataBufferInt) devenBild.getRaster().getDataBuffer()).getData();
+		devenBild.getRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
+		
+		BufferedImage koloritbild = new BufferedImage(devenBild.getWidth(), devenBild.getHeight(),
+				BufferedImage.TYPE_INT_ARGB);
+		Color nunKolor;
+		for(int i = 0; i<pixelj.length; i++) {
+			nunKolor = new Color(pixelj[i], true);
+			pixelj[i] = new Color((rugx + nunKolor.getRed())/2, (verd + nunKolor.getGreen())/2,
+					(blu + nunKolor.getBlue())/2, nunKolor.getAlpha()).getRGB();
+		}
 		koloritbild.setRGB(0, 0, devenBild.getWidth(), devenBild.getHeight(), pixelj, 0, devenBild.getWidth());
 		
 		return koloritbild;
@@ -321,7 +353,7 @@ public class Bildperant {
 		
 		return finbild;
 	}
-	
+
 	public static BufferedImage aldonKomponantn(final BufferedImage bild, final BufferedImage komponant,
 			final int x, final int y) {
 		
@@ -330,5 +362,15 @@ public class Bildperant {
 		g.dispose();
 		
 		return bild;
+	}
+	public static BufferedImage kopiBildn(final BufferedImage bild) {
+		BufferedImage novbild = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+				.getDefaultConfiguration().createCompatibleImage(bild.getWidth(), bild.getHeight(),
+						Transparency.TRANSLUCENT);
+		Graphics g = novbild.getGraphics();
+		g.drawImage(bild, 0, 0, null);
+		g.dispose();
+		
+		return novbild;
 	}
 }

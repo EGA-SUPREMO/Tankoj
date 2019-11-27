@@ -4,82 +4,167 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.Random;
 
 import qef.Konstantj;
 import qef.QefObjektj;
-import qef.estazhj.Estazhregistril;
+import qef.estazhj.vivazhj.kampfort.Kampfort;
+import qef.estazhj.vivazhj.kampfort.Kampfortregistril;
+import qef.estazhj.vivazhj.misil.Misil;
+import qef.estazhj.vivazhj.misil.Misilregistril;
 import qef.ilj.Bildperant;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.Vicperant;
-import qef.ilj.YargxilAzhj;
-import qef.inventar.Objektregistril;
-import qef.inventar.armil.Armil;
 import qef.kontrolj.Kontrolperant;
 import qef.map.Map;
 import qef.sprite.SpriteFoli;
 
-public class Ludant extends Vivazh {
-
-	protected BufferedImage[] bildj, canonBildj;
-	private final static int ANTAWDEFINITRAD_X1 = -10, ANTAWDEFINITRAD_X2 = 11;
+public class Ludant extends Vivazh implements Externalizable {
+	
+	private static final long serialVersionUID = 2L;
+	
+	private final int id;
+	private static int nunId = -1;
+	
+	private BufferedImage[] bildj, canonBildj;
+	private final static int ANTAWDEFINITRAD_X1 = -8, ANTAWDEFINITRAD_X2 = 8;
 	private int radX1 = ANTAWDEFINITRAD_X1, radX2 = ANTAWDEFINITRAD_X2;
 	private int offsetLudantY = 2;
-	private int offsetLudantX = 0;
-	private int offsetCanonX = -2, offsetCanonY = 1, offsetCanonY2 = 3;
+	private double offsetLudantX = 0;
+	@SuppressWarnings("unused")
+	private int offsetCanonX = 0, offsetCanonY = 1, offsetCanonY2 = 3;
 	private static final int ANTAWDEFINITPLEJANGUL = Konstantj.canonAngulnombr/2;
 	public int plejangul, mlplejangul;
-	public Misil m;
-	protected Vivazharmilar vivazharmilar;
+	protected int[] armilar;
 	private boolean qatingec, qgxisdatigatingecn;
 	private BufferedImage atingec;
+	private Color dukolor;
 	
+	private int movec = duonrotaciplejNombr>>2;
 	public int plejpotenc = 100;
 	public int potenc;
 	private int nunangul;
-	private int experienc = 100;
+	private double mon = 0;
 	
+	public int teleirazhj = 7;
 	public int nunArmil = 1;
+	private String nom;
+	private Color kolor;
+	public double mediRapidecX = 0.7;
+	public double eficientBrulazh = 1;
+	private double punktj;
+	private int brulazh;
+	public int plejbrulazh;
+	private int revivil;
+	public int largxVivazhKolici;
+	public int altVivazhKolici;
+	private int[] kampfortnombrj;
+	private Kampfort nunuzitKampfort;
+	private int nunKampfort = 0;
+
+	public static int aqetbrulazh = 500;
+	private static int aqetplejviv = 10;
+	private static double aqetresistenc = 0.33;
+	private static double aqeteficientBrulazh = 0.05;
+	private static int aqetmovec = duonrotaciplejNombr>>5;
 	
-	public static final SpriteFoli ludantsprite0 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
-			Transparency.TRANSLUCENT, 32, 32, Color.GREEN.darker());
-	public static final SpriteFoli ludantsprite1 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
-			Transparency.TRANSLUCENT, 32, 32, Color.RED);
-	public static final SpriteFoli ludantsprite2 = new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
-			Transparency.TRANSLUCENT, 32, 32, Color.CYAN.darker());
-	public static final BufferedImage armil = YargxilAzhj.yargxBildn(Konstantj.ITENER_LUDANT_CANON + 0 + ".png",
-			Transparency.TRANSLUCENT, 36, 38);
-	
-	public Ludant(final int ordenSpec, final String itenerSon, final SpriteFoli sprite,
-			final BufferedImage canonSprite) {
-		super(1, 100, itenerSon);
-		Random r = new Random();
-		setXn(r.nextInt(QefObjektj.map.yn().length));
-		setYn(QefObjektj.map.yn((int) xn()));
-		nunangul = r.nextInt(plejangul-90)+90;
-		potenc = plejpotenc/4;
-		vivazharmilar = new Vivazharmilar((Armil) Objektregistril.objektjn(599));
-		qatingec = true;
+	public Ludant() {
+		super(1, 100, null);
+		
+		nunId++;
+		id = nunId;
+		plejbrulazh = 3000;
+		
+		definigad();
+		armilar = komnecarmilarn();
+		kampfortnombrj = komencKampfortjn();
+		qatingec = false;
 		qgxisdatigatingecn = false;
+		nom = "Joseph";
+		kolor = Color.GRAY;
+		revivil = 8;
+		dukolor = Color.BLACK;
 		
-		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
-		ordenBildj(ordenSpec, sprite.spritejn());
+		ordenBildj(Konstantj.canonAngulnombr, Konstantj.armil);
+		ordenBildj(1, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
+				Transparency.TRANSLUCENT, 24, 24, kolor).spritejn());
 		
-		largxVivazh = 32;
-		altVivazh = 32;
+		largxVivazh = bildj[0].getWidth();
+		altVivazh = largxVivazh;
+		
+		altVivazhKolici = altVivazh/2 - offsetLudantY*2;
+		largxVivazhKolici = altVivazhKolici;
 		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
 	}
 	
+	public Ludant(final int ordenSpec, final String nomo, final String itenerSon, final Color koloro,
+			final BufferedImage canonSprite, final Color dukoloro) {
+		super(1, 100, itenerSon);
+		
+		nunId++;
+		id = nunId;
+		plejbrulazh = 3000;
+		
+		definigad();
+		armilar = komnecarmilarn();
+		kampfortnombrj = komencKampfortjn();
+		qatingec = false;
+		qgxisdatigatingecn = false;
+		nom = nomo;
+		kolor = koloro;
+		revivil = 8;
+		dukolor = dukoloro;
+		
+		ordenBildj(Konstantj.canonAngulnombr, canonSprite);
+		ordenBildj(ordenSpec, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
+				Transparency.TRANSLUCENT, 24, 24, kolor).spritejn());
+		
+		largxVivazh = bildj[0].getWidth();
+		altVivazh = largxVivazh;
+		
+		//largxVivazhKolici = largxVivazh - offsetLudantY;
+		altVivazhKolici = altVivazh/2 - offsetLudantY*2;
+		largxVivazhKolici = altVivazhKolici;
+		LIMJ[0] = new Rectangle((int) xn(), (int) yn(), largxVivazh, altVivazh);
+	}
+	
+	private int[] komencKampfortjn() {
+		final int[] novKampj = new int[Konstantj.PLEJ_KAMPFORTJ];
+		
+		for(int i = 0; i < novKampj.length; i++)
+			novKampj[i] = 8;
+		
+		return novKampj;
+	}
+
+	private int[] komnecarmilarn() {
+		final int[] novarmilar = new int[Konstantj.PLEJ_MISILJ];
+		
+		novarmilar[0] = 999999;
+		novarmilar[1] = 50;
+		novarmilar[2] = 25;
+		novarmilar[3] = 0;
+		novarmilar[4] = 10000;
+		novarmilar[5] = 0;
+		
+		
+		return novarmilar;
+	}
+
 	protected void ordenBildj(final int spec, final BufferedImage[] tempbildj) {
 		switch(spec) {
 			case 0:
 				break;
-			case 1://TODO faru ke la bildoj generigxos kiam la ludanto acxetu la habilidad de escalar montoj(eble ne faru tion)
-				bildj = new BufferedImage[rotaciplejNombr/2];
+			case 1:
+				bildj = new BufferedImage[duonrotaciplejNombr];
 				final int duonLong = bildj.length/2;
-				for(int i = -bildj.length/2; i < duonLong; i++)
-					bildj[i + bildj.length/2] = Bildperant.volvBildn(tempbildj[0], -(ROTACI * i));
+				for(int i = -duonLong; i < duonLong; i++)
+					bildj[i + duonLong] = Bildperant.volvBildn(tempbildj[0], -(ROTACI * i));
 				break;
 		}
 	}
@@ -95,29 +180,38 @@ public class Ludant extends Vivazh {
 	
 	@Override
 	public void gxisdatig() {
+		if(vivn()<=0)
+			return;
 		if(venontDamagxit > 0)
 			venontDamagxit -= 1000000/60;
-		if(m!=null) {//FIXME
-			Kontrolperant.klavar.qatak = false;
-			m.gxisdatig();
-		} else {
-			gxisdatigAtakn();
-			yangxMapn();
-			yangxSpriten();
-			mov();
-			anim();
-		}
+		gxisdatigAtakn();
+		yangxMapn();
+		yangxSpriten();
+		mov();
+		anim();
 	}
 	
-	private void mov() {//1 = maldekstre, 2 = dekstre
+	private void mov() {
 		if(Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan() && brulazh>0) {
-			pliX();
+			yangxRapidec();
+			pliXn();
+			nunBild = statn((int) xn());
+			if(nunBild<movec || nunBild>duonrotaciplejNombr - movec) {
+				mlpliXn();
+			}
+			
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 			if(qatingec)
 				qgxisdatigatingecn = true;
 		}
 		if(Kontrolperant.klavar.mldextr.pulsitan() && !Kontrolperant.klavar.dextr.pulsitan() && brulazh>0) {
-			mlpliX();
+			yangxRapidec();
+			mlpliXn();
+			nunBild = statn((int) xn());
+			if(nunBild<movec || nunBild>duonrotaciplejNombr - movec) {
+				pliXn();
+			}
+			
 			setYn(QefObjektj.map.yn()[(int) xn()]);
 			if(qatingec)
 				qgxisdatigatingecn = true;
@@ -152,32 +246,60 @@ public class Ludant extends Vivazh {
 		if(qgxisdatigatingecn && !Kontrolperant.klavar.dextr.pulsitan() && !Kontrolperant.klavar.mldextr.pulsitan()
 				 && !Kontrolperant.klavar.sub.pulsitan() && !Kontrolperant.klavar.supr.pulsitan()
 				 && !Kontrolperant.klavar.subiPotenc && !Kontrolperant.klavar.supriPotenc) {
-			//atingec = Bildperant.atingecMisil(((Misil) Estazhregistril.estaezhjn(nunArmil)).atingecn());
+			atingec = Bildperant.atingecMisil(((Misil) Misilregistril.misiljn(nunArmil)).trajekt.atingecn());
 			qgxisdatigatingecn = false;
 		}
 		if(Kontrolperant.klavar.supriArmil) {
-			if(++nunArmil>2)
-				nunArmil--;
+			pliNunArmiln();
+			Kontrolperant.klavar.supriArmil = false;
 		}
 		if(Kontrolperant.klavar.subiArmil) {
-			if(nunArmil>0)
-				nunArmil--;
+			mlpliNunArmiln();
+			Kontrolperant.klavar.subiArmil = false;
+		}
+		if(Kontrolperant.klavar.supriKampfort) {
+			pliNunKampfortn();
+			Kontrolperant.klavar.supriKampfort = false;
+		}
+		if(Kontrolperant.klavar.subiKampfort) {
+			mlpliNunKampfortn();
+			Kontrolperant.klavar.subiKampfort = false;
+		}
+		if(nunuzitKampfort!=null)
+			nunuzitKampfort.gxisdatig();
+		else if(Kontrolperant.klavar.uziKampfort) {
+			mlpliKampfortn();
+			Kontrolperant.klavar.uziKampfort = false;
+		}
+		
+		
+	}
+	public void uzReviviln() {
+		if(revivil>0 && viv<plejviv) {
+			revivil--;
+			viv += 10;
+			if(viv>plejviv)
+				viv = plejviv;
+			if(viv<100)
+				plejpotenc = (int) viv;
+			else
+				plejpotenc = 100;
 		}
 	}
-	
 	private void yangxSpriten() {
 	}
 	
 	private void gxisdatigAtakn() {
 		if (Kontrolperant.klavar.qatak) {
-			m = (Misil) Estazhregistril.estaezhjn(nunArmil);
+			Vicperant.setNunMisiln(Misilregistril.misiljn(nunArmil));
+			mlpliArmilarn();
+			Kontrolperant.klavar.qatak = false;
 		}
 	}
 	@Override
 	protected void anim() {
 		if(qmovant) {
-			nunBild = statn();
-			plejangul = ANTAWDEFINITPLEJANGUL + (int) Math.toDegrees((offsetLudantX)*ROTACI);
+			plejangul = ANTAWDEFINITPLEJANGUL + (int) Math.toDegrees((offsetLudantX*8)*ROTACI);
 			mlplejangul = plejangul - 180;
 			
 			if(nunangul>plejangul)
@@ -189,40 +311,46 @@ public class Ludant extends Vivazh {
 		}
 	}
 	//TODO SXangxu la klaso de tiu metodo
-	private int statn() {
-		radX1 = ANTAWDEFINITRAD_X1 + offsetLudantX;
-		radX2 = ANTAWDEFINITRAD_X2 + offsetLudantX;
+	private int statn(final int x) {
+		radX1 = (int) (ANTAWDEFINITRAD_X1 + offsetLudantX);
+		radX2 = (int) (ANTAWDEFINITRAD_X2 + offsetLudantX);
 		
-		int x1 = (int) Map.xn((int) xn(), radX1);
-		int x2 = (int) Map.xn((int) xn(), radX2);
+		double y1 = QefObjektj.map.yn()[(int) (Map.xn(x, radX1))];
+		double y2 = QefObjektj.map.yn()[(int) (Map.xn(x, radX2))];
 		
-		double y1 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX1))];
-		double y2 = QefObjektj.map.yn()[(int) (Map.xn((int) xn(), radX2))];
+		double angul = Math.atan2(y2 - y1, radX2 - radX1);
 		
-		double angul = Math.atan2(y2 - y1, x2 - x1);
-		
-		for(int i = -DUONKVANTSTATJ; i < DUONKVANTSTATJ; i++)
+		for(int i = -KVANTSTATJ; i < KVANTSTATJ; i++)
 			if(angul>ROTACI*i && angul<ROTACI*(i+1)) {
-				offsetLudantX = -i;
-				return DUONKVANTSTATJ + i;
+				offsetLudantX = -i/7;
+				return KVANTSTATJ + i;
 			}
 		
 		offsetLudantX = 0;
-		return DUONKVANTSTATJ;
+		return KVANTSTATJ;
 	}
-	
+	private void yangxRapidec() {
+		if(Kontrolperant.klavar.kuri) {
+			rapidecX = mediRapidecX*4;
+		}else {
+			rapidecX = mediRapidecX;
+		}
+	}
 	@Override
 	public void desegn() {
-		int posiciY = (int) Kvantperant.koordenadYalekranPosicin((int)yn()) + offsetLudantY;
-		DebugDesegn.desegnBildn(bildj[nunBild], (int) Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
-				- (Vicperant.nunludantn().largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());
+		if(vivn()<=0)
+			return;
+		int posiciY = (int) Kvantperant.koordenadYalekranPosicin((int)yn());
+		DebugDesegn.desegnBildn(bildj[nunBild], (int) (Kvantperant.koordenadXalekranPosicin(xn()) + offsetLudantX
+				- (largxVivazhn()>>1)), posiciY - bildj[nunBild].getHeight());
 		
-		DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) Kvantperant.koordenadXalekranPosicin(xn()) +
-				offsetCanonX - (Vicperant.nunludantn().largxVivazhn()>>1), posiciY - bildj[nunBild].getHeight());
+		DebugDesegn.desegnBildn(canonBildj[nunangul + 90], (int) (Kvantperant.koordenadXalekranPosicin(xn()) +
+				offsetCanonX - (largxVivazhn()>>1) + offsetLudantX*0.9), posiciY - bildj[nunBild].getHeight());
 		
-		if(m!=null)
-			m.desegn();
-		if(atingec!=null && Vicperant.ludantj[Vicperant.nunLudantn()]==this) {
+		if(nunuzitKampfort!=null)
+			nunuzitKampfort.desegn();
+		
+		if(atingec!=null && Vicperant.nunMisiln() == null) {
 			if(nunangul>90)
 				DebugDesegn.desegnBildn(atingec, (int) Kvantperant.koordenadXalekranPosicin(xn()),
 						(int) Kvantperant.koordenadYalekranPosicin(yn()) - atingec.getHeight());
@@ -233,49 +361,324 @@ public class Ludant extends Vivazh {
 			if(qgxisdatigatingecn)
 				atingec = null;
 		}
+		if(Kontrolperant.klavar.debug) {
+			final Rectangle r = nunposiciare();
+			if(nunuzitKampfort!=null)
+				r.y += (nunuzitKampfort.largxVivazh);
+			DebugDesegn.desegnMargxenRectangle((int) (Kvantperant.koordenadXalekranPosicin(r.x)),
+					(int) (Kvantperant.koordenadYalekranPosicin(r.y)), r.width, r.height, Color.BLUE);
+		}
 	}
 
 	public void setSpriteFoli(final SpriteFoli foli, final int ordenSpec) {
 		ordenBildj(ordenSpec, foli.spritejn());
 	}
 	
-	public int experiencn() {
-		return experienc;
+	public double monn() {
+		return mon;
+	}
+	@Override
+	public void pliXn() {
+		super.pliXn();
+		brulazh -= rapidecX*rapidecX*eficientBrulazh;
+	}
+	@Override
+	public void pliYn() {
+		super.pliYn();
+		brulazh -= rapidecY*eficientBrulazh;
+	}
+	@Override
+	public void mlpliXn() {
+		super.mlpliXn();
+		brulazh -= rapidecX*rapidecX*eficientBrulazh;
+	}
+	@Override
+	public void mlpliYn() {
+		super.mlpliYn();
+		brulazh -= rapidecY*eficientBrulazh;
 	}
 
-	public Vivazharmilar vivazharmilarn() {
-		return vivazharmilar;
-	}
 	public void mlplinunanguln() {
-		if(nunangul>mlplejangul)
-			nunangul--;
+		nunangul -= Konstantj.ANGULRAPIDEC;
+		if(nunangul<mlplejangul)
+			nunangul = mlplejangul;
 	}
 	public void plinunanguln() {
-		if(++nunangul>=plejangul)
-			nunangul--;
+		nunangul += Konstantj.ANGULRAPIDEC; 
+		if(nunangul>=plejangul)
+			nunangul -= Konstantj.ANGULRAPIDEC;
 	}
 	public int nunanguln() {
 		return nunangul;
+	}
+
+	private void pliNunArmiln() {
+		if(++nunArmil>=Konstantj.PLEJ_MISILJ)
+			nunArmil = 0;
+		if(armilar[nunArmil]<1)
+			pliNunArmiln();
+	}
+	private void mlpliNunArmiln() {
+		if(nunArmil>0)
+			nunArmil--;
+		else
+			nunArmil = Konstantj.PLEJ_MISILJ-1;
+		if(armilar[nunArmil]<1)
+			mlpliNunArmiln();
+	}
+	private void mlpliArmilarn() {
+		armilar[nunArmil]--;
+		if(armilar[nunArmil]<1)
+			pliNunArmiln();
+	}
+	private void pliNunKampfortn() {
+		if(++nunKampfort>=Konstantj.PLEJ_KAMPFORTJ)
+			nunKampfort = 0;
+		if(havasKampfortjn())//TODO cxi tiu metodo povas esti plie efika
+			if(armilar[nunArmil]<1)
+				pliNunKampfortn();
+	}
+
+	private void mlpliNunKampfortn() {
+		if(nunKampfort>0)
+			nunKampfort--;
+		else
+			nunKampfort = Konstantj.PLEJ_KAMPFORTJ-1;
+		if(armilar[nunArmil]<1)
+			mlpliNunKampfortn();
+	}
+	private void mlpliKampfortn() {
+		if(kampfortnombrj[nunKampfort] == 0)
+			return;
+		kampfortnombrj[nunKampfort]--;
+		
+		nunuzitKampfort = Kampfortregistril.kampfortjn(nunKampfort);
+		if(kampfortnombrj[nunKampfort]<1)
+			pliNunKampfortn();
+	}
+	private boolean havasKampfortjn() {
+		for(int i = 0; i < Konstantj.PLEJ_KAMPFORTJ; i++)
+			if(kampfortnombrj[i]>0)
+				return true;
+		return false;
+	}
+	public int[] armilarn() {
+		return armilar;
+	}
+	public int[] kampfortnombrjn() {
+		return kampfortnombrj;
+	}
+	public void pliMonn(final double mono) {
+		mon += mono;
+		punktj += mono;
+		if(mon<0)
+			mon = 0;
 	}
 	@Override
 	public void resetVivn() {
 		super.resetVivn();
 		plejpotenc = (int) viv;
+		definigad();
+		nunuzitKampfort = null;
 	}
 	@Override
-	public void mlgajnVivn(final double vivo) {
-		super.mlgajnVivn(vivo);
-		if(plejpotenc>viv) {
-			plejpotenc = (int) viv;
-			if(potenc>plejpotenc)
-				potenc = plejpotenc;
-		}
+	public void mlgajnVivn(final double vivo, final int plejdamagx, final int nunLudant) {
+		super.mlgajnVivn(vivo, plejdamagx, nunLudant);
+
+		plejpotenc = (int) viv;
+		if(potenc>viv)
+			potenc = plejpotenc;
+		
+	}
+	@Override
+	public void mlpliVivn(final double vivo) {
+		if(nunuzitKampfort!=null) {
+			nunuzitKampfort.mlpliVivn(vivo);
+			
+			if(nunuzitKampfort.viv<0) {
+				viv += nunuzitKampfort.viv;
+				nunuzitKampfort = null;
+			}
+		} else
+			super.mlpliVivn(vivo);
 	}
 	@Override
 	public void setYn(final double yo) {
-		super.setYn(yo);
+		super.setYn(yo - offsetLudantY);
+		brulazh -= (yn() > yo? yn() - yo : yo - yn())*eficientBrulazh;
 		qmovant = true;
 		anim();
 	}
+	@Override
+	public void setXn(final double xo) {
+		super.setXn(xo);
+		qmovant = true;
+		anim();
+	}
+	public String nomn() {
+		return nom;
+	}
+	public int offsetLudantXn() {
+		return (int) offsetLudantX;
+	}
+	public Color kolorn() {
+		return kolor;
+	}
+	public Color dukolorn() {
+		return dukolor;
+	}
+	@Override
+	public void definigad() {
+		super.definigad();
+		Random r = new Random();
+		setXn(r.nextInt((int) ((QefObjektj.map.yn().length/Vicperant.plejLudant)*0.75)) +
+				(QefObjektj.map.yn().length/Vicperant.plejLudant)*id +
+				(QefObjektj.map.yn().length/Vicperant.plejLudant)*0.12);
+		setYn(QefObjektj.map.yn((int) xn()));
+		
+		nunangul = r.nextInt(ANTAWDEFINITPLEJANGUL-90)+90;
+		potenc = plejpotenc/2;
+		nunBild = statn((int) xn());
+		brulazh = plejbrulazh;
+		
+		anim();
+	}
+	@Override
+	public Rectangle nunposiciare() {
+		if(nunuzitKampfort==null) {
+			final int o = (int) (offsetLudantX<0? -offsetLudantX: offsetLudantX);
+			final int od = (int) (offsetLudantX<0? -1: 1);
+			return new Rectangle((int) (xn() - (largxVivazhKolici>>1) + Math.sqrt(o)*od), (int) (yn() + (altVivazh>>1)), largxVivazhKolici, altVivazhKolici);
+		} else
+			return new Rectangle((int) (xn() - (nunuzitKampfort.largxVivazh>>1) + offsetLudantX), (int) (yn() +
+					largxVivazhKolici - (nunuzitKampfort.largxVivazh>>1)), nunuzitKampfort.largxVivazh,
+					nunuzitKampfort.largxVivazh);
+	}
+
+	public void forigKampfortn() {
+		nunuzitKampfort = null;
+	}
+	public Kampfort nunuzitKampfortn() {
+		return nunuzitKampfort;
+	}
+
+	public int reviviln() {
+		return revivil;
+	}
+	public int brulazhn() {
+		return brulazh;
+	}
+	public int nunKampfortn() {
+		return nunKampfort;
+	}
+
+	public int plejvivn() {
+		return plejviv;
+	}
+	public int movecn() {
+		return movec;
+	}
+	@Override
+	public void writeExternal(ObjectOutput o) throws IOException {
+		o.writeObject(nomn());
+		o.writeDouble(monn());
+		o.writeDouble(punktj);
+		o.writeDouble(resistencn());
+		o.writeDouble(eficientBrulazh);
+		
+		o.writeInt(teleirazhj);
+		o.writeInt(plejvivn());
+		o.writeInt(reviviln());
+		o.writeInt(plejbrulazh);
+		o.writeInt(movec);
+		
+		o.writeObject(armilarn());
+		o.writeObject(kampfortnombrjn());
+		
+		o.writeObject(kolorn());
+		o.writeObject(dukolorn());
+	}
+	@Override
+	public void readExternal(ObjectInput o) throws IOException, ClassNotFoundException {
+		nom = (String) o.readObject();
+		mon = o.readDouble();
+		punktj = o.readDouble();
+		resistenc = o.readDouble();
+		eficientBrulazh = o.readDouble();
+		
+
+		teleirazhj = o.readInt();
+		plejviv = o.readInt();
+		revivil = o.readInt();
+		plejbrulazh = o.readInt();
+		movec = o.readInt();
+
+		armilar = (int[]) o.readObject();
+		kampfortnombrj = (int[]) o.readObject();
+
+		kolor = (Color) o.readObject();
+		dukolor = (Color) o.readObject();
+		
+		definigad();
+
+		pliNunArmiln();
+		mlpliNunArmiln();
+		
+		ordenBildj(Konstantj.canonAngulnombr, Konstantj.armil);
+		ordenBildj(1, new SpriteFoli(Konstantj.ITENER_LUDANT + 0 + ".png",
+				Transparency.TRANSLUCENT, 24, 24, kolor).spritejn());
+	}
+
+	public BufferedImage nunbildn() {
+		return bildj[nunBild];
+	}
 	
+	public BufferedImage nuncanonbildn() {
+		return canonBildj[nunangul + 90];
+	}
+	public double punktjn() {
+		return punktj;
+	}
+	public void aqetMisiln(final int elektazh) {
+		if(mon>=Konstantj.armilarprecj[elektazh]) {
+			mon -= Konstantj.armilarprecj[elektazh];
+			armilar[elektazh]++;
+		}
+	}
+	public void aqetTankazhn(final int elektazh) {
+		if(Konstantj.tankazhprecj[elektazh]>mon)
+			return;
+		switch(elektazh) {
+			case 0:
+				plejbrulazh += aqetbrulazh;
+				break;
+			case 1:
+				revivil++;
+				break;
+			case 2:
+				teleirazhj++;
+				break;
+			case 4:
+				plejviv += aqetplejviv ;
+				break;
+			case 5:
+				resistenc += aqetresistenc;
+				break;
+			case 6:
+				eficientBrulazh -= aqeteficientBrulazh;
+				break;
+			case 7:
+				movec -= aqetmovec;
+				break;
+			case 3:
+				break;
+			case 8:
+			case 9:
+			case 10:
+			case 11:
+				kampfortnombrj[elektazh - 8]++;
+				break;
+		}
+		mon -= Konstantj.tankazhprecj[elektazh];
+	}
 }

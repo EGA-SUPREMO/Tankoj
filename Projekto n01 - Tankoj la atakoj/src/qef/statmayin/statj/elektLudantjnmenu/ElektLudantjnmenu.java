@@ -3,21 +3,27 @@ package qef.statmayin.statj.elektLudantjnmenu;
 import qef.Konstantj;
 import qef.ilj.DebugDesegn;
 import qef.statmayin.Statlud;
+import qef.statmayin.statj.komencLudMenu.KomencLudMenu;
 import qef.uzantinterfac.Buton;
 import qef.uzantinterfac.Label;
 import qef.uzantinterfac.Panel;
 
 public class ElektLudantjnmenu implements Statlud {
 	
+	private final KomencLudMenu menu;
+	
 	private Panel qefpanel;
-	private Panel[] ludantj;
+	private Buton[] ludantj;
 	
 	private Label ludant;
+	private Label pli;
 	
 	private Buton dawrigi, eliri;
 	private int stat = 6, temp = 0;
 	
-	public ElektLudantjnmenu() {
+	public ElektLudantjnmenu(final KomencLudMenu menuo) {
+		menu = menuo;
+		
 		qefpanel = new Panel(Konstantj.duonLudLargx>>1, Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2,
 				Konstantj.duonLudLargx, Konstantj.ludAlt - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*4, 4, "");
 		
@@ -43,24 +49,29 @@ public class ElektLudantjnmenu implements Statlud {
 		ludant = new Label(eliri.xn(), qefpanel.yn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*2 + 2, 5,
 				Konstantj.KUTIM_FONT.deriveFont(Konstantj.FONTGRANDEC), "Jugadores:");
 		
-		ludantj = new Panel[Konstantj.LUDANTPLEJNOMBR];
-
+		ludantj = new Buton[Konstantj.LUDANTPLEJNOMBR];
+		
 		final int largxPanel = (qefpanel.largxn() - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*5)/2 - 3;
 		final int altPanel = (dawrigi.yn() - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*3 -
 				(ludant.yn() + ludant.altn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN))/3;
+
+		pli = new Label(0, 0, 0, Konstantj.KUTIM_FONT_BUTON.deriveFont(72f), " +");
+		
 		final int vicj = 2;
 		b:
-		for(int y = 0; y < 4; y++)
+		for(int y = 0; ; y++)
 			for(int x = 0; x < vicj; x++) {
 				if(x + y*vicj>ludantj.length-1)
 					break b;
-				ludantj[x + y*vicj] = new Panel(
+				ludantj[x + y*vicj] = new Buton(
 						ludant.xn() + (largxPanel + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN)*x,
 						ludant.yn() + ludant.altn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN +
 						y*(Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN + altPanel),
-						largxPanel, altPanel, 0, "");
+						largxPanel, altPanel, 0, 2, -1, "");
+				ludantj[x + y*vicj].aldonCentritKomponantn(pli.bildn(), 0, -4, 0);
+				ludantj[x + y*vicj].aldonCentritKomponantn(pli.bildn(), 0, -4, 1);
 			}
-		
+			
 		qefpanel.aldonKomponantn(ludant, 0);
 		
 	}
@@ -75,8 +86,37 @@ public class ElektLudantjnmenu implements Statlud {
 		dawrigi.gxisdatig();
 		eliri.gxisdatig();
 		ludant.gxisdatig();
-		for(int i = 0; i < ludantj.length; i++)
-			ludantj[i].gxisdatig();
+		gxisdatigLudantjn();
+	}
+	
+	private void gxisdatigLudantjn() {
+		final int altPanel =
+				(dawrigi.yn() - Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN*(int) (menu.nombrLudantn()/(float)2 + 0.99f) -
+				(ludant.yn() + ludant.altn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN))/
+				(int) (menu.nombrLudantn()/(float) 2 + 0.99f);
+		
+		if(altPanel==ludantj[0].altn()) {
+			for(int i = 0; i < menu.nombrLudantn(); i++)
+				ludantj[i].gxisdatig();
+			
+			return;
+		}
+		
+		final int vicj = 2;
+		b:
+		for(int y = 0; ; y++)
+			for(int x = 0; x < vicj; x++) {
+				if(x + y*vicj>Konstantj.LUDANTPLEJNOMBR - 1)
+					break b;
+				ludantj[x + y*vicj].setYn(ludant.yn() + ludant.altn() + Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN +
+						y*(Konstantj.KOMENC_MENU_VERTIKAL_MARGXEN + altPanel));
+				ludantj[x + y*vicj].setAltn(altPanel);
+				ludantj[x + y*vicj].gxisdatig();
+				ludantj[x + y*vicj].aldonCentritKomponantn(pli.bildn(), 0, -4, 0);
+				ludantj[x + y*vicj].aldonCentritKomponantn(pli.bildn(), 0, -4, 1);
+				
+			}
+		
 	}
 
 	@Override
@@ -85,7 +125,7 @@ public class ElektLudantjnmenu implements Statlud {
 		qefpanel.desegn();
 		dawrigi.desegn();
 		eliri.desegn();
-		for(int i = 0; i < ludantj.length; i++)
+		for(int i = 0; i < menu.nombrLudantn(); i++)
 			ludantj[i].desegn();
 	}
 

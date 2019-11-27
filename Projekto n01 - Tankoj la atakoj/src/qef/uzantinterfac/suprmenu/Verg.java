@@ -7,14 +7,18 @@ import qef.ilj.DebugDesegn;
 import qef.ilj.Vicperant;
 
 public class Verg {
-
+	
+	private static final int VERTIKAL_MARGXEN = 4;
 	private int MEZUR_VERTIKAL = 4;
-	private final static int GRANDEC_VERTIKAL = 4;
+	private final static int UNUGRANDEC_VERTIKAL = 11;
+	private final static int DUGRANDEC_VERTIKAL = 1;
 	private Color kolor, darkKolor;
 //	private static int id = 0;
-	private static int largx = 100;
+	private static int largx = 180;
 	private Point posici;
 	private Text text;
+	
+	int i = 0, pleji = 0;
 	
 	public Verg(final Color kolor, final Text text) {
 		
@@ -22,10 +26,19 @@ public class Verg {
 		this.darkKolor = kolor.darker();
 		this.text = text;
 		
-		MEZUR_VERTIKAL = GRANDEC_VERTIKAL * (text.ordinal() * 4);
-		posici = new Point(Submenu.areXn() + 35, Submenu.areYn() + MEZUR_VERTIKAL + GRANDEC_VERTIKAL);
+		MEZUR_VERTIKAL = (UNUGRANDEC_VERTIKAL + VERTIKAL_MARGXEN)*text.ordinal();
+		posici = new Point(Suprmenu.areXn() + 35, Suprmenu.areYn() + MEZUR_VERTIKAL + UNUGRANDEC_VERTIKAL + DUGRANDEC_VERTIKAL);
 		//setPosicin();
-		
+		if(text.ordinal()==0) {
+			i = (int) Vicperant.nunludantn().vivn();
+			pleji = Vicperant.nunludantn().plejvivn();
+		} else if(text.ordinal()==1) {
+			i = Vicperant.nunludantn().nunanguln();
+			pleji = 360;
+		} else if(text.ordinal()==2) {
+			i = Vicperant.nunludantn().potenc;
+			pleji = Vicperant.nunludantn().plejpotenc;
+		}
 	}
 	
 	public void desegn() {
@@ -34,54 +47,32 @@ public class Verg {
 	}
 	
 	private void desegnTextn() {
-		DebugDesegn.desegnString(text.name(), posici.x - 19, posici.y + 8);
-		if(text.name()=="ATK")
-			DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].potenc, posici.x + 102, posici.y + 8);
-		else if(text.name()=="ANG")
-			DebugDesegn.desegnString("" + Vicperant.ludantj[Vicperant.nunLudantn()].nunanguln(), posici.x + 102, posici.y + 8);
-		else if(text.name()=="VIV")
-			DebugDesegn.desegnString(String.format("%.2f", Vicperant.ludantj[Vicperant.nunLudantn()].vivn()), posici.x + 102, posici.y + 8);
-		else
-			DebugDesegn.desegnString("" + text.kvantn(), posici.x + 102, posici.y + 8);
+		DebugDesegn.desegnString(text.name(), posici.x - 24, posici.y + 8);
+		DebugDesegn.desegnString("" + i, posici.x + largx + 2, posici.y + 8);
 	}
 	
 	private void desegnVergn() {
-
-		if(text.name()=="ATK") {
-			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].potenc * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
-		
-			posici.y += GRANDEC_VERTIKAL;
-		
-			DebugDesegn.desegnRectangle(posici.x, posici.y, Vicperant.ludantj[Vicperant.nunLudantn()].potenc * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
-		
-			posici.y -= GRANDEC_VERTIKAL;
-		} else if(text.name()=="ANG") {
-			final int angul = Vicperant.ludantj[Vicperant.nunLudantn()].nunanguln() - Vicperant.ludantj[Vicperant.nunLudantn()].mlplejangul;
-			DebugDesegn.desegnRectangle(posici.x, posici.y, angul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
-			
-			posici.y += GRANDEC_VERTIKAL;
-			
-			DebugDesegn.desegnRectangle(posici.x, posici.y, angul * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
-
-			posici.y -= GRANDEC_VERTIKAL;
-		} else if(text.name()=="VIV") {
-			DebugDesegn.desegnRectangle(posici.x, posici.y, (int)(Vicperant.ludantj[Vicperant.nunLudantn()].vivn() * largx / text.plejkvantn()), GRANDEC_VERTIKAL, kolor);
-			
-			posici.y += GRANDEC_VERTIKAL;
-			
-			DebugDesegn.desegnRectangle(posici.x, posici.y, (int) (Vicperant.ludantj[Vicperant.nunLudantn()].vivn() * largx / text.plejkvantn()), GRANDEC_VERTIKAL, darkKolor);
-
-			posici.y -= GRANDEC_VERTIKAL;
-		} else {
-			DebugDesegn.desegnRectangle(posici.x, posici.y, text.kvantn() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, kolor);
-			
-			posici.y += GRANDEC_VERTIKAL;
-			
-			DebugDesegn.desegnRectangle(posici.x, posici.y, text.kvantn() * largx / text.plejkvantn(), GRANDEC_VERTIKAL, darkKolor);
-			
-			posici.y -= GRANDEC_VERTIKAL;
+		if(text.ordinal()==0) {
+			i = (int) Vicperant.nunludantn().vivn();
+			pleji = Vicperant.nunludantn().plejvivn();
+		} else if(text.ordinal()==1) {
+			i = Vicperant.nunludantn().nunanguln();
+			if(i < 0)
+				i = 360 - i;
+			pleji = 360;
+		} else if(text.ordinal()==2) {
+			i = Vicperant.nunludantn().potenc;
+			pleji = 100;
 		}
+		try {
+			DebugDesegn.desegnRectangle(posici.x, posici.y, i*largx/pleji, UNUGRANDEC_VERTIKAL, kolor);
+			posici.y += UNUGRANDEC_VERTIKAL;
 		
+			DebugDesegn.desegnRectangle(posici.x, posici.y, i*largx/pleji, DUGRANDEC_VERTIKAL, darkKolor);
+			posici.y -= UNUGRANDEC_VERTIKAL;
+		} catch(Exception e) {
+			
+		}
 	}
 	/*
 	private void setPosicin() {

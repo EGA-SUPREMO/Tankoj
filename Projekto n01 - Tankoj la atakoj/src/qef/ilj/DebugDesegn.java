@@ -98,18 +98,16 @@ public class DebugDesegn {
 	public static void desegnBildn(final BufferedImage bild, final int xo, final int y) {
 		yangxGrafikn(false);
 		if(xo + bild.getWidth() > QefObjektj.map.yn().length) {
-			objektjDesegnita++;
 			g.drawImage(bild, xo - QefObjektj.map.yn().length, y, null);
 		}else {
-			objektjDesegnita++;
 			g.drawImage(bild, xo + QefObjektj.map.yn().length, y, null);
 		}
 		
+		objektjDesegnita++;
 		if(xo < QefObjektj.map.yn().length) {
 			g.drawImage(bild, xo, y, null);
 			objektjDesegnita++;
 		}
-
 		yangxGrafikn();
 	}
 	public static void desegnLine(final int x1, final int y1, final int x2, final int y2) {
@@ -144,7 +142,18 @@ public class DebugDesegn {
 		if(x < QefObjektj.map.yn().length)
 			g.fillOval(x, y, largx, alt);
 	}
-	
+	public static void desegnCirkl(final int x, final int y, final int largx, final Color kolor) {
+		objektjDesegnita++;
+		g.setColor(kolor);
+		if(x + largx > QefObjektj.map.yn().length)
+			g.drawOval(x - QefObjektj.map.yn().length, y, largx, largx);
+		else
+			g.drawOval(x + QefObjektj.map.yn().length, y, largx, largx);
+		
+		if(x < QefObjektj.map.yn().length)
+			g.drawOval(x, y, largx, largx);
+		
+	}
 	public static void desegnKolicijn() {
 		for(int i = 0; i < Vicperant.ludantj[Vicperant.nunLudantn()].LIMJN().length; i++)
 			desegnRectangle(Vicperant.ludantj[Vicperant.nunLudantn()].LIMJN()[i]);

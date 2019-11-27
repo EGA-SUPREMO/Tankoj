@@ -4,34 +4,30 @@ import java.awt.Rectangle;
 
 import qef.QefObjektj;
 import qef.estazhj.Estazh;
-import qef.son.Son;
+//import qef.son.Son;
+import qef.ilj.Vicperant;
 
 public abstract class Vivazh implements Estazh {
-	/*
-	 * 
-	 * 0:supre aux sube
-	 * 1:maldekstre
-	 * 2:dekstre
-	 * 
-	 */
+	
 	private double x, y;
 	protected final Rectangle[] LIMJ;
 	protected int nunBild;
-	protected int brulazh;
 
-	protected static final int KVANTSTATJ = 16;
-	protected static final int DUONKVANTSTATJ = KVANTSTATJ/2;
-	protected static final int rotaciplejNombr = KVANTSTATJ*2;
+	protected static final int KVANTSTATJ = 64;
+	protected static final int rotaciplejNombr = 128*2;
+	protected static final int duonrotaciplejNombr = rotaciplejNombr/2;
 	protected static final double ROTACI = 2*Math.PI/rotaciplejNombr;
-	protected double rapidecX, rapidecY;
+	public double rapidecX, rapidecY;
 	
 	protected int largxVivazh, altVivazh;
-	protected double viv, plejviv;
+	protected double viv;
+	int plejviv;
 	protected int damagx;
 	
-	protected Son damagxit;
+	//protected Son damagxit;
 	protected long longDamagxit, venontDamagxit;
 	protected boolean qmovant = false;
+	protected double resistenc = 1;
 
 	public Vivazh(final int limj, final int damagxo, final String itenerSon) {
 		
@@ -39,16 +35,16 @@ public abstract class Vivazh implements Estazh {
 		this.altVivazh = 32;
 		this.nunBild = 0;
 		this.rapidecX = 1;
-		brulazh = 20000;
 		x = 0;
 		y = 0;
-		viv = 100;
-		plejviv = viv;
+		plejviv = 100;
+		viv = plejviv;
 		damagx = damagxo;
+		definigad();
 		LIMJ = new Rectangle[limj];
 
-		damagxit = new Son(itenerSon, 0);
-		longDamagxit = damagxit.longsonn();
+		//damagxit = new Son(itenerSon, 0);
+		//longDamagxit = damagxit.longsonn();
 		
 	}
 	
@@ -62,9 +58,10 @@ public abstract class Vivazh implements Estazh {
 		this.viv = plejviv;
 		this.plejviv = plejviv;
 		LIMJ = limj;
-
-		damagxit = new Son(itenerSon, 0);
-		longDamagxit = damagxit.longsonn();
+		
+		definigad();
+		//damagxit = new Son(itenerSon, 0);
+		//longDamagxit = damagxit.longsonn();
 	}
 	
 	protected void anim() {
@@ -150,30 +147,28 @@ public abstract class Vivazh implements Estazh {
 	public double yn() {
 		return y;
 	}
+	public static void definigadj() {
+	}
 	
-	public void pliX() {
+	public void pliXn() {
 		x += rapidecX;
 		if(x<QefObjektj.map.yn().length) {
 		} else {
 			x = rapidecX;
 		}
-		brulazh -= rapidecX;
 	}
-	public void pliY() {
+	public void pliYn() {
 		y += rapidecY;
-		brulazh -= rapidecY;
 	}
-	public void mlpliX() {
+	public void mlpliXn() {
 		if(x>0) {
 			x -= rapidecX;
 		} else {
 			x = QefObjektj.map.yn().length - rapidecX;
 		}
-		brulazh -= rapidecX;
 	}
-	public void mlpliY() {
+	public void mlpliYn() {
 		y -= rapidecY;
-		brulazh -= rapidecY;
 	}
 	public void setXn(final double xo) {
 		if(xo<0) {
@@ -198,12 +193,43 @@ public abstract class Vivazh implements Estazh {
 		return new Rectangle((int) x, (int) y, largxVivazh, altVivazh);
 	}
 	
+	public void definigad() {
+	}
 	public void resetVivn() {
 		viv = plejviv;
 	}
-	public void mlgajnVivn(final double d) {
-        if ((viv = viv - d) < 0)
-            viv = 0;
+	public void setPlejvivn(final int plejvivo) {
+		plejviv = plejvivo;
+	}
+	public int plejvivn() {
+		return plejviv;
+	}
+	public void mlgajnVivn(double d, final int plejdamagx, final int nunLudant) {
+		if(viv<=0d) {
+			return;
+		}
+		mlpliVivn(d);
+		
+        if (viv < 0) {
+    		if(Vicperant.ludantj[nunLudant]!=this)
+    			d += -Math.sqrt(-viv)*4 - plejviv;
+        	viv = 0;
+        	System.out.println(viv + " - " + d + " - " + Vicperant.ludantj[nunLudant].monn() + " - " +
+        			Vicperant.ludantj[nunLudant].nomn());
+        }
+        
+		final double potenc = d/plejdamagx;
+		if(Vicperant.ludantj[nunLudant]==this)
+			Vicperant.ludantj[nunLudant].pliMonn((-Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx)*2);
+		else
+			Vicperant.ludantj[nunLudant].pliMonn((Math.pow(potenc*plejdamagx, 2)/(plejdamagx*plejdamagx)*plejdamagx)*2);
+		Vicperant.qaktivLudant();
 	}
 	
+	public void mlpliVivn(final double vivo) {
+		viv -= vivo/resistenc;
+	}
+	public double resistencn() {
+		return resistenc;
+	}
 }

@@ -21,12 +21,12 @@ public class DebugDatum {
 		
 		Iterator<String> it = datumjToDesegn.iterator();
 		
-		int counter = 3;//jam estas desegnita la fps kaj aps
+		int counter = 9;//jam estas desegnita la fps kaj aps
 		
 		while(it.hasNext()) {
 			counter++;
 			
-			DebugDesegn.desegnString(it.next(), 10, counter * ALT_LITER, Color.BLUE);
+			DebugDesegn.desegnString(it.next(), 10, counter*ALT_LITER + 3, Color.BLUE);
 		}
 		
 	}

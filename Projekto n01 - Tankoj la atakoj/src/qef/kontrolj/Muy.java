@@ -18,7 +18,7 @@ import qef.ilj.YargxilAzhj;
 
 public class Muy extends MouseAdapter {//Musxo
 	
-	private final Cursor kursor;
+	private Cursor kursor;
 	private Point posici, reskalitPosici;
 	private Canvas canvas;
 
@@ -32,10 +32,11 @@ public class Muy extends MouseAdapter {//Musxo
 		
 		Toolkit i = Toolkit.getDefaultToolkit();
 		
-		BufferedImage ikon = YargxilAzhj.yargxBildn("/icons/cursor.png", Transparency.TRANSLUCENT);
+		BufferedImage ikon = YargxilAzhj.yargxBildn(Konstantj.ITENER_IKON + "cursor_1.png",
+				Transparency.TRANSLUCENT);
 		
 		kursor = i.createCustomCursor(ikon, new Point(0, 0), "Kursoro defauxlta");
-
+		
 		qclick = false;
 		qclick2 = false;
 		this.canvas = canvas;
@@ -59,7 +60,15 @@ public class Muy extends MouseAdapter {//Musxo
 		posici.setLocation(komencPosici);
 		reskalitPosici.setLocation(komencPosici.x/Konstantj.faktorX, komencPosici.y/Konstantj.faktorY);
 	}
-	
+	public void yangxIkon(final int j) {
+		Toolkit i = Toolkit.getDefaultToolkit();
+		
+		BufferedImage ikon = YargxilAzhj.yargxBildn(Konstantj.ITENER_IKON + "cursor_" + j + ".png",
+				Transparency.TRANSLUCENT);
+		
+		kursor = i.createCustomCursor(ikon, new Point(0, 0), "Kursoro defauxlta");
+		
+	}
 	public Point posicin() {
 		return posici;
 	}

@@ -4,8 +4,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
 import qef.Konstantj;
-import qef.estazhj.vivazhj.Ludant;
+import qef.QefObjektj;
+import qef.ilj.Ludantperant;
 import qef.ilj.Vicperant;
+import qef.ilj.YargxilAzhj;
 
 public class Klavar extends KeyAdapter {
 
@@ -16,42 +18,53 @@ public class Klavar extends KeyAdapter {
 	public boolean kuri = false;
 	public boolean debug = false;
 	public boolean aktivInventari = false;
-	public boolean qkolekt = false;
+	public boolean aqeti = false;
 	public boolean qatak = false;
 	public boolean subiPotenc = false;
 	public boolean supriPotenc = false;
 	public boolean subiArmil = false;
 	public boolean supriArmil = false;
+	public boolean subiKampfort = false;
+	public boolean supriKampfort = false;
+	public boolean uziKampfort = false;
+	public boolean teleirazh = false;
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 			case Konstantj.SUPR:
-				supr.puls();
+				if(Vicperant.nunMisiln()==null && (QefObjektj.statp.qStatludn() || QefObjektj.statp.qStatButikMenun()))
+					supr.puls();
 				break;
 			case Konstantj.SUB:
-				sub.puls();
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn() || QefObjektj.statp.qStatButikMenun())
+					sub.puls();
 				break;
 			case Konstantj.DEXTR:
-				dextr.puls();
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn() || QefObjektj.statp.qStatButikMenun())
+					dextr.puls();
 				break;
 			case Konstantj.MLDEXTR:
-				mldextr.puls();
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn() || QefObjektj.statp.qStatButikMenun())
+					mldextr.puls();
 				break;
-			case Konstantj.KURI:
+			case Konstantj.KURI_KAJ_TELIR:
 				kuri = true;
+				
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn()) {
+					//QefObjektj.superfic.muyn().yangxIkon(4);
+					teleirazh = true;
+				}
+				
+				Konstantj.ANGULRAPIDEC = 3;
 				break;
 			case Konstantj.SUBIPOTENC:
-				subiPotenc = true;
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					subiPotenc = true;
 				break;
 			case Konstantj.SUPRIPOTENC:
-				supriPotenc = true;
-				break;
-			case Konstantj.SUBIARMIL:
-				subiArmil = true;
-				break;
-			case Konstantj.SUPRIARMIL:
-				supriArmil = true;
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					supriPotenc = true;
 				break;
 			case Konstantj.DEBUG:
 				debug = !debug;
@@ -59,11 +72,9 @@ public class Klavar extends KeyAdapter {
 			case Konstantj.AKTIV_INVENTARI:
 				aktivInventari = !aktivInventari;
 				break;
-			case Konstantj.QKOLEKT:
-				qkolekt = true;
-				break;
 			case Konstantj.ATAKI:
-				qatak = true;
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					qatak = true;
 				break;
 		}
 	}
@@ -90,33 +101,61 @@ public class Klavar extends KeyAdapter {
 				supriPotenc = false;
 				break;
 			case Konstantj.SUBIARMIL:
-				subiArmil = false;
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					subiArmil = true;
 				break;
 			case Konstantj.SUPRIARMIL:
-				supriArmil = false;
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					supriArmil = true;
 				break;
-			case Konstantj.KURI:
+			case Konstantj.KURI_KAJ_TELIR:
+				Konstantj.ANGULRAPIDEC = 1;
+				for(int i = 0; i < Vicperant.ludantj.length; i++)
+					Vicperant.ludantj[i].rapidecX = 1;
 				kuri = false;
+				teleirazh = false;
 				break;
 			case Konstantj.ELIRI:
 				elir();
 				break;
-			case Konstantj.REKOMENCI:
-				restorig();
-				Vicperant.ludantj[Vicperant.nunLudantn()].setXn(480);
-				Vicperant.ludantj[Vicperant.nunLudantn()].setYn(280);
+			case Konstantj.REVIVIL:
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					Vicperant.nunludantn().uzReviviln();
 				break;
-			case Konstantj.QKOLEKT:
-				qkolekt = false;
+			case Konstantj.TELEIR:
+				if(teleirazh) {
+					teleirazh = false;
+					Ludantperant.teleir();
+				}
+				break;
+			case Konstantj.AQETI:
+				aqeti = true;
+				break;
+			case Konstantj.UZIKAMPFORT:
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn() &&
+						Vicperant.nunludantn().nunuzitKampfortn()==null)
+					uziKampfort = true;
+				break;
+			case Konstantj.FORIGIKAMPFORT:
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					Vicperant.nunludantn().forigKampfortn();
+				break;
+			case Konstantj.SUBIKAMPFORT:
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					subiKampfort = true;
+				break;
+			case Konstantj.SUPRIKAMPFORT:
+				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())
+					supriKampfort = true;
+				break;
+			case Konstantj.GRAFIK:
+				Konstantj.altGrafik = !Konstantj.altGrafik;
 				break;
 		}
 	}
-	public void restorig() {
-		for(Ludant l: Vicperant.ludantj)
-			l.resetVivn();;
-	}
 	
 	public void elir() {
+		YargxilAzhj.skribLudantn(1 + "");
 		System.exit(0);
 	}
 	

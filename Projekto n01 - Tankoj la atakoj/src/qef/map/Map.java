@@ -1,36 +1,41 @@
 package qef.map;
 
+import java.awt.Color;
+import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
-import org.json.simple.parser.JSONParser;
+//import org.json.simple.JSONObject;
+//import org.json.simple.JSONArray;
+//import org.json.simple.parser.ParseException;
+//import org.json.simple.parser.JSONParser;
 
 import qef.Konstantj;
 import qef.QefObjektj;
 import qef.estazhj.vivazhj.Vivazh;
 import qef.ilj.Bildperant;
-import qef.ilj.BruGeneril;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Kvantperant;
 import qef.ilj.Vicperant;
+import qef.ilj.YargxilAzhj;
 import qef.kontrolj.Kontrolperant;
+import qef.map.mes.Mes;
+import qef.map.urb.Urb;
 
 public class Map {
 	
 	private Random r;
 	private int rangoX, rangoY;
+	@SuppressWarnings("unused")
 	private int limiteX, limiteY;
 	private int tileeMaplargx;
 	private int tileeMapalt;
 	
 	public int spec;
-	public double durec;
+	public double mldurec;
 	private double vent;
-	private int xx;
+	public int nunbiom;
 	
 	private static final int xAxenVideblTilej = (int) ((float)Konstantj.ludLargx/Konstantj.SPRITEFLANK + 2.99);
 	private static final int yAxenVideblTilej = (int) ((float)Konstantj.ludAlt/Konstantj.SPRITEFLANK + 0.99);
@@ -40,7 +45,7 @@ public class Map {
 	public int komencpunktX;
 	public int komencpunktY;
 	
-	private ArrayList<Spritetavol> spritetavolj;
+	//private ArrayList<Spritetavol> spritetavolj;
 	
 	private BufferedImage[] map;
 	
@@ -51,9 +56,11 @@ public class Map {
 	
 	private boolean qmodifit = true;
 	
-	public Map(final int itener) {
+	public Map(final int nunbiomo) {
+		nunbiom = nunbiomo;
+		definigBiomj();
 		r = new Random();
-		vent = 0.1d + r.nextDouble()*r.nextDouble()*0.8d*2;
+		vent = 0.2d + r.nextDouble()*r.nextDouble()*0.08d;
 		if(r.nextBoolean())
 			vent = -vent;
 		rangoX = 0;
@@ -62,16 +69,18 @@ public class Map {
 		limiteY = 0;
 		
 		vivazhar = new ArrayList<>();
-		spritetavolj = new ArrayList<>();
+		//spritetavolj = new ArrayList<>();
 		
-		int[] frequencies = {1, 1, 2, 3, 4, 8};
-		float[] amplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
-		y = BruGeneril.generMapn(frequencies, amplitudes);
+		
+		y = Konstantj.biomj[nunbiom].yn();
 		offsetMap = 400;
 		altMap = offsetMap + 155;
-		map = new BufferedImage[2];//TODO NE SKALAS DE LA GRANDECO DE LA LUDO
-		/*String enhav = YargxilAzhj.yargxTextn(Konstantj.ITENER_MAP + itener + ".tmx");
+		map = new BufferedImage[Konstantj.ludLargx/Konstantj.SPRITELARGX];//TODO ALJXETAS ERAROJ SE LA NOMBRO NE ...
 		
+		
+		mldurec = Konstantj.biomj[nunbiom].mldurec;
+		
+		/*
 		final JSONObject globalJSON = JSONObjektn(enhav);
 		tileeMaplargx = intAlJSONn(globalJSON, "width");
 		tileeMapalt = intAlJSONn(globalJSON, "height");
@@ -89,7 +98,7 @@ public class Map {
 		for (int i = 0; i < tavolj.size(); i++) {
 			JSONObject tavoldatumj = JSONObjektn(tavolj.get(i).toString());
 
-//			int anchoCapa = obtenerIntDesdeJSON(datosCapa, "width");TODO MI PETEGAS VIN(MIN) KE "FIX"-U CXI TIO
+//			int anchoCapa = obtenerIntDesdeJSON(datosCapa, "width");
 //			int altoCapa = obtenerIntDesdeJSON(datosCapa, "height");
 			int tavollargx = tileeMaplargx;
 			int tavolalt = tileeMapalt;
@@ -227,6 +236,7 @@ public class Map {
 		gxisdatigRangojn();
 		gxisdatigVivazhjn();
 		gxisdatigAtakjn();
+		Vent.forigBrun(y);
 	}
 	private void gxisdatigRangojn() {
 		if(Vicperant.ludantj[Vicperant.nunLudantn()].xn()/Konstantj.SPRITEFLANK-mldextrenVideblTilej>=0)
@@ -271,7 +281,7 @@ public class Map {
 			DebugDesegn.desegnBildn(map[i], (int) Kvantperant.koordenadXalekranPosicin(i*Konstantj.SPRITELARGX), 0);
 		DebugDesegn.yangxGrafikn();
 	}
-	
+	/*
 	private JSONObject JSONObjektn(final String JSONkod) {
 		JSONParser lector = new JSONParser();
 		JSONObject JSONObjekt = null;
@@ -302,9 +312,9 @@ public class Map {
 	
 	private int intAlJSONn(final JSONObject objektJSON, final String clave) {
 		return Integer.parseInt(objektJSON.get(clave).toString());
-	}
+	}*/
 	
-	public double[] yn() {//TODO FORIRGU CXI TIUN	 METODON
+	public double[] yn() {//TODO FORIRGU CXI TIUN METODON
 		return y;
 	}
 	public double yn(int xo) {
@@ -339,7 +349,7 @@ public class Map {
 		return vent;
 	}
 	public double venontVentn() {
-		return vent = r.nextDouble()/10-0.015+vent;
+		return vent = (r.nextDouble()/10-0.038)*(r.nextBoolean()? -1: 1)+vent;
 	}
 	public void venontVicn() {
 		venontVentn();
@@ -347,5 +357,35 @@ public class Map {
 	}
 	public void setQmodifitn(final boolean qmodif) {
 		qmodifit = qmodif;
+	}
+
+	static int[] plankFrekvencij = {1, 1, 2, 3, 4, 8};
+	static float[] plankamplitudes = {1.0f, 0.7f, 0.46f, 0.71f, 0.14f, 0.1f};
+
+	static int[] urbfrekvencij = {3, 2};//TODO tempa
+	static float[] urbamplitudes = {0.71f, 0.8f};//tempa
+	
+	static int[] mesfrekvencij = {10, 23, 5, 2, 1};//TODO tempa
+	static float[] mesamplitudes = {0.03f, 0.05f, 0.13f, 0.1f, 0.26f};//tempa
+	
+	public void definigBiomj() {
+		Konstantj.biomj = new Biom[Konstantj.PLEJ_BIOMJ];
+			
+		Konstantj.biomj[0] = new Biom(plankFrekvencij, plankamplitudes, 15, 1, Konstantj.PLANK_MAP_KOLOR);
+		Konstantj.biomj[1] = new Urb(urbfrekvencij, urbamplitudes, 4, 0.33, Color.GRAY);
+		Konstantj.biomj[2] = new Mes(mesfrekvencij, mesamplitudes, 35/*5*/, 0.75, new Color(185, 50, 10));
+		Konstantj.biomj[3] = new Biom(plankFrekvencij, plankamplitudes, 50, 0.85, Konstantj.PLANK_NEGX_MAP_KOLOR);
+		Konstantj.biomj[4] = new Biom(plankFrekvencij, plankamplitudes, 10, 1.85, Konstantj.SABL_MAP_KOLOR);
+		Konstantj.biomj[5] = new Ytali(10, Color.GRAY);
+		Konstantj.biomj[6] = new Biom(plankFrekvencij, plankamplitudes, 13, 1, new Color(50, 35, 60));
+	}
+	
+	public static void definigBildarn(final int i) {
+		final BufferedImage[] tempBildarj = Bildperant.dividBildnLawLargxspriten(
+				YargxilAzhj.yargxSkalitBildn("/background" + i + ".png", Transparency.OPAQUE, Konstantj.ludLargx));
+		
+		for(int j = 0; j < tempBildarj.length; j++)
+			Konstantj.QEFFONJ_BIOMJ[j + i*tempBildarj.length] = tempBildarj[j];
+		
 	}
 }
