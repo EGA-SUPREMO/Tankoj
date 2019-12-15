@@ -12,4 +12,4 @@ This program is free software: you can redistribute it and/or modify
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-This game is ...
+This is a tank game, similar to the famous game "Worms", the first player aim, set the potency and firet! then next one until every player has shoot begin the next turn, last tank with HP win battle and can use the points it earned to buy different misils, force shields and upgrade its stats like health, resistence, speed, etc.
