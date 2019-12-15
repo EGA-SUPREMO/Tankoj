@@ -1,4 +1,4 @@
-This is a tank game, similar to the famous game "Worms", the first player aim, set the potency and fire! then next one and the next one until every player has shot begin the next turn, last tank with HP win battle and can use the points it earned to buy different misils, force shields and upgrade its stats like health, resistence, speed, etc.
+This is a tank game, similar to the famous game "Worms", the first player aim, set the potency and fire! then next one and the next one until every player has shot begin the next turn, last tank with HP win the battle and can use the points it earned to buy different missiles, force shields and upgrade its stats like health, resistance, speed, etc.
 
 Here is a video about the game: https://www.youtube.com/watch?v=C3QphZC7b80
 
