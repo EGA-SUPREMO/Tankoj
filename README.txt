@@ -16,4 +16,6 @@ This is a tank game, similar to the famous game "Worms", the first player aim, s
 
 Here is a video about the game: https://www.youtube.com/watch?v=C3QphZC7b80
 
-This was written in Esperanto, if this is a issue or you are interested in this project let me know and I will translate to you.
+To test the game you only need to download the file named "Tankoj la atako v0.04.05 19.07.24.jar" in this folder.
+
+The code was written in Esperanto, if this is a issue or you are interested in this project let me know and I will translate to you.
