@@ -4,7 +4,7 @@ Here is a video about the game: https://www.youtube.com/watch?v=C3QphZC7b80
 
 To test the game you only need to download the file named "Tankoj la atako v0.04.05 19.07.24.jar" in this folder.
 
-The code was written in Esperanto, if this is a issue or you are interested in this project let me know and I will translate to you.
+The code as well the commits were written in Esperanto, if this is a issue or you are interested in this project let me know and I will translate to you.
 
 Lincense:
 
