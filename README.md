@@ -2,7 +2,9 @@
 
 This is a tank game, similar to the famous game "Worms", the first player aim, set the potency and fire! then next one and the next one until every player has shot begin the next turn, the last tank with health points win the battle and can use the points it earned to buy different missiles, force shields and upgrade its stats like resistance, speed, HP, gasoline, etc, to next battle.
 
-Here is a video about the game: https://www.youtube.com/watch?v=C3QphZC7b80
+
+Here is a video about the game:
+[![Watch the video](https://img.youtube.com/vi/C3QphZC7b80/maxresdefault.jpg)](https://youtu.be/C3QphZC7b80)
 
 ## Note:
 
