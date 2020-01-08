@@ -11,11 +11,11 @@ Here is a short gameplay.
 
 This code is written to have a low tech debt except the UI part, it needs to be replaced to a third party library.
 
-It almost meets the original requirements and is made to be easy to change (maintainability, extensibility) and easy to understand (readability, formatting, clarity) but lacks documentation.
+It almost meets the original requirements and is made to be easy to change (maintainability, extensibility) and easy to understand (readability, formatting, clarity) but lacks of proper documentation.
 
 This project is currently paused until I decide how to translate this in a web app or made a separate app for mobile and web version and after I find other experienced java developers interested in this project.
 
-The code as well the commits were written in Esperanto, I will translate them when ...
+The code as well the commits were written in Esperanto, I will translate them when I have time to invest in this project.
 
 ## Lincense:
 
