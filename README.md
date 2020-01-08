@@ -7,9 +7,15 @@ This is a tank game, similar to the famous game "Worms", the first player aim, s
 
 Here is a short gameplay.
 
-## Note:
+## Notes:
 
-The code as well the commits were written in Esperanto, if this is a issue or you are interested in this project let me know and I will translate to you.
+This code is written to have a low tech debt except the UI part, it needs to be replaced to a third party library.
+
+It almost meets the original requirements and is made to be easy to change (maintainability, extensibility) and easy to understand (readability, formatting, clarity) but lacks documentation.
+
+This project is currently paused until I decide how to translate this in a web app or made a separate app for mobile and web version and after I find other experienced java developers interested in this project.
+
+The code as well the commits were written in Esperanto, I will translate them when ...
 
 ## Lincense:
 
