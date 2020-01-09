@@ -17,6 +17,30 @@ Here is a short gameplay.
 
 * The code as well the commits were written in Esperanto, I will translate them when I have time to invest in this project.
 
+## Know Issues
+
+* There's a bug where sometimes the missile's angle starts at a negative number, provably should be added a checker before the missile is launched to fix that.
+
+* Because a few threads load the background simultaneously while the game request that images that still haven't been loaded generating the typical null pointer exception.
+
+* The missile's angle set to 0 when passes the map's coordinate X: 0.
+
+## TODO
+
+* Use a third-party UI library instead of reinventing the wheel.
+
+* Use a bug tracker instead of a text file.
+
+* Add music.
+
+* Add sound effects.
+
+* Improve a bit the game's physics.
+
+* Make and usable IU.
+
+* Make proper documentation for make faster to hunt developers.
+
 ## Lincense:
 
 This program is free software: you can redistribute it and/or modify
