@@ -41,7 +41,7 @@ Here is a short gameplay.
 
 * Make proper documentation for make faster to hunt developers.
 
-## Lincense
+## License
 
 This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
