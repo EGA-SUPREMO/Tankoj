@@ -7,7 +7,7 @@ This is a tank game, similar to the famous game "Worms", the first player aim, s
 
 Here is a short gameplay.
 
-## Notes:
+## Notes
 
 * This code is written to have a low tech debt except the UI part, it needs to be replaced to a third party library.
 
@@ -41,7 +41,7 @@ Here is a short gameplay.
 
 * Make proper documentation for make faster to hunt developers.
 
-## Lincense:
+## Lincense
 
 This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
