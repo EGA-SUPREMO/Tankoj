@@ -21,7 +21,7 @@ Here is a short gameplay.
 
 * There's a bug where sometimes the missile's angle starts at a negative number, provably should be added a checker before the missile is launched to fix that.
 
-* Because a few threads load the background simultaneously while the game request that images that still haven't been loaded generating the typical null pointer exception.
+* Some threads load the background images simultaneously while the game requests one of those images that has not yet been loaded generating the typical null pointer exception.
 
 * The missile's angle set to 0 when passes the map's coordinate X: 0.
 
