@@ -37,7 +37,7 @@ Here is a short gameplay.
 
 * Improve a bit the game's physics.
 
-* Make and usable IU.
+* Make an usable IU.
 
 * Make proper documentation for make faster to hunt developers.
 
