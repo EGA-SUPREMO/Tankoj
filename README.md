@@ -41,6 +41,8 @@ Here is a short gameplay.
 
 * Make proper documentation for make faster to hunt developers.
 
+* Add automated tests.
+
 ## License
 
 This program is free software: you can redistribute it and/or modify
