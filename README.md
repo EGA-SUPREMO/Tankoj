@@ -18,12 +18,7 @@ Here is a short gameplay.
 * The code as well the commits were written in Esperanto, I will translate them when I have time to invest in this project.
 
 ## Know Issues
-
-* There's a bug where sometimes the missile's angle starts at a negative number, provably should be added a checker before the missile is launched to fix that.
-
-* Some threads load the background images simultaneously while the game requests one of those images that has not yet been loaded generating the typical null pointer exception.
-
-* The missile's angle set to 0 when passes the map's coordinate X: 0.
+See [issues section](https://github.com/EGA-SUPREMO/Tanks-game/issues)
 
 ## TODO
 
