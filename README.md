@@ -1,3 +1,7 @@
+![Score](https://www.code-inspector.com/project/7449/score/svg)
+![Grade](https://www.code-inspector.com/project/7449/status/svg)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/EGA-SUPREMO/Tanks-game?color=red&label=Version)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 # Tankoj!
 
 This is a tank game, similar to the famous game "Worms", the first player aim, set the potency and fire! then next one and the next one until every player has shot begin the next turn, the last tank with health points win the battle and can use the points it earned to buy different missiles, force shields and upgrade its stats like resistance, speed, HP, gasoline, etc, to next battle.
