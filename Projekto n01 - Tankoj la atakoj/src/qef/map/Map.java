@@ -57,7 +57,7 @@ public class Map {
 	private boolean qmodifit = true;
 	
 	public Map(final int nunbiomo) {
-		nunbiom = nunbiomo;
+		nunbiom = 2;
 		definigBiomj();
 		r = new Random();
 		vent = 0.2d + r.nextDouble()*r.nextDouble()*0.08d;

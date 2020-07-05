@@ -19,7 +19,7 @@ public class Definigadej {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					Map.definigBildarn(i++);
+					//Map.definigBildarn(i++);
 				}
 			}).start();
 		}

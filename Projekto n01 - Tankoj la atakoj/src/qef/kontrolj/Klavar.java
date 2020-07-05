@@ -116,7 +116,9 @@ public class Klavar extends KeyAdapter {
 				teleirazh = false;
 				break;
 			case Konstantj.ELIRI:
-				elir();
+				for(int i = 0; i < Vicperant.ludantj.length; i++)
+					Vicperant.ludantj[i].mlpliVivn(100);
+				//elir();
 				break;
 			case Konstantj.REVIVIL:
 				if(Vicperant.nunMisiln()==null && QefObjektj.statp.qStatludn())

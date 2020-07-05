@@ -9,7 +9,7 @@ import qef.estazhj.vivazhj.Ludant;
 public class Ludantperant {
 
 	public static void definigadj() {
-		Ludant[] lj = YargxilAzhj.yargxLudantjn(1 + "i");
+		Ludant[] lj = YargxilAzhj.yargxLudantjn(1 + "");
 		if(lj != null) {
 			Vicperant.ludantj = lj;
 			
@@ -17,13 +17,9 @@ public class Ludantperant {
 		} else {
 			Vicperant.ludantj = new Ludant[] {new Ludant(1, "EGA", Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
 				Color.GREEN, Konstantj.armil, Color.BLUE.brighter()),new Ludant(1, "Oveja",
-				Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.CYAN.darker(), Konstantj.armil, Color.ORANGE),
-				new Ludant(1, "Lo que sea", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.GREEN.darker().darker(),
-				Konstantj.armil, Color.MAGENTA.darker()), new Ludant(1, "EGA", Konstantj.ITENER_SONJ_LUDANT + "pom.wav",
-				Color.GREEN, Konstantj.armil, Color.BLUE.brighter()),new Ludant(1, "Oveja",
-				Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.CYAN.darker(), Konstantj.armil, Color.ORANGE),
-				new Ludant(1, "Lo que sea", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.GREEN.darker().darker(),
-				Konstantj.armil, Color.MAGENTA.darker())};
+				Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.CYAN.darker(), Konstantj.armil, Color.MAGENTA.darker()),
+				new Ludant(1, "Noob", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.GREEN.darker().darker(),
+				Konstantj.armil, Color.YELLOW)};
 		}
 	}
 
