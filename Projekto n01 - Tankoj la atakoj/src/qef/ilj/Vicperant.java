@@ -11,7 +11,7 @@ public class Vicperant {
 	private static int stat = 2;
 	private static int neaktivLudantj = 0;
 	private static int nunLudant = 0;
-	public static int plejLudant = 3;
+	public static final int plejLudant = 3;
 	
 	public static Ludant[] ludantj;
 	private static Misil nunMisil;

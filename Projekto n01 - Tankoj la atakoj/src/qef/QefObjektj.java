@@ -12,6 +12,6 @@ public class QefObjektj {//Objektoj de la ludoj
 	public static Suprmenu suprmenu;
 	public static Malhelec malhelec = new Malhelec();
 	public static Superficdesegn superfic = new Superficdesegn();
-	public static Statperant statp;
+	public static Statperant statp = new Statperant();
 	
 }

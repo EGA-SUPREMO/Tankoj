@@ -5,11 +5,13 @@ import qef.QefObjektj;
 import qef.estazhj.vivazhj.Ludant;
 import qef.ilj.DebugDesegn;
 import qef.ilj.Vicperant;
+import qef.map.Map;
 import qef.statmayin.Statlud;
 
 public class Ludperant implements Statlud {
 	
 	public Ludperant() {
+		Map.definigBildarn();
 	}
 	
 	@Override

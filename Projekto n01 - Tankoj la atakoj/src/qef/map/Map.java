@@ -380,12 +380,14 @@ public class Map {
 		Konstantj.biomj[6] = new Biom(plankFrekvencij, plankamplitudes, 13, 1, new Color(50, 35, 60));
 	}
 	
-	public static void definigBildarn(final int i) {
-		final BufferedImage[] tempBildarj = Bildperant.dividBildnLawLargxspriten(
-				YargxilAzhj.yargxSkalitBildn("/background" + i + ".png", Transparency.OPAQUE, Konstantj.ludLargx));
-		
-		for(int j = 0; j < tempBildarj.length; j++)
-			Konstantj.QEFFONJ_BIOMJ[j + i*tempBildarj.length] = tempBildarj[j];
-		
+	public static void definigBildarn() {
+		for(int i = 0; i < Konstantj.PLEJ_BIOMJ; i++) {
+			final BufferedImage[] tempBildarj = Bildperant.dividBildnLawLargxspriten(
+					YargxilAzhj.yargxSkalitBildn("/background" + i + ".png", Transparency.OPAQUE,
+							Konstantj.ludLargx));
+			for(int j = 0; j < tempBildarj.length; j++) {
+				Konstantj.QEFFONJ_BIOMJ[j + i*tempBildarj.length] = tempBildarj[j];
+			}
+		}
 	}
 }

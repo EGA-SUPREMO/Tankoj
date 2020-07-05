@@ -9,10 +9,9 @@ import qef.estazhj.vivazhj.Ludant;
 public class Ludantperant {
 
 	public static void definigadj() {
-		Ludant[] lj = YargxilAzhj.yargxLudantjn(1 + "");
+		Ludant[] lj = YargxilAzhj.yargxLudantjn(1 + "i");
 		if(lj != null) {
 			Vicperant.ludantj = lj;
-			Vicperant.plejLudant = Vicperant.ludantj.length;
 			
 			Vicperant.ordigLudantjnlawMlplejmon();
 		} else {
@@ -25,7 +24,6 @@ public class Ludantperant {
 				Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.CYAN.darker(), Konstantj.armil, Color.ORANGE),
 				new Ludant(1, "Lo que sea", Konstantj.ITENER_SONJ_LUDANT + "pom.wav", Color.GREEN.darker().darker(),
 				Konstantj.armil, Color.MAGENTA.darker())};
-			Vicperant.plejLudant = Vicperant.ludantj.length;
 		}
 	}
 

@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 import qef.estazhj.vivazhj.kampfort.Kampfort;
 import qef.estazhj.vivazhj.misil.Misileg;
 import qef.grafikj.Fenestr;
-import qef.ilj.Definigadej;
 import qef.ilj.Ludantperant;
 import qef.son.Son;
 import qef.uzantinterfac.suprmenu.Suprmenu;
@@ -30,7 +29,6 @@ public class Qefperant {
 	private String titol;
 	
 	private Son fonmuzik;
-	static long ee, ee1;
 	
 	public static void main(String[] args) {
 		//Nur por OpenGL en Mac/Linux
@@ -43,14 +41,13 @@ public class Qefperant {
 		 */
 		
 		//System.setProperty("sun.java2d.transaccel", "True");
-		ee = System.nanoTime();
-		Qefperant qp = new Qefperant("Tankoj la atakoj");
+		Qefperant qp = new Qefperant("Tankoj la atakoj", Konstantj.plejfenestrLargx, Konstantj.plejfenestrAlt);
 		
 		qp.ekLudn();
 		qp.ekQefBukln();
 	}
 	
-	private Qefperant(final String titolo) {
+	private Qefperant(final String titolo, final int largx, final int alt) {
 		titol = titolo;
 	}
 	
@@ -68,12 +65,16 @@ public class Qefperant {
 		funkciante = true;
 		
 		definigad();
-	//	fonmuzik.loop();
+		fonmuzik.loop();
 	}
 	
 	private void definigad() {
+		Ludantperant.definigadj();
 		fonmuzik = new Son(Konstantj.ITENER_SONJ_LUDANT + "pom.wav", 0);
-		Definigadej.definigj();
+		Misileg.definigadMisiljn();
+		Kampfort.definigadj();
+		QefObjektj.suprmenu = new Suprmenu();
+		new Fenestr(titol);
 	}
 	
 	private void ekQefBukln() {
@@ -103,7 +104,7 @@ public class Qefperant {
 				try {//TODO forigu tion
 					gxisdatig();
 				}catch(Exception e) {
-					JOptionPane.showMessageDialog(null, e, "Error: gxisdatig(), " + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, e, "Error: gxisdatig()", JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
 				apsAkumulita++;
@@ -113,10 +114,6 @@ public class Qefperant {
 
 			try {
 				desegn();
-				if(ee1==0) {
-					ee1 = System.nanoTime();
-					System.out.println((ee1 - ee)/NS_POR_SEGUNDO);
-				}
 			} catch(Exception e) {
 				JOptionPane.showMessageDialog(null, e, "Error: desegn()", JOptionPane.ERROR_MESSAGE);
 				e.printStackTrace();
