@@ -13,12 +13,11 @@ Similar to [Worms inc](https://store.steampowered.com/app/70640/Worms/).
 [RPG Game Template](https://github.com/EGA-SUPREMO/RPG-Game-template) made possible this game.
 
 ## Gameplay
-In this turn-based game, the first player aim, set the potency and fire! then next tank and the next one until every player has shot, then it begins the next turn, the last tank with health points wins the battle and can use the points it earned through the match to buy different missiles, force shields and upgrade its stats like resistance, speed, HP, gasoline, etc, for the next battle.
+In this turn-based game, the first player aims, set the potency, and fire! then next tank until every player has shot, then it begins the next turn, the last tank with health points wins the battle and can use the points it earned through the match to buy different missiles, force shields, and upgrade its stats like resistance, speed, HP, gasoline, etc, for the next battle.
 
 Short gameplay
 
 [![](https://i.ibb.co/6t8rRwM/shor.png)](https://youtu.be/C3QphZC7b80)
-
 
 ## Notes
 * The code was written with the principle of performace above readability or clarity, e.g. it uses unidimensional arrays for bidimensional arrays, [see here how it's possible](https://github.com/EGA-SUPREMO/Tankoj/blob/master/pixelarray2d.jpg).
