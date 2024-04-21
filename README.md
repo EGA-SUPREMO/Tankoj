@@ -1,5 +1,3 @@
-![Score](https://www.code-inspector.com/project/7449/score/svg)
-![Grade](https://www.code-inspector.com/project/7449/status/svg)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/EGA-SUPREMO/Tanks-game?color=red&label=Version)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 # Tankoj!
