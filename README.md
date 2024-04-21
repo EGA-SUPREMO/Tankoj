@@ -3,7 +3,7 @@
 # Tankoj!
 A relative-complex tanks game
 ------
-![Screenshot](https://i.ibb.co/6t8rRwM/shor.png)
+![Screenshot](https://github.com/EGA-SUPREMO/Tankoj/blob/master/Projekto%20n01%20-%20Tankoj%20la%20atakoj/gameplay.GIF)
 
 Everything made from scratch from the graphics engine to the UI ~~BIG mistake btw~~ and designs except the backgrounds.
 
@@ -18,8 +18,12 @@ Tankoj! is a turn-based game where players take turns aiming, adjusting potency,
 
 [![](https://i.ibb.co/6t8rRwM/shor.png)](https://youtu.be/C3QphZC7b80)
 
+### Screenshots
+![Screenshot](https://github.com/EGA-SUPREMO/Tankoj/blob/master/Projekto%20n01%20-%20Tankoj%20la%20atakoj/gameplay.webp)
+![UI](https://github.com/EGA-SUPREMO/Tankoj/blob/master/Projekto%20n01%20-%20Tankoj%20la%20atakoj/ui.webp)
+
 ## Notes
-* The code was written with the principle of performace above readability or clarity, e.g. it uses unidimensional arrays for bidimensional arrays, [see here how it's possible](https://github.com/EGA-SUPREMO/Tankoj/blob/master/pixelarray2d.jpg).
+* The code was written with the principle of performace above readability or clarity, e.g. it uses unidimensional arrays for bidimensional arrays, [see here how it's possible](https://github.com/EGA-SUPREMO/Tankoj/blob/master/pixelarray2d.jpg). ![imagen pixel 2d](https://github.com/EGA-SUPREMO/Tankoj/blob/master/pixelarray2d.jpg)
 
 * This code is written to have a low tech debt except the UI part, it needs to be replaced to a third party library.
 
