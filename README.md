@@ -3,6 +3,7 @@
 # Tankoj!
 A relative-complex tanks game
 ------
+![Screenshot](https://i.ibb.co/6t8rRwM/shor.png)
 
 Everything made from scratch from the graphics engine to the UI ~~BIG mistake btw~~ and designs except the backgrounds.
 
@@ -13,7 +14,7 @@ Similar to [Worms W.M.D.](https://store.steampowered.com/app/327030/Worms_WMD/).
 ## Gameplay
 Tankoj! is a turn-based game where players take turns aiming, adjusting potency, and firing their missile. Each player has a chance to shoot in a round. The game continues in this turn-based fashion until all players have taken their shots. The last tank with remaining health points at the end of the battle is declared the winner. Players can accumulate points during the match to purchase various missiles, force shields, and upgrade their tank's stats (e.g., resistance, speed, HP, gasoline) for the next battle.
 
-Short Youtube gameplay
+[Short Youtube gameplay](https://youtu.be/C3QphZC7b80)
 
 [![](https://i.ibb.co/6t8rRwM/shor.png)](https://youtu.be/C3QphZC7b80)
 
