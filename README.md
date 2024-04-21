@@ -6,14 +6,14 @@ A relative-complex tanks game
 
 Everything made from scratch from the graphics engine to the UI ~~BIG mistake btw~~ and designs except the backgrounds.
 
-Similar to [Worms inc](https://store.steampowered.com/app/70640/Worms/).
+Similar to [Worms W.M.D.](https://store.steampowered.com/app/327030/Worms_WMD/).
 
 [RPG Game Template](https://github.com/EGA-SUPREMO/RPG-Game-template) made possible this game.
 
 ## Gameplay
-In this turn-based game, the first player aims, set the potency, and fire! then next tank until every player has shot, then it begins the next turn, the last tank with health points wins the battle and can use the points it earned through the match to buy different missiles, force shields, and upgrade its stats like resistance, speed, HP, gasoline, etc, for the next battle.
+Tankoj! is a turn-based game where players take turns aiming, adjusting potency, and firing their missile. Each player has a chance to shoot in a round. The game continues in this turn-based fashion until all players have taken their shots. The last tank with remaining health points at the end of the battle is declared the winner. Players can accumulate points during the match to purchase various missiles, force shields, and upgrade their tank's stats (e.g., resistance, speed, HP, gasoline) for the next battle.
 
-Short gameplay
+Short Youtube gameplay
 
 [![](https://i.ibb.co/6t8rRwM/shor.png)](https://youtu.be/C3QphZC7b80)
 
