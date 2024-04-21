@@ -12,18 +12,18 @@ Similar to [Worms W.M.D.](https://store.steampowered.com/app/327030/Worms_WMD/).
 
 [RPG Game Template](https://github.com/EGA-SUPREMO/RPG-Game-template) made possible this game.
 
-## Gameplay
+## 🎮 Gameplay 🎮
 Tankoj! is a turn-based game where players take turns aiming, adjusting potency, and firing their missile. Each player has a chance to shoot in a round. The game continues in this turn-based fashion until all players have taken their shots. The last tank with remaining health points at the end of the battle is declared the winner. Players can accumulate points during the match to purchase various missiles, force shields, and upgrade their tank's stats (e.g., resistance, speed, HP, gasoline) for the next battle.
 
 [Short Youtube gameplay](https://youtu.be/C3QphZC7b80)
 
 [![](https://i.ibb.co/6t8rRwM/shor.png)](https://youtu.be/C3QphZC7b80)
 
-### Screenshots
+### 📸 Screenshots 📸
 ![Screenshot](https://github.com/EGA-SUPREMO/Tankoj/blob/master/Projekto%20n01%20-%20Tankoj%20la%20atakoj/gameplay.webp)
 ![UI](https://github.com/EGA-SUPREMO/Tankoj/blob/master/Projekto%20n01%20-%20Tankoj%20la%20atakoj/ui.webp)
 
-## Notes
+## 📋 Notes 📋
 * The code was written with the principle of performace above readability or clarity, e.g. it uses unidimensional arrays for bidimensional arrays, [see here how it's possible](https://github.com/EGA-SUPREMO/Tankoj/blob/master/pixelarray2d.jpg). ![imagen pixel 2d](https://github.com/EGA-SUPREMO/Tankoj/blob/master/pixelarray2d.jpg)
 
 * This code is written to have a low tech debt except the UI part, it needs to be replaced to a third party library.
@@ -36,10 +36,10 @@ Tankoj! is a turn-based game where players take turns aiming, adjusting potency,
 
 * It uses Java 1.8
 
-## Known Issues
+### 📌 Known Issues 📌
 See [issues section](https://github.com/EGA-SUPREMO/Tanks-game/issues)
 
-## TODOs
+### 📋 TODOs 📋
 * Use a third-party UI library instead of reinventing the wheel.
 
 * Use a bug tracker instead of a text file.
