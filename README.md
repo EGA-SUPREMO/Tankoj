@@ -1,5 +1,6 @@
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/EGA-SUPREMO/Tanks-game?color=red&label=Version)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 # Tankoj!
 A relative-complex tanks game
 ------
