@@ -29,6 +29,8 @@ Tankoj! is a turn-based game where players take turns aiming, adjusting potency,
 
 * The code as well the commits were written in Esperanto, I will translate them when I have time to invest in this project.
 
+* It uses Java 1.8
+
 ## Known Issues
 See [issues section](https://github.com/EGA-SUPREMO/Tanks-game/issues)
 
